@@ -11,25 +11,25 @@ open Function
 施罗德-伯恩斯坦定理
 ------------------------------
 
-我们用一个初等而非平凡的定理结束本章。令 :math:`\alpha` 和 :math:`\beta` 是集合。（在我们的形式化中, 它们实际上会是类型。）假定 :math:`f : \alpha → \beta` 和 :math:`g : \beta → \alpha` 都是单射。直观上，这意味着 :math:`\alpha` 不大于 :math:`\beta` ，反之亦然。如果 :math:`\alpha` 和 :math:`\beta` 是有限的，这意味着它们具有相同的基数，而这相当于说它们之间存在双射。在十九世纪，康托尔（Cantor）指出，即使当 :math:`\alpha` 和 :math:`\beta` 无穷时，同样的结果也成立。这个结果最终由戴德金（Dedekind）、施罗德（Schröder）和伯恩斯坦（Bernstein）各自独立证明。
+我们用一个初等而非平凡的定理结束本章。令 :math:`\alpha` 和 :math:`\beta` 是集合。（在本节的形式化中, 它们实际上会是类型。）假定 :math:`f : \alpha → \beta` 和 :math:`g : \beta → \alpha` 都是单射。直观上，这意味着 :math:`\alpha` 不大于 :math:`\beta` ，反之亦然。如果 :math:`\alpha` 和 :math:`\beta` 是有限的，这意味着它们具有相同的基数，而这相当于说它们之间存在双射。在十九世纪，康托尔（Cantor）指出，即使当 :math:`\alpha` 和 :math:`\beta` 无穷时，同样的结果也成立。这个结果最终由戴德金（Dedekind）、施罗德（Schröder）和伯恩斯坦（Bernstein）各自独立证明。
 
-我们的形式化将引入一些新方法，接下来的章节中会更详细地解释这些方法。不必担心它们在这里讲得太快。我们的目标是向你展示你已经具备为真实数学结果的形式证明做出贡献的技能。
+本节引入的新方法会接下来的章节中更详细地解释，所以不必担心本节讲得太快。本节目标是向你展示你已经可以为真正的数学结果的形式化做出贡献。
 
-为了理解证明背后的思想，考虑映射 :math:`g` 在 :math:`\alpha` 中的像。在这个像中， :math:`g` 的逆有定义，且是到 :math:`\beta` 的双射。
+证明的主要目标是构造 :math:`\alpha` 和 :math:`\beta` 之间的双射。现在展示直观上的证明步骤。考虑映射 :math:`g` 在 :math:`\alpha` 中的像。在这个像中，可以定义 :math:`g` 的逆，且是到 :math:`\beta` 的双射。
 
 .. image:: /figures/schroeder_bernstein1.*
    :height: 150 px
    :alt: the Schröder Bernstein theorem
    :align: center
 
-问题是双射不包括图中的阴影区域，如果 :math:`g` 不是满射，则它是非空的。或者，我们可以使用 :math:`f` 把整个 :math:`\alpha` 映射到 :math:`\beta` ，但在那种情况下问题是若 :math:`f` 不是满射，则它会错过 :math:`\beta` 的一些元素。
+问题是双射不包括图中的阴影区域，如果 :math:`g` 不是满射，则阴影是非空的。或者，我们可以使用 :math:`f` 把整个 :math:`\alpha` 映射到 :math:`\beta` ，但在那种情况下问题是若 :math:`f` 不是满射，则它会同样错过 :math:`\beta` 内的一些元素。
 
 .. image:: /figures/schroeder_bernstein2.*
    :height: 150 px
    :alt: the Schröder Bernstein theorem
    :align: center
 
-但现在考虑从 :math:`\alpha` 到自身的复合映射 :math:`g \circ f` 。由于这个复合映射是单射，它构成了 :math:`\alpha` 和它的像的双射，在 :math:`\alpha` 内部产生了一个缩小的副本。
+但现在考虑从 :math:`\alpha` 到自身的复合映射 :math:`g \circ f` 。由于这个复合映射是单射，可以证明它也是 :math:`\alpha` 到它的像的双射，直观上就是在 :math:`\alpha` 内部产生了一个缩小的副本。
 
 .. image:: /figures/schroeder_bernstein3.*
    :height: 150 px

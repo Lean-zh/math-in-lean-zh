@@ -9,27 +9,14 @@ namespace C03S02
 /- TEXT:
 .. _the_existential_quantifier:
 
-The Existential Quantifier
+存在量词
 --------------------------
 
-The existential quantifier, which can be entered as ``\ex`` in VS Code,
-is used to represent the phrase "there exists."
-The formal expression ``∃ x : ℝ, 2 < x ∧ x < 3`` in Lean says
-that there is a real number between 2 and 3.
-(We will discuss the conjunction symbol, ``∧``, in :numref:`conjunction_and_biimplication`.)
-The canonical way to prove such a statement is to exhibit a real number
-and show that it has the stated property.
-The number 2.5, which we can enter as ``5 / 2``
-or ``(5 : ℝ) / 2`` when Lean cannot infer from context that we have
-the real numbers in mind, has the required property,
-and the ``norm_num`` tactic can prove that it meets the description.
+存在量词，在VS Code中可以用 ``\ex`` 输入，用于表示短语“存在”。Lean 中的形式表达式 ``∃ x : ℝ, 2 < x ∧ x < 3`` 是说存在一个介于2到3之间的实数。（我们将在 :numref:`conjunction_and_biimplication` 探讨合取符号。）证明这种语句的典型方式是给出一个实数并说明它具有语句指出的性质。我们可以用 ``5 / 2`` 输入2.5这个数，或者，当 Lean 无法从上下文推断出我们想输入实数时，用 ``(5 : ℝ) / 2`` 输入，它具有所需的性质，而 ``norm_num`` 策略可以证明它符合描述。
 
 .. index:: use, tactics ; use
 
-There are a few ways we can put the information together.
-Given a goal that begins with an existential quantifier,
-the ``use`` tactic is used to provide the object,
-leaving the goal of proving the property.
+我们有一些方式可以把信息聚合在一起。给定一个以存在量词开头的目标，则 ``use`` 策略可用于提供对象，留下证明其属性的目标。
 TEXT. -/
 -- QUOTE:
 example : ∃ x : ℝ, 2 < x ∧ x < 3 := by
@@ -38,7 +25,7 @@ example : ∃ x : ℝ, 2 < x ∧ x < 3 := by
 -- QUOTE.
 
 /- TEXT:
-You can give the ``use`` tactic proofs as well as data:
+你不仅可以给 ``use`` 策略提供数据，还可以提供证明：
 TEXT. -/
 -- QUOTE:
 example : ∃ x : ℝ, 2 < x ∧ x < 3 := by
@@ -48,7 +35,7 @@ example : ∃ x : ℝ, 2 < x ∧ x < 3 := by
 -- QUOTE.
 
 /- TEXT:
-In fact, the ``use`` tactic automatically tries to use available assumptions as well.
+事实上， ``use`` 策略同样自动地尝试可用的假设。
 TEXT. -/
 -- QUOTE:
 example : ∃ x : ℝ, 2 < x ∧ x < 3 := by
@@ -59,8 +46,7 @@ example : ∃ x : ℝ, 2 < x ∧ x < 3 := by
 /- TEXT:
 .. index:: anonymous constructor
 
-Alternatively, we can use Lean's *anonymous constructor* notation
-to construct a proof of an existential quantifier.
+或者，我们可以使用 Lean 的 **匿名构造子（anonymous constructor）** 符号来构造涉及存在量词的证明。
 TEXT. -/
 -- QUOTE:
 example : ∃ x : ℝ, 2 < x ∧ x < 3 :=
@@ -69,13 +55,7 @@ example : ∃ x : ℝ, 2 < x ∧ x < 3 :=
 -- QUOTE.
 
 /- TEXT:
-Notice that there is no ``by``; here we are giving an explicit proof term.
-The left and right angle brackets,
-which can be entered as ``\<`` and ``\>`` respectively,
-tell Lean to put together the given data using
-whatever construction is appropriate
-for the current goal.
-We can use the notation without going first into tactic mode:
+这里没有用 ``by`` ，因为这是证明项。左右尖括号，可以分别用 ``\<`` 和 ``\>`` 输入，告诉 Lean 使用任何对当前目标合适的构造方式把给定的数据组织起来。我们可以不在策略模式下使用这种符号：
 TEXT. -/
 -- QUOTE:
 example : ∃ x : ℝ, 2 < x ∧ x < 3 :=
@@ -83,17 +63,7 @@ example : ∃ x : ℝ, 2 < x ∧ x < 3 :=
 -- QUOTE.
 
 /- TEXT:
-So now we know how to *prove* an exists statement.
-But how do we *use* one?
-If we know that there exists an object with a certain property,
-we should be able to give a name to an arbitrary one
-and reason about it.
-For example, remember the predicates ``FnUb f a`` and ``FnLb f a``
-from the last section,
-which say that ``a`` is an upper bound or lower bound on ``f``,
-respectively.
-We can use the existential quantifier to say that "``f`` is bounded"
-without specifying the bound:
+所以我们现在知道如何证明一个存在语句。但我们要如何 *使用* 它？如果我们知道存在一个具有特定性质的对象，我们就可以为任意一个对象命名并对其进行推理。例如， 回顾上一节的谓词 ``FnUb f a`` 和 ``FnLb f a`` ，它们分别是指 ``a`` 是 ``f`` 的一个上界或下界。我们可以使用存在量词说明 “ ``f`` 是有界的”，而无需指定它的界：
 TEXT. -/
 -- BOTH:
 -- QUOTE:
@@ -111,9 +81,7 @@ def FnHasLb (f : ℝ → ℝ) :=
 -- QUOTE.
 
 /- TEXT:
-We can use the theorem ``FnUb_add`` from the last section
-to prove that if ``f`` and ``g`` have upper bounds,
-then so does ``fun x ↦ f x + g x``.
+我们可以使用上一节的定理 ``FnUb_add`` 证明若 ``f`` 和 ``g`` 具有上界，则 ``fun x ↦ f x + g x`` 也有。
 TEXT. -/
 -- BOTH:
 theorem fnUb_add {f g : ℝ → ℝ} {a b : ℝ} (hfa : FnUb f a) (hgb : FnUb g b) :
@@ -136,32 +104,9 @@ example (ubf : FnHasUb f) (ubg : FnHasUb g) : FnHasUb fun x ↦ f x + g x := by
 /- TEXT:
 .. index:: cases, tactics ; cases
 
-The ``rcases`` tactic unpacks the information
-in the existential quantifier.
-The annotations like ``⟨a, ubfa⟩``, written with the
-same angle brackets as the anonymous constructors,
-are known as *patterns*, and they describe the information
-that we expect to find when we unpack the main argument.
-Given the hypothesis ``ubf`` that there is an upper bound
-for ``f``,
-``rcases ubf with ⟨a, ubfa⟩`` adds a new variable ``a``
-for an upper bound to the context,
-together with the hypothesis ``ubfa`` that it has the given property.
-The goal is left unchanged;
-what *has* changed is that we can now use
-the new object and the new hypothesis
-to prove the goal.
-This is a common method of reasoning in mathematics:
-we unpack objects whose existence is asserted or implied
-by some hypothesis, and then use it to establish the existence
-of something else.
+``rcases`` 策略解包了存在量词中的信息。像 ``⟨a, ubfa⟩`` 这样长得像是一个匿名构造子的记号，称为 **模式（pattern）**，它们描述了我们在解包主参数时期望找到的信息。给出假设 ``ubf``, 即 ``f`` 存在上界，``rcases ubf with ⟨a, ubfa⟩`` 在上下文中添加一个新变量 ``a`` 作为上界，并添加假设 ``ubfa`` ，即该变量有给定的性质。这有点像 ``intro`` ，目标没有变化，但引入了新对象和新假设来证明目标。这是数学推理的一种常规方法：我们解包对象，其存在性被一些假设断言或蕴含，然后使用它论证其他一些东西的存在性。
 
-Try using this method to establish the following.
-You might find it useful to turn some of the examples
-from the last section into named theorems,
-as we did with ``fn_ub_add``,
-or you can insert the arguments directly
-into the proofs.
+试着使用这个方法构建下列命题。你可能用到上一节中的一些例子，所以可以给它们起些名字，就像我们对 ``fn_ub_add`` 做的那样，或者你也可以直接把那些论证插入到证明中。
 TEXT. -/
 -- QUOTE:
 example (lbf : FnHasLb f) (lbg : FnHasLb g) : FnHasLb fun x ↦ f x + g x := by
@@ -188,10 +133,7 @@ example {c : ℝ} (ubf : FnHasUb f) (h : c ≥ 0) : FnHasUb fun x ↦ c * f x :=
 /- TEXT:
 .. index:: rintro, tactics ; rintro, rcases, tactics ; rcases
 
-The "r" in ``rcases`` stands for "recursive," because it allows
-us to use arbitrarily complex patterns to unpack nested data.
-The ``rintro`` tactic
-is a combination of ``intro`` and ``rcases``:
+``rcases`` 中的 "r" 表示 "recursive（递归）"，因为它允许我们使用任意复杂的模式解包嵌套数据。``rintro`` 策略是 ``intro`` 和 ``rcases`` 的组合：
 TEXT. -/
 -- QUOTE:
 example : FnHasUb f → FnHasUb g → FnHasUb fun x ↦ f x + g x := by
@@ -200,8 +142,7 @@ example : FnHasUb f → FnHasUb g → FnHasUb fun x ↦ f x + g x := by
 -- QUOTE.
 
 /- TEXT:
-In fact, Lean also supports a pattern-matching fun
-in expressions and proof terms:
+事实上，Lean 也支持表达式和证明项中的模式匹配函数：
 TEXT. -/
 -- QUOTE:
 example : FnHasUb f → FnHasUb g → FnHasUb fun x ↦ f x + g x :=
@@ -212,9 +153,7 @@ example : FnHasUb f → FnHasUb g → FnHasUb fun x ↦ f x + g x :=
 end
 
 /- TEXT:
-The task of unpacking information in a hypothesis is
-so important that Lean and Mathlib provide a number of
-ways to do it. For example, the ``obtain`` tactic provides suggestive syntax:
+在假设中解包信息的任务非常重要，以至于 Lean 和 Mathlib 提供了多种方式实施。例如， ``obtain`` 策略提供提示性语法：
 TEXT. -/
 -- QUOTE:
 example (ubf : FnHasUb f) (ubg : FnHasUb g) : FnHasUb fun x ↦ f x + g x := by
@@ -224,14 +163,9 @@ example (ubf : FnHasUb f) (ubg : FnHasUb g) : FnHasUb fun x ↦ f x + g x := by
 -- QUOTE.
 
 /- TEXT:
-Think of the first ``obtain`` instruction as matching the "contents" of ``ubf``
-with the given pattern and assigning the components to the named variables.
-``rcases`` and ``obtain`` are said to ``destruct`` their arguments, though
-there is a small difference in that ``rcases`` clears ``ubf`` from the context
-when it is done, whereas it is still present after ``obtain``.
+将第一条 ``obtain`` 指令看作是将 ``ubf`` 的“内容”与给定的模式匹配，并将成分赋值给具名变量。``rcases`` 和 ``obtain`` 可以说是在 ``destruct`` 它们的参数，但有一点不同，``rcases`` 在完成后会清除上下文中的 ``ubf``, 而在 ``obtain`` 后它仍然存在。
 
-Lean also supports syntax that is similar to that used in other functional programming
-languages:
+Lean 还支持与其他函数式编程语言类似的语法：
 TEXT. -/
 -- QUOTE:
 example (ubf : FnHasUb f) (ubg : FnHasUb g) : FnHasUb fun x ↦ f x + g x := by
@@ -260,35 +194,11 @@ example (ubf : FnHasUb f) (ubg : FnHasUb g) : FnHasUb fun x ↦ f x + g x :=
 -- QUOTE.
 
 /- TEXT:
-In the first example, if you put your cursor after ``cases ubf``,
-you will see that the tactic produces a single goal, which Lean has tagged
-``intro``. (The particular name chosen comes from the internal name for
-the axiomatic primitive that builds a proof of an existential statement.)
-The ``case`` tactic then names the components. The second example is similar,
-except using ``next`` instead of ``case`` means that you can avoid mentioning
-``intro``. The word ``match`` in the last two examples highlights that
-what we are doing here is what computer scientists call "pattern matching."
-Notice that the third proof begins by ``by``, after which the tactic version
-of ``match`` expects a tactic proof on the right side of the arrow.
-The last example is a proof term: there are no tactics in sight.
+在第一个例子中，如果把光标放在 ``cases ubf`` 后面，就会看到该策略产生了一个目标，Lean 将其标记为 ``intro`` （所选的特定名称来自建立存在性语句证明的公理基元的内部名称）。然后， ``case`` 策略会命名各个组件。第二个例子也是类似的，只是使用了 ``next`` 而非 ``case`` 意味着可以避免提及 ``intro`` 。最后两个例子中的 ``match`` 一词强调了我们在这里做的是计算机科学家所说的“模式匹配”。请注意，第三个证明以 ``by`` 开头，之后的策略版 ``match`` 希望在箭头右侧有一个策略证明。最后一个例子是一个证明项，没有策略。
 
-For the rest of this book, we will stick to ``rcases``, ``rintro``, and ``obtain``,
-as the preferred ways of using an existential quantifier.
-But it can't hurt to see the alternative syntax, especially if there is
-a chance you will find yourself in the company of computer scientists.
+在本书其余部分，我们将坚持使用 ``rcases``, ``rintros`` 和 ``obtain`` ，作为使用存在量词的首选方式。但看看其他语法也没坏处，尤其是当你有机会与计算机科学家合作时。
 
-To illustrate one way that ``rcases`` can be used,
-we prove an old mathematical chestnut:
-if two integers ``x`` and ``y`` can each be written as
-a sum of two squares,
-then so can their product, ``x * y``.
-In fact, the statement is true for any commutative
-ring, not just the integers.
-In the next example, ``rcases`` unpacks two existential
-quantifiers at once.
-We then provide the magic values needed to express ``x * y``
-as a sum of squares as a list to the ``use`` statement,
-and we use ``ring`` to verify that they work.
+为了展示 ``rcases`` 的一种使用方法，我们来证明一个经典的数学结果：若两个整数 ``x`` 和 ``y`` 可以分别写成两个平方数之和，那么它们的乘积 ``x * y`` 也可以。事实上，这个结论对任何交换环都是正确的，而不仅仅适用于整数环。在下一个例子中， ``rcases`` 同时解包了两个存在量词。然后，我们以列表形式向 ``use`` 语句提供将 ``x * y`` 表示为平方和所需的值，并使用 ``ring`` 来验证它们是否有效。
 TEXT. -/
 section
 
@@ -308,34 +218,9 @@ theorem sumOfSquares_mul {x y : α} (sosx : SumOfSquares x) (sosy : SumOfSquares
 -- QUOTE.
 
 /- TEXT:
-This proof doesn't provide much insight,
-but here is one way to motivate it.
-A *Gaussian integer* is a number of the form :math:`a + bi`
-where :math:`a` and :math:`b` are integers and :math:`i = \sqrt{-1}`.
-The *norm* of the Gaussian integer :math:`a + bi` is, by definition,
-:math:`a^2 + b^2`.
-So the norm of a Gaussian integer is a sum of squares,
-and any sum of squares can be expressed in this way.
-The theorem above reflects the fact that norm of a product of
-Gaussian integers is the product of their norms:
-if :math:`x` is the norm of :math:`a + bi` and
-:math:`y` in the norm of :math:`c + di`,
-then :math:`xy` is the norm of :math:`(a + bi) (c + di)`.
-Our cryptic proof illustrates the fact that
-the proof that is easiest to formalize isn't always
-the most perspicuous one.
-In :numref:`section_building_the_gaussian_integers`,
-we will provide you with the means to define the Gaussian
-integers and use them to provide an alternative proof.
+这个证明并未给出太多直觉洞见，现在我们展示证明思路。**高斯整数** 是形如 :math:`a + bi` 的数，其中 :math:`a` 和 :math:`b` 是整数，而 :math:`i = \sqrt{-1}` 。根据定义，高斯整数 :math:`a + bi` 的 *范数* 是 :math:`a^2 + b^2` 。所以高斯整数的范数是平方和，且任意平方和都可以这样表示。上述定理反映了一个事实，即高斯整数的乘积的范数等于范数的乘积：若 :math:`x` 是 :math:`a + bi` 的范数，且 :math:`y` 是 :math:`c + di` 的范数，则 :math:`xy` 是 :math:`(a + bi) (c + di)` 的范数。我们充满惊人注意力的证明说明了这样一个事实：最容易形式化的证明并不总是最透彻的。在 :numref:`section_building_the_gaussian_integers` 中，我们将为你介绍定义高斯整数的方法，并利用它们提供另一种证明。
 
-The pattern of unpacking an equation inside an existential quantifier
-and then using it to rewrite an expression in the goal
-comes up often,
-so much so that the ``rcases`` tactic provides
-an abbreviation:
-if you use the keyword ``rfl`` in place of a new identifier,
-``rcases`` does the rewriting automatically (this trick doesn't work
-with pattern-matching lambdas).
+在存在量词中解包等式，然后用它来重写目标中的表达式的模式经常出现，以至于 ``rcases`` 策略提供了一个缩写：如果使用关键字 ``rfl`` 代替新的标识符，``rcases`` 就会自动进行重写（这一技巧不适用于模式匹配的 lambda）。
 TEXT. -/
 -- QUOTE:
 theorem sumOfSquares_mul' {x y : α} (sosx : SumOfSquares x) (sosy : SumOfSquares y) :
@@ -349,10 +234,7 @@ theorem sumOfSquares_mul' {x y : α} (sosx : SumOfSquares x) (sosy : SumOfSquare
 end
 
 /- TEXT:
-As with the universal quantifier,
-you can find existential quantifiers hidden all over
-if you know how to spot them.
-For example, divisibility is implicitly an "exists" statement.
+与全称量词一样，存在量词也满地都是。例如，可除性隐含了一个“存在”语句。
 TEXT. -/
 -- BOTH:
 section
@@ -368,12 +250,9 @@ example (divab : a ∣ b) (divbc : b ∣ c) : a ∣ c := by
 -- QUOTE.
 
 /- TEXT:
-And once again, this provides a nice setting for using
-``rcases`` with ``rfl``.
-Try it out in the proof above.
-It feels pretty good!
+这再次为和 ``rfl`` 一起使用 ``rcases`` 提供了一个很好的配置。在上面的证明中试试看。感觉还不错！
 
-Then try proving the following:
+接下来尝试证明下列定理：
 TEXT. -/
 -- QUOTE:
 example (divab : a ∣ b) (divac : a ∣ c) : a ∣ b + c := by
@@ -397,14 +276,7 @@ end
 /- TEXT:
 .. index:: surjective function
 
-For another important example, a function :math:`f : \alpha \to \beta`
-is said to be *surjective* if for every :math:`y` in the
-codomain, :math:`\beta`,
-there is an :math:`x` in the domain, :math:`\alpha`,
-such that :math:`f(x) = y`.
-Notice that this statement includes both a universal
-and an existential quantifier, which explains
-why the next example makes use of both ``intro`` and ``use``.
+另一个重要的例子是，若函数 :math:`f : \alpha \to \beta` 满足对值域 :math:`\beta` 中任意的 :math:`y`, 存在定义域 :math:`\alpha` 中的 :math:`x`, 使得 :math:`f(x) = y` ，那么我们称这个函数是 *满射* 。注意到这个语句既包含全称量词，也包含存在量词，这解释了为什么接下来的例子同时使用了 ``intro`` 和 ``use`` 。
 TEXT. -/
 -- BOTH:
 section
@@ -420,7 +292,7 @@ example {c : ℝ} : Surjective fun x ↦ x + c := by
 -- QUOTE.
 
 /- TEXT:
-Try this example yourself using the theorem ``mul_div_cancel₀``.:
+试试这个，使用定理 ``mul_div_cancel₀`` ：
 TEXT. -/
 -- QUOTE:
 example {c : ℝ} (h : c ≠ 0) : Surjective fun x ↦ c * x := by
@@ -441,9 +313,7 @@ example {c : ℝ} (h : c ≠ 0) : Surjective fun x ↦ c * x := by
 /- TEXT:
 .. index:: field_simp, tactics ; field_simp
 
-At this point, it is worth mentioning that there is a tactic, ``field_simp``,
-that will often clear denominators in a useful way.
-It can be used in conjunction with the ``ring`` tactic.
+技巧： ``field_simp`` 策略通常可以有效地去分母。它可以与 ``ring`` 策略结合使用。
 TEXT. -/
 -- QUOTE:
 example (x y : ℝ) (h : x - y ≠ 0) : (x ^ 2 - y ^ 2) / (x - y) = x + y := by
@@ -452,10 +322,7 @@ example (x y : ℝ) (h : x - y ≠ 0) : (x ^ 2 - y ^ 2) / (x - y) = x + y := by
 -- QUOTE.
 
 /- TEXT:
-The next example uses a surjectivity hypothesis
-by applying it to a suitable value.
-Note that you can use ``rcases`` with any expression,
-not just a hypothesis.
+下一个示例使用了满射性假设，将它应用于一个合适的值。你可以在任何表达式中使用 ``rcases`` ，而不仅仅是在假设中。
 TEXT. -/
 -- QUOTE:
 example {f : ℝ → ℝ} (h : Surjective f) : ∃ x, f x ^ 2 = 4 := by
@@ -469,8 +336,7 @@ example {f : ℝ → ℝ} (h : Surjective f) : ∃ x, f x ^ 2 = 4 := by
 end
 
 /- TEXT:
-See if you can use these methods to show that
-the composition of surjective functions is surjective.
+看看你能否用这些方法证明满射函数的复合是满射。
 TEXT. -/
 -- BOTH:
 section

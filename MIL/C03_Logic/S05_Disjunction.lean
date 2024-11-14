@@ -6,15 +6,12 @@ namespace C03S05
 /- TEXT:
 .. _disjunction:
 
-Disjunction
+析取
 -----------
 
 .. index:: left, right, tactics ; left, tactics ; right
 
-The canonical way to prove a disjunction ``A ∨ B`` is to prove
-``A`` or to prove ``B``.
-The ``left`` tactic chooses ``A``,
-and the ``right`` tactic chooses ``B``.
+证明析取 ``A ∨ B`` （ ``\or`` ）的典型方式是证明 ``A`` 或证明 ``B`` 。 ``left`` 策略选择 ``A`` ， ``right`` 策略选择 ``B`` 。
 TEXT. -/
 -- BOTH:
 section
@@ -33,14 +30,7 @@ example (h : -y > x ^ 2 + 1) : y > 0 ∨ y < -1 := by
 -- QUOTE.
 
 /- TEXT:
-We cannot use an anonymous constructor to construct a proof
-of an "or" because Lean would have to guess
-which disjunct we are trying to prove.
-When we write proof terms we can use
-``Or.inl`` and ``Or.inr`` instead
-to make the choice explicitly.
-Here, ``inl`` is short for "introduction left" and
-``inr`` is short for "introduction right."
+我们不能使用匿名构造子来构造“或”的证明，因为 Lean 猜不出来我们在尝试证明哪个分支。作为替代方式，证明项中可以使用 ``Or.inl`` 和 ``Or.inr`` 来做出明确的选择。这里， ``inl`` 是“引入左项”的缩写，而 ``inr`` 是“引入右项”的缩写。
 TEXT. -/
 -- QUOTE:
 example (h : y > 0) : y > 0 ∨ y < -1 :=
@@ -51,24 +41,9 @@ example (h : y < -1) : y > 0 ∨ y < -1 :=
 -- QUOTE.
 
 /- TEXT:
-It may seem strange to prove a disjunction by proving one side
-or the other.
-In practice, which case holds usually depends on a case distinction
-that is implicit or explicit in the assumptions and the data.
-The ``rcases`` tactic allows us to make use of a hypothesis
-of the form ``A ∨ B``.
-In contrast to the use of ``rcases`` with conjunction or an
-existential quantifier,
-here the ``rcases`` tactic produces *two* goals.
-Both have the same conclusion, but in the first case,
-``A`` is assumed to be true,
-and in the second case,
-``B`` is assumed to be true.
-In other words, as the name suggests,
-the ``rcases`` tactic carries out a proof by cases.
-As usual, we can tell Lean what names to use for the hypotheses.
-In the next example, we tell Lean
-to use the name ``h`` on each branch.
+通过证明一边或另一边来证明析取似乎很奇怪。实际上，哪种情况成立通常取决于假设中隐含或明确的情况区分。
+
+我们通过 ``rcases`` 策略来使用形如 ``A ∨ B`` 的假设。与在合取或存在量词中使用 ``rcases`` 不同，这里的 ``rcases`` 策略产生 *两个* 目标。它们都有相同的结论，但在第一种情况下，``A`` 被假定为真，而在第二种情况下，``B`` 被假定为真。换句话说，顾名思义， ``rcases`` 策略给出一个分情况证明。像往常一样，我们可以把假设中用到的名字报告给 Lean。下例中我们告诉 Lean 对每个分支都使用名字 ``h`` 。
 TEXT. -/
 -- QUOTE:
 example : x < |y| → x < y ∨ x < -y := by
@@ -80,26 +55,11 @@ example : x < |y| → x < y ∨ x < -y := by
 -- QUOTE.
 
 /- TEXT:
-Notice that the pattern changes from ``⟨h₀, h₁⟩`` in the case of
-a conjunction to ``h₀ | h₁`` in the case of a disjunction.
-Think of the first pattern as matching against data the contains
-*both* an ``h₀`` and a ``h₁``, whereas second pattern, with the bar,
-matches against data that contains *either* an ``h₀`` or ``h₁``.
-In this case, because the two goals are separate, we have chosen
-to use the same name, ``h``, in each case.
+模式从合取情况下的 ``⟨h₀, h₁⟩`` 变成了析取情况下的 ``h₀ | h₁`` 。可以认为，第一种模式匹配包含 ``h₀`` *和* ``h₁`` 的数据，而第二种模式，也就是带竖线的那种，匹配包含 ``h₀`` *或* ``h₁`` 的数据。在这种情况下，因为两个目标分离，我们对两种情况可以使用同样的名字 ``h`` 。
 
-The absolute value function is defined in such a way
-that we can immediately prove that
-``x ≥ 0`` implies ``|x| = x``
-(this is the theorem ``abs_of_nonneg``)
-and ``x < 0`` implies ``|x| = -x`` (this is ``abs_of_neg``).
-The expression ``le_or_gt 0 x`` establishes ``0 ≤ x ∨ x < 0``,
-allowing us to split on those two cases.
+绝对值函数的定义使得我们可以立即证明 ``x ≥ 0`` 蕴含着 ``|x| = x`` (这就是定理 ``abs_of_nonneg``) 而 ``x < 0`` 则蕴含着 ``|x| = -x``（这是 ``abs_of_neg`` ）。表达式 ``le_or_gt 0 x`` 推出 ``0 ≤ x ∨ x < 0`` ，使我们可以将这两种情况分开。
 
-Lean also supports the computer scientists' pattern-matching
-syntax for disjunction. Now the ``cases`` tactic is more attractive,
-because it allows us to name each ``case``, and name the hypothesis
-that is introduced closer to where it is used.
+析取也支持专家式模式匹配语法。此时最好用 ``cases`` 策略，因为它允许我们为每个 ``cases`` 命名，并在更接近使用的地方为引入的假设命名。
 TEXT. -/
 -- QUOTE:
 example : x < |y| → x < y ∨ x < -y := by
@@ -113,11 +73,7 @@ example : x < |y| → x < y ∨ x < -y := by
 -- QUOTE.
 
 /- TEXT:
-The names ``inl`` and ``inr`` are short for "intro left" and "intro right,"
-respectively. Using ``case`` has the advantage that you can prove the
-cases in either order; Lean uses the tag to find the relevant goal.
-If you don't care about that, you can use ``next``, or ``match``,
-or even a pattern-matching ``have``.
+名字 ``inl`` 和 ``inr`` 分别是 "intro left" 和 "intro right" 的缩写。使用 ``cases`` 的好处是你可以以任意顺序证明每种情况；Lean 使用标签找到相关的目标。如果你不在乎这个，你可以使用 ``next`` 或者 ``match`` ，甚至是模式匹配版的 ``have`` 。
 TEXT. -/
 -- QUOTE:
 example : x < |y| → x < y ∨ x < -y := by
@@ -140,14 +96,9 @@ example : x < |y| → x < y ∨ x < -y := by
 -- QUOTE.
 
 /- TEXT:
-In the case of ``match``, we need to use the full names
-``Or.inl`` and ``Or.inr`` of the canonical ways to prove a disjunction.
-In this textbook, we will generally use ``rcases`` to split on the
-cases of a disjunction.
+``match`` 下需要用全称 ``Or.inl`` 和 ``Or.inr`` 来证明析取。本书通常会使用 ``rcases`` 来分割析取的情况。
 
-Try proving the triangle inequality using the
-first two theorems in the next snippet.
-They are given the same names they have in Mathlib.
+试着用下面前两个定理证明三角不等式。Mathlib 中它也叫这个名字。
 TEXT. -/
 -- BOTH:
 -- QUOTE:
@@ -185,8 +136,7 @@ theorem abs_addαα (x y : ℝ) : |x + y| ≤ |x| + |y| := by
     linarith [neg_le_abs_self x, neg_le_abs_self y]
 
 /- TEXT:
-In case you enjoyed these (pun intended) and
-you want more practice with disjunction,
+如果你喜欢这些“分情况讨论”，可以试试这些。
 try these.
 TEXT. -/
 -- QUOTE:
@@ -245,9 +195,7 @@ end MyAbs
 end
 
 /- TEXT:
-You can also use ``rcases`` and ``rintro`` with nested disjunctions.
-When these result in a genuine case split with multiple goals,
-the patterns for each new goal are separated by a vertical bar.
+你也可以将 ``rcases`` 和 ``rintro`` 与嵌套析取一起使用。当这些功能导致一个真正包含多个目标的情况划分时，每个新目标的模式都会用竖线隔开。
 TEXT. -/
 -- QUOTE:
 example {x : ℝ} (h : x ≠ 0) : x < 0 ∨ x > 0 := by
@@ -259,8 +207,7 @@ example {x : ℝ} (h : x ≠ 0) : x < 0 ∨ x > 0 := by
 -- QUOTE.
 
 /- TEXT:
-You can still nest patterns and use the ``rfl`` keyword
-to substitute equations:
+你仍然可以进行模式嵌套，并使用 ``rfl`` 来替换等式：
 TEXT. -/
 -- QUOTE:
 example {m n k : ℕ} (h : m ∣ n ∨ m ∣ k) : m ∣ n * k := by
@@ -272,9 +219,7 @@ example {m n k : ℕ} (h : m ∣ n ∨ m ∣ k) : m ∣ n * k := by
 -- QUOTE.
 
 /- TEXT:
-See if you can prove the following with a single (long) line.
-Use ``rcases`` to unpack the hypotheses and split on cases,
-and use a semicolon and ``linarith`` to solve each branch.
+尝试用一行证明下面的内容。使用 ``rcases`` 解包假设并分情况讨论，并使用分号和 ``linarith`` 解决每个分支。
 TEXT. -/
 -- QUOTE:
 example {z : ℝ} (h : ∃ x y, z = x ^ 2 + y ^ 2 ∨ z = x ^ 2 + y ^ 2 + 1) : z ≥ 0 := by
@@ -286,11 +231,7 @@ example {z : ℝ} (h : ∃ x y, z = x ^ 2 + y ^ 2 ∨ z = x ^ 2 + y ^ 2 + 1) : z
   rcases h with ⟨x, y, rfl | rfl⟩ <;> linarith [sq_nonneg x, sq_nonneg y]
 
 /- TEXT:
-On the real numbers, an equation ``x * y = 0``
-tells us that ``x = 0`` or ``y = 0``.
-In Mathlib, this fact is known as ``eq_zero_or_eq_zero_of_mul_eq_zero``,
-and it is another nice example of how a disjunction can arise.
-See if you can use it to prove the following:
+在实数中，等式 ``x * y = 0`` 告诉我们 ``x = 0`` 或 ``y = 0`` 。在 Mathlib 中， 这个事实被命名为 ``eq_zero_or_eq_zero_of_mul_eq_zero`` ，它是展示生产析取的另一个好例子。使用它证明下列命题（使用 ``ring`` 策略简化计算）：
 TEXT. -/
 -- QUOTE:
 example {x : ℝ} (h : x ^ 2 = 1) : x = 1 ∨ x = -1 := by
@@ -324,22 +265,7 @@ example {x y : ℝ} (h : x ^ 2 = y ^ 2) : x = y ∨ x = -y := by
     exact eq_of_sub_eq_zero h1
 
 /- TEXT:
-Remember that you can use the ``ring`` tactic to help
-with calculations.
-
-In an arbitrary ring :math:`R`, an element :math:`x` such
-that :math:`x y = 0` for some nonzero :math:`y` is called
-a *left zero divisor*,
-an element :math:`x` such
-that :math:`y x = 0` for some nonzero :math:`y` is called
-a *right zero divisor*,
-and an element that is either a left or right zero divisor
-is called simply a *zero divisor*.
-The theorem ``eq_zero_or_eq_zero_of_mul_eq_zero``
-says that the real numbers have no nontrivial zero divisors.
-A commutative ring with this property is called an *integral domain*.
-Your proofs of the two theorems above should work equally well
-in any integral domain:
+在任意环 :math:`R` 中，对于元素 :math:`x`, 若存在非零元素 :math:`y` 使得 :math:`x y = 0` ，则我们把 :math:`x` 称为一个 *左零因子*，若存在非零元素 :math:`y` 使得 :math:`y x = 0`, 则我们把 :math:`x` 称为一个 *右零因子*，是左或右零因子的元素称为 *零因子*。定理 ``eq_zero_or_eq_zero_of_mul_eq_zero`` 是说实数中没有非平凡的零因子。具有这一性质的交换环称为 *整环*。你对上面两个定理的证明在任意整环中应同样成立：
 TEXT. -/
 -- BOTH:
 section
@@ -382,18 +308,11 @@ example (h : x ^ 2 = y ^ 2) : x = y ∨ x = -y := by
 end
 
 /- TEXT:
-In fact, if you are careful, you can prove the first
-theorem without using commutativity of multiplication.
-In that case, it suffices to assume that ``R`` is
-a ``Ring`` instead of an ``CommRing``.
+你证明第一个定理时可以不使用乘法交换律。在那种情况下，只需假定 ``R`` 是一个 ``Ring`` 而非 ``CommRing`` 。
 
 .. index:: excluded middle
 
-Sometimes in a proof we want to split on cases
-depending on whether some statement is true or not.
-For any proposition ``P``, we can use
-``em P : P ∨ ¬ P``.
-The name ``em`` is short for "excluded middle."
+有时在一个证明中我们想要根据一个语句是否为真来划分情况。对于任何命题 ``P`` ，我们可以使用 ``em P : P ∨ ¬ P`` 。名字 ``em`` 是 "excluded middle (排中律)" 的缩写。
 TEXT. -/
 -- QUOTE:
 example (P : Prop) : ¬¬P → P := by
@@ -406,8 +325,7 @@ example (P : Prop) : ¬¬P → P := by
 /- TEXT:
 .. index:: by_cases, tactics ; by_cases
 
-Alternatively, you can use the ``by_cases`` tactic.
-
+或者，你也可以使用 ``by_cases`` 策略。
 TEXT. -/
 -- QUOTE:
 -- EXAMPLES:
@@ -419,15 +337,7 @@ example (P : Prop) : ¬¬P → P := by
 -- QUOTE.
 
 /- TEXT:
-Notice that the ``by_cases`` tactic lets you
-specify a label for the hypothesis that is
-introduced in each branch,
-in this case, ``h' : P`` in one and ``h' : ¬ P``
-in the other.
-If you leave out the label,
-Lean uses ``h`` by default.
-Try proving the following equivalence,
-using ``by_cases`` to establish one direction.
+注意到 ``by_cases`` 策略要求你为假设提供一个标签，该标签被用于各个分支，在这个例子中，一个分支是 ``h' : P`` 而另一个是 ``h' : ¬ P`` 。如果你留空， Lean 默认使用标签 ``h`` 。尝试证明如下等价性，使用 ``by_cases`` 解决其中一个方向。
 TEXT. -/
 -- QUOTE:
 example (P Q : Prop) : P → Q ↔ ¬P ∨ Q := by

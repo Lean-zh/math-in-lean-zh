@@ -7,30 +7,12 @@ namespace C03S03
 /- TEXT:
 .. _negation:
 
-Negation
+否定
 --------
 
-The symbol ``¬`` is meant to express negation,
-so ``¬ x < y`` says that ``x`` is not less than ``y``,
-``¬ x = y`` (or, equivalently, ``x ≠ y``) says that
-``x`` is not equal to ``y``,
-and ``¬ ∃ z, x < z ∧ z < y`` says that there does not exist a ``z``
-strictly between ``x`` and ``y``.
-In Lean, the notation ``¬ A`` abbreviates ``A → False``,
-which you can think of as saying that ``A`` implies a contradiction.
-Practically speaking, this means that you already know something
-about how to work with negations:
-you can prove ``¬ A`` by introducing a hypothesis ``h : A``
-and proving ``False``,
-and if you have ``h : ¬ A`` and ``h' : A``,
-then applying ``h`` to ``h'`` yields ``False``.
+符号 ``¬`` （ ``\n`` , ``\neg``）表示否定，所以 ``¬ x < y`` 是说 ``x`` 不小于 ``y`` ， ``¬ x = y`` （或者，等价地， ``x ≠ y``）是说 ``x`` 不等于 ``y`` ，而 ``¬ ∃ z, x < z ∧ z < y`` 是说不存在 ``z`` 使其严格位于 ``x`` 和 ``y`` 之间。在 Lean 中，符号 ``¬ A`` 是 ``A → False`` 的缩写，你可以认为它表示 ``A`` 导出矛盾。聪明的你会发现，你可以通过引入假设 ``h : A`` 并证明 ``False`` 来证明 ``¬ A`` ，如果你有 ``h : ¬ A`` 和 ``h' : A`` ，那么把 ``h`` 应用于 ``h'`` 就产生 ``False``.
 
-To illustrate, consider the irreflexivity principle ``lt_irrefl``
-for a strict order,
-which says that we have ``¬ a < a`` for every ``a``.
-The asymmetry principle ``lt_asymm`` says that we have
-``a < b → ¬ b < a``. Let's show that ``lt_asymm`` follows
-from ``lt_irrefl``.
+为了演示，考虑严格序的反自反律 ``lt_irrefl`` ，它是说对每个 ``a`` 我们有 ``¬ a < a`` 。反对称律 ``lt_asymm`` 是说我们有 ``a < b → ¬ b < a`` 。我们证明， ``lt_asymm`` 可从 ``lt_irrefl`` 推出。
 TEXT. -/
 -- BOTH:
 section
@@ -47,21 +29,9 @@ example (h : a < b) : ¬b < a := by
 /- TEXT:
 .. index:: this, have, tactics ; have, from, tactics ; from
 
-This example introduces a couple of new tricks.
-First, when you use ``have`` without providing
-a label,
-Lean uses the name ``this``,
-providing a convenient way to refer back to it.
-Because the proof is so short, we provide an explicit proof term.
-But what you should really be paying attention to in this
-proof is the result of the ``intro`` tactic,
-which leaves a goal of ``False``,
-and the fact that we eventually prove ``False``
-by applying ``lt_irrefl`` to a proof of ``a < a``.
+这个例子引入了两个新技巧。第一，当我们使用 ``have`` 而不提供名字时，Lean 使用名字 ``this`` 。因为这个证明太短，我们提供了精确证明项。但你真正需要注意的是这个证明中 ``intro`` 策略的结果，它留下目标 ``False`` ，还有，我们最终对 ``a < a`` 使用 ``lt_irrefl`` 证明了 ``False`` 。
 
-Here is another example, which uses the
-predicate ``FnHasUb`` defined in the last section,
-which says that a function has an upper bound.
+这里是另一个例子，它使用上一节定义的谓词 ``FnHasUb`` ，也就是说一个函数有上界。
 TEXT. -/
 -- BOTH:
 def FnUb (f : ℝ → ℝ) (a : ℝ) : Prop :=
@@ -89,11 +59,9 @@ example (h : ∀ a, ∃ x, f x > a) : ¬FnHasUb f := by
 -- QUOTE.
 
 /- TEXT:
-Remember that it is often convenient to use ``linarith``
-when a goal follows from linear equations and
-inequalities that are in the context.
+当目标可由语境中的线性等式和不等式得出时，使用 ``linarith`` 通常很方便。
 
-See if you can prove these in a similar way:
+类似地证明下列定理：
 TEXT. -/
 -- QUOTE:
 example (h : ∀ a, ∃ x, f x < a) : ¬FnHasLb f :=
@@ -116,8 +84,7 @@ example : ¬FnHasUb fun x ↦ x := by
   linarith
 
 /- TEXT:
-Mathlib offers a number of useful theorems for relating orders
-and negations:
+Mathlib 提供了一些关于序和否定的定理：
 TEXT. -/
 -- QUOTE:
 #check (not_le_of_gt : a > b → ¬a ≤ b)
@@ -127,9 +94,7 @@ TEXT. -/
 -- QUOTE.
 
 /- TEXT:
-Recall the predicate ``Monotone f``,
-which says that ``f`` is nondecreasing.
-Use some of the theorems just enumerated to prove the following:
+回顾谓词 ``Monotone f`` ，它表示 ``f`` 是非递减的。用刚才列举的一些定理证明下面的内容：
 TEXT. -/
 -- QUOTE:
 example (h : Monotone f) (h' : f a < f b) : a < b := by
@@ -153,11 +118,7 @@ example (h : a ≤ b) (h' : f b < f a) : ¬Monotone f := by
   apply h'' h
 
 /- TEXT:
-We can show that the first example in the last snippet
-cannot be proved if we replace ``<`` by ``≤``.
-Notice that we can prove the negation of a universally
-quantified statement by giving a counterexample.
-Complete the proof.
+我们可以说明，如果我们把 ``<`` 换成 ``≤`` ，则上一段的第一个例子无法被证明。我们可以通过给出反例证明一个全称量词语句的否定。接下来完成证明：
 TEXT. -/
 -- QUOTE:
 example : ¬∀ {f : ℝ → ℝ}, Monotone f → ∀ {a b}, f a ≤ f b → a ≤ b := by
@@ -182,16 +143,9 @@ example : ¬∀ {f : ℝ → ℝ}, Monotone f → ∀ {a b}, f a ≤ f b → a �
 /- TEXT:
 .. index:: let, tactics ; let
 
-This example introduces the ``let`` tactic,
-which adds a *local definition* to the context.
-If you put the cursor after the ``let`` command,
-in the goal window you will see that the definition
-``f : ℝ → ℝ := fun x ↦ 0`` has been added to the context.
-Lean will unfold the definition of ``f`` when it has to.
-In particular, when we prove ``f 1 ≤ f 0`` with ``le_refl``,
-Lean reduces ``f 1`` and ``f 0`` to ``0``.
+这个例子引入了 ``let`` 策略，它向语境添加了一个 **局部定义**。如果你把光标移动到目标窗口的 ``let`` 命令后面的地方，你会看到 ``f : ℝ → ℝ := fun x ↦ 0`` 已经被添加到语境中。当必须展开定义时， Lean会展开。特别地，当我们使用 ``le_refl`` 证明 ``f 1 ≤ f 0`` 时，Lean 把 ``f 1`` 和 ``f 0`` 约化为 ``0``.
 
-Use ``le_of_not_gt`` to prove the following:
+使用 ``le_of_not_gt`` 证明下列内容：
 TEXT. -/
 -- QUOTE:
 example (x : ℝ) (h : ∀ ε > 0, x < ε) : x ≤ 0 := by
@@ -208,16 +162,7 @@ example (x : ℝ) (h : ∀ ε > 0, x < ε) : x ≤ 0 := by
 end
 
 /- TEXT:
-Implicit in many of the proofs we have just done
-is the fact that if ``P`` is any property,
-saying that there is nothing with property ``P``
-is the same as saying that everything fails to have
-property ``P``,
-and saying that not everything has property ``P``
-is equivalent to saying that something fails to have property ``P``.
-In other words, all four of the following implications
-are valid (but one of them cannot be proved with what we explained so
-far):
+我们刚才所做的许多证明都隐含着这样一个事实：如果 ``P`` 是任何属性，说没有任何事物具有 ``P`` 属性就等于说一切事物都不具有 ``P`` 属性，而说并非所有东西都具有 ``P`` 属性等同于说某些东西不具备 ``P`` 属性。换句话说，以下四个推理都是有效的（但其中有一个无法使用我们目前已讲解的内容证明）：
 TEXT. -/
 -- BOTH:
 section
@@ -255,15 +200,7 @@ example (h : ∃ x, ¬P x) : ¬∀ x, P x := by
   apply h'
 
 /- TEXT:
-The first, second, and fourth are straightforward to
-prove using the methods you have already seen.
-We encourage you to try it.
-The third is more difficult, however,
-because it concludes that an object exists
-from the fact that its nonexistence is contradictory.
-This is an instance of *classical* mathematical reasoning.
-We can use proof by contradiction
-to prove the third implication as follows.
+第一、二、四个可以使用你已经学到的方法直接证明。鼓励你尝试。然而，第三个更为困难，因为它是从一个对象的不存在可以得出矛盾的这一事实中得出结论，认为该对象是存在的。这是 **经典** 数学推理的一个实例。我们可以像下面这样使用反证法证明第三个结果。
 TEXT. -/
 -- QUOTE:
 example (h : ¬∀ x, P x) : ∃ x, ¬P x := by
@@ -278,16 +215,7 @@ example (h : ¬∀ x, P x) : ∃ x, ¬P x := by
 /- TEXT:
 .. index:: by_contra, tactics ; by_contra and by_contradiction,
 
-Make sure you understand how this works.
-The ``by_contra`` tactic
-allows us to prove a goal ``Q`` by assuming ``¬ Q``
-and deriving a contradiction.
-In fact, it is equivalent to using the
-equivalence ``not_not : ¬ ¬ Q ↔ Q``.
-Confirm that you can prove the forward direction
-of this equivalence using ``by_contra``,
-while the reverse direction follows from the
-ordinary rules for negation.
+确保你搞懂了示例。 ``by_contra`` 策略允许我们通过假定 ``¬ Q`` 推出矛盾来证明目标 ``Q`` 。事实上，它等价于使用等价关系 ``not_not : ¬ ¬ Q ↔ Q`` 。确认一下你可以使用 ``by_contra`` 证明这个等价的正方向，而反方向可从常规的否定法则得出。
 TEXT. -/
 -- QUOTE:
 example (h : ¬¬Q) : Q := by
@@ -310,9 +238,7 @@ example (h : Q) : ¬¬Q := by
 end
 
 /- TEXT:
-Use proof by contradiction to establish the following,
-which is the converse of one of the implications we proved above.
-(Hint: use ``intro`` first.)
+用反证法证明下面的内容，它是我们在上面证明的一个蕴涵的相反方向。（提示：先使用 ``intro`` ）
 TEXT. -/
 -- BOTH:
 section
@@ -339,14 +265,7 @@ example (h : ¬FnHasUb f) : ∀ a, ∃ x, f x > a := by
 /- TEXT:
 .. index:: push_neg, tactics ; push_neg
 
-It is often tedious to work with compound statements with
-a negation in front,
-and it is a common mathematical pattern to replace such
-statements with equivalent forms in which the negation
-has been pushed inward.
-To facilitate this, Mathlib offers a ``push_neg`` tactic,
-which restates the goal in this way.
-The command ``push_neg at h`` restates the hypothesis ``h``.
+处理前面带有否定词的复合语句通常很无趣，通常我们希望会把否定词放进里面。好消息，Mathlib 提供了 ``push_neg`` 策略来找到否定词在里面的等价命题。命令 ``push_neg at h`` 重述假设 ``h`` 。
 TEXT. -/
 -- QUOTE:
 example (h : ¬∀ a, ∃ x, f x > a) : FnHasUb f := by
@@ -360,18 +279,7 @@ example (h : ¬FnHasUb f) : ∀ a, ∃ x, f x > a := by
 -- QUOTE.
 
 /- TEXT:
-In the second example, we use dsimp to
-expand the definitions of ``FnHasUb`` and ``FnUb``.
-(We need to use ``dsimp`` rather than ``rw``
-to expand ``FnUb``,
-because it appears in the scope of a quantifier.)
-You can verify that in the examples above
-with ``¬∃ x, P x`` and ``¬∀ x, P x``,
-the ``push_neg`` tactic does the expected thing.
-Without even knowing how to use the conjunction
-symbol,
-you should be able to use ``push_neg``
-to prove the following:
+在第二个例子中，我们可以使用 ``dsimp`` 展开 ``FnHasUb`` 和 ``FnUb`` 的定义。（我们需要使用 ``dsimp`` 而不是 ``rw`` 来展开 ``FnUb``, 因为它出现在量词的辖域中。）在上面的例子中，你可以验证对于 ``¬∃ x, P x`` 和 ``¬∀ x, P x`` ， ``push_neg`` 策略做了我们期望的事情。即使不知道如何处理合取符号，你也应该能使用 ``push_neg`` 证明如下定理：
 TEXT. -/
 -- QUOTE:
 example (h : ¬Monotone f) : ∃ x y, x ≤ y ∧ f y < f x := by
@@ -387,15 +295,8 @@ example (h : ¬Monotone f) : ∃ x y, x ≤ y ∧ f y < f x := by
 /- TEXT:
 .. index:: contrapose, tactics ; contrapose
 
-Mathlib also has a tactic, ``contrapose``,
-which transforms a goal ``A → B`` to ``¬B → ¬A``.
-Similarly, given a goal of proving ``B`` from
-hypothesis ``h : A``,
-``contrapose h`` leaves you with a goal of proving
-``¬A`` from hypothesis ``¬B``.
-Using ``contrapose!`` instead of ``contrapose``
-applies ``push_neg`` to the goal and the relevant
-hypothesis as well.
+Mathlib 还有一个策略 ``contrapose`` ，它把目标 ``A → B`` 转化为 ``¬B → ¬A`` 。类似地，给定从假设 ``h : A`` 证明 ``B`` 的目标，
+``contrapose h`` 会给你留下从假设 ``¬B`` 证明 ``¬A`` 的目标。使用 ``contrapose!`` 将在 ``contrapose`` 之外对当前目标（事后假设）应用 ``push_neg`` 。
 TEXT. -/
 -- QUOTE:
 example (h : ¬FnHasUb f) : ∀ a, ∃ x, f x > a := by
@@ -412,29 +313,13 @@ example (x : ℝ) (h : ∀ ε > 0, x ≤ ε) : x ≤ 0 := by
 end
 
 /- TEXT:
-We have not yet explained the ``constructor`` command
-or the use of the semicolon after it,
-but we will do that in the next section.
+下一节解释 ``constructor`` 命令及其后分号的使用。
 
-We close this section with
-the principle of *ex falso*,
-which says that anything follows from a contradiction.
-In Lean, this is represented by ``False.elim``,
-which establishes ``False → P`` for any proposition ``P``.
-This may seem like a strange principle,
-but it comes up fairly often.
-We often prove a theorem by splitting on cases,
-and sometimes we can show that one of
-the cases is contradictory.
-In that case, we need to assert that the contradiction
-establishes the goal so we can move on to the next one.
-(We will see instances of reasoning by cases in
-:numref:`disjunction`.)
+我们以 *爆炸原理* （ex falso）结束本节，它是说从自相矛盾可以得出任何命题。在 Lean 中，它用 ``False.elim`` 表示，它对于任何命题 ``P`` 确认了 ``False → P`` 。这似乎是一个奇怪的原理，但它经常出现。我们经常通过分情况来证明定理，有时我们可以证明其中一种情况是矛盾的。在这种情况下，我们需要断言矛盾确证了目标，这样我们就可以继续下一个目标了。（在 :numref:`disjunction` 中，我们将看到分情况讨论的实例。）
 
 .. index:: exfalso, contradiction, absurd, tactics ; exfalso, tactics ; contradiction
 
-Lean provides a number of ways of closing
-a goal once a contradiction has been reached.
+Lean 提供了多种在出现矛盾时关闭目标的方法。
 TEXT. -/
 section
 variable (a : ℕ)
@@ -455,12 +340,5 @@ example (h : 0 < 0) : a > 37 := by
 end
 
 /- TEXT:
-The ``exfalso`` tactic replaces the current goal with
-the goal of proving ``False``.
-Given ``h : P`` and ``h' : ¬ P``,
-the term ``absurd h h'`` establishes any proposition.
-Finally, the ``contradiction`` tactic tries to close a goal
-by finding a contradiction in the hypotheses,
-such as a pair of the form ``h : P`` and ``h' : ¬ P``.
-Of course, in this example, ``linarith`` also works.
+``exfalso`` 策略把当前的目标替换为证明 ``False`` 的目标。给定 ``h : P`` 和 ``h' : ¬ P`` ，项 ``absurd h h'`` 可证明任何命题。最后， ``contradiction`` 策略尝试通过在假设中找到矛盾，例如一对形如 ``h : P`` 和 ``h' : ¬ P`` 的假设来关闭目标。另外本例也可以用 ``linarith`` 。
 TEXT. -/

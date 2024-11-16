@@ -7,15 +7,10 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 /- TEXT:
 .. _functions:
 
-Functions
+函数
 ---------
 
-If ``f : α → β`` is a function and  ``p`` is a set of
-elements of type ``β``,
-the library defines ``preimage f p``, written ``f ⁻¹' p``,
-to be ``{x | f x ∈ p}``.
-The expression ``x ∈ f ⁻¹' p`` reduces to ``f x ∈ p``.
-This is often convenient, as in the following example:
+若 ``f : α → β`` 是一个函数，而 ``p`` 是一个类型为 ``β`` 的元素的集合，则 Mathlib 库把 ``preimage f p`` (记为 ``f ⁻¹' p`` ) 定义为 ``{x | f x ∈ p}`` 。表达式 ``x ∈ f ⁻¹' p`` 简写为 ``f x ∈ p`` 。这经常很方便，就像在下面例子中看到的这样：
 TEXT. -/
 -- BOTH:
 section
@@ -36,15 +31,7 @@ example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v := by
 -- QUOTE.
 
 /- TEXT:
-If ``s`` is a set of elements of type ``α``,
-the library also defines ``image f s``,
-written ``f '' s``,
-to be ``{y | ∃ x, x ∈ s ∧ f x = y}``.
-So a hypothesis  ``y ∈ f '' s`` decomposes to a triple
-``⟨x, xs, xeq⟩`` with ``x : α`` satisfying the hypotheses ``xs : x ∈ s``
-and ``xeq : f x = y``.
-The ``rfl`` tag in the ``rintro`` tactic (see :numref:`the_existential_quantifier`) was made precisely
-for this sort of situation.
+若 ``s`` 是类型为 ``α`` 的元素的集合，库也把 ``image f s`` (记为 ``f '' s`` ) 定义为 ``{y | ∃ x, x ∈ s ∧ f x = y}`` 。从而假设 ``y ∈ f '' s`` 分解为三元组 ``⟨x, xs, xeq⟩`` ，其中 ``x : α`` 满足假设 ``xs : x ∈ s`` 和 ``xeq : f x = y`` 。 ``rintro`` 策略中的 ``rfl`` 标签 (见 :numref:`the_existential_quantifier`) 在这类情况下被明确了。
 TEXT. -/
 -- QUOTE:
 example : f '' (s ∪ t) = f '' s ∪ f '' t := by
@@ -60,10 +47,9 @@ example : f '' (s ∪ t) = f '' s ∪ f '' t := by
 -- QUOTE.
 
 /- TEXT:
-Notice also that the ``use`` tactic applies ``rfl``
-to close goals when it can.
+``use`` 策略使用了 ``rfl`` 使得在可以做到时关闭目标。
 
-Here is another example:
+另一个例子：
 TEXT. -/
 -- QUOTE:
 example : s ⊆ f ⁻¹' (f '' s) := by
@@ -73,13 +59,9 @@ example : s ⊆ f ⁻¹' (f '' s) := by
 -- QUOTE.
 
 /- TEXT:
-We can replace the line ``use x, xs`` by
-``apply mem_image_of_mem f xs`` if we want to
-use a theorem specifically designed for that purpose.
-But knowing that the image is defined in terms
-of an existential quantifier is often convenient.
+可以把 ``use x, xs`` 这一行换成 ``apply mem_image_of_mem f xs`` ，因为这个定理就是为此时设计，不过此处的证明可以提醒你它是用存在量词定义的。
 
-The following equivalence is a good exercise:
+下列等价关系是一个好练习题：
 TEXT. -/
 -- QUOTE:
 example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
@@ -98,23 +80,9 @@ example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
   apply h xs
 
 /- TEXT:
-It shows that ``image f`` and ``preimage f`` are
-an instance of what is known as a *Galois connection*
-between ``Set α`` and ``Set β``,
-each partially ordered by the subset relation.
-In the library, this equivalence is named
-``image_subset_iff``.
-In practice, the right-hand side is often the
-more useful representation,
-because ``y ∈ f ⁻¹' t`` unfolds to ``f y ∈ t``
-whereas working with ``x ∈ f '' s`` requires
-decomposing an existential quantifier.
+它表明 ``image f`` 和 ``preimage f`` 是 ``Set α`` 和 ``Set β`` 之间所谓 *伽罗瓦连接(Galois connection)* 的一个实例，每个实例都由子集关系作为偏序。在库中，这个等价关系被命名为 ``image_subset_iff`` 。在实践中，右边是更常用的表达方式，因为 ``y ∈ f ⁻¹' t`` 展开为 ``f y ∈ t`` ，而处理 ``x ∈ f '' s`` 则需要分解一个存在量词。
 
-Here is a long list of set-theoretic identities for
-you to enjoy.
-You don't have to do all of them at once;
-do a few of them,
-and set the rest aside for a rainy day.
+这里有一长串集合论定理供您消遣。你不必一次全部做完，只需做其中几个，其余的留待一个空闲的雨天再做。
 TEXT. -/
 -- QUOTE:
 example (h : Injective f) : f ⁻¹' (f '' s) ⊆ s := by
@@ -241,14 +209,7 @@ example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) := by
   right; exact fxu
 
 /- TEXT:
-You can also try your hand at the next group of exercises,
-which characterize the behavior of images and preimages
-with respect to indexed unions and intersections.
-In the third exercise, the argument ``i : I`` is needed
-to guarantee that the index set is nonempty.
-To prove any of these, we recommend using ``ext`` or ``intro``
-to unfold the meaning of an equation or inclusion between sets,
-and then calling ``simp`` to unpack the conditions for membership.
+你还可以尝试下一组练习，这些练习描述了像和原像在带下标集合的并集和交集中的性质。在第三个练习中，参数 ``i : I`` 是必要的，因为要保证指标集非空。要证明其中任何一个，我们推荐使用 ``ext`` 或 ``intro`` 展开等式或集合之间的包含关系的定义，然后调用 ``simp`` 解包集合成员所需的条件。
 BOTH: -/
 -- QUOTE:
 variable {I : Type*} (A : I → Set α) (B : I → Set β)
@@ -382,9 +343,7 @@ For example, theorem ``div_mul_cancel`` asserts ``x ≠ 0 → x / y * y = x`` fo
 -/
 
 /- TEXT:
-The library defines a predicate ``InjOn f s`` to say that
-``f`` is injective on ``s``.
-It is defined as follows:
+Mathlib 库定义了谓词 ``InjOn f s``, 表示 ``f`` 在 ``s`` 上是单射。定义如下：
 TEXT. -/
 -- QUOTE:
 
@@ -396,18 +355,9 @@ example : InjOn f s ↔ ∀ x₁ ∈ s, ∀ x₂ ∈ s, f x₁ = f x₂ → x₁
 end
 
 /- TEXT:
-The statement ``Injective f`` is provably equivalent
-to ``InjOn f univ``.
-Similarly, the library defines ``range f`` to be
-``{x | ∃y, f y = x}``,
-so ``range f`` is provably equal to ``f '' univ``.
-This is a common theme in Mathlib:
-although many properties of functions are defined relative
-to their full domain,
-there are often relativized versions that restrict
-the statements to a subset of the domain type.
+可以证明语句 ``Injective f`` 等价于 ``InjOn f univ`` 。类似地，库中将 ``range f`` 定义为 ``{x | ∃y, f y = x}`` ，因此可以证明 ``range f`` 等于  ``f '' univ`` 。这是 Mathlib 中的一个常见主题：虽然函数的许多属性都是对于其完整域定义的，但通常也有相对化版本，将语句限制为域类型的子集。
 
-Here is are some examples of ``InjOn`` and ``range`` in use:
+下面是一些使用 ``InjOn`` 和 ``range`` 的例子：
 BOTH: -/
 section
 
@@ -435,7 +385,7 @@ example : range exp = { y | y > 0 } := by
 -- QUOTE.
 
 /- TEXT:
-Try proving these:
+证明这些：
 EXAMPLES: -/
 -- QUOTE:
 example : InjOn sqrt { x | x ≥ 0 } := by
@@ -497,23 +447,7 @@ example : (range fun x ↦ x ^ 2) = { y : ℝ | y ≥ 0 } := by
 end
 
 /- TEXT:
-To define the inverse of a function ``f : α → β``,
-we will use two new ingredients.
-First, we need to deal with the fact that
-an arbitrary type in Lean may be empty.
-To define the inverse to ``f`` at ``y`` when there is
-no ``x`` satisfying ``f x = y``,
-we want to assign a default value in ``α``.
-Adding the annotation ``[Inhabited α]`` as a variable
-is tantamount to assuming that ``α`` has a
-preferred element, which is denoted ``default``.
-Second, in the case where there is more than one ``x``
-such that ``f x = y``,
-the inverse function needs to *choose* one of them.
-This requires an appeal to the *axiom of choice*.
-Lean allows various ways of accessing it;
-one convenient method is to use the classical ``choose``
-operator, illustrated below.
+我们要使用两种新方法定义函数 ``f : α → β`` 的反函数。第一，我们需要小心 Lean 中任意类型可能为空。为了在没有 ``x`` 满足 ``f x = y`` 时定义 ``f`` 的逆在 ``y`` 处的取值，我们想要指定 ``α`` 中的缺省值。将注释 ``[Inhabited α]`` 添加为变量等于假设 ``α`` 有一个默认元素，即 ``default`` 。第二，当存在多于一个 ``x`` 满足 ``f x = y`` 时，反函数需要 *选择* 其中一个。这需要诉诸 *选择公理*。Lean 允许使用多种途径访问它：一种方便的途径是使用经典的 ``choose`` 操作符，如下所示。
 TEXT. -/
 -- BOTH:
 section
@@ -532,13 +466,9 @@ example : P (Classical.choose h) :=
 -- QUOTE.
 
 /- TEXT:
-Given ``h : ∃ x, P x``, the value of ``Classical.choose h``
-is some ``x`` satisfying ``P x``.
-The theorem ``Classical.choose_spec h`` says that ``Classical.choose h``
-meets this specification.
+给定 ``h : ∃ x, P x``, 则 ``Classical.choose h`` 的值是某个满足 ``P x`` 的 ``x`` 。定理 ``Classical.choose_spec h`` 表明 ``Classical.choose h`` 符合要求。
 
-With these in hand, we can define the inverse function
-as follows:
+有了这些，我们就可以定义反函数如下：
 BOTH: -/
 -- QUOTE:
 noncomputable section
@@ -554,37 +484,9 @@ theorem inverse_spec {f : α → β} (y : β) (h : ∃ x, f x = y) : f (inverse 
 -- QUOTE.
 
 /- TEXT:
-The lines ``noncomputable section`` and ``open Classical``
-are needed because we are using classical logic in an essential way.
-On input ``y``, the function ``inverse f``
-returns some value of ``x`` satisfying ``f x = y`` if there is one,
-and a default element of ``α`` otherwise.
-This is an instance of a *dependent if* construction,
-since in the positive case, the value returned,
-``Classical.choose h``, depends on the assumption ``h``.
-The identity ``dif_pos h`` rewrites ``if h : e then a else b``
-to ``a`` given ``h : e``,
-and, similarly, ``dif_neg h`` rewrites it to ``b`` given ``h : ¬ e``.
-There are also versions ``if_pos`` and ``if_neg`` that works for non-dependent
-if constructions and will be used in the next section.
-The theorem ``inverse_spec`` says that ``inverse f``
-meets the first part of this specification.
+之所以需要 ``noncomputable section`` 和 ``open Classical`` 这两行，是因为我们正在以一种重要的方式使用经典逻辑。在输入 ``y`` 时，函数 ``inverse f`` 返回某个满足 ``f x = y`` 的 ``x`` 值（如果有的话），否则返回一个缺省的 ``α`` 元素。这是一个 *dependent if* 结构的实例，因为在正例中，返回值 ``Classical.choose h`` 取决于假设 ``h`` 。给定 ``h : e`` 时，等式 ``dif_pos h`` 将 ``if h : e then a else b`` 改写为 ``a`` ，同样，给定 ``h : ¬ e`` ，``dif_neg h`` 将它改写为 ``b`` 。定理 ``inverse_spec`` 表明 ``inverse f`` 满足这一设定的第一部分。
 
-Don't worry if you do not fully understand how these work.
-The theorem ``inverse_spec`` alone should be enough to show
-that ``inverse f`` is a left inverse if and only if ``f`` is injective
-and a right inverse if and only if ``f`` is surjective.
-Look up the definition of ``LeftInverse`` and ``RightInverse``
-by double-clicking or right-clicking on them in VS Code,
-or using the commands ``#print LeftInverse`` and ``#print RightInverse``.
-Then try to prove the two theorems.
-They are tricky!
-It helps to do the proofs on paper before
-you start hacking through the details.
-You should be able to prove each of them with about a half-dozen
-short lines.
-If you are looking for an extra challenge,
-try to condense each proof to a single-line proof term.
+如果你还不完全理解它们的工作原理，也不用担心。仅 ``inverse_spec`` 定理就足以说明，当且仅当 ``f`` 是单射时，``inverse f`` 是左逆，当且仅当 ``f`` 是满射时，``inverse f`` 是右逆。通过在 VS Code 双击或右键单击 ``LeftInverse`` 和 ``RightInverse`` ，或使用命令 ``#print LeftInverse`` 和 ``#print RightInverse`` ，可以查看它们的定义。然后尝试证明这两个定理。它们很棘手，你最好先打个自然语言草稿。每个定理都能用大约六行短代码证明。附加题：尝试将每个证明压缩成单行证明。
 BOTH: -/
 -- QUOTE:
 variable (f : α → β)
@@ -657,11 +559,7 @@ end
 .. We should also tie this to the "function are global" discussion, and the whole thread of deferring proofs to lemmas instead of definitions. There is a lot going on here, and all of it is crucial for formalization.
 -/
 /- TEXT:
-We close this section with a type-theoretic statement of Cantor's
-famous theorem that there is no surjective function from a set
-to its power set.
-See if you can understand the proof,
-and then fill in the two lines that are missing.
+在本节的最后，我们将从类型论的角度来阐述康托尔的著名定理，即不存在从集合到其幂集的满射函数。看看你是否能理解这个证明，然后填上缺失的两行。
 TEXT. -/
 -- BOTH:
 section

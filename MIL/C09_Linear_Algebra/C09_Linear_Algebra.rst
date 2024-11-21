@@ -1,5 +1,5 @@
 .. _linear_algebra:
 
-Linear algebra
+线性代数
 ==============
 

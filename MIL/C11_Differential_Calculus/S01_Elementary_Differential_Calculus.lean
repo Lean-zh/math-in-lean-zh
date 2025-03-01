@@ -49,7 +49,7 @@ example {f : ℝ → ℝ} {x : ℝ} (h : ¬DifferentiableAt ℝ f x) : deriv f x
 -- QUOTE.
 
 /- TEXT:
-当然，关于``deriv``的许多引理确实需要可微性假设。例如，您应该思考一下在没有可微性假设的情况下，下一个引理的反例。
+当然，关于 ``deriv`` 的许多引理确实需要可微性假设。例如，您应该思考一下在没有可微性假设的情况下，下一个引理的反例。
 EXAMPLES: -/
 -- QUOTE:
 example {f g : ℝ → ℝ} {x : ℝ} (hf : DifferentiableAt ℝ f x) (hg : DifferentiableAt ℝ g x) :
@@ -58,8 +58,8 @@ example {f g : ℝ → ℝ} {x : ℝ} (hf : DifferentiableAt ℝ f x) (hg : Diff
 -- QUOTE.
 
 /- TEXT:
-有趣的是，然而，存在一些语句能够通过利用函数不可微时``deriv``的值默认为零这一事实来避免可微性假设。
-因此，理解下面的语句需要确切了解``deriv``的定义。
+有趣的是，然而，存在一些语句能够通过利用函数不可微时 ``deriv`` 的值默认为零这一事实来避免可微性假设。
+因此，理解下面的语句需要确切了解 ``deriv`` 的定义。
 EXAMPLES: -/
 -- QUOTE:
 example {f : ℝ → ℝ} {a : ℝ} (h : IsLocalMin f a) : deriv f a = 0 :=

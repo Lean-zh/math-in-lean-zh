@@ -23,7 +23,7 @@ noncomputable section
 赋范空间
 ^^^^^^^^
 
-利用**赋范向量空间**的概念，可以将微分推广到``ℝ``之外，该概念同时涵盖了方向和距离。我们从**赋范群**的概念开始，它是一个加法交换群，配备了一个实值范数函数，满足以下条件。
+利用 **赋范向量空间** 的概念，可以将微分推广到 ``ℝ`` 之外，该概念同时涵盖了方向和距离。我们从 **赋范群** 的概念开始，它是一个加法交换群，配备了一个实值范数函数，满足以下条件。
 EXAMPLES: -/
 section
 
@@ -52,7 +52,7 @@ example {X : Type*} [TopologicalSpace X] {f : X → E} (hf : Continuous f) :
 -- QUOTE.
 
 /- TEXT:
-为了在范数的概念中引入线性代数中的概念，我们在``NormedAddGroup E``的基础上添加了``NormedSpace ℝ E``这一假设。这表明 ``E`` 是``ℝ``上的向量空间，并且标量乘法满足以下条件。
+为了在范数的概念中引入线性代数中的概念，我们在 ``NormedAddGroup E`` 的基础上添加了 ``NormedSpace ℝ E`` 这一假设。这表明 ``E`` 是 ``ℝ`` 上的向量空间，并且标量乘法满足以下条件。
 EXAMPLES: -/
 -- QUOTE:
 variable [NormedSpace ℝ E]
@@ -62,7 +62,7 @@ example (a : ℝ) (x : E) : ‖a • x‖ = |a| * ‖x‖ :=
 -- QUOTE.
 
 /- TEXT:
-完备的赋范空间被称为**巴拿赫空间**。
+完备的赋范空间被称为 **巴拿赫空间** 。
 每个有限维向量空间都是完备的。
 EXAMPLES: -/
 -- QUOTE:
@@ -71,7 +71,7 @@ example [FiniteDimensional ℝ E] : CompleteSpace E := by infer_instance
 
 /- TEXT:
 在前面的所有示例中，我们都使用实数作为基域。
-更一般地说，我们可以在任何**非平凡赋范域**上的向量空间中理解微积分。这些域配备了实值范数，该范数具有乘法性质，并且不是每个元素的范数都为零或一（等价地说，存在范数大于一的元素）。
+更一般地说，我们可以在任何 **非平凡赋范域** 上的向量空间中理解微积分。这些域配备了实值范数，该范数具有乘法性质，并且不是每个元素的范数都为零或一（等价地说，存在范数大于一的元素）。
 EXAMPLES: -/
 -- QUOTE:
 example (𝕜 : Type*) [NontriviallyNormedField 𝕜] (x y : 𝕜) : ‖x * y‖ = ‖x‖ * ‖y‖ :=
@@ -98,8 +98,8 @@ end
 
 
 现在我们来讨论赋范空间范畴中的态射，即连续线性映射。
-在 Mathlib 中，赋范空间 ``E`` 和 ``F`` 之间的 ``𝕜`` 线性连续映射的类型写作 ``E →L[𝕜] F``。
-它们被实现为**捆绑映射**，这意味着该类型的元素包含映射本身以及线性和连续的性质。
+在 Mathlib 中，赋范空间 ``E`` 和 ``F`` 之间的 ``𝕜`` 线性连续映射的类型写作  ``E →L[𝕜] F`` 。
+它们被实现为 **捆绑映射** ，这意味着该类型的元素包含映射本身以及线性和连续的性质。
 Lean 会插入一个强制转换，使得连续线性映射可以当作函数来处理。
 EXAMPLES: -/
 section
@@ -140,22 +140,13 @@ example {M : ℝ} (hMp : 0 ≤ M) (hM : ∀ x, ‖f x‖ ≤ M * ‖x‖) : ‖f
 end
 
 /- TEXT:
-As a challenging exercise, you can prove the Banach-Steinhaus theorem, also
-known as the Uniform Boundedness Principle.
-The principle states that a family of continuous linear maps from a Banach space
-into a normed space is pointwise
-bounded, then the norms of these linear maps are uniformly bounded.
-The main ingredient is Baire's theorem
-``nonempty_interior_of_iUnion_of_closed``. (You proved a version of this in the topology chapter.)
-Minor ingredients include ``continuous_linear_map.opNorm_le_of_shell``,
-``interior_subset`` and ``interior_iInter_subset`` and ``isClosed_le``.
-还有一种连续线性同构的**成束**概念。
+还有一种连续线性同构的 **成束** 概念。
 这种同构的类型表示为 ``E ≃L[𝕜] F`` 。
 
 作为一项具有挑战性的练习，您可以证明巴拿赫-斯坦因豪斯定理，也称为一致有界性原理。
 该原理指出，从巴拿赫空间到赋范空间的一族连续线性映射在逐点有界的情况下，这些线性映射的范数是一致有界的。
-主要依据是巴伊尔定理``nonempty_interior_of_iUnion_of_closed``（您在拓扑学章节中证明过其一个版本）。
-次要依据包括``continuous_linear_map.opNorm_le_of_shell``、``interior_subset``、``interior_iInter_subset`` 和 ``isClosed_le``。
+主要依据是贝尔纲定理 ``nonempty_interior_of_iUnion_of_closed`` （您在拓扑学章节中证明过其一个版本）。
+次要依据包括 ``continuous_linear_map.opNorm_le_of_shell`` 、 ``interior_subset`` 、 ``interior_iInter_subset``  和  ``isClosed_le`` 。
 BOTH: -/
 section
 
@@ -238,7 +229,7 @@ end
 
 定义可微性也需要渐近比较。
 Mathlib 拥有一个涵盖大 O 和小 o 关系的广泛库，其定义如下。
-打开``asymptotics``域允许我们使用相应的符号。
+打开 ``asymptotics`` 域允许我们使用相应的符号。
 在这里，我们将仅使用小 o 来定义可微性。
 EXAMPLES: -/
 -- QUOTE:
@@ -266,8 +257,8 @@ example {α : Type*} {E : Type*} [NormedAddCommGroup E] (l : Filter α) (f g : �
 ^^^^^^
 
 我们现在准备讨论赋范空间之间的可微函数。
-与基本的一维情况类似，Mathlib 定义了一个谓词 ``HasFDerivAt`` 和一个函数 ``fderiv``。
-这里的字母“f”代表**弗雷歇（Fréchet）**。
+与基本的一维情况类似，Mathlib 定义了一个谓词 ``HasFDerivAt`` 和一个函数  ``fderiv`` 。
+这里的字母“f”代表 **弗雷歇（Fréchet）** 。
 EXAMPLES: -/
 section
 
@@ -300,12 +291,7 @@ example (n : WithTop ℕ) {f : E → F} :
 -- QUOTE.
 
 /- TEXT:
-There is a stricter notion of differentiability called
-``HasStrictFDerivAt``, which is used in the statement
-of the inverse function theorem and the statement of the implicit function
-theorem, both of which are in Mathlib.
-Over ``ℝ`` or ``ℂ``, continuously differentiable
-functions are strictly differentiable.
+存在一种更严格的可微性概念，称为 ``HasStrictFDerivAt`` ，它用于逆函数定理和隐函数定理的表述，这两个定理都在 Mathlib 中。在 ``ℝ`` 或 ``ℂ`` 上，连续可微函数都是严格可微的。
 EXAMPLES: -/
 -- QUOTE:
 example {𝕂 : Type*} [RCLike 𝕂] {E : Type*} [NormedAddCommGroup E] [NormedSpace 𝕂 E] {F : Type*}
@@ -315,14 +301,10 @@ example {𝕂 : Type*} [RCLike 𝕂] {E : Type*} [NormedAddCommGroup E] [NormedS
 -- QUOTE.
 
 /- TEXT:
-The local inverse theorem is stated using an operation that produces an
-inverse function from a
-function and the assumptions that the function is strictly differentiable at a
-point ``a`` and that its derivative is an isomorphism.
+局部逆定理是通过一种运算来表述的，该运算从一个函数生成其反函数，并且假定该函数在点 ``a`` 处严格可微，且其导数为同构映射。
 
-The first example below gets this local inverse.
-The next one states that it is indeed a local inverse
-from the left and from the right, and that it is strictly differentiable.
+下面的第一个例子得到了这个局部逆。
+接下来的一个例子表明，它确实是从左和从右的局部逆，并且它是严格可微的。
 EXAMPLES: -/
 -- QUOTE:
 section LocalInverse
@@ -348,12 +330,7 @@ end LocalInverse
 -- QUOTE.
 
 /- TEXT:
-This has been only a quick tour of the differential calculus in Mathlib.
-The library contains many variations that we have not discussed.
-For example, you may want to use one-sided derivatives in the
-one-dimensional setting. The means to do so are found in Mathlib in a more
-general context;
-see ``HasFDerivWithinAt`` or the even more general ``HasFDerivAtFilter``.
+这只是对 Mathlib 中微分学的一个快速浏览。该库包含许多我们未讨论过的变体。例如，在一维情况下，您可能希望使用单侧导数。在 Mathlib 中，您可以在更一般的上下文中找到实现此目的的方法；请参阅 ``HasFDerivWithinAt`` 或更通用的 ``HasFDerivAtFilter`` 。
 EXAMPLES: -/
 #check HasFDerivWithinAt
 

@@ -9,21 +9,17 @@ open Set Filter Topology
 
 .. _topological_spaces:
 
-Topological spaces
-------------------
+拓扑空间
+--------
 
-Fundamentals
+
+基础
 ^^^^^^^^^^^^
 
-We now go up in generality and introduce topological spaces. We will review the two main ways to define
-topological spaces and then explain how the category of topological spaces is much better behaved than
-the category of metric spaces. Note that we won't be using Mathlib category theory here, only having
-a somewhat categorical point of view.
 
-The first way to think about the transition from metric spaces to topological spaces is that we only
-remember the notion of open sets (or equivalently the notion of closed sets). From this point of view,
-a topological space is a type equipped with a collection of sets that are called open sets. This collection
-has to satisfy a number of axioms presented below (this collection is slightly redundant but we will ignore that).
+我们现在提高一般性，引入拓扑空间。我们将回顾定义拓扑空间的两种主要方式，然后解释拓扑空间范畴比度量空间范畴表现得要好得多。请注意，这里我们不会使用 Mathlib 的范畴论，只是采用一种稍微范畴化一点的观点。
+
+从度量空间到拓扑空间转变的第一种思考方式是，我们只记住开集（或等价地，闭集）的概念。从这个角度来看，拓扑空间是一种配备了被称为开集的集合族的类型。这个集合族必须满足下面给出的若干公理（这个集合族稍有冗余，但我们忽略这一点）。
 BOTH: -/
 -- QUOTE:
 section
@@ -45,8 +41,7 @@ example {ι : Type*} [Fintype ι] {s : ι → Set X} (hs : ∀ i, IsOpen (s i)) 
 
 /- TEXT:
 
-Closed sets are then defined as sets whose complement  is open. A function between topological spaces
-is (globally) continuous if all preimages of open sets are open.
+闭集被定义为补集是开集的集合。拓扑空间之间的函数是（全局）连续的，当且仅当所有开集的原像都是开集。
 BOTH: -/
 -- QUOTE:
 variable {Y : Type*} [TopologicalSpace Y]
@@ -56,23 +51,9 @@ example {f : X → Y} : Continuous f ↔ ∀ s, IsOpen s → IsOpen (f ⁻¹' s)
 -- QUOTE.
 
 /- TEXT:
-With this definition we already see that, compared to metric spaces, topological spaces only remember
-enough information to talk about continuous functions: two topological structures on a type are
-the same if and only if they have the same continuous functions (indeed the identity function will
-be continuous in both direction if and only if the two structures have the same open sets).
+根据这个定义，我们已经可以看出，与度量空间相比，拓扑空间仅保留了足够的信息来讨论连续函数：如果且仅如果两种拓扑结构具有相同的连续函数，则类型上的两种拓扑结构相同（实际上，当且仅当两种结构具有相同的开集时，恒等函数在两个方向上都是连续的）。
 
-However as soon as we move on to continuity at a point we see the limitations of the approach based
-on open sets. In Mathlib we frequently think of topological spaces as types equipped
-with a neighborhood filter ``𝓝 x`` attached to each point ``x`` (the corresponding function
-``X → Filter X`` satisfies certain conditions explained further down). Remember from the filters section that
-these gadgets play two related roles. First ``𝓝 x`` is seen as the generalized set of points of ``X``
-that are close to ``x``. And then it is seen as giving a way to say, for any predicate ``P : X → Prop``,
-that this predicate holds for points that are close enough to ``x``. Let us state
-that ``f : X → Y`` is continuous at ``x``. The purely filtery way is to say that the direct image under
-``f`` of the generalized set of points that are close to ``x`` is contained in the generalized set of
-points that are close to ``f x``. Recall this is spelled either ``map f (𝓝 x) ≤ 𝓝 (f x)``
-or ``Tendsto f (𝓝 x) (𝓝 (f x))``.
-
+然而，一旦我们转向某一点的连续性，就会看到基于开集的方法的局限性。在 Mathlib 中，我们经常将拓扑空间视为每个点 x 都附带一个邻域滤子``𝓝 x``的类型（相应的函数``X → Filter X``满足进一步说明的某些条件）。回想一下滤子部分的内容，这些工具发挥着两个相关的作用。首先，``𝓝 x``被视为 X 中接近 ``x`` 的点的广义集合。其次，它被视为一种方式，用于说明对于任何谓词``P : X → Prop``，该谓词对于足够接近 x 的点成立。让我们来陈述 ``f ： X → Y`` 在 ``x`` 处连续。纯粹基于滤子的说法是，``f`` 下 ``x`` 附近点的广义集合的直接像包含在 ``f x`` 附近点的广义集合中。回想一下，这可以写成``map f (𝓝 x) ≤ 𝓝 (f x)``或者``Tendsto f (𝓝 x) (𝓝 (f x))``。
 BOTH: -/
 -- QUOTE:
 example {f : X → Y} {x : X} : ContinuousAt f x ↔ map f (𝓝 x) ≤ 𝓝 (f x) :=
@@ -80,11 +61,7 @@ example {f : X → Y} {x : X} : ContinuousAt f x ↔ map f (𝓝 x) ≤ 𝓝 (f 
 -- QUOTE.
 
 /- TEXT:
-One can also spell it using both neighborhoods seen as ordinary sets and a neighborhood filter
-seen as a generalized set: "for any neighborhood ``U`` of ``f x``, all points close to ``x``
-are sent to ``U``". Note that the proof is again ``iff.rfl``, this point of view is definitionally
-equivalent to the previous one.
-
+还可以使用被视为普通集合的邻域和被视为广义集合的邻域滤子来拼写它：“对于 ``f x`` 的任何邻域 ``U`` ，所有靠近 ``x`` 的点都被发送到 ``U`` ”。请注意，证明又是 ``iff.rfl`` ，这种观点在定义上与前一种观点等价。
 BOTH: -/
 -- QUOTE:
 example {f : X → Y} {x : X} : ContinuousAt f x ↔ ∀ U ∈ 𝓝 (f x), ∀ᶠ x in 𝓝 x, f x ∈ U :=
@@ -92,10 +69,7 @@ example {f : X → Y} {x : X} : ContinuousAt f x ↔ ∀ U ∈ 𝓝 (f x), ∀�
 -- QUOTE.
 
 /- TEXT:
-We now explain how to go from one point of view to the other. In terms of open sets, we can
-simply define members of ``𝓝 x`` as sets that contain an open set containing ``x``.
-
-
+现在我们来解释如何从一种观点转换到另一种观点。就开集而言，我们可以简单地将 ``𝓝 x`` 的成员定义为包含一个包含 ``x`` 的开集的集合。
 BOTH: -/
 -- QUOTE:
 example {x : X} {s : Set X} : s ∈ 𝓝 x ↔ ∃ t, t ⊆ s ∧ IsOpen t ∧ x ∈ t :=
@@ -103,13 +77,9 @@ example {x : X} {s : Set X} : s ∈ 𝓝 x ↔ ∃ t, t ⊆ s ∧ IsOpen t ∧ x
 -- QUOTE.
 
 /- TEXT:
-To go in the other direction we need to discuss the condition that ``𝓝 : X → Filter X`` must satisfy
-in order to be the neighborhood function of a topology.
+要朝另一方向进行，我们需要讨论``𝓝 ： X → Filter X``成为拓扑的邻域函数必须满足的条件。
 
-The first constraint is that ``𝓝 x``, seen as a generalized set, contains the set ``{x}`` seen as the generalized set
-``pure x`` (explaining this weird name would be too much of a digression, so we simply accept it for now).
-Another way to say it is that if a predicate holds for points close to ``x`` then it holds at ``x``.
-
+第一个约束条件是，将``𝓝 x``视为广义集合时，它将包含被视为广义集合``pure x``的集合``{x}``（解释这个奇怪的名字会离题太远，所以我们暂时接受它）。另一种说法是，如果一个谓词对靠近``x``的点成立，那么它在``x``处也成立。
 BOTH: -/
 -- QUOTE:
 example (x : X) : pure x ≤ 𝓝 x :=
@@ -120,8 +90,7 @@ example (x : X) (P : X → Prop) (h : ∀ᶠ y in 𝓝 x, P y) : P x :=
 -- QUOTE.
 
 /- TEXT:
-Then a more subtle requirement is that, for any predicate ``P : X → Prop`` and any ``x``, if ``P y`` holds for ``y`` close
-to ``x`` then for ``y`` close to ``x`` and ``z`` close to ``y``, ``P z`` holds. More precisely we have:
+然后一个更微妙的要求是，对于任何谓词``P : X → Prop``以及任何``x``，如果``P y``对于接近``x``的``y``成立，那么对于接近``x``的``y``以及接近``y``的``z``，``P z``也成立。更确切地说，我们有：
 BOTH: -/
 -- QUOTE:
 example {P : X → Prop} {x : X} (h : ∀ᶠ y in 𝓝 x, P y) : ∀ᶠ y in 𝓝 x, ∀ᶠ z in 𝓝 y, P z :=
@@ -129,11 +98,7 @@ example {P : X → Prop} {x : X} (h : ∀ᶠ y in 𝓝 x, P y) : ∀ᶠ y in �
 -- QUOTE.
 
 /- TEXT:
-Those two results characterize the functions ``X → Filter X`` that are neighborhood functions for a topological space
-structure on ``X``. There is a still a function ``TopologicalSpace.mkOfNhds : (X → Filter X) → TopologicalSpace X``
-but it will give back its input as a neighborhood function only if it satisfies the above two constraints.
-More precisely we have a lemma ``TopologicalSpace.nhds_mkOfNhds`` saying that in a different way and our
-next exercise deduces this different way from how we stated it above.
+这两个结果描述了对于集合 X 上的拓扑空间结构而言，函数``X → Filter X``成为邻域函数的特征。仍然存在一个函数``TopologicalSpace.mkOfNhds : (X → Filter X) → TopologicalSpace X``，但只有当输入满足上述两个约束条件时，它才会将其作为邻域函数返回。更确切地说，我们有一个引理``TopologicalSpace.nhds_mkOfNhds``，以另一种方式说明了这一点，而我们的下一个练习将从上述表述方式推导出这种不同的表述方式。
 BOTH: -/
 #check TopologicalSpace.mkOfNhds
 
@@ -160,30 +125,15 @@ end
 
 -- BOTH.
 /- TEXT:
-Note that ``TopologicalSpace.mkOfNhds`` is not so frequently used, but it still good to know in what
-precise sense the neighborhood filters is all there is in a topological space structure.
+请注意，``TopologicalSpace.mkOfNhds`` 并不经常使用，但了解拓扑空间结构中邻域滤子的精确含义仍然是很有好处的。
 
-The next thing to know in order to efficiently use topological spaces in Mathlib is that we use a lot
-of formal properties of ``TopologicalSpace : Type u → Type u``. From a purely mathematical point of view,
-those formal properties are a very clean way to explain how topological spaces solve issues that metric spaces
-have. From this point of view, the issues solved by topological spaces is that metric spaces enjoy very
-little functoriality, and have very bad categorical properties in general. This comes on top of the fact
-already discussed that metric spaces contain a lot of geometrical information that is not topologically relevant.
+要在 Mathlib 中高效地使用拓扑空间，接下来需要了解的是，我们大量使用了 ``TopologicalSpace : Type u → Type u`` 的形式属性。从纯粹的数学角度来看，这些形式属性是解释拓扑空间如何解决度量空间存在的问题的一种非常清晰的方式。从这个角度来看，拓扑空间解决的问题在于度量空间的函子性非常差，而且总体上具有非常糟糕的范畴性质。这还不包括前面已经讨论过的度量空间包含大量拓扑上无关的几何信息这一事实。
 
-Let us focus on functoriality first. A metric space structure can be induced on a subset or,
-equivalently, it can be pulled back by an injective map. But that's pretty much everything.
-They cannot be pulled back by general map or pushed forward, even by surjective maps.
+我们先关注函子性。度量空间结构可以诱导到子集上，或者等价地说，可以通过单射映射拉回。但也就仅此而已。它们不能通过一般的映射拉回，甚至不能通过满射映射推前。
 
-In particular there is no sensible distance to put on a quotient of a metric space or on an uncountable
-products of metric spaces. Consider for instance the type ``ℝ → ℝ``, seen as
-a product of copies of ``ℝ`` indexed by ``ℝ``. We would like to say that pointwise convergence of
-sequences of functions is a respectable notion of convergence. But there is no distance on
-``ℝ → ℝ`` that gives this notion of convergence. Relatedly, there is no distance ensuring that
-a map ``f : X → (ℝ → ℝ)`` is continuous if and only if ``fun x ↦ f x t`` is continuous for every ``t : ℝ``.
+特别是对于度量空间的商空间或不可数个度量空间的乘积，不存在合理的距离。例如，考虑类型``ℝ → ℝ``，将其视为由``ℝ``索引的``ℝ``的副本的乘积。我们希望说函数序列的逐点收敛是一种值得考虑的收敛概念。但在``ℝ → ℝ``上不存在能给出这种收敛概念距离。与此相关的是，不存在这样的距离，使得映射``f : X → (ℝ → ℝ)``是连续的当且仅当对于每个``t ： ℝ``，``fun x ↦ f x t``是连续的。
 
-We now review the data used to solve all those issues. First we can use any map ``f : X → Y`` to
-push or pull topologies from one side to the other. Those two operations form a Galois connection.
-
+现在我们来回顾一下用于解决所有这些问题的数据。首先，我们可以使用任何映射``f : X → Y``将拓扑从一侧推到另一侧或从另一侧拉到这一侧。这两个操作形成了一个伽罗瓦连接。
 BOTH: -/
 -- QUOTE:
 variable {X Y : Type*}
@@ -200,27 +150,16 @@ example (f : X → Y) (T_X : TopologicalSpace X) (T_Y : TopologicalSpace Y) :
 -- QUOTE.
 
 /- TEXT:
-Those operations are compactible with composition of functions.
-As usual, pushing forward is covariant and pulling back is contravariant, see ``coinduced_compose`` and ``induced_compose``.
-On paper we will use notations :math:`f_*T` for ``TopologicalSpace.coinduced f T`` and
-:math:`f^*T` for ``TopologicalSpace.induced f T``.
+这些操作与函数的复合兼容。
+通常，前推是协变的，后拉是逆变的，参见``coinduced_compose``和``induced_compose``。
+在纸上，我们将使用记号 :math:`f_*T` 表示 ``TopologicalSpace.coinduced f T`` ，使用记号 :math:`f^*T` 表示 ``TopologicalSpace.induced f T`` 。
 BOTH: -/
 #check coinduced_compose
 
 #check induced_compose
 
 /- TEXT:
-
-Then the next big piece is a complete lattice structure on ``TopologicalSpace X``
-for any given structure. If you think of topologies as being primarily the data of open sets then you expect
-the order relation on ``TopologicalSpace X`` to come from ``Set (Set X)``, i.e. you expect ``t ≤ t'``
-if a set ``u`` is open for ``t'`` as soon as it is open for ``t``. However we already know that Mathlib focuses
-on neighborhoods more than open sets so, for any ``x : X`` we want the map from topological spaces to neighborhoods
-``fun T : TopologicalSpace X ↦ @nhds X T x`` to be order preserving.
-And we know the order relation on ``Filter X`` is designed to ensure an order
-preserving ``principal : Set X → Filter X``, allowing to see filters as generalized sets.
-So the order relation we do use on  ``TopologicalSpace X`` is opposite to the one coming from ``Set (Set X)``.
-
+接下来的一个重要部分是在给定结构下对``拓扑空间 X``建立一个完整的格结构。如果您认为拓扑主要是开集的数据，那么您会期望``拓扑空间 X``上的序关系来自``Set (Set X)``，即您期望``t ≤ t'``当且仅当对于 ``t'`` 中的开集 ``u``，它在 ``t`` 中也是开集。然而，我们已经知道 Mathlib 更侧重于邻域而非开集，因此对于任何``x ： X``，我们希望从拓扑空间到邻域的映射``fun T ： TopologicalSpace X ↦ @nhds X T x``是保序的。而且我们知道``Filter X``上的序关系是为确保``principal : Set X → Filter X``保序而设计的，从而可以将滤子视为广义集合。所以我们在``TopologicalSpace X``上使用的序关系与来自``Set (Set X)``的序关系是相反的。
 BOTH: -/
 -- QUOTE:
 example {T T' : TopologicalSpace X} : T ≤ T' ↔ ∀ s, T'.IsOpen s → T.IsOpen s :=
@@ -229,7 +168,7 @@ example {T T' : TopologicalSpace X} : T ≤ T' ↔ ∀ s, T'.IsOpen s → T.IsOp
 
 /- TEXT:
 
-Now we can recover continuity by combining the push-forward (or pull-back) operation with the order relation.
+现在，我们可以通过将推进（或拉回）操作与序关系相结合来恢复连续性。
 
 BOTH: -/
 -- QUOTE:
@@ -239,10 +178,7 @@ example (T_X : TopologicalSpace X) (T_Y : TopologicalSpace Y) (f : X → Y) :
 -- QUOTE.
 
 /- TEXT:
-With this definition and the compatibility of push-forward and composition, we
-get for free the universal property that, for any topological space :math:`Z`,
-a function :math:`g : Y → Z` is continuous for the topology :math:`f_*T_X` if and only if
-:math:`g ∘ f` is continuous.
+有了这个定义以及前推和复合的兼容性，我们自然地得到了这样一个通用性质：对于任何拓扑空间 :math:`Z` ，函数 :math:`g : Y → Z` 对于拓扑 ：math:`f_*T_X` 是连续的，当且仅当 :math:`g ∘ f` 是连续的。
 
 .. math::
   g \text{ continuous } &⇔ g_*(f_*T_X) ≤ T_Z \\
@@ -260,14 +196,9 @@ example {Z : Type*} (f : X → Y) (T_X : TopologicalSpace X) (T_Z : TopologicalS
 -- QUOTE.
 
 /- TEXT:
-So we already get quotient topologies (using the projection map as ``f``). This wasn't using that
-``TopologicalSpace X`` is a complete lattice for all ``X``. Let's now see how all this structure
-proves the existence of the product topology by abstract non-sense.
-We considered the case of ``ℝ → ℝ`` above, but let's now consider the general case of ``Π i, X i`` for
-some ``ι : Type*`` and ``X : ι → Type*``. We want, for any topological space ``Z`` and any function
-``f : Z → Π i, X i``, that ``f`` is continuous if and only if ``(fun x ↦ x i) ∘ f`` is continuous for all ``i``.
-Let us explore that constraint "on paper" using notation :math:`p_i` for the projection
-``(fun (x : Π i, X i) ↦ x i)``:
+因此，我们已经得到了商拓扑（使用投影映射作为``f``）。这并没有用到对于所有``X``，``TopologicalSpace X``都是一个完备格这一事实。现在让我们看看所有这些结构如何通过抽象的废话证明积拓扑的存在性。
+我们上面考虑了``ℝ → ℝ``的情况，但现在让我们考虑一般情况``Π i, X i``，其中``ι : Type*``且``X ： ι → Type*``。我们希望对于任何拓扑空间``Z``以及任何函数``f ： Z → Π i， X i``，``f``是连续的当且仅当``(fun x ↦ x i) ∘ f``对于所有``i``都是连续的。
+让我们在纸上用符号``p_i``表示投影``(fun (x ： Π i， X i) ↦ x i)``来探究这个约束条件：
 
 .. math::
   (∀ i, p_i ∘ f \text{ continuous}) &⇔ ∀ i, (p_i ∘ f)_* T_Z ≤ T_{X_i} \\
@@ -275,7 +206,7 @@ Let us explore that constraint "on paper" using notation :math:`p_i` for the pro
   &⇔ ∀ i, f_* T_Z ≤ (p_i)^*T_{X_i}\\
   &⇔  f_* T_Z ≤ \inf \left[(p_i)^*T_{X_i}\right]
 
-So we see that what is the topology we want on ``Π i, X i``:
+因此我们看到，对于``Π i, X i``，我们想要的拓扑结构是什么：
 BOTH: -/
 -- QUOTE:
 example (ι : Type*) (X : ι → Type*) (T_X : ∀ i, TopologicalSpace (X i)) :
@@ -285,20 +216,15 @@ example (ι : Type*) (X : ι → Type*) (T_X : ∀ i, TopologicalSpace (X i)) :
 -- QUOTE.
 
 /- TEXT:
+这就结束了我们关于 Mathlib 的探讨，其如何认为拓扑空间通过成为更具函子性的理论与对于任何固定类型都具有完备格结构的特性，从而弥补度量空间理论的缺陷。
 
-This ends our tour of how Mathlib thinks that topological spaces fix defects of the theory of metric spaces
-by being a more functorial theory and having a complete lattice structure for any fixed type.
+分离性与可数性
+^^^^^^^^^^^^^
 
-Separation and countability
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We saw that the category of topological spaces have very nice properties. The price to pay for
-this is existence of rather pathological topological spaces.
-There are a number of assumptions you can make on a topological space to ensure its behavior
-is closer to what metric spaces do. The most important is ``T2Space``, also called "Hausdorff",
-that will ensure that limits are unique.
-A stronger separation property is ``T3Space`` that ensures in addition the `RegularSpace` property:
-each point has a basis of closed neighborhoods.
+我们看到拓扑空间范畴具有非常良好的性质。为此付出的代价是存在一些相当病态的拓扑空间。
+你可以对拓扑空间做出一些假设，以确保其行为更接近度量空间。其中最重要的是``T2 空间``，也称为“豪斯多夫空间”，它能确保极限是唯一的。
+更强的分离性质是``T3 空间``，它还确保了``正则空间``性质：每个点都有一个闭邻域基。
 
 BOTH: -/
 -- QUOTE:
@@ -312,8 +238,7 @@ example [TopologicalSpace X] [RegularSpace X] (a : X) :
 -- QUOTE.
 
 /- TEXT:
-Note that, in every topological space, each point has a basis of open neighborhood, by definition.
-
+请注意，根据定义，在每个拓扑空间中，每个点都有一个开邻域基。
 BOTH: -/
 -- QUOTE:
 example [TopologicalSpace X] {x : X} :
@@ -322,26 +247,15 @@ example [TopologicalSpace X] {x : X} :
 -- QUOTE.
 
 /- TEXT:
-Our main goal is now to prove the basic theorem which allows extension by continuity.
-From Bourbaki's general topology book, I.8.5, Theorem 1 (taking only the non-trivial implication):
+我们现在的主要目标是证明基本定理，该定理允许通过连续性进行延拓。从布尔巴基学派的《一般拓扑学》一书，第 I 卷第 8.5 节，定理 1（仅取非平凡的蕴含部分）：
 
-Let :math:`X` be a topological space, :math:`A` a dense subset of :math:`X`, :math:`f : A → Y`
-a continuous mapping of :math:`A` into a :math:`T_3` space :math:`Y`. If, for each :math:`x` in
-:math:`X`, :math:`f(y)` tends to a limit in :math:`Y` when :math:`y` tends to :math:`x`
-while remaining in :math:`A` then there exists a continuous extension :math:`φ` of :math:`f` to
-:math:`X`.
+设 :math:`X` 为拓扑空间，:math:`A` 是 :math:`X` 的一个稠密子集，:math:`f : A → Y` 是将 :math:`A` 映射到 :math:`T_3` 空间 :math:`Y` 的连续映射。若对于 :math:`X` 中的每个点 :math:`x` ，当 :math:`y` 趋近于 :math:`x` 且始终处于 :math:`A` 内时，:math:`f(y)` 在 :math:`Y` 中趋于一个极限，则存在 :math:`f` 在 :math:`X` 上的连续延拓 :math:`φ` 。
 
-Actually Mathlib contains a more general version of the above lemma, ``DenseInducing.continuousAt_extend``,
-but we'll stick to Bourbaki's version here.
+实际上，Mathlib 包含了上述引理的一个更通用的版本``DenseInducing.continuousAt_extend``，但在这里我们将遵循布尔巴基的版本。
 
-Remember that, given ``A : Set X``, ``↥A`` is the subtype associated to ``A``, and Lean will automatically
-insert that funny up arrow when needed. And the (inclusion) coercion map is ``(↑) : A → X``.
-The assumption "tends to :math:`x` while remaining in :math:`A`" corresponds to the pull-back filter
-``comap (↑) (𝓝 x)``.
+请记住，对于 ``A : Set X`` ，``↥A`` 是与 ``A`` 相关联的子类型，并且在需要时，Lean 会自动插入那个有趣的上箭头。而（包含）强制转换映射为 ``(↑) : A → X`` 。假设“趋向于 :math:`x` 且始终处于 :math:`A` 中”对应于拉回滤子 ``comap (↑) (𝓝 x)`` 。
 
-Let's first prove an auxiliary lemma, extracted to simplify the context
-(in particular we don't need Y to be a topological space here).
-
+我们首先证明一个辅助引理，将其提取出来以简化上下文（特别是这里我们不需要 Y 是拓扑空间）。
 BOTH: -/
 -- QUOTE:
 theorem aux {X Y A : Type*} [TopologicalSpace X] {c : A → X}
@@ -356,34 +270,29 @@ SOLUTIONS: -/
 -- QUOTE.
 
 /- TEXT:
-Let's now turn to the main proof of the extension by continuity theorem.
+现在让我们来证明连续性延拓定理的主要内容。
 
-When Lean needs a topology on ``↥A`` it will automatically use the induced topology.
-The only relevant lemma is
-``nhds_induced (↑) : ∀ a : ↥A, 𝓝 a = comap (↑) (𝓝 ↑a)``
-(this is actually a general lemma about induced topologies).
+当需要在 ``↥A`` 上定义拓扑时，Lean 会自动使用诱导拓扑。
+唯一相关的引理是
+``nhds_induced (↑) : ∀ a ： ↥A， 𝓝 a = comap (↑) (𝓝 ↑a)``
+（这实际上是一个关于诱导拓扑的一般引理）。
 
-The proof outline is:
+证明的大致思路是：
 
-The main assumption and the axiom of choice give a function ``φ`` such that
+主要假设和选择公理给出一个函数``φ``，使得
 ``∀ x, Tendsto f (comap (↑) (𝓝 x)) (𝓝 (φ x))``
-(because ``Y`` is Hausdorff, ``φ`` is entirely determined, but we won't need that until we try to
-prove that ``φ`` indeed extends ``f``).
+（因为``Y``是豪斯多夫空间，``φ``是完全确定的，但在我们试图证明``φ``确实扩展了``f``之前，我们不需要这一点）。
 
-Let's first prove ``φ`` is continuous. Fix any ``x : X``.
-Since ``Y`` is regular, it suffices to check that for every *closed* neighborhood
-``V'`` of ``φ x``, ``φ ⁻¹' V' ∈ 𝓝 x``.
-The limit assumption gives (through the auxiliary lemma above)
-some ``V ∈ 𝓝 x`` such ``IsOpen V ∧ (↑) ⁻¹' V ⊆ f ⁻¹' V'``.
-Since ``V ∈ 𝓝 x``, it suffices to prove ``V ⊆ φ ⁻¹' V'``, i.e.  ``∀ y ∈ V, φ y ∈ V'``.
-Let's fix ``y`` in ``V``. Because ``V`` is *open*, it is a neighborhood of ``y``.
-In particular ``(↑) ⁻¹' V ∈ comap (↑) (𝓝 y)`` and a fortiori ``f ⁻¹' V' ∈ comap (↑) (𝓝 y)``.
-In addition ``comap (↑) (𝓝 y) ≠ ⊥`` because ``A`` is dense.
-Because we know ``Tendsto f (comap (↑) (𝓝 y)) (𝓝 (φ y))`` this implies
-``φ y ∈ closure V'`` and, since ``V'`` is closed, we have proved ``φ y ∈ V'``.
+首先证明``φ``是连续的。固定任意的``x : X``。
+由于``Y``是正则的，只需检查对于``φ x``的每个**闭**邻域``V'``，``φ⁻¹' V' ∈ 𝓝 x``。
+极限假设（通过上面的辅助引理）给出了某个``V ∈ 𝓝 x``，使得``IsOpen V ∧ (↑)⁻¹' V ⊆ f⁻¹' V'``。
+由于``V ∈ 𝓝 x``，只需证明``V ⊆ φ⁻¹' V'``，即``∀ y ∈ V， φ y ∈ V'``。
+固定``V``中的``y``。因为``V``是**开**的，所以它是``y``的邻域。
+特别是``(↑)⁻¹' V ∈ comap (↑) (𝓝 y)``且更进一步``f⁻¹' V' ∈ comap (↑) (𝓝 y)``。
+此外，``comap (↑) (𝓝 y) ≠ ⊥``因为``A``是稠密的。
+因为我们知道``Tendsto f (comap (↑) (𝓝 y)) (𝓝 (φ y))``，这表明``φ y ∈ closure V'``，并且由于``V'``是闭的，我们已经证明了``φ y ∈ V'``。
 
-It remains to prove that ``φ`` extends ``f``. This is where the continuity of ``f`` enters the
-discussion, together with the fact that ``Y`` is Hausdorff.
+接下来要证明的是``φ``延拓了``f``。这里就要用到``f``的连续性以及``Y``是豪斯多夫空间这一事实。
 BOTH: -/
 -- QUOTE:
 example [TopologicalSpace X] [TopologicalSpace Y] [T3Space Y] {A : Set X}
@@ -418,10 +327,7 @@ SOLUTIONS: -/
 -- QUOTE.
 
 /- TEXT:
-In addition to separation property, the main kind of assumption you can make on a topological
-space to bring it closer to metric spaces is countability assumption. The main one is first countability
-asking that every point has a countable neighborhood basis. In particular this ensures that closure
-of sets can be understood using sequences.
+除了分离性之外，您还可以对拓扑空间做出的主要假设是可数性假设，以使其更接近度量空间。其中最主要的是第一可数性，即要求每个点都有一个可数的邻域基。特别是，这确保了集合的闭包可以通过序列来理解。
 
 BOTH: -/
 -- QUOTE:
@@ -432,18 +338,15 @@ example [TopologicalSpace X] [FirstCountableTopology X]
 -- QUOTE.
 
 /- TEXT:
-Compactness
-^^^^^^^^^^^
+紧致性
+^^^^^
 
-Let us now discuss how compactness is defined for topological spaces. As usual there are several ways
-to think about it and Mathlib goes for the filter version.
 
-We first need to define cluster points of filters. Given a filter ``F`` on a topological space ``X``,
-a point ``x : X`` is a cluster point of ``F`` if ``F``, seen as a generalized set, has non-empty intersection
-with the generalized set of points that are close to ``x``.
+现在让我们来讨论一下拓扑空间的紧致性是如何定义的。和往常一样，对此有多种思考方式，而 Mathlib 采用的是滤子版本。
 
-Then we can say that a set ``s`` is compact if every nonempty generalized set ``F`` contained in ``s``,
-i.e. such that ``F ≤ 𝓟 s``, has a cluster point in ``s``.
+我们首先需要定义滤子的聚点。给定拓扑空间 ``X`` 上的一个滤子 ``F`` ，若将 ``F`` 视为广义集合，则点 ``x : X`` 是 ``F`` 的聚点，当且仅当 ``F`` 与广义集合中所有接近 ``x`` 的点的集合有非空交集。
+
+那么我们就可以说，集合 ``s`` 是紧致的，当且仅当包含于 ``s`` 中的每一个非空广义集合 ``F`` ，即满足 ``F ≤ 𝓟 s`` 的集合，都在 ``s`` 中有一个聚点。
 
 BOTH: -/
 -- QUOTE:
@@ -458,12 +361,7 @@ example {s : Set X} :
 -- QUOTE.
 
 /- TEXT:
-For instance if ``F`` is ``map u atTop``, the image under ``u : ℕ → X`` of ``atTop``, the generalized set
-of very large natural numbers, then the assumption ``F ≤ 𝓟 s`` means that ``u n`` belongs to ``s`` for ``n``
-large enough. Saying that ``x`` is a cluster point of ``map u atTop`` says the image of very large numbers
-intersects the set of points that are close to ``x``. In case ``𝓝 x`` has a countable basis, we can
-interpret this as saying that ``u`` has a subsequence converging to ``x``, and we get back what compactness
-looks like in metric spaces.
+例如，如果 ``F`` 是 ``map u atTop``，即 ``u ： ℕ → X`` 在 ``atTop`` 下的像，其中 ``atTop`` 是非常大的自然数的广义集合，那么假设 ``F ≤ 𝓟 s`` 意味着对于足够大的 ``n``，``u n`` 属于 ``s``。说 ``x`` 是 ``map u atTop`` 的聚点意味着非常大的数的像与接近 ``x`` 的点的集合相交。如果 ``𝓝 x`` 有一个可数基，我们可以将其解释为说 ``u`` 有一个子序列收敛于 ``x``，这样我们就得到了度量空间中紧致性的样子。
 BOTH: -/
 -- QUOTE:
 example [FirstCountableTopology X] {s : Set X} {u : ℕ → X} (hs : IsCompact s)
@@ -472,8 +370,7 @@ example [FirstCountableTopology X] {s : Set X} {u : ℕ → X} (hs : IsCompact s
 -- QUOTE.
 
 /- TEXT:
-Cluster points behave nicely with continuous functions.
-
+聚点与连续函数的性质相容。
 BOTH: -/
 -- QUOTE:
 variable [TopologicalSpace Y]
@@ -484,9 +381,7 @@ example {x : X} {F : Filter X} {G : Filter Y} (H : ClusterPt x F) {f : X → Y}
 -- QUOTE.
 
 /- TEXT:
-As an exercise, we will prove that the image of a compact set under a continuous map is
-compact. In addition to what we saw already, you should use ``Filter.push_pull`` and
-``NeBot.of_map``.
+作为练习，我们将证明连续映射下的紧集的像是紧集。除了我们已经看到的内容外，您还应该使用``Filter.push_pull``和``NeBot.of_map``。
 BOTH: -/
 -- QUOTE:
 -- EXAMPLES:
@@ -515,9 +410,7 @@ example [TopologicalSpace Y] {f : X → Y} (hf : Continuous f) {s : Set X} (hs :
   exact inf_le_right
 
 /- TEXT:
-One can also express compactness in terms of open covers: ``s`` is compact if every family of open sets that
-cover ``s`` has a finite covering sub-family.
-
+也可以用开覆盖来表述紧性：``s``是紧的，当且仅当覆盖``s``的每一个开集族都有一个有限的覆盖子族。
 BOTH: -/
 -- QUOTE:
 example {ι : Type*} {s : Set X} (hs : IsCompact s) (U : ι → Set X) (hUo : ∀ i, IsOpen (U i))

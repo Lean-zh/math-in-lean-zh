@@ -17,17 +17,13 @@ noncomputable section
 
 .. _normed_spaces:
 
-Differential Calculus in Normed Spaces
---------------------------------------
+赋范空间中的微分学
+------------------
 
-Normed spaces
-^^^^^^^^^^^^^
+赋范空间
+^^^^^^^^
 
-Differentiation can be generalized beyond ``ℝ`` using the notion of a
-*normed vector space*, which encapsulates both direction and distance.
-We start with the notion of a *normed group*, which is an additive commutative
-group equipped with a real-valued norm function
-satisfying the following conditions.
+利用**赋范向量空间**的概念，可以将微分推广到``ℝ``之外，该概念同时涵盖了方向和距离。我们从**赋范群**的概念开始，它是一个加法交换群，配备了一个实值范数函数，满足以下条件。
 EXAMPLES: -/
 section
 
@@ -45,9 +41,7 @@ example (x y : E) : ‖x + y‖ ≤ ‖x‖ + ‖y‖ :=
 -- QUOTE.
 
 /- TEXT:
-Every normed space is a metric space with distance function
-:math:`d(x, y) = \| x - y \|`, and hence it is also a topological space.
-Lean and Mathlib know this.
+每个赋范空间都是一个度量空间，其距离函数为 :math:`d(x, y) = \| x - y \|`，因此它也是一个拓扑空间。Lean 和 Mathlib 都知道这一点。
 EXAMPLES: -/
 -- QUOTE:
 example : MetricSpace E := by infer_instance
@@ -58,10 +52,7 @@ example {X : Type*} [TopologicalSpace X] {f : X → E} (hf : Continuous f) :
 -- QUOTE.
 
 /- TEXT:
-In order to use the notion of a norm with concepts from linear algebra,
-we add the assumption ``NormedSpace ℝ E`` on top of ``NormedAddGroup E``.
-This stipulates that ``E`` is a vector space over ``ℝ`` and that
-scalar multiplication satisfies the following condition.
+为了在范数的概念中引入线性代数中的概念，我们在``NormedAddGroup E``的基础上添加了``NormedSpace ℝ E``这一假设。这表明 ``E`` 是``ℝ``上的向量空间，并且标量乘法满足以下条件。
 EXAMPLES: -/
 -- QUOTE:
 variable [NormedSpace ℝ E]
@@ -71,20 +62,16 @@ example (a : ℝ) (x : E) : ‖a • x‖ = |a| * ‖x‖ :=
 -- QUOTE.
 
 /- TEXT:
-A complete normed space is known as a *Banach space*.
-Every finite-dimensional vector space is complete.
+完备的赋范空间被称为**巴拿赫空间**。
+每个有限维向量空间都是完备的。
 EXAMPLES: -/
 -- QUOTE:
 example [FiniteDimensional ℝ E] : CompleteSpace E := by infer_instance
 -- QUOTE.
 
 /- TEXT:
-In all the previous examples, we used the real numbers as the base field.
-More generally, we can make sense of calculus with a vector space over any
-*nontrivially normed field*. These are fields that are equipped with a
-real-valued norm that is multiplicative and has the property that
-not every element has norm zero or one
-(equivalently, there is an element whose norm is bigger than one).
+在前面的所有示例中，我们都使用实数作为基域。
+更一般地说，我们可以在任何**非平凡赋范域**上的向量空间中理解微积分。这些域配备了实值范数，该范数具有乘法性质，并且不是每个元素的范数都为零或一（等价地说，存在范数大于一的元素）。
 EXAMPLES: -/
 -- QUOTE:
 example (𝕜 : Type*) [NontriviallyNormedField 𝕜] (x y : 𝕜) : ‖x * y‖ = ‖x‖ * ‖y‖ :=
@@ -95,8 +82,7 @@ example (𝕜 : Type*) [NontriviallyNormedField 𝕜] : ∃ x : 𝕜, 1 < ‖x�
 -- QUOTE.
 
 /- TEXT:
-A finite-dimensional vector space over a nontrivially normed field is
-complete as long as the field itself is complete.
+在一个非平凡赋范域上的有限维向量空间，只要域本身是完备的，那么该向量空间就是完备的。
 EXAMPLES: -/
 -- QUOTE:
 example (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Type*) [NormedAddCommGroup E]
@@ -107,18 +93,14 @@ example (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Type*) [NormedAddComm
 end
 
 /- TEXT:
-Continuous linear maps
-^^^^^^^^^^^^^^^^^^^^^^
+连续线性映射
+^^^^^^^^^^^^
 
-We now turn to the morphisms in the category of normed spaces, namely,
-continuous linear maps.
-In Mathlib, the type of ``𝕜``-linear continuous maps between normed spaces
-``E`` and ``F`` is written ``E →L[𝕜] F``.
-They are implemented as *bundled maps*, which means that an element of this type
-a structure that that includes the function itself and the properties
-of being linear and continuous.
-Lean will insert a coercion so that a continuous linear map can be treated
-as a function.
+
+现在我们来讨论赋范空间范畴中的态射，即连续线性映射。
+在 Mathlib 中，赋范空间 ``E`` 和 ``F`` 之间的 ``𝕜`` 线性连续映射的类型写作 ``E →L[𝕜] F``。
+它们被实现为**捆绑映射**，这意味着该类型的元素包含映射本身以及线性和连续的性质。
+Lean 会插入一个强制转换，使得连续线性映射可以当作函数来处理。
 EXAMPLES: -/
 section
 
@@ -143,8 +125,7 @@ example (f : E →L[𝕜] F) (a : 𝕜) (x : E) : f (a • x) = a • f x :=
 -- QUOTE.
 
 /- TEXT:
-Continuous linear maps have an operator norm that is characterized by the
-following properties.
+连续线性映射具有算子范数，其特征在于以下性质。
 EXAMPLES: -/
 -- QUOTE:
 variable (f : E →L[𝕜] F)
@@ -159,9 +140,6 @@ example {M : ℝ} (hMp : 0 ≤ M) (hM : ∀ x, ‖f x‖ ≤ M * ‖x‖) : ‖f
 end
 
 /- TEXT:
-There is also a notion of bundled continuous linear *isomorphism*.
-Their type of such isomorphisms is ``E ≃L[𝕜] F``.
-
 As a challenging exercise, you can prove the Banach-Steinhaus theorem, also
 known as the Uniform Boundedness Principle.
 The principle states that a family of continuous linear maps from a Banach space
@@ -171,6 +149,13 @@ The main ingredient is Baire's theorem
 ``nonempty_interior_of_iUnion_of_closed``. (You proved a version of this in the topology chapter.)
 Minor ingredients include ``continuous_linear_map.opNorm_le_of_shell``,
 ``interior_subset`` and ``interior_iInter_subset`` and ``isClosed_le``.
+还有一种连续线性同构的**成束**概念。
+这种同构的类型表示为 ``E ≃L[𝕜] F`` 。
+
+作为一项具有挑战性的练习，您可以证明巴拿赫-斯坦因豪斯定理，也称为一致有界性原理。
+该原理指出，从巴拿赫空间到赋范空间的一族连续线性映射在逐点有界的情况下，这些线性映射的范数是一致有界的。
+主要依据是巴伊尔定理``nonempty_interior_of_iUnion_of_closed``（您在拓扑学章节中证明过其一个版本）。
+次要依据包括``continuous_linear_map.opNorm_le_of_shell``、``interior_subset``、``interior_iInter_subset`` 和 ``isClosed_le``。
 BOTH: -/
 section
 
@@ -183,20 +168,19 @@ open Metric
 -- EXAMPLES:
 example {ι : Type*} [CompleteSpace E] {g : ι → E →L[𝕜] F} (h : ∀ x, ∃ C, ∀ i, ‖g i x‖ ≤ C) :
     ∃ C', ∀ i, ‖g i‖ ≤ C' := by
-  -- sequence of subsets consisting of those `x : E` with norms `‖g i x‖` bounded by `n`
+  -- 由范数 `‖g i x‖` 被 `n` 所限制那些的 `x : E` 组成的子集序列
   let e : ℕ → Set E := fun n ↦ ⋂ i : ι, { x : E | ‖g i x‖ ≤ n }
-  -- each of these sets is closed
+  -- 这些集合每个都是闭集
   have hc : ∀ n : ℕ, IsClosed (e n)
   sorry
-  -- the union is the entire space; this is where we use `h`
+  -- 并集是整个空间；这就是我们使用 `h` 的地方
   have hU : (⋃ n : ℕ, e n) = univ
   sorry
-  /- apply the Baire category theorem to conclude that for some `m : ℕ`,
-       `e m` contains some `x` -/
+  /- 应用贝尔纲定理得出结论：存在某个 `m ： ℕ` ，使得 `e m` 包含某个 `x`  -/
   obtain ⟨m, x, hx⟩ : ∃ m, ∃ x, x ∈ interior (e m) := sorry
   obtain ⟨ε, ε_pos, hε⟩ : ∃ ε > 0, ball x ε ⊆ interior (e m) := sorry
   obtain ⟨k, hk⟩ : ∃ k : 𝕜, 1 < ‖k‖ := sorry
-  -- show all elements in the ball have norm bounded by `m` after applying any `g i`
+  -- 证明球内所有元素在应用任何 `g i` 后范数均不超过 `m`
   have real_norm_le : ∀ z ∈ ball x ε, ∀ (i : ι), ‖g i z‖ ≤ m
   sorry
   have εk_pos : 0 < ε / ‖k‖ := sorry
@@ -208,23 +192,22 @@ example {ι : Type*} [CompleteSpace E] {g : ι → E →L[𝕜] F} (h : ∀ x, �
 -- SOLUTIONS:
 example {ι : Type*} [CompleteSpace E] {g : ι → E →L[𝕜] F} (h : ∀ x, ∃ C, ∀ i, ‖g i x‖ ≤ C) :
     ∃ C', ∀ i, ‖g i‖ ≤ C' := by
-  -- sequence of subsets consisting of those `x : E` with norms `‖g i x‖` bounded by `n`
+  -- 由范数 `‖g i x‖` 被 `n` 所限制那些的 `x : E` 组成的子集序列
   let e : ℕ → Set E := fun n ↦ ⋂ i : ι, { x : E | ‖g i x‖ ≤ n }
-  -- each of these sets is closed
+  -- 这些集合每个都是闭集
   have hc : ∀ n : ℕ, IsClosed (e n) := fun i ↦
     isClosed_iInter fun i ↦ isClosed_le (g i).cont.norm continuous_const
-  -- the union is the entire space; this is where we use `h`
+  -- 并集是整个空间；这就是我们使用 `h` 的地方
   have hU : (⋃ n : ℕ, e n) = univ := by
     refine eq_univ_of_forall fun x ↦ ?_
     rcases h x with ⟨C, hC⟩
     obtain ⟨m, hm⟩ := exists_nat_ge C
     exact ⟨e m, mem_range_self m, mem_iInter.mpr fun i ↦ le_trans (hC i) hm⟩
-  /- apply the Baire category theorem to conclude that for some `m : ℕ`,
-       `e m` contains some `x` -/
+  /- 应用贝尔纲定理得出结论：存在某个 `m ： ℕ` ，使得 `e m` 包含某个 `x` -/
   obtain ⟨m : ℕ, x : E, hx : x ∈ interior (e m)⟩ := nonempty_interior_of_iUnion_of_closed hc hU
   obtain ⟨ε, ε_pos, hε : ball x ε ⊆ interior (e m)⟩ := isOpen_iff.mp isOpen_interior x hx
   obtain ⟨k : 𝕜, hk : 1 < ‖k‖⟩ := NormedField.exists_one_lt_norm 𝕜
-  -- show all elements in the ball have norm bounded by `m` after applying any `g i`
+  -- 证明球内所有元素在应用任何 `g i` 后范数均不超过 `m`
   have real_norm_le : ∀ z ∈ ball x ε, ∀ (i : ι), ‖g i z‖ ≤ m := by
     intro z hz i
     replace hz := mem_iInter.mp (interior_iInter_subset _ (hε hz)) i
@@ -250,15 +233,13 @@ example {ι : Type*} [CompleteSpace E] {g : ι → E →L[𝕜] F} (h : ∀ x, �
 end
 
 /- TEXT:
-Asymptotic comparisons
-^^^^^^^^^^^^^^^^^^^^^^
+渐近比较
+^^^^^^^^
 
-Defining differentiability also requires asymptotic comparisons.
-Mathlib has an extensive library covering the big O and little o relations,
-whose definitions are shown below.
-Opening the ``asymptotics`` locale allows us to use the corresponding
-notation.
-Here we will only use little o to define differentiability.
+定义可微性也需要渐近比较。
+Mathlib 拥有一个涵盖大 O 和小 o 关系的广泛库，其定义如下。
+打开``asymptotics``域允许我们使用相应的符号。
+在这里，我们将仅使用小 o 来定义可微性。
 EXAMPLES: -/
 -- QUOTE:
 open Asymptotics
@@ -281,14 +262,12 @@ example {α : Type*} {E : Type*} [NormedAddCommGroup E] (l : Filter α) (f g : �
 -- QUOTE.
 
 /- TEXT:
-Differentiability
-^^^^^^^^^^^^^^^^^
+可微性
+^^^^^^
 
-We are now ready to discuss differentiable functions between normed spaces.
-In analogy the elementary one-dimensional,
-Mathlib defines a predicate ``HasFDerivAt`` and a function ``fderiv``.
-Here the letter
-"f" stands for *Fréchet*.
+我们现在准备讨论赋范空间之间的可微函数。
+与基本的一维情况类似，Mathlib 定义了一个谓词 ``HasFDerivAt`` 和一个函数 ``fderiv``。
+这里的字母“f”代表**弗雷歇（Fréchet）**。
 EXAMPLES: -/
 section
 
@@ -307,13 +286,7 @@ example (f : E → F) (f' : E →L[𝕜] F) (x₀ : E) (hff' : HasFDerivAt f f' 
 -- QUOTE.
 
 /- TEXT:
-We also have iterated derivatives that take values in the type of multilinear maps
-``E [×n]→L[𝕜] F``,
-and we have continuously differential functions.
-The type ``WithTop ℕ`` is ``ℕ`` with an additional element ``⊤`` that
-is bigger than every natural number.
-So :math:`\mathcal{C}^\infty` functions are functions ``f`` that satisfy
-``ContDiff 𝕜 ⊤ f``.
+我们还有取值于多重线性映射类型 ``E [×n]→L[𝕜] F`` 的迭代导数，并且我们有连续可微函数。类型 ``WithTop ℕ`` 是在自然数 ``ℕ`` 的基础上添加了一个比任何自然数都大的元素 ``⊤`` 。因此，:math:`\mathcal{C}^\infty` 函数是满足 ``ContDiff 𝕜 ⊤ f`` 的函数 ``f`` 。
 EXAMPLES: -/
 -- QUOTE:
 example (n : ℕ) (f : E → F) : E → E[×n]→L[𝕜] F :=

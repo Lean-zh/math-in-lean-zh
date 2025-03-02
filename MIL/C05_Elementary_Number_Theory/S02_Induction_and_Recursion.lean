@@ -86,8 +86,9 @@ theorem fac_pos (n : ℕ) : 0 < fac n := by
 -- QUOTE.
 
 /- TEXT:
- ``induction`` 策略足够智能，能够将依赖于归纳变量的假设作为归纳假设的一部分包含进来。
-逐步执行下一个示例，看看具体是怎么回事。
+
+该 ``induction`` 策略足够智能，能够将依赖于归纳变量的假设作为归纳假设的一部分包含进来。
+接下来，我们可以逐步执行一个示例，以具体说明这一过程。
 EXAMPLES: -/
 -- QUOTE:
 theorem dvd_fac {i n : ℕ} (ipos : 0 < i) (ile : i ≤ n) : i ∣ fac n := by

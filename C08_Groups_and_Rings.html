@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="9. Linear algebra" href="C09_Linear_Algebra.html" />
-    <link rel="prev" title="7. Hierarchies" href="C07_Hierarchies.html" /> 
+    <link rel="prev" title="7. &#23618;&#27425;&#32467;&#26500;" href="C07_Hierarchies.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,7 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="C04_Sets_and_Functions.html">4. &#38598;&#21512;&#21644;&#20989;&#25968;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C05_Elementary_Number_Theory.html">5. &#21021;&#31561;&#25968;&#35770;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C06_Structures.html">6. &#32467;&#26500;&#20307;&#65288;Structures&#65289;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. Hierarchies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. &#23618;&#27425;&#32467;&#26500;</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">8. &#32676;&#19982;&#29615;</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#groups">8.1. &#24186;&#21322;&#32676;&#19982;&#32676;</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#index-1">8.1.1. &#24186;&#21322;&#32676;&#21644;&#21516;&#24577;</a></li>
@@ -142,7 +142,7 @@
 </pre></div>
 </div>
 <p>&#21516;&#24577;&#20854;&#23454;&#26159;&#19968;&#31995;&#21015;&#26144;&#23556;, &#21363;&#65306;&#21516;&#24577;&#26144;&#23556;&#26412;&#36523;&#21644;&#23427;&#30340;&#19968;&#20123;&#24615;&#36136;&#12290;
-<a class="reference internal" href="C07_Hierarchies.html#section-hierarchies-morphisms"><span class="std std-numref">Section 7.2</span></a> &#20013;&#23545;&#36825;&#26679;&#30340;&#31995;&#21015;&#26144;&#23556;&#26377;&#36807;&#35299;&#37322;&#12290;
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">section_hierarchies_morphisms</span></code> &#20013;&#23545;&#36825;&#26679;&#30340;&#31995;&#21015;&#26144;&#23556;&#26377;&#36807;&#35299;&#37322;&#12290;
 &#29616;&#22312;&#65292;&#25105;&#20204;&#21457;&#29616;&#36825;&#20063;&#20135;&#29983;&#20102;&#20123;&#35768;&#19981;&#22937;&#30340;&#25928;&#26524;&#65306;&#25105;&#20204;&#26080;&#27861;&#20351;&#29992;&#24120;&#35268;&#30340;&#20989;&#25968;&#22797;&#21512;&#26469;&#32452;&#21512;&#20004;&#20010;&#26144;&#23556;&#12290;&#23545;&#27492;&#65292;&#26377; <code class="docutils literal notranslate"><span class="pre">MonoidHom.comp</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">AddMonoidHom.comp</span></code> &#20316;&#20026;&#26367;&#20195;&#26041;&#27861;.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span><span class="w"> </span><span class="o">{</span><span class="n">M</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="bp">*</span><span class="o">}</span><span class="w"> </span><span class="o">[</span><span class="n">AddMonoid</span><span class="w"> </span><span class="n">M</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">AddMonoid</span><span class="w"> </span><span class="n">N</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">AddMonoid</span><span class="w"> </span><span class="n">P</span><span class="o">]</span>
 <span class="w">    </span><span class="o">(</span><span class="n">f</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="bp">&#8594;+</span><span class="w"> </span><span class="n">N</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">g</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="bp">&#8594;+</span><span class="w"> </span><span class="n">P</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="bp">&#8594;+</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">g.comp</span><span class="w"> </span><span class="n">f</span>
@@ -218,7 +218,7 @@
 </pre></div>
 </div>
 <p>&#22312;&#20197;&#19978;&#30340;&#20363;&#23376;&#20013;, &#37325;&#35201;&#30340;&#19968;&#28857;&#26159;&#35201;&#29702;&#35299; <code class="docutils literal notranslate"><span class="pre">Subgroup</span> <span class="pre">G</span></code> &#26159; <code class="docutils literal notranslate"><span class="pre">G</span></code> &#30340;&#23376;&#32676;&#30340;&#31867;&#22411;&#65292;&#32780;&#19981;&#26159;&#23545;&#19968;&#20010; <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">G</span></code> &#20013;&#20803;&#32032; <code class="docutils literal notranslate"><span class="pre">H</span></code> &#30340;&#38468;&#21152;&#30340;&#26029;&#35328; <code class="docutils literal notranslate"><span class="pre">IsSubgroup</span> <span class="pre">H</span></code>. <code class="docutils literal notranslate"><span class="pre">Subgroup</span> <span class="pre">G</span></code> &#31867;&#22411;&#24050;&#32463;&#34987;&#36171;&#20104;&#20102;&#21040; <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">G</span></code> &#30340;&#31867;&#22411;&#36716;&#25442;&#21644;&#19968;&#20010;&#19982; <code class="docutils literal notranslate"><span class="pre">G</span></code> &#38388;&#30340;&#21253;&#21547;&#20851;&#31995;&#30340;&#21028;&#26029;&#12290;
-&#21442;&#35265; <a class="reference internal" href="C07_Hierarchies.html#section-hierarchies-subobjects"><span class="std std-numref">Section 7.3</span></a> &#20197;&#20102;&#35299;&#36825;&#26159;&#20026;&#20309;&#35201;&#20197;&#21450;&#22914;&#20309;&#23436;&#25104;&#30340;&#12290;</p>
+&#21442;&#35265; <code class="xref std std-numref docutils literal notranslate"><span class="pre">section_hierarchies_subobjects</span></code> &#20197;&#20102;&#35299;&#36825;&#26159;&#20026;&#20309;&#35201;&#20197;&#21450;&#22914;&#20309;&#23436;&#25104;&#30340;&#12290;</p>
 <p>&#24403;&#28982;&#65292;&#20004;&#20010;&#23376;&#32676;&#30456;&#21516;&#24403;&#19988;&#20165;&#24403;&#23427;&#20204;&#21253;&#21547;&#30340;&#20803;&#32032;&#23436;&#20840;&#30456;&#21516;&#12290;&#36825;&#19968;&#20107;&#23454;&#34987;&#27880;&#20876;&#21040;&#20102; <code class="docutils literal notranslate"><span class="pre">ext</span></code> &#31574;&#30053;, &#25152;&#20197;&#20320;&#21487;&#20197;&#20687;&#35777;&#26126;&#20004;&#20010;&#38598;&#21512;&#30456;&#31561;&#19968;&#26679;&#26469;&#35777;&#26126;&#20004;&#20010;&#23376;&#32676;&#30456;&#31561;&#12290;</p>
 <p>&#24403;&#25105;&#20204;&#35770;&#35777;&#31867;&#20284; <code class="docutils literal notranslate"><span class="pre">&#8484;</span></code> &#26159; <code class="docutils literal notranslate"><span class="pre">&#8474;</span></code> &#30340;&#19968;&#20010;&#21152;&#24615;&#23376;&#32676;&#36825;&#26679;&#30340;&#21629;&#39064;&#26102;,
 &#25105;&#20204;&#30495;&#27491;&#24819;&#35201;&#30340;&#20854;&#23454;&#30456;&#24403;&#20110;&#26159;&#26500;&#36896;&#19968;&#20010; <code class="docutils literal notranslate"><span class="pre">AddSubgroup</span> <span class="pre">&#8474;</span></code> &#31867;&#22411;&#30340;&#39033;&#65292;&#35813;&#39033;&#21040;
@@ -1065,7 +1065,7 @@ determined by the number of arguments and some type <code class="docutils litera
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="C07_Hierarchies.html" class="btn btn-neutral float-left" title="7. Hierarchies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="C07_Hierarchies.html" class="btn btn-neutral float-left" title="7. &#23618;&#27425;&#32467;&#26500;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="C09_Linear_Algebra.html" class="btn btn-neutral float-right" title="9. Linear algebra" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

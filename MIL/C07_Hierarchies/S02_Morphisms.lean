@@ -6,12 +6,11 @@ set_option autoImplicit true
 /- TEXT:
 .. _section_hierarchies_morphisms:
 
-Morphisms
+态射
 ---------
 
-So far in this chapter, we discussed how to create a hierarchy of mathematical structures.
-But defining structures is not really completed until we have morphisms. There are two
-main approaches here. The most obvious one is to define a predicate on functions.
+到目前为止，在本章我们讨论了如何创建数学结构的层次结构。
+但定义结构的工作尚未完成，除非我们有了态射。这里主要有两种方法。最显而易见的方法是在函数上定义一个谓词。
 BOTH: -/
 
 -- QUOTE:
@@ -19,9 +18,7 @@ def isMonoidHom₁ [Monoid G] [Monoid H] (f : G → H) : Prop :=
   f 1 = 1 ∧ ∀ g g', f (g * g') = f g * f g'
 -- QUOTE.
 /- TEXT:
-In this definition, it is a bit unpleasant to use a conjunction. In particular users
-will need to remember the ordering we chose when they want to access the two conditions.
-So we could use a structure instead.
+在这个定义中，使用合取有点不自然。特别是用户在想要访问这两个条件时，需要记住我们选择的顺序。所以我们可以使用一个结构来替代。
 
 BOTH: -/
 -- QUOTE:
@@ -30,33 +27,18 @@ structure isMonoidHom₂ [Monoid G] [Monoid H] (f : G → H) : Prop where
   map_mul : ∀ g g', f (g * g') = f g * f g'
 -- QUOTE.
 /- TEXT:
-Once we are here, it is even tempting to make it a class and use the type class instance resolution
-procedure to automatically infer ``isMonoidHom₂`` for complicated functions out of instances for
-simpler functions. For instance a composition of monoid morphisms is a monoid morphism and this
-seems like a useful instance. However such an instance would be very tricky for the resolution
-procedure since it would need to hunt down ``g ∘ f`` everywhere. Seeing it failing in ``g (f x)``
-would be very frustrating. More generally one must always keep in mind that recognizing which
-function is applied in a given expression is a very difficult problem, called the "higher-order
-unification problem". So Mathlib does not use this class approach.
+一旦到了这里，不禁让人考虑将其设计为一个类，并使用类型类实例解析过程自动推断复杂函数的 ``isMonoidHom₂`` ，基于简单函数的实例。例如，两个幺半群态射的复合也是一个幺半群态射，这似乎是一个有用的实例。然而，这样的实例对于解析过程来说会非常棘手，因为它需要在每个地方寻找 ``g ∘ f`` 。在 ``g (f x)`` 中找不到它会非常令人沮丧。更一般地说，必须始终牢记，识别给定表达式中应用了哪个函数是一个非常困难的问题，称为“高阶合一问题”。因此，Mathlib 并不采用这种类的方法。
 
-A more fundamental question is whether we use predicates as above (using either a ``def`` or a
-``structure``) or use structures bundling a function and predicates. This is partly a psychological
-issue. It is extremely rare to consider a function between monoids that is not a morphism.
-It really feels like "monoid morphism" is not an adjective you can assign to a bare function,
-it is a noun. On the other hand one can argue that a continuous function between topological spaces
-is really a function that happens to be continuous. This is one reason why Mathlib has a
-``Continuous`` predicate. For instance you can write:
+一个更根本的问题在于，我们是像上面那样使用谓词（无论是使用 ``def`` 还是 ``structure`` ），还是使用将函数和谓词捆绑在一起的结构。这在一定程度上是一个心理问题。考虑两个幺半群之间的函数，而该函数不是同态的情况极为罕见。感觉“幺半群同态”不是一个可以赋予裸函数的形容词，而是一个名词。另一方面，有人可能会说，拓扑空间之间的连续函数实际上是一个恰好连续的函数。这就是为什么 Mathlib 有一个 ``Continuous`` 谓词的原因。例如，您可以这样写：
 
 BOTH: -/
 -- QUOTE:
 example : Continuous (id : ℝ → ℝ) := continuous_id
 -- QUOTE.
 /- TEXT:
-We still have bundles continuous functions, which are convenient for instance to put a topology
-on a space of continuous functions, but they are not the primary tool to work with continuity.
+我们仍然有连续函数的束，这在例如为连续函数空间赋予拓扑时很方便，但它们不是处理连续性的主要工具。
 
-By contrast, morphisms between monoids (or other algebraic structures) are bundled as in:
-
+相比之下，单子（或其他代数结构）之间的态射是捆绑在一起的，例如：
 BOTH: -/
 -- QUOTE:
 @[ext]
@@ -67,12 +49,7 @@ structure MonoidHom₁ (G H : Type) [Monoid G] [Monoid H]  where
 
 -- QUOTE.
 /- TEXT:
-Of course we don't want to type ``toFun`` everywhere so we register a coercion using
-the ``CoeFun`` type class. Its first argument is the type we want to coerce to a function.
-The second argument describes the target function type. In our case it is always ``G → H``
-for every ``f : MonoidHom₁ G H``. We also tag ``MonoidHom₁.toFun`` with the ``coe`` attribute to
-make sure it is displayed almost invisibly in the tactic state, simply by a ``↑`` prefix.
-
+当然，我们不想到处都输入 ``toFun`` ，所以我们使用 ``CoeFun`` 类型类来注册一个强制转换。它的第一个参数是我们想要强制转换为函数的类型。第二个参数描述目标函数类型。在我们的例子中，对于每个 ``f : MonoidHom₁ G H`` ，它总是 ``G → H`` 。我们还用 ``coe`` 属性标记 ``MonoidHom₁.toFun`` ，以确保它在策略状态中几乎不可见，仅通过 ``↑`` 前缀显示。
 BOTH: -/
 -- QUOTE:
 instance [Monoid G] [Monoid H] : CoeFun (MonoidHom₁ G H) (fun _ ↦ G → H) where
@@ -82,7 +59,7 @@ attribute [coe] MonoidHom₁.toFun
 -- QUOTE.
 
 /- TEXT:
-Let us check we can indeed apply a bundled monoid morphism to an element.
+让我们检查一下我们是否确实可以将捆绑的单子态射应用于一个元素。
 
 BOTH: -/
 
@@ -90,8 +67,7 @@ BOTH: -/
 example [Monoid G] [Monoid H] (f : MonoidHom₁ G H) : f 1 = 1 :=  f.map_one
 -- QUOTE.
 /- TEXT:
-We can do the same with other kind of morphisms until we reach ring morphisms.
-
+于其他类型的态射，我们也可以做同样的事情，直到我们遇到环态射。
 BOTH: -/
 
 -- QUOTE:
@@ -112,18 +88,7 @@ structure RingHom₁ (R S : Type) [Ring R] [Ring S] extends MonoidHom₁ R S, Ad
 -- QUOTE.
 
 /- TEXT:
-There are a couple of issues about this approach. A minor one is we don't quite know where to put
-the ``coe`` attribute since the ``RingHom₁.toFun`` does not exist, the relevant function is
-``MonoidHom₁.toFun ∘ RingHom₁.toMonoidHom₁`` which is not a declaration that can be tagged with an
-attribute (but we could still define a ``CoeFun  (RingHom₁ R S) (fun _ ↦ R → S)`` instance).
-A much more important one is that lemmas about monoid morphisms won't directly apply
-to ring morphisms. This leaves the alternative of either juggling with ``RingHom₁.toMonoidHom₁``
-each time we want to apply a monoid morphism lemma or restate every such lemmas for ring morphisms.
-Neither option is appealing so Mathlib uses a new hierarchy trick here. The idea is to define
-a type class for objects that are at least monoid morphisms, instantiate that class with both monoid
-morphisms and ring morphisms and use it to state every lemma. In the definition below,
-``F`` could be ``MonoidHom₁ M N``, or ``RingHom₁ M N`` if ``M`` and ``N`` have a ring structure.
-
+这种方法存在一些问题。一个小问题是，我们不太清楚在哪里放置 ``coe`` 属性，因为 ``RingHom₁.toFun`` 并不存在，相关函数是 ``MonoidHom₁.toFun ∘ RingHom₁.toMonoidHom₁`` ，这并不是一个可以标记属性的声明（但我们仍然可以定义一个 ``CoeFun  (RingHom₁ R S) (fun _ ↦ R → S)`` 实例）。一个更重要的问题是，关于单子态射的引理不能直接应用。这将归结为要么每次应用单群同态引理时都与 ``RingHom₁.toMonoidHom₁`` 打交道，要么为环同态重新陈述每个这样的引理。这两种选择都不吸引人，因此 Mathlib 在这里使用了一个新的层次结构技巧。其想法是定义一个至少为单群同态的对象的类型类，用单群同态和环同态实例化该类，并使用它来陈述每个引理。在下面的定义中，  ``F``  可以是   ``MonoidHom₁ M N``  ，或者如果   ``M``   和   ``N``   具有环结构，则为   ``RingHom₁ M N``  。
 BOTH: -/
 
 -- QUOTE:
@@ -134,8 +99,7 @@ class MonoidHomClass₁ (F : Type) (M N : Type) [Monoid M] [Monoid N] where
 -- QUOTE.
 
 /- TEXT:
-However there is a problem with the above implementation. We haven't registered a coercion to
-function instance yet. Let us try to do it now.
+然而，上述实现存在一个问题。我们尚未注册到函数实例的强制转换。让我们现在尝试这样做。
 
 BOTH: -/
 
@@ -145,22 +109,11 @@ def badInst [Monoid M] [Monoid N] [MonoidHomClass₁ F M N] : CoeFun F (fun _ �
 -- QUOTE.
 
 /- TEXT:
-Making this an instance would be bad. When faced with something like ``f x`` where the type of ``f``
-is not a function type, Lean will try to find a ``CoeFun`` instance to coerce ``f`` into a function.
-The above function has type:
-``{M N F : Type} → [Monoid M] → [Monoid N] → [MonoidHomClass₁ F M N] → CoeFun F (fun x ↦ M → N)``
-so, when it trying to apply it, it wouldn't be a priori clear to Lean in which order the unknown
-types ``M``, ``N`` and ``F`` should be inferred. This is a kind of bad instance that is slightly
-different from the one we saw already, but it boils down to the same issue: without knowing ``M``,
-Lean would have to search for a monoid instance on an unknown type, hence hopelessly try *every*
-monoid instance in the database. If you are curious to see the effect of such an instance you
-can type ``set_option synthInstance.checkSynthOrder false in`` on top of the above declaration,
-replace ``def badInst`` with ``instance``, and look for random failures in this file.
+将此设为实例是不好的。当面对类似   ``f x``   的情况，而   ``f``   的类型不是函数类型时，Lean 会尝试查找一个   ``CoeFun``   实例来将   ``f``   转换为函数。上述函数的类型为：
+ ``{M N F : Type} → [Monoid M] → [Monoid N] → [MonoidHomClass₁ F M N] → CoeFun F (fun x ↦ M → N)``
+因此，在尝试应用它时，Lean 无法预先确定未知类型   ``M``  、  ``N``  和   ``F``   应该以何种顺序进行推断。这与我们之前看到的情况略有不同，但归根结底是同一个问题：在不知道   ``M``   的情况下，Lean 将不得不在未知类型上搜索单子实例，从而无望地尝试数据库中的每一个单子实例。如果您想看看这种实例的效果，可以在上述声明的顶部输入   ``set_option synthInstance.checkSynthOrder false in``  ，将   ``def badInst``   替换为   ``instance``  ，然后在这个文件中查找随机出现的错误。
 
-Here the solution is easy, we need to tell Lean to first search what is ``F`` and then deduce ``M``
-and ``N``. This is done using the ``outParam`` function. This function is defined as the identity
-function, but is still recognized by the type class machinery and triggers the desired behavior.
-Hence we can retry defining our class, paying attention to the ``outParam`` function:
+在这里，解决方案很简单，我们需要告诉 Lean 先查找什么是 ``F`` ，然后再推导出 ``M`` 和 ``N`` 。这可以通过使用 ``outParam`` 函数来实现。该函数被定义为恒等函数，但仍会被类型类机制识别，并触发所需的行为。因此，我们可以重新定义我们的类，注意使用 ``outParam`` 函数：
 BOTH: -/
 
 -- QUOTE:
@@ -176,7 +129,7 @@ attribute [coe] MonoidHomClass₂.toFun
 -- QUOTE.
 
 /- TEXT:
-Now we can proceed with our plan to instantiate this class.
+现在我们可以继续执行我们的计划，实例化这个类了。
 
 BOTH: -/
 
@@ -193,9 +146,7 @@ instance (R S : Type) [Ring R] [Ring S] : MonoidHomClass₂ (RingHom₁ R S) R S
 -- QUOTE.
 
 /- TEXT:
-As promised every lemma we prove about ``f : F`` assuming an instance of ``MonoidHomClass₁ F`` will
-apply both to monoid morphisms and ring morphisms.
-Let us see an example lemma and check it applies to both situations.
+正如所承诺的那样，我们对 ``f : F`` 在假设存在 ``MonoidHomClass₁ F`` 的实例的情况下所证明的每个引理，都将同时适用于幺半群同态和环同态。让我们来看一个示例引理，并检查它是否适用于这两种情况。
 BOTH: -/
 
 -- QUOTE:
@@ -212,17 +163,10 @@ map_inv_of_inv f h
 -- QUOTE.
 
 /- TEXT:
-At first sight, it may look like we got back to our old bad idea of making ``MonoidHom₁`` a class.
-But we haven't. Everything is shifted one level of abstraction up. The type class resolution
-procedure won't be looking for functions, it will be looking for either
-``MonoidHom₁`` or ``RingHom₁``.
+乍一看，可能会觉得我们又回到了之前那个糟糕的想法，即把   ``MonoidHom₁``   设为一个类。
+但其实并非如此。一切都提升了一个抽象层次。类型类解析过程不会寻找函数，而是寻找   ``MonoidHom₁``   或者   ``RingHom₁``   。
 
-One remaining issue with our approach is the presence of repetitive code around the ``toFun``
-field and the corresponding ``CoeFun`` instance and ``coe`` attribute. It would also be better
-to record that this pattern is used only for functions with extra properties, meaning that the
-coercion to functions should be injective. So Mathlib adds one more layer of abstraction with
-the base class ``DFunLike`` (where “DFun” stands for dependent function).
-Let us redefine our ``MonoidHomClass`` on top of this base layer.
+我们方法中仍存在的一个问题是在围绕   ``toFun``   字段以及相应的   ``CoeFun``   实例和   ``coe``   属性的地方存在重复代码。另外，最好记录下这种模式仅用于具有额外属性的函数，这意味着对函数的强制转换应该是单射的。因此，Mathlib 在这个基础层之上又增加了一层抽象，即基础类   ``DFunLike``  （其中“DFun”代表依赖函数）。让我们基于这个基础层重新定义我们的   ``MonoidHomClass``  。
 
 BOTH: -/
 
@@ -240,17 +184,8 @@ instance (M N : Type) [Monoid M] [Monoid N] : MonoidHomClass₃ (MonoidHom₁ M 
 -- QUOTE.
 
 /- TEXT:
-Of course the hierarchy of morphisms does not stop here. We could go on and define a class
-``RingHomClass₃`` extending ``MonoidHomClass₃`` and instantiate it on ``RingHom`` and
-then later on ``AlgebraHom`` (algebras are rings with some extra structure). But we've
-covered the main formalization ideas used in Mathlib for morphisms and you should be ready
-to understand how morphisms are defined in Mathlib.
-
-As an exercise, you should try to define your class of bundled order-preserving function between
-ordered types, and then order preserving monoid morphisms. This is for training purposes only.
-Like continuous functions, order preserving functions are primarily unbundled in Mathlib where
-they are defined by the ``Monotone`` predicate. Of course you need to complete the class
-definitions below.
+当然，态射的层次结构不止于此。我们还可以继续定义一个类   ``RingHomClass₃``   来扩展   ``MonoidHomClass₃``   ，然后将其实例化为   ``RingHom``   ，之后再实例化为   ``AlgebraHom``   （代数是具有某些额外结构的环）。不过，我们已经涵盖了 Mathlib 中用于态射的主要形式化思想，您应该已经准备好理解 Mathlib 中态射的定义方式了。
+作为练习，您应当尝试定义有序类型之间的保序函数类，以及保序幺半群同态。这仅用于训练目的。与连续函数类似，在 Mathlib 中保序函数主要是未打包的，它们通过   ``Monotone``   预言来定义。当然，您需要完成下面的类定义。
 BOTH: -/
 
 -- QUOTE:

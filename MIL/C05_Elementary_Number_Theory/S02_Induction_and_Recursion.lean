@@ -4,16 +4,13 @@ import MIL.Common
 /- TEXT:
 .. _section_induction_and_recursion:
 
-Induction and Recursion
------------------------
+归纳与递归
+----------
 
-The set of natural numbers :math:`\mathbb{N} = \{ 0, 1, 2, \ldots \}`
-is not only fundamentally important in its own right,
-but also a plays a central role in the construction of new mathematical objects.
-Lean's foundation allows us to declare *inductive types*,
-which are types generated inductively by a given list of
-*constructors*.
-In Lean, the natural numbers are declared as follows.
+自然数集 :math:`\mathbb{N} = \{ 0, 1, 2, \ldots \}`
+不仅本身具有根本的重要性，而且在新数学对象的构建中也起着核心作用。
+Lean 的基础允许我们声明 **归纳类型** ，这些类型由给定的 **构造子** 列表归纳生成。
+在 Lean 中，自然数是这样声明的。
 OMIT: -/
 namespace hidden
 
@@ -26,18 +23,9 @@ inductive Nat where
 end hidden
 
 /- TEXT:
-You can find this in the library by writing ``#check Nat`` and
-then using ``ctrl-click`` on the identifier ``Nat``.
-The command specifies that ``Nat`` is the datatype generated
-freely and inductively by the two constructors ``zero : Nat`` and
-``succ : Nat → Nat``.
-Of course, the library introduces notation ``ℕ`` and ``0`` for
-``nat`` and ``zero`` respectively. (Numerals are translated to binary
-representations, but we don't have to worry about the details of that now.)
+您可以在库中通过输入 ``#check Nat`` 然后 ``Ctrl + 点击`` 标识符 ``Nat`` 来找到它。该命令指定了 ``Nat`` 是由两个构造函数 ``zero ： Nat`` 和 ``succ ： Nat → Nat`` 自然且归纳地生成的数据类型。当然，库中为 ``nat`` 和 ``zero`` 分别引入了记号 ``ℕ`` 和 ``0`` 。（数字会被转换为二进制表示，但现在我们不必担心这些细节。）
 
-What "freely" means for the working mathematician is that the type
-``Nat`` has an element ``zero`` and an injective successor function
-``succ`` whose image does not include ``zero``.
+对于数学工作者而言，“自然”意味着类型 ``Nat`` 有一个元素 ``zero`` 以及一个单射的后继函数 ``succ`` ，其值域不包含 ``zero`` 。
 EXAMPLES: -/
 -- QUOTE:
 example (n : Nat) : n.succ ≠ Nat.zero :=
@@ -48,13 +36,9 @@ example (m n : Nat) (h : m.succ = n.succ) : m = n :=
 -- QUOTE.
 
 /- TEXT:
-What the word "inductively" means for the working mathematician is that
-the natural numbers comes with a principle of proof by induction
-and a principle of definition by recursion.
-This section will show you how to use these.
+对于数学工作者而言，“归纳”这个词意味着自然数附带有一个归纳证明原则和一个递归定义原则。本节将向您展示如何使用这些原则。
 
-Here is an example of a recursive definition of the factorial
-function.
+以下是一个阶乘函数的递归定义示例。
 BOTH: -/
 -- QUOTE:
 def fac : ℕ → ℕ
@@ -63,12 +47,10 @@ def fac : ℕ → ℕ
 -- QUOTE.
 
 /- TEXT:
-The syntax takes some getting used to.
-Notice that there is no ``:=`` on the first line.
-The next two lines provide the base case and inductive step
-for a recursive definition.
-These equations hold definitionally, but they can also
-be used manually by giving the name ``fac`` to ``simp`` or ``rw``.
+这种语法需要一些时间来适应。
+请注意第一行没有 ``:=`` 。
+接下来的两行提供了递归定义的基础情况和归纳步骤。
+这些等式是定义性成立的，但也可以通过将名称 ``fac`` 给予 ``simp`` 或 ``rw`` 来手动使用。
 EXAMPLES: -/
 -- QUOTE:
 example : fac 0 = 1 :=
@@ -91,27 +73,8 @@ example (n : ℕ) : fac (n + 1) = (n + 1) * fac n := by
 -- QUOTE.
 
 /- TEXT:
-The factorial function is actually already defined in Mathlib as
-``Nat.factorial``. Once again, you can jump to it by typing
-``#check Nat.factorial`` and using ``ctrl-click.``
-For illustrative purposes, we will continue using ``fac`` in the examples.
-The annotation ``@[simp]`` before the definition
-of ``Nat.factorial`` specifies that
-the defining equation should be added to the database of identities
-that the simplifier uses by default.
-
-The principle of induction says that we can prove a general statement
-about the natural numbers by proving that the statement holds of 0
-and that whenever it holds of a natural number :math:`n`,
-it also holds of :math:`n + 1`.
-The line ``induction' n with n ih`` in the proof
-below therefore results in two goals:
-in the first we need to prove ``0 < fac 0``,
-and in the second we have the added assumption ``ih : 0 < fac n``
-and a required to prove ``0 < fac (n + 1)``.
-The phrase ``with n ih`` serves to name the variable and
-the assumption for the inductive hypothesis,
-and you can choose whatever names you want for them.
+阶乘函数实际上已经在 Mathlib 中定义为 ``Nat.factorial`` 。您可以通过输入 ``#check Nat.factorial`` 并使用 ``Ctrl + 点击`` 跳转到它。为了便于说明，我们在示例中将继续使用 ``fac`` 。定义 ``Nat.factorial`` 前面的注释 ``@[simp]`` 指定定义方程应添加到简化的默认等式数据库中。
+归纳法原理指出，我们可以通过证明某个关于自然数的一般性陈述对 0 成立，并且每当它对某个自然数 :math:`n` 成立时，它对 :math:`n + 1` 也成立，从而证明该一般性陈述。因此，在下面的证明中，行 ``induction' n with n ih`` 会产生两个目标：在第一个目标中，我们需要证明  ``0 < fac 0`` ；在第二个目标中，我们有额外的假设  ``ih : 0 < fac n`` ，并且需要证明  ``0 < fac (n + 1)`` 。短语 ``with n ih`` 用于为归纳假设命名变量和假设，您可以为它们选择任何名称。
 EXAMPLES: -/
 -- QUOTE:
 theorem fac_pos (n : ℕ) : 0 < fac n := by
@@ -123,10 +86,8 @@ theorem fac_pos (n : ℕ) : 0 < fac n := by
 -- QUOTE.
 
 /- TEXT:
-The ``induction`` tactic is smart enough to include hypotheses
-that depend on the induction variable as part of the
-induction hypothesis.
-Step through the next example to see what is going on.
+ ``induction`` 策略足够智能，能够将依赖于归纳变量的假设作为归纳假设的一部分包含进来。
+逐步执行下一个示例，看看具体是怎么回事。
 EXAMPLES: -/
 -- QUOTE:
 theorem dvd_fac {i n : ℕ} (ipos : 0 < i) (ile : i ≤ n) : i ∣ fac n := by
@@ -140,13 +101,9 @@ theorem dvd_fac {i n : ℕ} (ipos : 0 < i) (ile : i ≤ n) : i ∣ fac n := by
 -- QUOTE.
 
 /- TEXT:
-The following example provides a crude lower bound for the factorial
-function.
-It turns out to be easier to start with a proof by cases,
-so that the remainder of the proof starts with the case
-:math:`n = 1`.
-See if you can complete the argument with a proof by induction using ``pow_succ``
-or ``pow_succ'``.
+以下示例为阶乘函数提供了一个粗略的下界。
+结果发现，从分情况证明入手会更容易些，这样证明的其余部分就从 :math:`n = 1` 的情况开始。
+尝试使用 ``pow_succ`` 或 ``pow_succ'`` 通过归纳法完成论证。
 BOTH: -/
 -- QUOTE:
 theorem pow_two_le_fac (n : ℕ) : 2 ^ (n - 1) ≤ fac n := by
@@ -166,23 +123,12 @@ SOLUTIONS: -/
 -- BOTH:
 -- QUOTE.
 /- TEXT:
-Induction is often used to prove identities involving finite sums and
-products.
-Mathlib defines the expressions ``Finset.sum s f`` where
-``s : Finset α`` is a finite set of elements of the type ``α`` and
-``f`` is a function defined on ``α``.
-The codomain of ``f`` can be any type that supports a commutative,
-associative addition operation with a zero element.
-If you import ``Algebra.BigOperators.Basic`` and issue the command
-``open BigOperators``, you can use the more suggestive notation
-``∑ x in s, f x``. Of course, there is are an analogous operation and
-notation for finite products.
+归纳法常用于证明涉及有限和与乘积的恒等式。
+Mathlib 定义了表达式  ``Finset.sum s f`` ，其中 ``s : Finset α`` 是类型为 ``α`` 的元素的有限集合，而 ``f`` 是定义在 ``α`` 上的函数。
+ ``f``  的值域可以是任何支持交换、结合加法运算且具有零元素的类型。
+如果您导入 ``Algebra.BigOperators.Basic`` 并执行命令  ``open BigOperators`` ，则可以使用更直观的符号  ``∑ x in s, f x`` 。当然，对于有限乘积也有类似的运算和符号。
 
-We will talk about the ``Finset`` type and the operations
-it supports in the next section, and again in a later chapter.
-For now, we will only make use
-of ``Finset.range n``, which is the finite set of natural numbers
-less than ``n``.
+我们将在下一节以及稍后的章节中讨论 ``Finset`` 类型及其支持的操作。目前，我们仅使用  ``Finset.range n`` ，它表示小于 ``n`` 的自然数的有限集合。
 BOTH: -/
 section
 
@@ -212,9 +158,7 @@ example : (range n).prod f = ∏ x in range n, f x :=
 -- QUOTE.
 
 /- TEXT:
-The facts ``Finset.sum_range_zero`` and ``Finset.sum_range_succ``
-provide a recursive description of summation up to :math:`n`,
-and similarly for products.
+事实 ``Finset.sum_range_zero`` 和 ``Finset.sum_range_succ`` 为求和至 :math:`n` 提供了递归描述，乘积的情况也是如此。
 EXAMPLES: -/
 -- QUOTE:
 example (f : ℕ → ℕ) : ∑ x in range 0, f x = 0 :=
@@ -231,10 +175,9 @@ example (f : ℕ → ℕ) (n : ℕ) : ∏ x in range n.succ, f x = (∏ x in ran
 -- QUOTE.
 
 /- TEXT:
-The first identity in each pair holds definitionally, which is to say,
-you can replace the proofs by ``rfl``.
+每对中的第一个恒等式是定义性的，也就是说，您可以将证明替换为 ``rfl`` 。
 
-The following expresses the factorial function that we defined as a product.
+以下表达的是我们定义为乘积形式的阶乘函数。
 EXAMPLES: -/
 -- QUOTE:
 example (n : ℕ) : fac n = ∏ i in range n, (i + 1) := by
@@ -244,17 +187,10 @@ example (n : ℕ) : fac n = ∏ i in range n, (i + 1) := by
 -- QUOTE.
 
 /- TEXT:
-The fact that we include ``mul_comm`` as a simplification rule deserves
-comment.
-It should seem dangerous to simplify with the identity ``x * y = y * x``,
-which would ordinarily loop indefinitely.
-Lean's simplifier is smart enough to recognize that, and applies the rule
-only in the case where the resulting term has a smaller value in some
-fixed but arbitrary ordering of the terms.
-The following example shows that simplifying using the three rules
-``mul_assoc``, ``mul_comm``, and ``mul_left_comm``
-manages to identify products that are the same up to the
-placement of parentheses and ordering of variables.
+我们将 ``mul_comm`` 作为简化规则包含在内这一事实值得评论。
+使用恒等式 ``x * y = y * x`` 进行简化似乎很危险，因为这通常会导致无限循环。
+不过，Lean 的简化器足够聪明，能够识别这一点，并且仅在结果项在某些固定但任意的项排序中具有较小值的情况下应用该规则。
+下面的示例表明，使用  ``mul_assoc`` 、 ``mul_comm``  和 ``mul_left_comm`` 这三条规则进行简化，能够识别出括号位置和变量顺序不同但实质相同的乘积。
 EXAMPLES: -/
 -- QUOTE:
 example (a b c d e f : ℕ) : a * (b * c * f * (d * e)) = d * (a * f * e) * (c * b) := by
@@ -262,18 +198,12 @@ example (a b c d e f : ℕ) : a * (b * c * f * (d * e)) = d * (a * f * e) * (c *
 -- QUOTE.
 
 /- TEXT:
-Roughly, the rules work by pushing parentheses to the right
-and then re-ordering the expressions on both sides until they
-both follow the same canonical order. Simplifying with these
-rules, and the corresponding rules for addition, is a handy trick.
+大致来说，这些规则的作用是将括号向右推移，然后重新排列两边的表达式，直到它们都遵循相同的规范顺序。利用这些规则以及相应的加法规则进行简化，是个很实用的技巧。
 
-Returning to summation identities, we suggest stepping through the following proof
-that the sum of the natural numbers up to and including :math:`n` is
-:math:`n (n + 1) / 2`.
-The first step of the proof clears the denominator.
-This is generally useful when formalizing identities,
-because calculations with division generally have side conditions.
-(It is similarly useful to avoid using subtraction on the natural numbers when possible.)
+回到求和恒等式，我们建议按照以下证明步骤来证明自然数之和（从 1 加到 n）等于 :math:`n (n + 1) / 2`。
+证明的第一步是消去分母。
+这在形式化恒等式时通常很有用，因为涉及除法的计算通常会有附加条件。
+（同样，在可能的情况下避免在自然数上使用减法也是有用的。）
 EXAMPLES: -/
 -- QUOTE:
 theorem sum_id (n : ℕ) : ∑ i in range (n + 1), i = n * (n + 1) / 2 := by
@@ -285,8 +215,7 @@ theorem sum_id (n : ℕ) : ∑ i in range (n + 1), i = n * (n + 1) / 2 := by
 -- QUOTE.
 
 /- TEXT:
-We encourage you to prove the analogous identity for sums of squares,
-and other identities you can find on the web.
+我们鼓励您证明类似的平方和恒等式，以及您在网上能找到的其他恒等式。
 BOTH: -/
 -- QUOTE:
 theorem sum_sqr (n : ℕ) : ∑ i in range (n + 1), i ^ 2 = n * (n + 1) * (2 * n + 1) / 6 := by
@@ -305,45 +234,26 @@ SOLUTIONS: -/
 end
 
 /- TEXT:
-In Lean's core library, addition and multiplication are themselves defined
-using recursive definitions,
-and their fundamental properties are established using induction.
-If you like thinking about foundational topics like that,
-you might enjoy working through proofs
-of the commutativity and associativity of multiplication and addition
-and the distributivity of multiplication over addition.
-You can do this on a copy of the natural numbers
-following the outline below.
-Notice that we can use the ``induction`` tactic with ``MyNat``;
-Lean is smart enough to know to
-use the relevant induction principle (which is, of course,
-the same as that for ``Nat``).
+在 Lean 的核心库中，加法和乘法本身是通过递归定义来定义的，并且它们的基本性质是通过归纳法来确立的。
+如果您喜欢思考诸如基础性的话题，您可能会喜欢证明乘法和加法的交换律和结合律以及乘法对加法的分配律。
+您可以在自然数的副本上按照下面的提纲进行操作。
+请注意，我们可以对 ``MyNat`` 使用 ``induction`` 策略；
+Lean 足够聪明，知道要使用相关的归纳原理（当然，这与 ``Nat`` 的归纳原理相同）。
 
-We start you off with the commutativity of addition.
-A good rule of thumb is that because addition and multiplication
-are defined by recursion on the second argument,
-it is generally advantageous to do proofs by induction on a variable
-that occurs in that position.
-It is a bit tricky to decide which variable to use in the proof
-of associativity.
+我们先从加法的交换律讲起。
+一个不错的经验法则是，由于加法和乘法都是通过在第二个参数上递归定义的，所以通常在证明中对处于该位置的变量进行归纳证明是有利的。
+在证明结合律时，决定使用哪个变量有点棘手。
 
-It can be confusing to write things without the usual notation
-for zero, one, addition, and multiplication.
-We will learn how to define such notation later.
-Working in the namespace ``MyNat`` means that we can write
-``zero`` and ``succ`` rather than ``MyNat.zero`` and ``MyNat.succ``,
-and that these interpretations of the names take precedence over
-others.
-Outside the namespace, the full name of the ``add`` defined below,
-for example, is ``MyNat.add``.
+在没有通常的零、一、加法和乘法符号的情况下书写内容可能会令人困惑。
+稍后我们将学习如何定义此类符号。
+在命名空间 ``MyNat`` 中工作意味着我们可以写 ``zero`` 和 ``succ`` 而不是 ``MyNat.zero`` 和  ``MyNat.succ`` ，
+并且这些名称的解释优先于其他解释。
+在命名空间之外，例如下面定义的 ``add`` 的完整名称是 ``MyNat.add`` 。
 
-If you find that you *really* enjoy this sort of thing, try defining
-truncated subtraction and exponentiation and proving some of their
-properties as well.
-Remember that truncated subtraction cuts off at zero.
-To define that, it is useful to define a predecessor function, ``pred``,
-that subtracts one from any nonzero number and fixes zero.
-The function ``pred`` can be defined by a simple instance of recursion.
+如果您发现自己确实喜欢这类事情，不妨试着定义截断减法和幂运算，并证明它们的一些性质。
+请记住，截断减法在结果为零时会停止。
+要定义截断减法，定义一个前驱函数 ``pred`` 会很有用，该函数对任何非零数减一，并将零固定不变。
+函数 ``pred`` 可以通过简单的递归实例来定义。
 BOTH: -/
 -- QUOTE:
 inductive MyNat where

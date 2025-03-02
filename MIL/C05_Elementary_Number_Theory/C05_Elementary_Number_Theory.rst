@@ -1,10 +1,9 @@
 .. _number_theory:
 
-Elementary Number Theory
-========================
+初等数论
+========
 
-In this chapter, we show you how to formalize some elementary
-results in number theory.
-As we deal with more substantive mathematical content,
-the proofs will get longer and more involved,
-building on the skills you have already mastered.
+
+在这一章中，我们将向您展示如何将数论中的一些基本结果形式化。
+随着我们处理更复杂的数学内容，证明会变得更长、更复杂，
+但会建立在您已经掌握的技能之上。

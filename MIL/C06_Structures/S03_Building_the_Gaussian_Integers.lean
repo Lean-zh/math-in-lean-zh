@@ -49,7 +49,7 @@ instance : Mul GaussInt :=
 -- QUOTE.
 
 /- TEXT:
-正如在 ：numref:`section_structures` 中所提到的，将与某种数据类型相关的所有定义放在同名的命名空间中是个好主意。因此，在与本章相关的 Lean 文件中，这些定义是在 ``GaussInt`` 命名空间中进行的。
+正如在 :numref:`section_structures` 中所提到的，将与某种数据类型相关的所有定义放在同名的命名空间中是个好主意。因此，在与本章相关的 Lean 文件中，这些定义是在 ``GaussInt`` 命名空间中进行的。
 请注意，这里我们直接定义了符号 ``0`` 、 ``1`` 、 ``+`` 、 ``-`` 和 ``*`` 的解释，而不是将它们命名为 ``GaussInt.zero`` 之类的名称并将其分配给这些名称。通常，为定义提供一个明确的名称很有用，例如，用于与 ``simp`` 和 ``rewrite`` 一起使用。
 BOTH: -/
 -- QUOTE:
@@ -181,7 +181,7 @@ theorem sub_im (x y : GaussInt) : (x - y).im = x.im - y.im :=
   rfl
 
 /- TEXT:
-Lean 的库将具有至少两个不同元素的类型定义为 ``非平凡`` 类型。在环的上下文中，这等同于说零不等于一。由于一些常见的定理依赖于这一事实，我们不妨现在就证明它。
+Lean 的库将具有至少两个不同元素的类型定义为 **非平凡** 类型。在环的上下文中，这等同于说零不等于一。由于一些常见的定理依赖于这一事实，我们不妨现在就证明它。
 BOTH: -/
 -- QUOTE:
 instance : Nontrivial GaussInt := by
@@ -254,11 +254,6 @@ bound :math:`N(r)`:
 
   N(r) = N(c + di)N(u' + v'i) \le N(c + di) \cdot 1/2 < N(c + di).
 
-In fact, this is exactly the approach that is followed in Mathlib,
-where the Gaussian integers themselves are constructed as a special case
-of a ring of *quadratic integers*.
-See the file `GaussianInt.lean
-<https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/NumberTheory/Zsqrtd/GaussianInt.lean>`_.
 我们刚刚进行的论证需要将高斯整数视为复数的一个子集。因此，在 Lean 中对其进行形式化的一种选择是将高斯整数嵌入到复数中，将整数嵌入到高斯整数中，定义从实数到整数的舍入函数，并且要非常小心地在这些数系之间进行适当的转换。
 实际上，这正是 Mathlib 中所采用的方法，其中高斯整数本身是作为 **二次整数** 环的一个特例来构造的。
 请参阅文件 `GaussianInt.lean
@@ -398,11 +393,11 @@ theorem norm_conj (x : GaussInt) : norm (conj x) = norm x := by simp [norm]
 
 /- TEXT:
 最后，我们为高斯整数定义除法运算，记作 ``x / y`` ，将复数商四舍五入到最近的高斯整数。为此我们使用自定义的 ``Int.div'`` 。
-正如我们上面计算的那样，如果 ``x`` 是 :math:`a + bi`，而 ``y`` 是 :math:`c + di`，那么 ``x / y`` 的实部和虚部分别是最近的整数到
+正如我们上面计算的那样，如果 ``x`` 是 :math:`a + bi`，而 ``y`` 是 :math:`c + di`，那么 ``x / y`` 的实部和虚部分别是如下式子最近的整数
 
 .. math::
 
-  \frac{ac + bd}{c^2 + d^2} \quad \text{and} \quad \frac{bc -ad}{c^2+d^2},
+  \frac{ac + bd}{c^2 + d^2} \quad \text{和} \quad \frac{bc -ad}{c^2+d^2},
 
 这里分子是 :math:`(a + bi) (c - di)` 的实部和虚部，而分母都等于 :math:`c + di` 的范数。
 BOTH: -/
@@ -429,9 +424,6 @@ theorem mod_def (x y : GaussInt) : x % y = x - y * (x / y) :=
 /- TEXT:
 这些定义立即得出对于每个 ``x`` 和 ``y`` 都有 ``x = y * (x / y) + x % y`` ，所以我们需要做的就是证明当 ``y`` 不为零时， ``x % y`` 的范数小于 ``y`` 的范数。
 
-We just defined the real and imaginary parts of ``x / y`` to be
- ``div' (x * conj y).re (norm y)`` and ``div' (x * conj y).im (norm y)`` ,
-respectively.
 我们刚刚将 ``x / y`` 的实部和虚部分别定义为 ``div' (x * conj y).re (norm y)`` and ``div' (x * conj y).im (norm y)`` 。
 计算得出，我们有
 

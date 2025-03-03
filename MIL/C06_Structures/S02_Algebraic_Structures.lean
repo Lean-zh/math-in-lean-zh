@@ -10,20 +10,28 @@ namespace C06S02
 --------------------
 
 为了阐明我们所说的 **代数结构** 这一短语的含义，考虑一些例子会有所帮助。
+
 #. **偏序集** 由集合 :math:`P` 以及定义在 :math:`P` 上的二元关系 :math:`\le` 组成，该关系具有传递性和自反性。
-#. **群** 由集合 :math:`G` 以及其上的一个结合二元运算、一个单位元 :math:`1` 和一个将:math:`G`中每个元素 :math:`g` 映射为其逆元 :math:`g^{-1}` 的函数:math:`g \mapsto g^{-1}`构成。若运算满足交换律，则称该群为阿贝尔群或交换群。
+
+#. **群** 由集合 :math:`G` 以及其上的一个结合二元运算、一个单位元 :math:`1` 和一个将 :math:`G` 中每个元素 :math:`g` 映射为其逆元 :math:`g^{-1}` 的函数 :math:`g \mapsto g^{-1}` 构成。若运算满足交换律，则称该群为阿贝尔群或交换群。
+
 #. **格** 是一种具有交和并运算的部分有序集。
-#. **环** 由一个（加法表示的）阿贝尔群:math:`(R, +, 0, x \mapsto -x)`以及一个结合的乘法运算:math:`\cdot` 和一个单位元 :math:`1` 组成，并且乘法对加法满足分配律。如果乘法是可交换的，则称环为 **交换环** 。
+
+#. **环** 由一个（加法表示的）阿贝尔群 :math:`(R, +, 0, x \mapsto -x)` 以及一个结合的乘法运算 :math:`\cdot` 和一个单位元 :math:`1` 组成，并且乘法对加法满足分配律。如果乘法是可交换的，则称环为 **交换环** 。
+
 #. 一个 **有序环** :math:`(R, +, 0, -, \cdot, 1, \le)` 由一个环以及其元素上的一个偏序关系组成，满足以下条件：对于 :math:`R` 中的任意 :math:`a`、:math:`b` 和 :math:`c`，若 :math:`a \le b`，则 :math:`a + c \le b + c`；对于 :math:`R` 中的任意 :math:`a` 和 :math:`b`，若 :math:`0 \le a` 且 :math:`0 \le b`，则 :math:`0 \le a b`。
+
 #. **度量空间** 由一个集合 :math:`X` 和一个函数 :math:`d : X \times X \to \mathbb{R}` 组成，满足以下条件：
 - 对于集合 X 中的任意 x 和 y，有 :math:`d(x, y) \ge 0` 。
 - 当且仅当 x = y 时，:math:`d(x， y) = 0` 。
 - 对于集合 X 中的任意 x 和 y，有 :math:`d(x， y) = d(y， x)` 。
 - 对于集合 X 中的任意 x、y 和 z，有 :math:`d(x, z) \le d(x, y) + d(y， z)` 。
+
 #. **拓扑空间** 由集合 :math:`X` 以及 :math:`X` 的子集所构成的集合 :math:`\mathcal T` 组成，这些子集被称为 :math:`X` 的开子集，且满足以下条件：
 - 空集和 :math:`X` 是开集。
 - 两个开集的交集是开集。
 - 任意多个开集的并集是开集。
+
 在上述每个例子中，结构的元素都属于一个集合，即 **载体集** ，有时它可代表整个结构。例如，当我们说“设 :math:`G` 是一个群”，然后说“设 :math:`g \in G`”，这里 :math:`G` 既代表结构本身，也代表其载体。并非每个代数结构都以这种方式与单个载体集相关联。例如， **二部图** 涉及两个集合之间的关系，**伽罗瓦连接** 也是如此。 **范畴** 也涉及两个感兴趣的集合，通常称为 **对象** 和 **态射** 。
 这些示例表明了证明助手为了支持代数推理需要完成的一些工作。
 首先，它需要识别结构的具体实例。
@@ -36,7 +44,7 @@ namespace C06S02
 第三，它需要处理这样一个事实，即结构可以通过多种方式从其他结构继承定义、定理和符号。有些结构通过添加更多公理来扩展其他结构。交换环仍然是环，因此在环中有意义的任何定义在交换环中也有意义，任何在环中成立的定理在交换环中也成立。有些结构通过添加更多数据来扩展其他结构。例如，任何环的加法部分都是加法群。环结构添加了乘法和单位元，以及管理它们并将其与加法部分相关联的公理。有时我们可以用另一种结构来定义一种结构。任何度量空间都有一个与之相关的标准拓扑，即“度量空间拓扑”，并且任何线性序都可以关联多种拓扑。
 最后，重要的是要记住，数学使我们能够像使用函数和运算来定义数字一样，使用函数和运算来定义结构。群的乘积和幂次仍然是群。对于每个 :math:`n`，模 :math:`n` 的整数构成一个环，对于每个 :math:`k > 0`，该环中系数的 :math:`k \times k` 多项式矩阵再次构成一个环。因此，我们能够像计算其元素一样轻松地计算结构。这意味着代数结构在数学中有着双重身份，既是对象集合的容器，又是独立的对象。证明助手必须适应这种双重角色。
 在处理具有代数结构相关联的类型的元素时，证明助手需要识别该结构并找到相关的定义、定理和符号。这一切听起来似乎工作量很大，确实如此。但 Lean 使用一小部分基本机制来完成这些任务。本节的目标是解释这些机制并展示如何使用它们。
-第一个要素几乎无需提及，因为它太过显而易见：从形式上讲，代数结构是 ：numref:`section_structures` 中所定义的那种结构。代数结构是对满足某些公理假设的数据束的规范，我们在 ：numref:`section_structures` 中看到，这正是 ``structure`` 命令所设计要容纳的内容。这简直是天作之合！
+第一个要素几乎无需提及，因为它太过显而易见：从形式上讲，代数结构是 :numref:`section_structures` 中所定义的那种结构。代数结构是对满足某些公理假设的数据束的规范，我们在 :numref:`section_structures` 中看到，这正是 ``structure`` 命令所设计要容纳的内容。这简直是天作之合！
 给定一种数据类型 ``α`` ，我们可以按如下方式定义 ``α`` 上的群结构。
 EXAMPLES: -/
 -- QUOTE:
@@ -52,7 +60,7 @@ structure Group₁ (α : Type*) where
 
 -- OMIT: TODO: explain the extends command later, and also redundant inheritance
 /- TEXT:
-请注意，在 ``group₁`` 的定义中，类型 ``α`` 是一个 **参数** 。因此，您应当将对象 ``struc : Group₁ α`` 视为是在 ``α`` 上的一个群结构。我们在 ：numref:`proving_identities_in_algebraic_structures` 中看到，与 ``inv_mul_cancel`` 相对应的 ``mul_inv_cancel`` 可以从其他群公理推导出来，所以无需将其添加到定义中。
+请注意，在 ``group₁`` 的定义中，类型 ``α`` 是一个 **参数** 。因此，您应当将对象 ``struc : Group₁ α`` 视为是在 ``α`` 上的一个群结构。我们在 :numref:`proving_identities_in_algebraic_structures` 中看到，与 ``inv_mul_cancel`` 相对应的 ``mul_inv_cancel`` 可以从其他群公理推导出来，所以无需将其添加到定义中。
 
 这个群的定义与 Mathlib 中的 ``Group`` 定义类似，我们选择使用 ``Group₁`` 这个名称来区分我们的版本。如果您输入 ``#check Group`` 并点击定义，您会看到 Mathlib 版本的 ``Group`` 被定义为扩展了另一个结构；我们稍后会解释如何做到这一点。如果您输入 ``#print Group`` ，您还会看到 Mathlib 版本的 ``Group`` 具有许多额外的字段。出于稍后会解释的原因，有时在结构中添加冗余信息是有用的，这样就有额外的字段用于从核心数据定义的对象和函数。现在先别担心这个问题。请放心，我们的简化版本 ``Group₁`` 在本质上与 Mathlib 使用的群定义相同。
 
@@ -144,7 +152,7 @@ def permGroup {α : Type*} : Group₁ (Equiv.Perm α)
 在 Lean 中，任何 ``Group`` 的组成部分都命名为 ``mul`` 、 ``one`` 和 ``inv`` ，稍后我们将看到乘法符号是如何与它们关联的。
 如果我们想使用加法符号，则使用同构结构 ``AddGroup`` （加法群的基础结构）。其组成部分命名为 ``add`` 、 ``zero`` 和 ``neg`` ，相关符号也是您所期望的那样。
 
-回想一下我们在 ：numref:`section_structures` 中定义的类型 ``Point`` ，以及在那里定义的加法函数。这些定义在本节附带的示例文件中有所重现。作为练习，请定义一个类似于我们上面定义的 ``Group₁`` 结构的 ``AddGroup₁`` 结构，但使用刚刚描述的加法命名方案。在 ``Point`` 数据类型上定义否定和零，并在 ``Point`` 上定义 ``AddGroup₁`` 结构。
+回想一下我们在 :numref:`section_structures` 中定义的类型 ``Point`` ，以及在那里定义的加法函数。这些定义在本节附带的示例文件中有所重现。作为练习，请定义一个类似于我们上面定义的 ``Group₁`` 结构的 ``AddGroup₁`` 结构，但使用刚刚描述的加法命名方案。在 ``Point`` 数据类型上定义否定和零，并在 ``Point`` 上定义 ``AddGroup₁`` 结构。
 BOTH: -/
 -- QUOTE:
 structure AddGroup₁ (α : Type*) where
@@ -214,7 +222,7 @@ variable {α : Type*} (f g : Equiv.Perm α) (n : ℕ)
 #check f * g
 #check mul_assoc f g g⁻¹
 
--- group power, defined for any group
+-- 群幂，定义适用于任何群
 #check g ^ n
 
 example : f * g * g⁻¹ = f := by rw [mul_assoc, mul_inv_cancel, mul_one]
@@ -369,7 +377,7 @@ end
 Lean 能够找到这两个事实并将它们串联起来。
 
 我们刚刚给出的例子是危险的，因为 Lean 的库中也有一个 ``Group (Equiv.Perm α)`` 的实例，并且乘法在任何群上都有定义。所以，找到的是哪个实例是不明确的。实际上，除非您明确指定不同的优先级，否则 Lean 会倾向于更近的声明。此外，还有另一种方法可以告诉 Lean 一个结构是另一个结构的实例，即使用 ``extends`` 关键字。这就是 Mathlib 指定例如每个交换环都是环的方式。
-您可以在 ：numref:`hierarchies` 以及 *Theorem Proving in Lean* 中的 `关于类推断的章节 <https://leanprover.github.io/theorem_proving_in_lean4/type_classes.html#managing-type-class-inference>`_ 中找到更多信息。
+您可以在 :numref:`hierarchies` 以及 *Theorem Proving in Lean* 中的 `关于类推断的章节 <https://leanprover.github.io/theorem_proving_in_lean4/type_classes.html#managing-type-class-inference>`_ 中找到更多信息。
 
 一般来说，对于已经定义了记号的代数结构的实例，指定值为 ``*`` 是一个不好的主意。
 在 Lean 中重新定义 ``Group`` 的概念是一个人为的例子。

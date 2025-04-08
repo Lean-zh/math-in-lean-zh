@@ -1,5 +1,5 @@
 -- BOTH:
-import Mathlib.RingTheory.Ideal.QuotientOperations
+-- import Mathlib.RingTheory.Ideal.QuotientOperations
 import Mathlib.RingTheory.Localization.Basic
 import Mathlib.RingTheory.DedekindDomain.Ideal
 import Mathlib.Analysis.Complex.Polynomial.Basic

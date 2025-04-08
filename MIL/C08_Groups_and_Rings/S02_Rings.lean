@@ -11,51 +11,42 @@ noncomputable section
 /- TEXT:
 .. _rings:
 
-Rings
+环
 -----
 
 .. index:: ring (algebraic structure)
 
-Rings, their units, morphisms and subrings
+环、环上的单位元、态射和子环
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The type of ring structures on a type ``R`` is ``Ring R``. The variant where multiplication is
-assumed to be commutative is ``CommRing R``. We have already seen that the ``ring`` tactic will
-prove any equality that follows from the axioms of a commutative ring.
+类型 ``R`` 上环结构的类型是 ``Ring R``。乘法交换的变体为 ``CommRing R``。
+我们已经看到，``ring`` 策略会证明任何基于交换环公理的等式。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] (x y : R) : (x + y) ^ 2 = x ^ 2 + y ^ 2 + 2 * x * y := by ring
 -- QUOTE.
 
 /- TEXT:
-More exotic variants do not require that the addition on ``R`` forms a group but only an additive
-monoid. The corresponding type classes are ``Semiring R`` and ``CommSemiring R``.
-The type of natural numbers is an important instance of ``CommSemiring R``, as is any type
-of functions taking values in the natural numbers.
-Another important example is the type of ideals in a ring, which will be discussed below.
-The name of the ``ring`` tactic is doubly misleading, since it assumes commutativity but works
-in semirings as well. In other words, it applies to any ``CommSemiring``.
+更为奇特的变体不要求 ``R`` 上的加法形成群，而仅需是加法幺半群。对应的类型类是 ``Semiring R`` 和 ``CommSemiring R``。
+
+自然数类型是 ``CommSemiring R`` 的一个重要实例，任何以自然数为值的函数类型也是如此。
+另一个重要的例子是环中的理想的类型，这将在下面讨论。
+
+``ring`` 策略的名称是双重误导性的，因为它假设了交换性，但也适用于半环。换句话说，它适用于任何 ``CommSemiring``。
+
 EXAMPLES: -/
 -- QUOTE:
 example (x y : ℕ) : (x + y) ^ 2 = x ^ 2 + y ^ 2 + 2 * x * y := by ring
 -- QUOTE.
 
 /- TEXT:
-There are also versions of the ring and semiring classes that do not assume the existence of a
-multiplicative unit or
-the associativity of multiplication. We will not discuss those here.
+还有一些环类和半环类的变体不假设乘法单位元的存在或乘法的结合性。我们在这里不讨论这些。
 
-Some concepts that are traditionally taught in an introduction to ring theory are actually about
-the underlying multiplicative monoid.
-A prominent example is the definition of the units of a ring. Every (multiplicative) monoid ``M``
-has a predicate ``IsUnit : M → Prop`` asserting existence of a two-sided inverse, a
-type ``Units M`` of units with notation ``Mˣ``, and a coercion to ``M``.
-The type ``Units M`` bundles an invertible element with its inverse as well as properties than ensure
-that each is indeed the inverse of the other.
-This implementation detail is relevant mainly when defining computable functions. In most
-situations one can use ``IsUnit.unit {x : M} : IsUnit x → Mˣ`` to build a unit.
-In the commutative case, one also has ``Units.mkOfMulEqOne (x y : M) : x * y = 1 → Mˣ``
-which builds ``x`` seen as unit.
+某些传统上在环论入门中教授的概念实际上是关于底层乘法幺半群的。
+一个突出的例子是环的单位元的定义。每个（乘法）幺半群 ``M`` 都有一个谓词 ``IsUnit : M → Prop``，用来断言存在双边逆元，一个类型 ``Units M`` 表示单位元，并用记号 ``Mˣ`` 表示，以及到 ``M`` 的强制转换。
+类型 ``Units M`` 将一个可逆元素与其逆元以及确保它们彼此互为逆元的性质一起打包。
+此实现细节主要与定义可计算函数相关。在大多数情况下，可以使用 ``IsUnit.unit {x : M} : IsUnit x → Mˣ`` 构造一个单位元。
+在交换情况下，还可以使用 ``Units.mkOfMulEqOne (x y : M) : x * y = 1 → Mˣ`` 构造 ``x`` 作为单位元。
 EXAMPLES: -/
 -- QUOTE:
 example (x : ℤˣ) : x = 1 ∨ x = -1 := Int.units_eq_one_or x
@@ -66,8 +57,7 @@ example {M : Type*} [Monoid M] : Group Mˣ := inferInstance
 -- QUOTE.
 
 /- TEXT:
-The type of ring morphisms between two (semi)-rings ``R`` and ``S`` is ``RingHom R S``,
-with notation ``R →+* S``.
+两个（半）环 ``R`` 和 ``S`` 之间环态射的类型是 ``RingHom R S``，记号为 ``R →+* S``。
 EXAMPLES: -/
 -- QUOTE:
 example {R S : Type*} [Ring R] [Ring S] (f : R →+* S) (x y : R) :
@@ -78,32 +68,25 @@ example {R S : Type*} [Ring R] [Ring S] (f : R →+* S) : Rˣ →* Sˣ :=
 -- QUOTE.
 
 /- TEXT:
-The isomorphism variant is ``RingEquiv``, with notation ``≃+*``.
+同构的变体是 ``RingEquiv``，记号为 ``≃+*``。
 
-As with submonoids and subgroups, there is a ``Subring R`` type for subrings of a ring ``R``,
-but this type is a lot less useful than the type of subgroups since one cannot quotient a ring by
-a subring.
+与子幺半群和子群类似，环 ``R`` 的子环有一个类型 ``Subring R``，但这个类型远不如子群类型有用，因为环不能通过子环进行商构造。
+
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [Ring R] (S : Subring R) : Ring S := inferInstance
 -- QUOTE.
 
 /- TEXT:
-Also notice that ``RingHom.range`` produces a subring.
+值得注意的是，``RingHom.range`` 产生一个子环。
 
-Ideals and quotients
+理想与商
 ^^^^^^^^^^^^^^^^^^^^
 
-For historical reasons, Mathlib only has a theory of ideals for commutative rings.
-(The ring library was originally developed to make quick progress toward the foundations of modern
-algebraic geometry.) So in this section we will work with commutative (semi)rings.
-Ideals of ``R`` are defined as submodules of ``R`` seen as ``R``-modules. Modules will
-be covered later in a chapter on linear algebra, but this implementation detail can mostly be
-safely ignored since most (but not all) relevant lemmas are restated in the special context of
-ideals. But anonymous projection notation won't always work as expected. For instance,
-one cannot replace ``Ideal.Quotient.mk I`` by ``I.Quotient.mk`` in the snippet below because there
-are two ``.``s and so it will parse as ``(Ideal.Quotient I).mk``; but ``Ideal.Quotient`` by itself
-doesn't exist.
+由于历史原因，Mathlib 仅为交换环提供了理想的理论。
+（环库最初的开发是为了快速推进现代代数几何的基础。）因此，在本节中我们将讨论交换（半）环。
+``R`` 的理想被定义为将 ``R`` 视为 ``R``-模的子模。模将在线性代数的章节中讨论，但这一实现细节基本上可以安全忽略，因为大多数（但不是全部）相关引理都已在理想的特殊背景中重新叙述。但是匿名投影记号并不总是像预期的那样工作。例如，不能将 ``Ideal.Quotient.mk I`` 替换为 ``I.Quotient.mk``，因为下面的代码片段中有两个 ``.``，因此它会被解析为 ``(Ideal.Quotient I).mk``；但单独的 ``Ideal.Quotient`` 并不存在。
+
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] (I : Ideal R) : R →+* R ⧸ I :=
@@ -115,7 +98,7 @@ example {R : Type*} [CommRing R] {a : R} {I : Ideal R} :
 -- QUOTE.
 
 /- TEXT:
-The universal property of quotient rings is ``Ideal.Quotient.lift``.
+商环的整体性质是 ``Ideal.Quotient.lift``。
 EXAMPLES: -/
 -- QUOTE:
 example {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (f : R →+* S)
@@ -124,7 +107,7 @@ example {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (f : R →+* S)
 -- QUOTE.
 
 /- TEXT:
-In particular it leads to the first isomorphism theorem for rings.
+特别的，其导出了环的第一同构定理。
 EXAMPLES: -/
 -- QUOTE:
 example {R S : Type*} [CommRing R] [CommRing S](f : R →+* S) :
@@ -133,8 +116,7 @@ example {R S : Type*} [CommRing R] [CommRing S](f : R →+* S) :
 -- QUOTE.
 
 /- TEXT:
-Ideals form a complete lattice structure with the inclusion relation, as well as a semiring
-structure. These two structures interact nicely.
+理想在包含关系下形成一个完备格结构，同时也具有半环结构。这两个结构相互作用良好。
 EXAMPLES: -/
 section
 -- QUOTE:
@@ -156,11 +138,8 @@ example : I * J ≤ I ⊓ J := Ideal.mul_le_inf
 end
 
 /- TEXT:
-One can use ring morphisms to push ideals forward and pull them back using ``Ideal.map`` and
-``Ideal.comap``, respectively. As usual,
-the latter is more convenient to use since it does not involve an existential quantifier.
-This explains why it is used to state the condition that allows us to build morphisms between
-quotient rings.
+可以使用环态射分别通过 ``Ideal.map`` 和 ``Ideal.comap`` 将理想前推（push forward）或拉回（pull back）。
+通常情况下，后者更方便使用，因为它不涉及存在量词。这也解释了为何它被用来表达构造商环之间态射的条件。
 EXAMPLES: -/
 -- QUOTE:
 example {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (J : Ideal S) (f : R →+* S)
@@ -169,10 +148,7 @@ example {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (J : Ideal S) (f :
 -- QUOTE.
 
 /- TEXT:
-One subtle point is that the type ``R ⧸ I`` really depends on ``I``
-(up to definitional equality), so having a proof that two ideals ``I`` and ``J`` are equal is not
-enough to make the corresponding quotients equal. However, the universal properties do provide
-an isomorphism in this case.
+一个需要注意的细微点是，类型 ``R ⧸ I`` 实际上依赖于 ``I``（在定义等同的范围内），因此证明两个理想 ``I`` 和 ``J`` 相等并不足以使相应的商环相等。然而，在这种情况下，整体性质确实提供了一个同构。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] {I J : Ideal R} (h : I = J) : R ⧸ I ≃+* R ⧸ J :=
@@ -180,9 +156,7 @@ example {R : Type*} [CommRing R] {I J : Ideal R} (h : I = J) : R ⧸ I ≃+* R �
 -- QUOTE.
 
 /- TEXT:
-We can now present the Chinese remainder isomorphism as an example. Pay attention to the difference
-between the indexed infimum symbol ``⨅`` and the big product of types symbol ``Π``. Depending on
-your font, those can be pretty hard to distinguish.
+我们现在可以将中国剩余定理的同构作为一个示例呈现。请注意，索引下确界符号 ``⨅`` 与类型大乘积符号 ``Π`` 的区别。取决于你的字体，它们可能很难区分。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] (f : ι → Ideal R)
@@ -191,8 +165,7 @@ example {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] (f : ι → Ideal R)
 -- QUOTE.
 
 /- TEXT:
-The elementary version of the Chinese remainder theorem, a statement about ``ZMod``, can be easily
-deduced from the previous one:
+初等版本的中国剩余定理（关于 ``ZMod`` 的表述）可以轻松地从前述定理推导出来：
 BOTH: -/
 -- QUOTE:
 open BigOperators PiNotation
@@ -204,10 +177,9 @@ example {ι : Type*} [Fintype ι] (a : ι → ℕ) (coprime : ∀ i j, i ≠ j �
 -- QUOTE.
 
 /- TEXT:
-As a series of exercises, we will reprove the Chinese remainder theorem in the general case.
+作为一系列练习，我们将在一般情况下重新证明中国剩余定理。
 
-We first need to define the map appearing in the theorem, as a ring morphism, using the
-universal property of quotient rings.
+我们首先需要定义定理中出现的映射，作为一个环态射，利用商环的整体性质。
 BOTH: -/
 section
 -- QUOTE:
@@ -217,8 +189,7 @@ open Ideal Quotient Function
 #check Pi.ringHom
 #check ker_Pi_Quotient_mk
 
-/-- The homomorphism from ``R ⧸ ⨅ i, I i`` to ``Π i, R ⧸ I i`` featured in the Chinese
-  Remainder Theorem. -/
+/-- 从 ``R ⧸ ⨅ i, I i`` 到 ``Π i, R ⧸ I i`` 的同态映射，该映射在中国剩余定理中出现。 -/
 def chineseMap (I : ι → Ideal R) : (R ⧸ ⨅ i, I i) →+* Π i, R ⧸ I i :=
 /- EXAMPLES:
   sorry
@@ -229,7 +200,7 @@ SOLUTIONS: -/
 -- BOTH:
 
 /- TEXT:
-Make sure the following next two lemmas can be proven by ``rfl``.
+确保以下两个引理可以通过 ``rfl`` 证明。
 BOTH: -/
 -- QUOTE:
 lemma chineseMap_mk (I : ι → Ideal R) (x : R) :
@@ -250,8 +221,7 @@ SOLUTIONS: -/
 -- BOTH:
 
 /- TEXT:
-The next lemma proves the easy half of the Chinese remainder theorem, without any assumption on
-the family of ideals. The proof is less than one line long.
+下一个引理证明了中国剩余定理的简单部分，对于理想族没有任何假设。该证明不到一行即可完成。
 EXAMPLES: -/
 -- QUOTE:
 #check injective_lift_iff
@@ -266,9 +236,8 @@ SOLUTIONS: -/
 -- BOTH:
 
 /- TEXT:
-We are now ready for the heart of the theorem, which will show the surjectivity
-of our ``chineseMap``. First we need to know the different ways one can express the coprimality
-(also called co-maximality assumption). Only the first two will be needed below.
+我们现在准备进入定理的核心部分，它将展示我们的 ``chineseMap`` 的满射性。
+首先，我们需要了解几种表达互素性（也称为互为最大假设 co-maximality assumption ）的方法。以下仅需要使用前两种表达方式。
 EXAMPLES: -/
 -- QUOTE:
 #check IsCoprime
@@ -279,9 +248,8 @@ EXAMPLES: -/
 -- QUOTE.
 
 /- TEXT:
-We take the opportunity to use induction on ``Finset``. Relevant lemmas on ``Finset`` are given
-below.
-Remember that the ``ring`` tactic works for semirings and that the ideals of a ring form a semiring.
+我们借此机会对 ``Finset`` 使用归纳法。以下列出了关于 ``Finset`` 的相关引理。
+请记住，``ring`` 策略适用于半环，并且环的理想构成一个半环。
 EXAMPLES: -/
 -- QUOTE:
 #check Finset.mem_insert_of_mem
@@ -313,7 +281,7 @@ SOLUTIONS: -/
 -- QUOTE.
 
 /- TEXT:
-We can now prove surjectivity of the map appearing in the Chinese remainder theorem.
+我们现在可以证明在中国剩余定理中出现的映射的满射性。
 BOTH: -/
 -- QUOTE:
 lemma chineseMap_surj [Fintype ι] {I : ι → Ideal R}
@@ -352,7 +320,7 @@ SOLUTIONS: -/
 -- BOTH:
 
 /- TEXT:
-Now all the pieces come together in the following:
+将这些部分结合起来：
 BOTH: -/
 -- QUOTE:
 noncomputable def chineseIso [Fintype ι] (f : ι → Ideal R)
@@ -364,21 +332,15 @@ noncomputable def chineseIso [Fintype ι] (f : ι → Ideal R)
 end
 
 /- TEXT:
-Algebras and polynomials
+代数与多项式
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Given a commutative (semi)ring ``R``, an *algebra over* ``R`` is a semiring ``A`` equipped
-with a ring morphism whose image commutes with every element of ``A``. This is encoded as
-a type class ``Algebra R A``.
-The morphism from ``R`` to ``A`` is called the structure map and is denoted
-``algebraMap R A : R →+* A`` in Lean.
-Multiplication of ``a : A`` by ``algebraMap R A r`` for some ``r : R`` is called the scalar
-multiplication of ``a`` by ``r`` and denoted by ``r • a``.
-Note that this notion of algebra is sometimes called an *associative unital algebra* to emphasize the
-existence of more general notions of algebra.
+给定一个交换（半）环 ``R``，一个 ``R`` 上的 *代数* (algebra) ``R`` 是一个半环 ``A``，其配备了一个环态射，其像与 ``A`` 的每个元素可交换。这被编码为一个类型类 ``Algebra R A``。
+从 ``R`` 到 ``A`` 的态射称为结构映射，并在 Lean 中记作 ``algebraMap R A : R →+* A``。
+对某个 ``r : R``，将 ``a : A`` 与 ``algebraMap R A r`` 相乘被称为 ``a`` 被 ``r`` 的标量乘法，记为 ``r • a``。
+请注意，这种代数的概念有时称为 *结合幺代数* (associative unital algebra)，以强调存在更一般的代数概念。
 
-The fact that ``algebraMap R A`` is ring morphism packages together a lot of properties of scalar
-multiplication, such as the following:
+``algebraMap R A`` 是一个环态射的事实打包了许多标量乘法的性质，例如以下内容：
 EXAMPLES: -/
 -- QUOTE:
 example {R A : Type*} [CommRing R] [Ring A] [Algebra R A] (r r' : R) (a : A) :
@@ -391,20 +353,14 @@ example {R A : Type*} [CommRing R] [Ring A] [Algebra R A] (r r' : R) (a : A) :
 -- QUOTE.
 
 /- TEXT:
-The morphisms between two ``R``-algebras ``A`` and ``B`` are ring morphisms
-which commute with scalar multiplication by elements of ``R``. They are bundled morphisms
-with type ``AlgHom R A B``, which is denoted by ``A →ₐ[R] B``.
+``R``-代数 ``A`` 和 ``B`` 之间的态射是环态射，它们与 ``R`` 元素的标量乘法可交换。它们是具有类型 ``AlgHom R A B`` 的打包态射，记号为 ``A →ₐ[R] B``。
 
-Important examples of non-commutative algebras include algebras of endomorphisms and
-algebras of square matrices, both of which will be covered in the chapter on linear algebra.
-In this chapter we will discuss one of the most important examples of a commutative algebra,
-namely, polynomial algebras.
+非交换代数的重要示例包括自同态代数和方阵代数，这两个将在线性代数一章中讨论。
+在本章中，我们将讨论最重要的交换代数之一，即多项式代数。
 
-The algebra of univariate polynomials with coefficients in ``R`` is called ``Polynomial R``,
-which can be written as ``R[X]`` as soon as one opens the ``Polynomial`` namespace.
-The algebra structure map from ``R`` to ``R[X]`` is denoted by ``C``,
-which stands for "constant" since the corresponding
-polynomial functions are always constant. The indeterminate is denoted by ``X``.
+系数在 ``R`` 中的一元多项式代数称为 ``Polynomial R``，当打开 ``Polynomial`` 命名空间时，它可以写作 ``R[X]``。
+从 ``R`` 到 ``R[X]`` 的代数结构映射记为 ``C``，它表示 “常数”，因为相应的多项式函数始终是常数。
+未定元记为 ``X``。
 EXAMPLES: -/
 section Polynomials
 -- QUOTE:
@@ -416,13 +372,9 @@ example {R : Type*} [CommRing R] (r : R) := X - C r
 -- QUOTE.
 
 /- TEXT:
-In the first example above, it is crucial that we give Lean the expected type since it cannot be
-determined from the body of the definition. In the second example, the target polynomial
-algebra can be inferred from our use of ``C r`` since the type of ``r`` is known.
+在上面的第一个示例中，至关重要的是要为 Lean 提供预期的类型，因为它无法从定义的主体中推断出来。在第二个示例中，目标多项式代数可以通过我们对 ``C r`` 的使用推断出来，因为已知 ``r`` 的类型。
 
-Because ``C`` is a ring morphism from ``R`` to ``R[X]``, we can use all ring morphisms lemmas
-such as ``map_zero``, ``map_one``, ``map_mul``, and ``map_pow`` before computing in the ring
-``R[X]``. For example:
+由于 ``C`` 是从 ``R`` 到 ``R[X]`` 的环态射，我们可以在 ``R[X]`` 环中计算之前，使用所有环态射引理，例如 ``map_zero``、``map_one``、``map_mul`` 和 ``map_pow``。例如：
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] (r : R) : (X + C r) * (X - C r) = X ^ 2 - C (r ^ 2) := by
@@ -431,7 +383,7 @@ example {R : Type*} [CommRing R] (r : R) : (X + C r) * (X - C r) = X ^ 2 - C (r 
 -- QUOTE.
 
 /- TEXT:
-You can access coefficients using ``Polynomial.coeff``
+可以用 ``Polynomial.coeff`` 获取系数
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] (r:R) : (C r).coeff 0 = r := by simp
@@ -440,16 +392,13 @@ example {R : Type*} [CommRing R] : (X ^ 2 + 2 * X + C 3 : R[X]).coeff 1 = 2 := b
 -- QUOTE.
 
 /- TEXT:
-Defining the degree of a polynomial is always tricky because of the special case of the zero
-polynomial. Mathlib has two variants: ``Polynomial.natDegree : R[X] → ℕ`` assigns degree
-``0`` to the zero polynomial, and ``Polynomial.degree : R[X] → WithBot ℕ`` assigns ``⊥``.
-In the latter, ``WithBot ℕ`` can be seen as ``ℕ ∪ {-∞}``, except that ``-∞`` is denoted ``⊥``,
-the same symbol as the bottom element in a complete lattice. This special value is used as the
-degree of the zero polynomial, and it is absorbent for addition. (It is almost absorbent for
-multiplication, except that ``⊥ * 0 = 0``.)
+定义多项式的次数总是比较棘手，因为零多项式是一个特殊情况。Mathlib 有两个变体：
+``Polynomial.natDegree : R[X] → ℕ`` 将零多项式的次数指定为 ``0``，而 ``Polynomial.degree : R[X] → WithBot ℕ`` 将其指定为 ``⊥``。
 
-Morally speaking, the ``degree`` version is the correct one. For instance, it allows us to state
-the expected formula for the degree of a product (assuming the base ring has no zero divisor).
+在后者中，``WithBot ℕ`` 可以视为 ``ℕ ∪ {-∞}``，只不过 ``-∞`` 被表示为 ``⊥``，与完备格中的底元素同一个符号。
+此特殊值用于零多项式的次数，并且在加法中是吸收元。（在乘法中它几乎是吸收元，但 ``⊥ * 0 = 0`` 除外。）
+
+理论而言，``degree`` 版本是正确的那一个。例如，它允许我们陈述关于乘积次数的预期公式（假设基环没有零因子）。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [Semiring R] [NoZeroDivisors R] {p q : R[X]} :
@@ -458,7 +407,7 @@ example {R : Type*} [Semiring R] [NoZeroDivisors R] {p q : R[X]} :
 -- QUOTE.
 
 /- TEXT:
-Whereas the version for ``natDegree`` needs to assume non-zero polynomials.
+而对于 ``natDegree`` 的版本，则需要假设多项式非零。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [Semiring R] [NoZeroDivisors R] {p q : R[X]} (hp : p ≠ 0) (hq : q ≠ 0) :
@@ -467,10 +416,7 @@ example {R : Type*} [Semiring R] [NoZeroDivisors R] {p q : R[X]} (hp : p ≠ 0) 
 -- QUOTE.
 
 /- TEXT:
-However, ``ℕ`` is much nicer to use than ``WithBot ℕ``, so Mathlib makes both versions available
-and provides lemmas to convert between them. Also, ``natDegree`` is the more convenient definition
-to use when computing the degree of a composition. Composition of polynomial is ``Polynomial.comp``
-and we have:
+然而，``ℕ`` 的使用要比 ``WithBot ℕ`` 更友好，因此 Mathlib 提供了这两种版本并提供了在它们之间转换的引理。此外，当计算复合多项式的次数时，``natDegree`` 是更方便的定义。多项式的复合是 ``Polynomial.comp``，我们有：
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [Semiring R] [NoZeroDivisors R] {p q : R[X]} :
@@ -479,8 +425,7 @@ example {R : Type*} [Semiring R] [NoZeroDivisors R] {p q : R[X]} :
 -- QUOTE.
 
 /- TEXT:
-Polynomials give rise to polynomial functions: any polynomial can be evaluated on ``R``
-using ``Polynomial.eval``.
+多项式产生多项式函数：任何多项式都可以通过 ``Polynomial.eval`` 在 ``R`` 上进行求值。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] (P: R[X]) (x : R) := P.eval x
@@ -489,21 +434,20 @@ example {R : Type*} [CommRing R] (r : R) : (X - C r).eval r = 0 := by simp
 -- QUOTE.
 
 /- TEXT:
-In particular, there is a predicate, ``IsRoot``, that holds for elements ``r`` in ``R`` where a
-polynomial vanishes.
+特别地，有一个谓词 ``IsRoot``，它用于表示当一个多项式在 ``R`` 中的某些元素 ``r`` 处取零时成立。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] (P : R[X]) (r : R) : IsRoot P r ↔ P.eval r = 0 := Iff.rfl
 -- QUOTE.
 
 /- TEXT:
-We would like to say that, assuming ``R`` has no zero divisor, a polynomial has at most as many
-roots as its degree, where the roots are counted with multiplicities.
-But once again the case of the zero polynomial is painful.
-So Mathlib defines ``Polynomial.roots`` to send a polynomial ``P`` to a multiset,
-i.e. the finite set that is defined to be empty if ``P`` is zero and the roots of ``P``,
-with multiplicities, otherwise. This is defined only when the underlying ring is a domain
-since otherwise the definition does not have good properties.
+我们希望能够说明，在假设 ``R`` 没有零因子的情况下，一个多项式的根（按重数计算）最多不超过其次数。然而，零多项式的情况再次变得麻烦。
+
+因此，Mathlib 定义了 ``Polynomial.roots``，它将一个多项式 ``P`` 映射到一个多重集合（multiset），即：
+- 如果 ``P`` 为零多项式，该集合被定义为空集；
+- 否则，该集合为 ``P`` 的根，并记录其重数。
+
+此定义仅适用于底层环是整域的情况，因为在其他情况下，该定义不具有良好的性质。
 EXAMPLES: -/
 -- QUOTE:
 example {R : Type*} [CommRing R] [IsDomain R] (r : R) : (X - C r).roots = {r} :=
@@ -515,23 +459,18 @@ example {R : Type*} [CommRing R] [IsDomain R] (r : R) (n : ℕ):
 -- QUOTE.
 
 /- TEXT:
-Both ``Polynomial.eval`` and ``Polynomial.roots`` consider only the coefficients ring. They do not
-allow us to say that ``X ^ 2 - 2 : ℚ[X]`` has a root in ``ℝ`` or that ``X ^ 2 + 1 : ℝ[X]`` has a root in
-``ℂ``. For this, we need ``Polynomial.aeval``, which will evaluate ``P : R[X]`` in any ``R``-algebra.
-More precisely, given a semiring ``A`` and an instance of ``Algebra R A``, ``Polynomial.aeval`` sends
-every element of ``a`` along the ``R``-algebra morphism of evaluation at ``a``. Since ``AlgHom``
-has a coercion to functions, one can apply it to a polynomial.
-But ``aeval`` does not have a polynomial as an argument, so one cannot use dot notation like in
-``P.eval`` above.
+``Polynomial.eval`` 和 ``Polynomial.roots`` 都仅考虑系数环。它们不能让我们说明 ``X ^ 2 - 2 : ℚ[X]`` 在 ``ℝ`` 中有根，或 ``X ^ 2 + 1 : ℝ[X]`` 在 ``ℂ`` 中有根。为此，我们需要 ``Polynomial.aeval``，它可以在任意 ``R``-代数中对 ``P : R[X]`` 进行求值。
+
+更具体地说，给定一个半环 ``A`` 和 ``Algebra R A`` 的实例，``Polynomial.aeval`` 会沿着在元素 ``a`` 处的 ``R``-代数态射将多项式的每个元素发送出去。由于 ``AlgHom`` 可以强制转换为函数，因此可以将其应用于多项式。
+
+但 ``aeval`` 并没有一个多项式作为参数，因此不能像在上面使用 ``P.eval`` 那样使用点符号表示法。
 EXAMPLES: -/
 -- QUOTE:
 example : aeval Complex.I (X ^ 2 + 1 : ℝ[X]) = 0 := by simp
 
 -- QUOTE.
 /- TEXT:
-The function corresponding to ``roots`` in this context is ``aroots`` which takes a polynomial
-and then an algebra and outputs a multiset (with the same caveat about the zero polynomial as
-for ``roots``).
+在这种情况下，与 ``roots`` 对应的函数是 ``aroots``，它接受一个多项式和一个代数，并输出一个多重集合（关于零多项式的警告与 ``roots`` 相同）。
 EXAMPLES: -/
 -- QUOTE:
 open Complex Polynomial
@@ -549,15 +488,13 @@ example : aroots (X ^ 2 + 1 : ℝ[X]) ℂ = {Complex.I, -I} := by
   simp only [factored, roots_mul p_ne_zero, roots_X_sub_C]
   rfl
 
--- Mathlib knows about D'Alembert-Gauss theorem: ``ℂ`` is algebraically closed.
+-- Mathlib 知晓达朗贝尔-高斯定理：``ℂ`` 是代数闭域。
 example : IsAlgClosed ℂ := inferInstance
 
 -- QUOTE.
 /- TEXT:
-More generally, given an ring morphism ``f : R →+* S`` one can evaluate ``P : R[X]`` at a point
-in ``S`` using ``Polynomial.eval₂``. This one produces an actual function from ``R[X]`` to ``S``
-since it does not assume the existence of a ``Algebra R S`` instance, so dot notation works as
-you would expect.
+更一般地说，给定一个环态射 ``f : R →+* S``，可以使用 ``Polynomial.eval₂`` 在 ``S`` 中的一个点上对 ``P : R[X]`` 进行求值。
+由于它不假设存在 ``Algebra R S`` 实例，因此它生成从 ``R[X]`` 到 ``S`` 的实际函数，因此点符号可以像预期那样正常工作。
 EXAMPLES: -/
 -- QUOTE:
 #check (Complex.ofRealHom : ℝ →+* ℂ)
@@ -566,13 +503,11 @@ example : (X ^ 2 + 1 : ℝ[X]).eval₂ Complex.ofRealHom Complex.I = 0 := by sim
 -- QUOTE.
 
 /- TEXT:
-Let us end by mentioning multivariate polynomials briefly. Given a commutative semiring ``R``,
-the ``R``-algebra of polynomials with coefficients in ``R`` and indeterminates indexed by
-a type ``σ`` is ``MVPolynomial σ R``. Given ``i : σ``, the corresponding polynomial is
-``MvPolynomial.X i``. (As usual, one can open the ``MVPolynomial`` namespace to shorten this
-to ``X i``.)
-For instance, if we want two indeterminates we can use
-``Fin 2`` as ``σ`` and write the polynomial defining the unit circle in :math:`\mathbb{R}^2`` as:
+我们最后简要提一下多变量多项式。给定一个交换半环 ``R``，系数在 ``R`` 且不定元通过类型 ``σ`` 索引的多项式所构成的 ``R``-代数为 ``MVPolynomial σ R``。
+
+给定 ``i : σ``，对应的不定元记为 ``MvPolynomial.X i``。（通常可以打开 ``MVPolynomial`` 命名空间以将其缩写为 ``X i``。）
+
+例如，如果我们需要两个不定元，可以使用 ``Fin 2`` 作为 ``σ`` 并写出定义单位圆的多项式（在 :math:`\mathbb{R}^2` 中）如下：
 EXAMPLES: -/
 -- QUOTE:
 open MvPolynomial
@@ -581,11 +516,11 @@ def circleEquation : MvPolynomial (Fin 2) ℝ := X 0 ^ 2 + X 1 ^ 2 - 1
 -- QUOTE.
 
 /- TEXT:
-Recall that function application has a very high precedence so the expression above is read as
-``(X 0) ^ 2 + (X 1) ^ 2 - 1``.
-We can evaluate it to make sure the point with coordinates :math:`(1, 0)` is on the circle.
-Recall the ``![...]`` notation denotes elements of ``Fin n → X`` for some natural number ``n``
-determined by the number of arguments and some type ``X`` determined by the type of arguments.
+函数应用具有非常高的优先级，因此上述表达式可以读取为
+``(X 0) ^ 2 + (X 1) ^ 2 - 1``。
+
+我们可以对其进行求值，以确保坐标为 :math:`(1, 0)` 的点位于圆上。
+此外，``![...]`` 表示符号表示元素属于 ``Fin n → X``，其中自然数 ``n`` 是由参数的数量决定的，而某种类型 ``X`` 是由参数的类型决定的。
 EXAMPLES: -/
 -- QUOTE:
 example : MvPolynomial.eval ![0, 1] circleEquation = 0 := by simp [circleEquation]

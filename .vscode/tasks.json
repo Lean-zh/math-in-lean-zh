@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Check MIL numref",
+        "type": "shell",
+        "command": "grep",
+        "args": [
+          "-r",
+          "-nE",
+          "'([^:]numref:|:numref[^:])'",
+          "./MIL"
+        ],
+        "problemMatcher": {
+          "owner": "MIL style checker",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(.*)$",
+            "file": 1,
+            "line": 2,
+            "message": 3
+          }
+        },
+      }
+    ]
+  }

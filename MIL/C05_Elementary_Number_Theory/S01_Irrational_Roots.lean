@@ -36,7 +36,7 @@ example : Nat.gcd 12 8 = 4 := by norm_num
 -- QUOTE.
 
 /- TEXT:
-我们在 ：numref:`more_on_order_and_divisibility` 中已经遇到过 `gcd` 函数。对于整数也有一个 `gcd` 版本；我们将在下面讨论不同数系之间的关系。甚至还有适用于一般代数结构类别的通用 `gcd` 函数以及通用的 ``Prime`` 和 ``Coprime`` 概念。在下一章中，我们将了解 Lean 是如何处理这种通用性的。与此同时，在本节中，我们将把注意力限制在自然数上。
+我们在 :numref:`more_on_order_and_divisibility` 中已经遇到过 `gcd` 函数。对于整数也有一个 `gcd` 版本；我们将在下面讨论不同数系之间的关系。甚至还有适用于一般代数结构类别的通用 `gcd` 函数以及通用的 ``Prime`` 和 ``Coprime`` 概念。在下一章中，我们将了解 Lean 是如何处理这种通用性的。与此同时，在本节中，我们将把注意力限制在自然数上。
 
 我们还需要素数的概念，即 ``Nat.Prime`` 。
 定理 ``Nat.prime_def_lt`` 提供了一个常见的特征描述，

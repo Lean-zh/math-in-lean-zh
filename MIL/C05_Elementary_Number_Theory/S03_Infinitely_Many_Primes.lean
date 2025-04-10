@@ -262,7 +262,7 @@ SOLUTIONS: -/
 -- QUOTE.
 /- TEXT:
 我们需要有限集合的一个最后性质。
-给定一个元素 ``s : Set α`` 和一个关于 ``α`` 的谓词 ``P`` ，在 ：numref:`第 %s 章 <sets_and_functions>` 中，我们用 ``{ x ∈ s | P x }`` 表示集合 ``s`` 中满足 ``P`` 的元素。
+给定一个元素 ``s : Set α`` 和一个关于 ``α`` 的谓词 ``P`` ，在 :numref:`第 %s 章 <sets_and_functions>` 中，我们用 ``{ x ∈ s | P x }`` 表示集合 ``s`` 中满足 ``P`` 的元素。
 对于 ``s ： Finset α`` ，类似的概念写作 ``s.filter P`` 。
 EXAMPLES: -/
 -- QUOTE:

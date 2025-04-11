@@ -178,7 +178,7 @@ example (T_X : TopologicalSpace X) (T_Y : TopologicalSpace Y) (f : X → Y) :
 -- QUOTE.
 
 /- TEXT:
-有了这个定义以及前推和复合的兼容性，我们自然地得到了这样一个通用性质：对于任何拓扑空间 :math:`Z` ，函数 :math:`g : Y → Z` 对于拓扑 ：math:`f_*T_X` 是连续的，当且仅当 :math:`g ∘ f` 是连续的。
+有了这个定义以及前推和复合的兼容性，我们自然地得到了这样一个通用性质：对于任何拓扑空间 :math:`Z` ，函数 :math:`g : Y → Z` 对于拓扑 :math:`f_*T_X` 是连续的，当且仅当 :math:`g ∘ f` 是连续的。
 
 .. math::
   g \text{ continuous } &⇔ g_*(f_*T_X) ≤ T_Z \\

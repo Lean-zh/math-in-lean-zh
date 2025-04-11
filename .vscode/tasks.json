@@ -24,6 +24,30 @@
             "message": 3
           }
         },
+      },
+      {
+        "label": "Check MIL math block",
+        "type": "shell",
+        "command": "grep",
+        "args": [
+          "-r",
+          "-nE",
+          "'([^:]math:[^:]|:math[^:])'",
+          "./MIL"
+        ],
+        "problemMatcher": {
+          "owner": "MIL style checker",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(.*)$",
+            "file": 1,
+            "line": 2,
+            "message": 3
+          }
+        },
       }
     ]
   }

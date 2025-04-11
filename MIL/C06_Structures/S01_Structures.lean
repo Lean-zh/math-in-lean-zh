@@ -312,7 +312,7 @@ end StandardSimplex
 -- QUOTE.
 
 /- TEXT:
-作为额外练习，请尝试定义一下标准 :math`n` -单纯形中两点的加权平均。
+作为额外练习，请尝试定义一下标准 :math:`n` -单纯形中两点的加权平均。
 可以使用 ``Finset.sum_add_distrib`` 和 ``Finset.mul_sum`` 来实现相关的求和操作。
 
 SOLUTIONS: -/

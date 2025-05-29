@@ -8,16 +8,13 @@ import MIL.Common
 
 /- TEXT:
 
-Endomorphisms
+自同态
 --------------
 
-An important special case of linear maps are endomorphisms: linear maps from a vector space to itself.
-They are interesting because they form a ``K``-algebra. In particular we can evaluate polynomials
-with coefficients in ``K`` on them, and they can have eigenvalues and eigenvectors.
+线性映射中的一个重要特例是自同态（endomorphisms）：即从向量空间自身映射到自身的线性映射。
+自同态特别有趣，因为它们构成了一个 `K`-代数。具体来说，我们可以在其上对系数属于 `K` 的多项式进行求值，它们也可能具有特征值和特征向量。
 
-Mathlib uses the abbreviation ``Module.End K V := V →ₗ[K] V`` which is convenient when
-using a lot of these (especially after opening the ``Module`` namespace).
-
+Mathlib 使用简称 ``Module.End K V := V →ₗ[K] V``，这在大量使用此类映射时非常方便，尤其是在打开了 `Module` 命名空间后。
 EXAMPLES: -/
 
 -- QUOTE:
@@ -30,7 +27,7 @@ variable {W : Type*} [AddCommGroup W] [Module K W]
 open Polynomial Module LinearMap
 
 example (φ ψ : End K V) : φ * ψ = φ ∘ₗ ψ :=
-  LinearMap.mul_eq_comp φ ψ -- `rfl` would also work
+  LinearMap.mul_eq_comp φ ψ -- `rfl` 也可以
 
 -- evaluating `P` on `φ`
 example (P : K[X]) (φ : End K V) : V →ₗ[K] V :=
@@ -43,11 +40,9 @@ example (φ : End K V) : aeval φ (X : K[X]) = φ :=
 
 -- QUOTE.
 /- TEXT:
-As an exercise manipulating endomorphisms, subspaces and polynomials, let us prove the
-(binary) kernels lemma: for any endomorphism :math:`φ` and any two relatively
-prime polynomials :math:`P` and :math:`Q`, we have :math:`\ker P(φ) ⊕ \ker Q(φ) = \ker \big(PQ(φ)\big)`.
+作为练习，结合自同态、子空间和多项式的操作，让我们证明二元核引理：对于任意自同态 :math:`φ` 及互素多项式 :math:`P` 和 :math:`Q`，有 :math:`\ker P(φ) ⊕ \ker Q(φ) = \ker \big(PQ(φ)\big)`。
 
-Note that ``IsCoprime x y`` is defined as ``∃ a b, a * x + b * y = 1``.
+注意，`IsCoprime x y` 的定义为 ``∃ a b, a * x + b * y = 1`` 。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -80,12 +75,12 @@ SOLUTIONS: -/
   apply le_antisymm
   · apply sup_le
     · rw [mul_comm, map_mul]
-      apply ker_le_ker_comp -- or alternative below:
+      apply ker_le_ker_comp -- 或者换成下面的
       -- intro x hx
       -- rw [mul_comm, mem_ker] at *
       -- simp [hx]
     · rw [map_mul]
-      apply ker_le_ker_comp -- or alternative as above
+      apply ker_le_ker_comp -- 或者换成上面的
   · intro x hx
     rcases h with ⟨U, V, hUV⟩
     have key : x = aeval φ (U*P) x + aeval φ (V*Q) x := by simpa using congr((aeval φ) $hUV.symm x)
@@ -98,12 +93,7 @@ SOLUTIONS: -/
 
 -- QUOTE.
 /- TEXT:
-We now move to the discussions of eigenspaces and eigenvalues. The eigenspace
-associated to an endomorphism :math:`φ` and a scalar :math:`a` is the kernel of :math:`φ - aId`.
-Eigenspaces are defined for all values of ``a``, although
-they are interesting only when they are non-zero.
-However an eigenvector is, by definition, a non-zero element of an eigenspace. The corresponding
-predicate is ``End.HasEigenvector``.
+我们现在转向本征空间和特征值的讨论。对于自同态 :math:`φ` 和标量 :math:`a` ，与之对应的本征空间是 :math:`φ - aId` 的核空间。本征空间对所有 ``a`` 都有定义，但只有在本征空间非零时才有意义。然而，本征向量定义为本征空间中的非零元素。对应的谓词是 `End.HasEigenvector`。
 EXAMPLES: -/
 -- QUOTE:
 example (φ : End K V) (a : K) : φ.eigenspace a = LinearMap.ker (φ - a • 1) :=
@@ -112,7 +102,7 @@ example (φ : End K V) (a : K) : φ.eigenspace a = LinearMap.ker (φ - a • 1) 
 
 -- QUOTE.
 /- TEXT:
-Then there is a predicate ``End.HasEigenvalue`` and the corresponding subtype ``End.Eigenvalues``.
+然后有一个谓词 ``End.HasEigenvalue`` 和对应的子类型 ``End.Eigenvalues``。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -125,11 +115,11 @@ example (φ : End K V) (a : K) : φ.HasEigenvalue a ↔ ∃ v, φ.HasEigenvector
 example (φ : End K V) : φ.Eigenvalues = {a // φ.HasEigenvalue a} :=
   rfl
 
--- Eigenvalue are roots of the minimal polynomial
+-- 特征值是最小多项式的根
 example (φ : End K V) (a : K) : φ.HasEigenvalue a → (minpoly K φ).IsRoot a :=
   φ.isRoot_of_hasEigenvalue
 
--- In finite dimension, the converse is also true (we will discuss dimension below)
+-- 有限维情况下，反之亦然（我们将在下面讨论维度）
 example [FiniteDimensional K V] (φ : End K V) (a : K) :
     φ.HasEigenvalue a ↔ (minpoly K φ).IsRoot a :=
   φ.hasEigenvalue_iff_isRoot

@@ -9,24 +9,17 @@ import MIL.Common
 
 .. _matrices_bases_dimension:
 
-Matrices, bases and dimension
+矩阵、基和维度
 -----------------------------
 
 .. _matrices:
 
-Matrices
+矩阵
 ^^^^^^^^
 
 .. index:: matrices
 
-Before introducing bases for abstract vector spaces, we go back to the much more elementary setup
-of linear algebra in :math:`K^n` for some field :math:`K`.
-Here the main objects are vectors and matrices.
-For concrete vectors, one can use the ``![…]`` notation, where components are separated by commas.
-For concrete matrices we can use the ``!![…]`` notation, lines are separated by semi-colons
-and components of lines are separated by colons.
-When entries have a computable type such as ``ℕ`` or ``ℚ``, we can use
-the ``eval`` command to play with basic operations.
+在介绍抽象向量空间的基之前，我们先回到更基础的线性代数设置——定义在某域 :math:`K` 上的 :math:`K^n` 。这里的主要对象是向量和矩阵。对于具体向量，可以使用 `![…]` 记法，分量之间用逗号分隔。对于具体矩阵，可以使用 `!![…]` 记法，行之间用分号分隔，行内分量用冒号分隔。当矩阵元素类型是可计算类型（例如 `ℕ` 或 `ℚ`）时，可以使用 `eval` 命令来进行基本运算操作的试验。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -44,39 +37,32 @@ section matrices
 
 -- QUOTE.
 /- TEXT:
-It is important to understand that this use of ``#eval`` is interesting only for
-exploration, it is not meant to replace a computer algebra system such as Sage.
-The data representation used here for matrices is *not* computationally
-efficient in any way. It uses functions instead of arrays and is optimized for
-proving, not computing.
-The virtual machine used by ``#eval`` is also not optimized for this use.
+需要理解的是，`#eval` 的使用主要用于探索和试验，并不旨在替代如 Sage 这类计算机代数系统。这里矩阵的数据表示方式 *并不* 在计算上高效，它采用函数而非数组，优化目标是证明而非计算。而且，`#eval` 所用的虚拟机也未针对这种用途进行优化。
 
+请注意，矩阵表示中列出了多行，而向量表示既不是行向量也不是列向量。矩阵与向量的乘法，若从左乘，则将向量视为行向量；若从右乘，则将向量视为列向量。
 
-Beware the matrix notation list rows but the vector notation
-is neither a row vector nor a column vector. Multiplication of a matrix with a vector
-from the left (resp. right) interprets the vector as a row (resp. column) vector.
-This corresponds to operations
-``Matrix.vecMul``, with notation ``ᵥ*`` and ``Matrix.mulVec``, with notation ` `*ᵥ``.
-Those notations are scoped in the ``Matrix`` namespace that we therefore need to open.
+对应的操作为：
+
+* `Matrix.vecMul`，符号为 `ᵥ*`
+* `Matrix.mulVec`，符号为 `*ᵥ`
+
+这些符号限定在 `Matrix` 命名空间，因此我们需要打开该命名空间才能使用。
 EXAMPLES: -/
 -- QUOTE:
 open Matrix
 
--- matrices acting on vectors on the left
+-- 矩阵左作用于向量
 #eval !![1, 2; 3, 4] *ᵥ ![1, 1] -- ![3, 7]
 
--- matrices acting on vectors on the left, resulting in a size one matrix
+-- 矩阵左作用于向量，结果为一维矩阵
 #eval !![1, 2] *ᵥ ![1, 1]  -- ![3]
 
--- matrices acting on vectors on the right
+-- 矩阵右作用于向量
 #eval  ![1, 1, 1] ᵥ* !![1, 2; 3, 4; 5, 6] -- ![9, 12]
 -- QUOTE.
 /- TEXT:
-In order to generate matrices with identical rows or columns specified by a vector, we
-use ``Matrix.row`` and ``Matrix.column``, with arguments the type indexing the
-rows or columns and the vector.
-For instance one can get single row or single column matrixes (more precisely matrices whose rows
-or columns are indexed by ``Fin 1``).
+为了生成由某向量指定的相同行或列的矩阵，我们使用 `Matrix.row` 和 `Matrix.column`，它们的参数分别是用于索引行或列的类型以及该向量。
+例如，可以得到单行矩阵或单列矩阵（更准确地说，是行或列由 `Fin 1` 索引的矩阵）。
 EXAMPLES: -/
 -- QUOTE:
 #eval row (Fin 1) ![1, 2] -- !![1, 2]
@@ -84,33 +70,28 @@ EXAMPLES: -/
 #eval col (Fin 1) ![1, 2] -- !![1; 2]
 -- QUOTE.
 /- TEXT:
-Other familiar operations include the vector dot product, matrix transpose, and,
-for square matrices, determinant and trace.
+其它熟悉的操作包括向量点积、矩阵转置，以及对于方阵的行列式和迹。
 EXAMPLES: -/
 -- QUOTE:
 
--- vector dot product
+-- 向量点积
 #eval ![1, 2] ⬝ᵥ ![3, 4] -- `11`
 
--- matrix transpose
+-- 矩阵转置
 #eval !![1, 2; 3, 4]ᵀ -- `!![1, 3; 2, 4]`
 
--- determinant
+-- 行列式
 #eval !![(1 : ℤ), 2; 3, 4].det -- `-2`
 
--- trace
+-- 迹
 #eval !![(1 : ℤ), 2; 3, 4].trace -- `5`
 
 
 -- QUOTE.
 /- TEXT:
-When entries do not have a computable type, for instance if they are real numbers, we cannot
-hope that ``#eval`` can help. Also this kind of evaluation cannot be used in proofs without
-considerably expanding the trusted code base (i.e. the part of Lean that you need to trust when
-checking proofs).
+当矩阵元素类型不可计算时，比如实数，`#eval` 就无能为力了。而且，这类计算也不能直接用于证明中，否则需要大幅扩展受信任代码库（即在检验证明时必须信任的 Lean 核心部分）。
 
-So it is good to also use the ``simp`` and ``norm_num`` tactics in proofs, or
-their command counter-part for quick exploration.
+因此，在证明中推荐使用 `simp` 和 `norm_num` 策略，或者它们对应的命令形式来进行快速探索和简化。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -125,15 +106,9 @@ variable (a b c d : ℝ) in
 
 -- QUOTE.
 /- TEXT:
-The next important operation on square matrices is inversion.
-In the same way as division of numbers is always defined and returns the artificial value
-zero for division by zero, the inversion operation is defined on all matrices and returns
-the zero matrix for non-invertible matrices.
+下一个关于方阵的重要操作是求逆。类似于数的除法总是定义的，且对除以零的情况返回人为设定的零值，矩阵求逆操作也定义在所有矩阵上，对于不可逆矩阵返回零矩阵。
 
-More precisely, there is general function ``Ring.inverse`` that does this in any ring,
-and, for any matrix ``A``, ``A⁻¹`` is defined as ``Ring.inverse A.det • A.adjugate``.
-According to Cramer’s rule, this is indeed the inverse of ``A`` when the determinant of ``A`` is
-not zero.
+更具体地，存在一个通用函数 `Ring.inverse`，它在任意环中实现此功能；对于任意矩阵 `A`，其逆矩阵定义为 ``Ring.inverse A.det • A.adjugate`` 根据Cramer’s rule，当矩阵行列式不为零时，上述定义确实是矩阵 `A` 的逆矩阵。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -141,12 +116,7 @@ EXAMPLES: -/
 
 -- QUOTE.
 /- TEXT:
-Of course this definition is really useful only for invertible matrices.
-There is a general type class ``Invertible`` that helps recording this.
-For instance, the ``simp`` call in the next example will use the ``inv_mul_of_invertible``
-lemma which has an ``Invertible`` type-class assumption, so it will trigger
-only if this can be found by the type-class synthesis system.
-Here we make this fact available using a ``have`` statement.
+当然这种定义确实只对可逆矩阵有用。存在一个通用类型类 ``Invertible`` 来帮助记录这一点。例如，下面例子中的 ``simp`` 调用将使用 ``inv_mul_of_invertible`` 引理，该引理具有 ``Invertible`` 类型类假设，因此只有在类型类合成系统能够找到它时才会触发。在这里，我们使用 ``have`` 语句使这一事实可用。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -158,8 +128,7 @@ example : !![(1 : ℝ), 2; 3, 4]⁻¹ * !![(1 : ℝ), 2; 3, 4] = 1 := by
 
 -- QUOTE.
 /- TEXT:
-In this fully concrete case, we could also use the ``norm_num`` machinery,
-and ``apply?`` to find the final line:
+在这个完全具体的例子中，我们也可以使用 ``norm_num`` 工具，和 ``apply?`` 来找到最后一行：
 EXAMPLES: -/
 -- QUOTE:
 example : !![(1 : ℝ), 2; 3, 4]⁻¹ * !![(1 : ℝ), 2; 3, 4] = 1 := by
@@ -168,29 +137,15 @@ example : !![(1 : ℝ), 2; 3, 4]⁻¹ * !![(1 : ℝ), 2; 3, 4] = 1 := by
 
 -- QUOTE.
 /- TEXT:
-All the concrete matrices above have their rows and columns indexed by ``Fin n`` for
-some ``n`` (not necessarily the same for rows and columns).
-But sometimes it is more convenient to index matrices using arbitrary finite types.
-For instance the adjacency matrix of a finite graph has rows and columns naturally indexed by
-the vertices of the graph.
+之前所有具体矩阵的行和列均由某个 `Fin n` 索引（行列的 `n` 不一定相同）。但有时使用任意有限类型作为矩阵的行列索引更为方便。例如，有限图的邻接矩阵，其行和列自然由图的顶点索引。
 
-In fact when simply wants to define matrices without defining any operation on them,
-finiteness of the indexing types are not even needed, and coefficients can have any type,
-without any algebraic structure.
-So Mathlib simply defines ``Matrix m n α`` to be ``m → n → α`` for any types ``m``, ``n`` and ``α``,
-and the matrices we have been using so far had types such as ``Matrix (Fin 2) (Fin 2) ℝ``.
-Of course algebraic operations require more assumptions on ``m``, ``n`` and ``α``.
+实际上，如果仅定义矩阵而不涉及运算，索引类型的有限性甚至不是必须的，矩阵元素的类型也无需具备任何代数结构。因此，Mathlib 直接将 `Matrix m n α` 定义为 `m → n → α`，其中 `m`、`n`、`α` 是任意类型。我们之前使用的矩阵类型多如 `Matrix (Fin 2) (Fin 2) ℝ`。当然，代数运算对 `m`、`n` 和 `α` 有更严格的假设。
 
-Note the main reason why we do not use ``m → n → α`` directly is to allow the type class
-system to understand what we want. For instance, for a ring ``R``, the type ``n → R`` is
-endowed with the point-wise multiplication operation, and similarly ``m → n → R``
-has this operation which is *not* the multiplication we want on matrices.
+我们不直接使用 `m → n → α` 的主要原因，是让类型类系统能正确理解我们的意图。举例来说，对于环 `R`，类型 `n → R` 自带逐点乘法（point-wise multiplication），而 `m → n → R` 也有类似操作，但这并不是我们想在矩阵上使用的乘法。
 
-In the first example below, we force Lean to see through the definition of ``Matrix``
-and accept the statement as meaningful, and then prove it by checking all entries.
+下面第一个示例中，我们强制 Lean 展开 `Matrix` 定义，接受陈述的意义，并通过逐个元素检查完成证明。
 
-But then the next two examples reveal that Lean uses the point-wise multiplication
-on ``Fin 2 → Fin 2 → ℤ`` but the matrix multiplication on ``Matrix (Fin 2) (Fin 2) ℤ``.
+而后面两个示例展示了 Lean 对 `Fin 2 → Fin 2 → ℤ` 使用逐点乘法，而对 `Matrix (Fin 2) (Fin 2) ℤ` 使用矩阵乘法。
 EXAMPLES: -/
 -- QUOTE:
 section
@@ -207,11 +162,9 @@ example : !![1, 1; 1, 1] * !![1, 1; 1, 1] = !![2, 2; 2, 2] := by
   norm_num
 -- QUOTE.
 /- TEXT:
-In order to define matrices as functions without loosing the benefits of ``Matrix``
-for type class synthesis, we can use the equivalence ``Matrix.of`` between functions
-and matrices. This equivalence is secretly defined using ``Equiv.refl``.
+为了定义矩阵作为函数而不失去 ``Matrix`` 在类型类合成中的好处，我们可以使用函数和矩阵之间的等价关系 ``Matrix.of``。这个等价关系是通过 ``Equiv.refl`` 隐式定义的。
 
-For instance we can define Vandermonde matrices corresponding to a vector ``v``.
+例如，我们可以定义与向量 ``v`` 对应的范德蒙德矩阵。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -222,31 +175,24 @@ end
 end matrices
 -- QUOTE.
 /- TEXT:
-Bases
+基
 ^^^^^
+我们现在讨论向量空间的基。非正式地说，这一概念有多种定义方式：
 
-We now want to discuss bases of vector spaces. Informally there are many ways to define this notion.
-One can use a universal property.
-One can say a basis is a family of vectors that is linearly independent and spanning.
-Or one can combine those properties and directly say that a basis is a family of vectors
-such that every vectors can be written uniquely as a linear combination of bases vectors.
-Yet another way to say it is that a basis provides a linear isomorphism with a power of
-the base field ``K``, seen as a vector space over ``K``.
+* 可以通过万有性质来定义；
+* 可以说基是一族线性无关且张成全空间的向量；
+* 或结合这两个性质，直接说基是一族向量，使得每个向量都能唯一地表示为基向量的线性组合；
+* 另一种说法是，基提供了与基域 ``K`` 的某个幂（作为 ``K`` 上的向量空间）的线性同构。
 
-This isomorphism version is actually the one that Mathlib uses as a definition under the hood, and
-other characterizations are proven from it.
-One must be slightly careful with the “power of ``K``” idea in the case of infinite bases.
-Indeed only finite linear combinations make sense in this algebraic context. So what we need
-as a reference vector space is not a direct product of copies of ``K`` but a direct sum.
-We could use ``⨁ i : ι, K`` for some type ``ι`` indexing the basis
-But we rather use the more specialized spelling ``ι →₀ K`` which means
-“functions from ``ι`` to ``K`` with finite support”, i.e. functions which vanish outside a finite set
-in ``ι`` (this finite set is not fixed, it depends on the function).
-Evaluating such a function coming from a basis ``B`` at a vector ``v`` and
-``i : ι`` returns the component (or coordinate) of ``v`` on the ``i``-th basis vector.
+实际上，Mathlib 在底层采用的是最后一种同构的定义，并从中推导出其他性质。
+对于无限基的情况，需稍加注意“基域的幂”这一说法。因为在代数环境中，只考虑有限线性组合有意义，
+所以我们参考的向量空间不是基域的直积，而是直和。
+我们可以用 `⨁ i : ι, K` 表示某个类型 `ι` 索引的基向量集合对应的直和，
+但更常用的是更专门的表示法 `ι →₀ K`，表示“具有有限支集的函数”，即在 `ι` 上除有限点外值为零的函数（这个有限集合不是固定的，依赖于函数本身）。
 
-The type of bases indexed by a type ``ι`` of ``V`` as a ``K`` vector space is ``Basis ι K V``.
-The isomorphism is called ``Basis.repr``.
+对于基 `B` 中的函数，给定向量 `v` 和索引 `i : ι`，函数的值即为 `v` 在第 `i` 个基向量上的坐标分量。
+
+以类型 `ι` 索引的向量空间 `V` 的基类型为 `Basis ι K V`，对应的同构称为 `Basis.repr`。
 EXAMPLES: -/
 -- QUOTE:
 variable {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V]
@@ -255,35 +201,28 @@ section
 
 variable {ι : Type*} (B : Basis ι K V) (v : V) (i : ι)
 
--- The basis vector with index ``i``
+-- 索引为 ``i`` 的基向量
 #check (B i : V)
 
--- the linear isomorphism with the model space given by ``B``
+-- 与模空间 ``B`` 给出的线性同构
 #check (B.repr : V ≃ₗ[K] ι →₀ K)
 
--- the component function of ``v``
+-- ``v`` 的分量函数
 #check (B.repr v : ι →₀ K)
 
--- the component of ``v`` with index ``i``
+-- ``v`` 在索引为 ``i`` 的基向量上的分量
 #check (B.repr v i : K)
 
 -- QUOTE.
 /- TEXT:
-Instead of starting with such an isomorphism, one can start with a family ``b`` of vectors that is
-linearly independent and spanning, this is ``Basis.mk``.
-
-The assumption that the family is spanning is spelled out as ``⊤ ≤ Submodule.span K (Set.range b)``.
-Here ``⊤`` is the top submodule of ``V``, i.e. ``V`` seen as submodule of itself.
-This spelling looks a bit tortuous, but we will see below that it is almost equivalent by definition
-to the more readable ``∀ v, v ∈ Submodule.span K (Set.range b)`` (the underscores in the snippet
-below refers to the useless information ``v ∈ ⊤``).
+与其从同构出发，也可以从一族线性无关且张成的向量族 `b` 开始构造基，这就是 `Basis.mk`。“张成”的假设表达为 ``⊤ ≤ Submodule.span K (Set.range b)``，这里的 `⊤` 是 `V` 的最大子模，即 `V` 自身作为自身的子模。这个表达看起来有些拗口，但下面我们将看到它与更易理解的表达式 ``∀ v, v ∈ Submodule.span K (Set.range b)`` 几乎是定义等价的（下面代码中的下划线表示无用信息 `v ∈ ⊤`）。
 EXAMPLES: -/
 -- QUOTE:
 noncomputable example (b : ι → V) (b_indep : LinearIndependent K b)
     (b_spans : ∀ v, v ∈ Submodule.span K (Set.range b)) : Basis ι K V :=
   Basis.mk b_indep (fun v _ ↦ b_spans v)
 
--- The family of vectors underlying the above basis is indeed ``b``.
+-- 该基的底层向量族确实是 ``b``。
 example (b : ι → V) (b_indep : LinearIndependent K b)
     (b_spans : ∀ v, v ∈ Submodule.span K (Set.range b)) (i : ι) :
     Basis.mk b_indep (fun v _ ↦ b_spans v) i = b i :=
@@ -291,13 +230,7 @@ example (b : ι → V) (b_indep : LinearIndependent K b)
 
 -- QUOTE.
 /- TEXT:
-In particular the model vector space ``ι →₀ K`` has a so-called canonical basis whose ``repr``
-function evaluated on any vector is the identity isomorphism. It is called
-``Finsupp.basisSingleOne`` where ``Finsupp`` means function with finite support and
-``basisSingleOne`` refers to the fact that basis vectors are functions which
-vanish expect for a single input value. More precisely the basis vector indexed by ``i : ι``
-is ``Finsupp.single i 1`` which is the finitely supported function taking value ``1`` at ``i``
-and ``0`` everywhere else.
+特别地，模型向量空间 `ι →₀ K` 具有所谓的标准基（canonical basis），其 `repr` 函数在任意向量上的值即为恒等同构。该基称为 `Finsupp.basisSingleOne`，其中 `Finsupp` 表示有限支集函数，`basisSingleOne` 指的是基向量是除单个输入点外，其余点值皆为零的函数。更具体地，索引为 `i : ι` 的基向量是 ``Finsupp.single i 1``，这是一个有限支集函数，在点 `i` 取值为 `1`，其余点取值为 `0`。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -311,9 +244,7 @@ example (i : ι) : Finsupp.basisSingleOne i = Finsupp.single i 1 :=
 
 -- QUOTE.
 /- TEXT:
-The story of finitely supported functions is unneeded when the indexing type is finite.
-In this case we can use the simpler ``Pi.basisFun`` which gives a basis of the whole
-``ι → K``.
+当索引类型是有限集合时，有限支集函数的概念就不再需要。这时，我们可以使用更简单的 `Pi.basisFun`，它直接构造了整个 `ι → K` 的一组基。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -322,19 +253,20 @@ example [Finite ι] (x : ι → K) (i : ι) : (Pi.basisFun K ι).repr x i = x i 
 
 -- QUOTE.
 /- TEXT:
-Going back to the general case of bases of abstract vector spaces, we can express
-any vector as a linear combination of basis vectors.
-Let us first see the easy case of finite bases.
+回到抽象向量空间基的通用情况，我们可以将任何向量表示为基向量的线性组合。让我们首先看看有限基的简单情况。
 EXAMPLES: -/
 -- QUOTE:
 
 example [Fintype ι] : ∑ i : ι, B.repr v i • (B i) = v :=
   B.sum_repr v
 
-
 -- QUOTE.
 
 /- TEXT:
+当索引类型 `ι` 不是有限集时，上述直接对 `ι` 求和的说法在理论上没有意义，因为无法对无限集合进行直接求和。不过，被求和的函数的支集是有限的（即 `B.repr v` 的支集），这就允许对有限支集进行求和。为了处理这种情况，Mathlib 使用了一个特殊的函数，虽然需要一些时间适应，它是 `Finsupp.linearCombination`（建立在更通用的 `Finsupp.sum` 之上）。
+
+给定一个从类型 `ι` 到基域 `K` 的有限支集函数 `c`，以及任意从 `ι` 到向量空间 `V` 的函数 `f`，`Finsupp.linearCombination K f c` 定义为对 `c` 的支集上所有元素的 `c • f` 进行标量乘法后求和。特别地，我们也可以将求和范围替换为任何包含 `c` 支集的有限集合。
+
 When ``ι`` is not finite, the above statement makes no sense a priori: we cannot take a sum over ``ι``.
 However the support of the function being summed is finite (it is the support of ``B.repr v``).
 But we need to apply a construction that takes this into account.
@@ -354,9 +286,7 @@ example (c : ι →₀ K) (f : ι → V) (s : Finset ι) (h : c.support ⊆ s) :
   Finsupp.linearCombination_apply_of_mem_supported K h
 -- QUOTE.
 /- TEXT:
-One could also assume that ``f`` is finitely supported and still get a well defined sum.
-But the choice made by ``Finsupp.linearCombination`` is the one relevant to our basis discussion since it allows
-to state the generalization of ``Basis.sum_repr``.
+也可以假设 `f` 是有限支集函数，这样依然能得到良定义的求和结果。但 `Finsupp.linearCombination` 所作的选择更贴合我们关于基的讨论，因为它支持陈述 `Basis.sum_repr` 的推广版本。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -364,32 +294,19 @@ example : Finsupp.linearCombination K B (B.repr v) = v :=
   B.linearCombination_repr v
 -- QUOTE.
 /- TEXT:
-One could wonder why ``K`` is an explicit argument here, despite the fact it can be inferred from
-the type of ``c``. The point is that the partially applied ``Finsupp.linearCombination K f``
-is interesting in itself. It is not a bare function from ``ι →₀ K`` to ``V`` but a
-``K``-linear map.
+你可能会好奇，为什么这里的 `K` 是显式参数，尽管它可以从 `c` 的类型中推断出来。关键在于，部分应用的 `Finsupp.linearCombination K f` 本身就是一个有趣的对象。
+它不仅仅是一个从 `ι →₀ K` 到 `V` 的普通函数，更是一个 `K`-线性映射。
 EXAMPLES: -/
 -- QUOTE:
 variable (f : ι → V) in
 #check (Finsupp.linearCombination K f : (ι →₀ K) →ₗ[K] V)
 -- QUOTE.
 /- TEXT:
-The above subtlety also explains why dot notation cannot be used to write
-``c.linearCombination K f`` instead of ``Finsupp.linearCombination K f c``.
-Indeed ``Finsupp.linearCombination`` does not take ``c`` as an argument,
-``Finsupp.linearCombination K f`` is coerced to a function type and then this function
-takes ``c`` as an argument.
+上述细节也解释了为什么不能用点记法写成 `c.linearCombination K f` 来代替 `Finsupp.linearCombination K f c`。
+事实上，`Finsupp.linearCombination` 本身并不直接接收 `c` 作为参数，而是先部分应用 `K` 和 `f`，得到一个被强制转换为函数类型的对象，随后该函数才接收 `c` 作为参数。
 
-Returning to the mathematical discussion, it is important to understand that the
-representation of vectors in a basis is less useful in formalized
-mathematics than you may think.
-Indeed it is very often more efficient to directly use more abstract properties of bases.
-In particular the universal property of bases connecting them to other free objects in algebra
-allows to construct linear maps by specifying the images of basis vectors.
-This is ``Basis.constr``. For any ``K``-vector space ``W``, our basis ``B``
-gives a linear isomorphism ``Basis.constr B K`` from ``ι → W`` to ``V →ₗ[K] W``.
-This isomorphism is characterized by the fact that it sends any function ``u : ι → W``
-to a linear map sending the basis vector ``B i`` to ``u i``, for every ``i : ι``.
+回到数学讨论，理解基下向量的具体表示在形式化数学中往往没有你想象的那么有用非常重要。实际上，直接利用基的更抽象性质通常更加高效。
+特别是，基的通用性质将其与代数中的其他自由对象连接起来，使得我们可以通过指定基向量的像来构造线性映射。这就是 `Basis.constr`。对于任意 `K`-向量空间 `W`，我们的基 `B` 提供了一个线性同构 `Basis.constr B K : (ι → W) ≃ₗ[K] (V →ₗ[K] W)`。该同构的特点是，对于任意函数 `u : ι → W`，它对应的线性映射将基向量 `B i` 映射为 `u i`，其中 `i : ι`。
 EXAMPLES: -/
 -- QUOTE:
 section
@@ -406,8 +323,7 @@ example (i : ι) : B.constr K u (B i) = u i :=
 
 -- QUOTE.
 /- TEXT:
-This property is indeed characteristic because linear maps are determined by their values
-on bases:
+这个性质实际上是特征性的，因为线性映射是由它们在基上的值决定的：
 EXAMPLES: -/
 -- QUOTE:
 example (φ ψ : V →ₗ[K] W) (h : ∀ i, φ (B i) = ψ (B i)) : φ = ψ :=
@@ -416,8 +332,8 @@ example (φ ψ : V →ₗ[K] W) (h : ∀ i, φ (B i) = ψ (B i)) : φ = ψ :=
 
 -- QUOTE.
 /- TEXT:
-If we also have a basis ``B'`` on the target space then we can identify linear maps
-with matrices. This identification is a ``K``-linear isomorphism.
+如果我们在目标空间上也有一个基 ``B'``，那么我们可以将线性映射与矩阵进行识别。
+这种识别是一个 ``K``-线性同构。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -428,7 +344,7 @@ open LinearMap
 
 #check (toMatrix B B' : (V →ₗ[K] W) ≃ₗ[K] Matrix ι' ι K)
 
-open Matrix -- get access to the ``*ᵥ`` notation for multiplication between matrices and vectors.
+open Matrix -- 获取对矩阵和向量之间乘法的 ``*ᵥ`` 记法的访问。
 
 example (φ : V →ₗ[K] W) (v : V) : (toMatrix B B' φ) *ᵥ (B.repr v) = B'.repr (φ v) :=
   toMatrix_mulVec_repr B B' φ v
@@ -443,27 +359,22 @@ end
 
 -- QUOTE.
 /- TEXT:
-As an exercise on this topic, we will prove part of the theorem which guarantees that
-endomorphisms have a well-defined determinant.
-Namely we want to prove that when two bases are indexed by the same type, the matrices
-they attach to any endomorphism have the same determinant.
-This would then need to be complemented using that bases all have isomorphic indexing types to
-get the full result.
+作为本主题的练习，我们将证明一部分定理，保证自同态的行列式是良定义的。具体来说，我们要证明：当两个基由相同类型索引时，它们对应任意自同态的矩阵具有相同的行列式。
+然后，结合所有基的索引类型彼此线性同构，便可得到完整结论。
 
-Of course Mathlib already knows this, and ``simp`` can close the goal immediately, so you
-shouldn’t use it too soon, but rather use the provided lemmas.
+当然，Mathlib 已经包含了这一结论，且 `simp` 策略可以立即解决此目标，因此你不应过早使用它，而应先尝试使用相关引理进行证明。
 EXAMPLES: -/
 -- QUOTE:
 
 open Module LinearMap Matrix
 
--- Some lemmas coming from the fact that `LinearMap.toMatrix` is an algebra morphism.
+-- 一些来自于 `LinearMap.toMatrix` 是一个代数同态的事实的引理。
 #check toMatrix_comp
 #check id_comp
 #check comp_id
 #check toMatrix_id
 
--- Some lemmas coming from the fact that ``Matrix.det`` is a multiplicative monoid morphism.
+-- 一些来自于 ``Matrix.det`` 是一个乘法单元环同态的事实的引理。
 #check Matrix.det_mul
 #check Matrix.det_one
 
@@ -489,41 +400,34 @@ end
 -- QUOTE.
 /- TEXT:
 
-Dimension
-^^^^^^^^^
+维度
+^^^^^^^
 
-Returning to the case of a single vector space, bases are also useful to define the concept of
-dimension.
-Here again, there is the elementary case of finite-dimensional vector spaces.
-For such spaces we expect a dimension which is a natural number.
-This is ``Module.finrank``. It takes the base field as an explicit argument
-since a given abelian group can be a vector space over different fields.
+回到单个向量空间的情况，基也用于定义维度的概念。在这里，我们再次遇到有限维向量空间的基本情况。
+对于这样的空间，我们期望维度是一个自然数。这就是 ``Module.finrank``。它将基域作为显式参数，因为给定的阿贝尔群可以是不同域上的向量空间。
 
 EXAMPLES: -/
 -- QUOTE:
 section
 #check (Module.finrank K V : ℕ)
 
--- `Fin n → K` is the archetypical space with dimension `n` over `K`.
+-- `Fin n → K` 是维度为 `n` 的典型空间。
 example (n : ℕ) : Module.finrank K (Fin n → K) = n :=
   Module.finrank_fin_fun K
 
--- Seen as a vector space over itself, `ℂ` has dimension one.
+-- 作为自身的向量空间，`ℂ` 的维度为1。
 example : Module.finrank ℂ ℂ = 1 :=
   Module.finrank_self ℂ
 
--- But as a real vector space it has dimension two.
+-- 但作为实向量空间，它的维度为2。
 example : Module.finrank ℝ ℂ = 2 :=
   Complex.finrank_real_complex
 
 -- QUOTE.
 /- TEXT:
-Note that ``Module.finrank`` is defined for any vector space. It returns
-zero for infinite dimensional vector spaces, just as division by zero returns zero.
+注意到 ``Module.finrank`` 是为任何向量空间定义的。它对于无限维向量空间返回零，就像除以零返回零一样。
 
-Of course many lemmas require a finite dimension assumption. This is the role of
-the ``FiniteDimensional`` typeclass. For instance, think about how the next
-example fails without this assumption.
+当然，许多引理都需要有限维度的假设。这就是 ``FiniteDimensional`` 类型类的作用。例如，考虑下一个例子在没有这个假设的情况下是如何失败的。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -532,12 +436,9 @@ example [FiniteDimensional K V] : 0 < Module.finrank K V ↔ Nontrivial V  :=
 
 -- QUOTE.
 /- TEXT:
-In the above statement, ``Nontrivial V`` means ``V`` has at least two different elements.
-Note that ``Module.finrank_pos_iff`` has no explicit argument.
-This is fine when using it from left to right, but not when using it from right to left
-because Lean has no way to guess ``K`` from the statement ``Nontrivial V``.
-In that case it is useful to use the name argument syntax, after checking that the lemma
-is stated over a ring named ``R``. So we can write:
+在上述陈述中，`Nontrivial V` 表示 `V` 至少包含两个不同元素。注意，`Module.finrank_pos_iff` 没有显式参数。
+从左向右使用时没问题，但从右向左使用时会遇到困难，因为 Lean 无法从 `Nontrivial V` 这一命题中推断出域 `K`。
+此时，使用命名参数语法会很有帮助，前提是确认该引理是在一个名为 `R` 的环上陈述的。因此我们可以写成：
 EXAMPLES: -/
 -- QUOTE:
 
@@ -547,11 +448,9 @@ example [FiniteDimensional K V] (h : 0 < Module.finrank K V) : Nontrivial V := b
 
 -- QUOTE.
 /- TEXT:
-The above spelling is strange because we already have ``h`` as an assumption, so we could
-just as well give the full proof ``Module.finrank_pos_iff.1 h`` but it
-is good to know for more complicated cases.
+上述写法看起来有些奇怪，因为我们已经有了假设 `h`，因此完全可以直接写成 `Module.finrank_pos_iff.1 h` 来使用该引理。不过，了解命名参数的用法对于更复杂的情况仍然很有帮助。
 
-By definition, ``FiniteDimensional K V`` can be read from any basis.
+根据定义，`FiniteDimensional K V` 可以通过任意一组基来判定。
 EXAMPLES: -/
 -- QUOTE:
 variable {ι : Type*} (B : Basis ι K V)
@@ -563,8 +462,7 @@ example [FiniteDimensional K V] : Finite ι :=
 end
 -- QUOTE.
 /- TEXT:
-Using that the subtype corresponding to a linear subspace has a vector space structure,
-we can talk about the dimension of a subspace.
+使用与线性子空间对应的子类型具有向量空间结构，我们可以讨论子空间的维度。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -580,10 +478,9 @@ example : finrank K (E ⊔ F : Submodule K V) + finrank K (E ⊓ F : Submodule K
 example : finrank K E ≤ finrank K V := Submodule.finrank_le E
 -- QUOTE.
 /- TEXT:
-In the first statement above, the purpose of the type ascriptions is to make sure that
-coercion to ``Type*`` does not trigger too early.
+在第一条语句中，类型注释的目的是确保对 ``Type*`` 的强制转换不会过早触发。
 
-We are now ready for an exercise about ``finrank`` and subspaces.
+我们现在准备进行一个关于 ``finrank`` 和子空间的练习。
 EXAMPLES: -/
 -- QUOTE:
 example (h : finrank K V < finrank K E + finrank K F) :
@@ -602,49 +499,22 @@ end
 -- QUOTE.
 
 /- TEXT:
-Let us now move to the general case of dimension theory. In this case
-``finrank`` is useless, but we still have that, for any two bases of the same
-vector space, there is a bijection between the types indexing those bases. So we
-can still hope to define the rank as a cardinal, i.e. an element of the “quotient of
-the collection of types under the existence of a bijection equivalence
-relation”.
+我们现在转向一般的维数理论情形。此时，`finrank` 就不再适用，但我们依然知道，对于同一向量空间的任意两组基，其索引类型之间存在一个双射。因此，我们仍然可以期望将秩定义为基数（cardinal），即“类型集合在存在双射的等价关系下的商集”中的元素。
 
-When discussing cardinal, it gets harder to ignore foundational issues around Russel’s paradox
-like we do everywhere else in this book.
-There is no type of all types because it would lead to logical inconsistencies.
-This issue is solved by the hierarchy of universes that
-we usually try to ignore.
+在讨论基数时，难以像本书其他部分那样忽略类似罗素悖论的基础性问题。因为不存在“所有类型的类型”，否则会导致逻辑矛盾。
+这一问题通过宇宙层级（universe hierarchy）来解决，而我们通常会尝试忽略这些细节。
 
-Each type has a universe level, and those levels behave similarly to natural
-numbers. In particular there is zeroth level, and the corresponding universe
-``Type 0`` is simply denoted by ``Type``. This universe is enough to hold
-almost all of classical mathematics. For instance ``ℕ`` and ``ℝ`` have type ``Type``.
-Each level ``u`` has a successor denoted
-by ``u + 1``, and ``Type u`` has type ``Type (u+1)``.
+每个类型都有一个宇宙层级，该层级行为类似自然数。特别地，有一个零层级，对应的宇宙 `Type 0` 简写为 `Type`，这个宇宙足以容纳几乎所有经典数学对象，比如 `ℕ` 和 `ℝ` 都属于类型 `Type`。每个层级 `u` 有一个后继层级 `u + 1`，且 `Type u` 的类型是 `Type (u + 1)`。
 
-But universe levels are not natural numbers, they have a really different nature and don’t
-have a type. In particular you cannot state in Lean something like ``u ≠ u + 1``.
-There is simply no type where this would take place. Even stating
-``Type u ≠ Type (u+1)`` does not make any sense since ``Type u`` and ``Type (u+1)``
-have different types.
+但宇宙层级不是自然数，它们本质不同且没有对应的类型。例如，无法在 Lean 中声明 `u ≠ u + 1`，因为不存在一个类型可以表达这个命题。即使声明 `Type u ≠ Type (u+1)` 也没有意义，因为两者属于不同的类型。
 
-Whenever we write ``Type*``, Lean inserts a universe level variable named ``u_n`` where ``n`` is a
-number. This allows definitions and statements to live in all universes.
+当我们写 `Type*` 时，Lean 会自动插入一个名为 `u_n` 的宇宙变量，其中 `n` 是一个数字，允许定义和陈述在所有宇宙层级中成立。
 
-Given a universe level ``u``, we can define an equivalence relation on ``Type u`` saying
-two types ``α`` and ``β`` are equivalent if there is a bijection between them.
-The quotient type ``Cardinal.{u}`` lives in ``Type (u+1)``. The curly braces
-denote a universe variable. The image of ``α : Type u`` in this quotient is
-``Cardinal.mk α : Cardinal.{u}``.
+给定宇宙层级 `u`，我们可以在 `Type u` 上定义等价关系：当且仅当两个类型 `α` 和 `β` 存在双射时它们等价。
+商类型 `Cardinal.{u}` 属于 `Type (u + 1)`，花括号表示这是一个宇宙变量。类型 `α : Type u` 在商中的像为 `Cardinal.mk α : Cardinal.{u}`。
 
-But we cannot directly compare cardinals in different universes. So technically we
-cannot define the rank of a vector space ``V`` as the cardinal of all types indexing
-a basis of ``V``.
-So instead it is defined as the supremum ``Module.rank K V`` of cardinals of
-all linearly independent sets in ``V``. If ``V`` has universe level ``u`` then
-its rank has type ``Cardinal.{u}``.
-
-
+但我们不能直接比较不同宇宙层级中的基数。因此技术上讲，不能将向量空间 `V` 的秩定义为索引 `V` 基的所有类型的基数。
+相反，秩定义为 `Module.rank K V`，即 `V` 中所有线性无关集基数的上确界。如果 `V` 属于宇宙层级 `u`，则其秩属于 `Cardinal.{u}` 类型。
 EXAMPLES: -/
 -- QUOTE:
 #check V -- Type u_2
@@ -652,14 +522,12 @@ EXAMPLES: -/
 
 -- QUOTE.
 /- TEXT:
-One can still relate this definition to bases. Indeed there is also a commutative ``max``
-operation on universe levels, and given two universe levels ``u`` and ``v``
-there is an operation ``Cardinal.lift.{u, v} : Cardinal.{v} → Cardinal.{max v u}``
-that allows to put cardinals in a common universe and state the dimension theorem.
+这个定义仍然可以与基联系起来。实际上，宇宙层级上存在一个交换的 `max` 运算，对于任意两个宇宙层级 `u` 和 `v`，存在一个操作
+`Cardinal.lift.{u, v} : Cardinal.{v} → Cardinal.{max v u}`，该操作允许将基数提升到共同的宇宙层级中，从而陈述维数定理。
 EXAMPLES: -/
 -- QUOTE:
 
-universe u v -- `u` and `v` will denote universe levels
+universe u v -- `u` 和 `v` 将表示宇宙层级
 
 variable {ι : Type u} (B : Basis ι K V)
          {ι' : Type v} (B' : Basis ι' K V)
@@ -668,8 +536,7 @@ example : Cardinal.lift.{v, u} (.mk ι) = Cardinal.lift.{u, v} (.mk ι') :=
   mk_eq_mk_of_basis B B'
 -- QUOTE.
 /- TEXT:
-We can relate the finite dimensional case to this discussion using the coercion
-from natural numbers to finite cardinals (or more precisely the finite cardinals which live in ``Cardinal.{v}`` where ``v`` is the universe level of ``V``).
+我们可以将有限维情况与此讨论联系起来，使用从自然数到有限基数的强制转换（更准确地说，是生活在 ``Cardinal.{v}`` 中的有限基数，其中 ``v`` 是 ``V`` 的宇宙层级）。
 EXAMPLES: -/
 -- QUOTE:
 

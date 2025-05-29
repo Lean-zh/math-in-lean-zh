@@ -6,24 +6,17 @@ import Mathlib.LinearAlgebra.Charpoly.Basic
 import MIL.Common
 
 /- TEXT:
+向量空间与线性映射
+--------------------
 
-Vector spaces and linear maps
------------------------------
-
-Vector spaces
-^^^^^^^^^^^^^
+向量空间
+^^^^^^^^^
 
 .. index:: vector space
 
-We will start directly abstract linear algebra, taking place in a vector space over any field.
-However you can find information about matrices in
-:numref:`Section %s <matrices>` which does not logically depend on this abstract theory.
-Mathlib actually deals with a more general version of linear algebra involving the word module,
-but for now we will pretend this is only an eccentric spelling habit.
+我们将直接从抽象线性代数开始，讨论定义在任意域上的向量空间。 不过，你也可以在 :numref:`Section %s <matrices>` 中找到关于矩阵的信息，该部分在逻辑上并不依赖于本抽象理论。Mathlib 实际上处理的是更广义的线性代数，使用模（module）一词，但现在我们暂时当作这只是一个古怪的拼写习惯。
 
-The way to say “let :math:`K` be a field and let :math:`V` be a vector space over :math:`K`”
-(and make them implicit arguments to later results) is:
-
+“设 :math:`K` 是一个域，且 :math:`V` 是定义在 :math:`K` 上的向量空间”（并将其作为后续结论的隐式参数）的表达方式是：
 EXAMPLES: -/
 
 -- QUOTE:
@@ -32,26 +25,13 @@ variable {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V]
 -- QUOTE.
 
 /- TEXT:
-We explained in :numref:`Chapter %s <hierarchies>` why we need two separate
-typeclasses ``[AddCommGroup V] [Module K V]``.
-The short version is the following.
-Mathematically we want to say that having a :math:`K`-vector space structure
-implies having an additive commutative group structure.
-We could tell this to Lean. But then whenever Lean would need to find such a
-group structure on a type :math:`V`, it would go hunting for vector space
-structures using a *completely unspecified* field :math:`K` that cannot be inferred
-from :math:`V`.
-This would be very bad for the type class synthesis system.
 
-The multiplication of a vector `v` by a scalar `a` is denoted by
-`a • v`. We list a couple of algebraic rules about the interaction of this
-operation with addition in the following examples. Of course `simp` or `apply?`
-would find those proofs. There is also a `module` tactic that solves goals
-following from the axioms of vector spaces and fields, in the same way the
-`ring` tactic is used in commutative rings or the `group` tactic is used in
-groups. But it is still useful to remember that scalar
-multiplication is abbreviated `smul` in lemma names.
+我们在 :numref:`Chapter %s <hierarchies>` 中解释了为什么需要两个独立的类型类 `[AddCommGroup V]` 和 `[Module K V]`。
 
+简而言之，数学上我们想表达的是：拥有一个域 :math:`K` 上的向量空间结构意味着拥有一个加法交换群结构。虽然可以告诉 Lean 这一点，但如果这样做，每当 Lean 需要在类型 :math:`V` 上寻找该群结构时，它就会尝试去寻找带有完全未指定域 :math:`K` 的向量空间结构，而这个 :math:`K` 无法从 :math:`V` 中推断出来。
+这会严重影响类型类合成系统的效率和稳定性。
+
+向量 `v` 与标量 `a` 的乘法记作 `a • v`。下面示例列举了该操作与加法之间的若干代数规则。当然，`simp` 或 `apply?` 策略可以自动找到这些证明。还有一个 `module` 策略，类似于在交换环中使用 `ring` 策略、在群中使用 `group` 策略，可以根据向量空间和域的公理自动解决相关目标。但需要记住的是，在引理名称中，标量乘法通常缩写为 `smul`。
 
 EXAMPLES: -/
 
@@ -67,12 +47,8 @@ example (a b : K) (u : V) : a • b • u = b • a • u :=
 
 -- QUOTE.
 /- TEXT:
-As a quick note for more advanced readers, let us point out that, as suggested by
-terminology, Mathlib’s linear algebra also covers modules over (not necessarily commutative)
-rings.
-In fact it even covers semi-modules over semi-rings. If you think you do not need
-this level of generality, you can meditate the following example that nicely captures
-a lot of algebraic rules about ideals acting on submodules:
+作为对更高级读者的简要提示，正如术语所暗示的那样，Mathlib 的线性代数不仅涵盖了定义在（不一定是交换）环上的模（modules）。事实上，它甚至涵盖了半环上的半模（semi-modules）。如果你认为不需要如此广泛的泛化，可以思考下面这个例子，它很好地体现了理想对子模作用的许多代数规则：
+
 EXAMPLES: -/
 -- QUOTE:
 example {R M : Type*} [CommSemiring R] [AddCommMonoid M] [Module R M] :
@@ -82,23 +58,14 @@ example {R M : Type*} [CommSemiring R] [AddCommMonoid M] [Module R M] :
 
 -- QUOTE.
 /- TEXT:
-Linear maps
+线性映射
 ^^^^^^^^^^^
 
 .. index:: linear map
 
-Next we need linear maps. Like group morphisms, linear maps in Mathlib are bundled maps, i.e. packages
-made of a map and proofs of its linearity properties.
-Those bundled maps are converted to ordinary functions when applied.
-See :numref:`Chapter %s <hierarchies>` for more information about this design.
+接下来我们需要引入线性映射。类似于群同态，Mathlib 中的线性映射是“打包”的映射，即由一个映射和其线性性质证明组成的整体。这些打包映射在应用时会自动转换为普通函数。关于这一设计的更多信息，请参见 :numref:`Chapter %s <hierarchies>`。
 
-The type of linear maps between two ``K``-vector spaces
-``V`` and ``W`` is denoted by ``V →ₗ[K] W``. The subscript `l` stands for linear.
-At first it may feel odd to specify ``K`` in this notation.
-But this is crucial when several fields come into play.
-For instance real-linear maps from :math:`ℂ` to :math:`ℂ` are every map :math:`z ↦ az + b\bar{z}`
-while only the maps :math:`z ↦ az` are complex linear, and this difference is crucial in
-complex analysis.
+两个域 ``K`` 上的向量空间 ``V`` 和 ``W`` 之间的线性映射类型记作 ``V →ₗ[K] W`` ，其中下标的 `l` 表示“linear”（线性）。一开始在符号中显式指定 ``K`` 可能感觉有些奇怪，但当涉及多个域时，这一点尤为重要。例如，从复数域 :math:`ℂ` 到 :math:`ℂ` 的实线性映射形式为 :math:`z ↦ az + b\bar{z}` ，而复线性映射则仅限于形式为 :math:`z ↦ az` 的映射，这一区别在复分析中极为关键。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -116,10 +83,8 @@ example (v w : V) : φ (v + w) = φ v + φ w :=
 -- QUOTE.
 
 /- TEXT:
-Note that ``V →ₗ[K] W`` itself carries interesting algebraic structures (this
-is part of the motivation for bundling those maps).
-It is a ``K``-vector space so we can add linear maps and multiply them by scalars.
-
+注意，`V →ₗ[K] W` 本身也携带了丰富的代数结构（这也是将这些映射打包的动机之一）。
+它是一个 `K`-向量空间，因此我们可以对线性映射进行加法运算，也可以对它们进行标量乘法。
 EXAMPLES: -/
 -- QUOTE:
 variable (ψ : V →ₗ[K] W)
@@ -129,9 +94,8 @@ variable (ψ : V →ₗ[K] W)
 -- QUOTE.
 
 /- TEXT:
-One downside of using bundled maps is that we cannot use ordinary function composition.
-We need to use ``LinearMap.comp`` or the notation ``∘ₗ``.
-
+使用打包映射的一个缺点是，无法直接使用普通函数的组合运算。
+我们需要使用专门的组合函数 `LinearMap.comp`，或者使用专用符号 `∘ₗ` 来表示线性映射的组合。
 EXAMPLES: -/
 -- QUOTE:
 variable (θ : W →ₗ[K] V)
@@ -141,11 +105,8 @@ variable (θ : W →ₗ[K] V)
 -- QUOTE.
 
 /- TEXT:
-There are two main ways to construct linear maps.
-First we can build the structure by providing the function and the linearity proof.
-As usual, this is facilitated by the structure code action: you can type
-``example : V →ₗ[K] V := _`` and use the code action “Generate a skeleton” attached to the
-underscore.
+构造线性映射主要有两种方式。第一种是通过提供函数本体和线性性质的证明来构建该结构。
+通常，可以借助代码操作快速完成：你只需输入 ``example : V →ₗ[K] V := _`` 然后对下划线使用“生成骨架”（Generate a skeleton）代码操作，即可自动生成所需的结构框架。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -157,16 +118,7 @@ example : V →ₗ[K] V where
 -- QUOTE.
 
 /- TEXT:
-You may wonder why the proof fields of ``LinearMap`` have names ending with a prime.
-This is because they are defined before the coercion to functions is defined, hence they are
-phrased in terms of ``LinearMap.toFun``. Then they are restated as ``LinearMap.map_add``
-and ``LinearMap.map_smul`` in terms of the coercion to function.
-This is not yet the end of the story. One also wants a version of ``map_add`` that applies to
-any (bundled) map preserving addition, such as additive group morphisms, linear maps, continuous
-linear maps, ``K``-algebra maps etc… This one is ``map_add`` (in the root namespace).
-The intermediate version, ``LinearMap.map_add`` is a bit redundant but allows to use dot notation, which
-can be nice sometimes. A similar story exists for ``map_smul``, and the general framework
-is explained in :numref:`Chapter %s <hierarchies>`.
+你可能会好奇为什么 `LinearMap` 结构中用于证明的字段名称都带有撇号。这是因为这些证明是在函数强制转换（coercion）之前定义的，因此它们是基于 `LinearMap.toFun` 表达的。随后，它们又被重新表达为基于函数强制转换的 `LinearMap.map_add` 和 `LinearMap.map_smul`。事情还没结束。我们还需要一个适用于任意保持加法的（打包）映射的 `map_add` 版本，比如加法群同态、线性映射、连续线性映射、`K`-代数映射等。这个版本是定义在根命名空间的 `map_add`。而中间版本 `LinearMap.map_add` 虽有些冗余，但支持点记法（dot notation），在某些情况下使用起来更方便。`map_smul` 也有类似情况。整体框架请参见 :numref:`Chapter %s <hierarchies>` 的详细解释。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -177,15 +129,8 @@ EXAMPLES: -/
 -- QUOTE.
 
 /- TEXT:
-One can also build linear maps from the ones that are already defined in Mathlib
-using various combinators.
-For instance the above example is already known as ``LinearMap.lsmul K V 3``.
-There are several reason why ``K`` and ``V`` are explicit arguments here.
-The most pressing one is that from a bare ``LinearMap.lsmul 3`` there would be no way
-for Lean to infer ``V`` or even ``K``.
-But also ``LinearMap.lsmul K V`` is an interesting object by itself: it has type
-``K →ₗ[K] V →ₗ[K] V``, meaning it is a ``K``-linear map from ``K``
-—seen as a vector space over itself— to the space of ``K``-linear maps from ``V`` to ``V``.
+我们也可以利用 Mathlib 中已有的线性映射，通过各种组合子（combinators）来构造新的线性映射。
+例如，上述例子已经在 Mathlib 中以 `LinearMap.lsmul K V 3` 的形式存在。这里 `K` 和 `V` 是显式参数，原因有几个：最主要的是，如果只写 `LinearMap.lsmul 3`，Lean 无法推断出 `V`，甚至无法推断出 `K`。此外，`LinearMap.lsmul K V` 本身也是一个有趣的对象：它的类型是 ``K →ₗ[K] V →ₗ[K] V`` ，意味着它是一个从域 `K`（视为其自身上的向量空间）到从 `V` 到 `V` 的 `K`-线性映射空间的线性映射。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -195,11 +140,7 @@ EXAMPLES: -/
 -- QUOTE.
 
 /- TEXT:
-There is also a type ``LinearEquiv`` of linear isomorphisms denoted by ``V ≃ₗ[K] W``.
-The inverse of ``f : V ≃ₗ[K] W`` is ``f.symm : W ≃ₗ[K] V``,
-composition of ``f`` and ``g`` is ``f.trans g`` also denoted by ``f ≪≫ₗ g``, and
-the identity isomorphism of ``V`` is ``LinearEquiv.refl K V``.
-Elements of this type are automatically coerced to morphisms and functions when necessary.
+还有一个线性同构类型 `LinearEquiv`，用符号表示为 ``V ≃ₗ[K] W`` ，对于 `f : V ≃ₗ[K] W`，它的逆映射是 ``f.symm : W ≃ₗ[K] V`` 。两个线性同构 `f` 和 `g` 的复合是 ``f.trans g`` ，也可用符号 ``f ≪≫ₗ g`` 表示。`V` 的恒等同构是 ``LinearEquiv.refl K V`` ，该类型的元素在需要时会自动强制转换为对应的同态映射或函数。
 EXAMPLES: -/
 -- QUOTE:
 example (f : V ≃ₗ[K] W) : f ≪≫ₗ f.symm = LinearEquiv.refl K V :=
@@ -207,8 +148,7 @@ example (f : V ≃ₗ[K] W) : f ≪≫ₗ f.symm = LinearEquiv.refl K V :=
 -- QUOTE.
 
 /- TEXT:
-One can use ``LinearEquiv.ofBijective`` to build an isomorphism from a bijective morphism.
-Doing so makes the inverse function noncomputable.
+可以使用 `LinearEquiv.ofBijective` 从一个双射的同态构造线性同构。这样构造的逆映射函数是不可计算的。
 EXAMPLES: -/
 -- QUOTE:
 noncomputable example (f : V →ₗ[K] W) (h : Function.Bijective f) : V ≃ₗ[K] W :=
@@ -216,21 +156,12 @@ noncomputable example (f : V →ₗ[K] W) (h : Function.Bijective f) : V ≃ₗ[
 -- QUOTE.
 
 /- TEXT:
-Note that in the above example, Lean uses the announced type to understand that ``.ofBijective``
-refers to ``LinearEquiv.ofBijective`` (without needing to open any namespace).
+请注意，在上述例子中，Lean 利用声明的类型自动识别 `.ofBijective` 是指 `LinearEquiv.ofBijective`，无需显式打开命名空间。
 
-Sums and products of vector spaces
+向量空间的直和与直积
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We can build new vector spaces out of old ones using direct sums and direct
-products.
-Let us start with two vectors spaces. In this case there is no difference between sum and product,
-and we can simply use the product type.
-In the following snippet of code we simply show how to get all the structure maps (inclusions
-and projections) as linear maps, as well as the universal properties constructing linear maps
-into products and out of sums (if you are not familiar with the category-theoretic distinction
-between sums and products, you can simply ignore the universal property vocabulary and focus
-on the types of the following examples).
+我们可以利用已有的向量空间，通过直和和直积构造新的向量空间。从两个向量空间开始，在该情形下直和与直积无区别，我们可以直接使用积类型。下面的代码片段展示了如何将所有结构映射（含入（inclusion）映射和投影映射）构造为线性映射，以及构造映射到积空间和从和空间出的万有性质（universal properties）。如果你对范畴论中和与积的区别不熟悉，可以忽略“万有性质”相关术语，专注于示例中的类型即可。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -240,46 +171,46 @@ variable {W : Type*} [AddCommGroup W] [Module K W]
 variable {U : Type*} [AddCommGroup U] [Module K U]
 variable {T : Type*} [AddCommGroup T] [Module K T]
 
--- First projection map
+-- 第一投影映射
 example : V × W →ₗ[K] V := LinearMap.fst K V W
 
--- Second projection map
+-- 第二投影映射
 example : V × W →ₗ[K] W := LinearMap.snd K V W
 
--- Universal property of the product
+-- 直积的万有性质
 example (φ : U →ₗ[K] V) (ψ : U →ₗ[K] W) : U →ₗ[K]  V × W := LinearMap.prod φ ψ
 
--- The product map does the expected thing, first component
+-- 直积映射满足预期行为，第一分量
 example (φ : U →ₗ[K] V) (ψ : U →ₗ[K] W) : LinearMap.fst K V W ∘ₗ LinearMap.prod φ ψ = φ := rfl
 
--- The product map does the expected thing, second component
+-- 直积映射满足预期行为，第二分量
 example (φ : U →ₗ[K] V) (ψ : U →ₗ[K] W) : LinearMap.snd K V W ∘ₗ LinearMap.prod φ ψ = ψ := rfl
 
--- We can also combine maps in parallel
+-- 我们也可以并行组合映射
 example (φ : V →ₗ[K] U) (ψ : W →ₗ[K] T) : (V × W) →ₗ[K] (U × T) := φ.prodMap ψ
 
--- This is simply done by combining the projections with the universal property
+-- 这只是通过将投影与万有性质结合实现
 example (φ : V →ₗ[K] U) (ψ : W →ₗ[K] T) :
   φ.prodMap ψ = (φ ∘ₗ .fst K V W).prod (ψ ∘ₗ .snd K V W) := rfl
 
--- First inclusion map
+-- 第一包含（inclusion）映射
 example : V →ₗ[K] V × W := LinearMap.inl K V W
 
--- Second inclusion map
+-- 第二含入映射
 example : W →ₗ[K] V × W := LinearMap.inr K V W
 
--- Universal property of the sum (aka coproduct)
+-- 直和（又称余积）的万有性质
 example (φ : V →ₗ[K] U) (ψ : W →ₗ[K] U) : V × W →ₗ[K] U := φ.coprod ψ
 
--- The coproduct map does the expected thing, first component
+-- 余积映射满足预期行为，第一分量
 example (φ : V →ₗ[K] U) (ψ : W →ₗ[K] U) : φ.coprod ψ ∘ₗ LinearMap.inl K V W = φ :=
   LinearMap.coprod_inl φ ψ
 
--- The coproduct map does the expected thing, second component
+-- 余积映射满足预期行为，第二分量
 example (φ : V →ₗ[K] U) (ψ : W →ₗ[K] U) : φ.coprod ψ ∘ₗ LinearMap.inr K V W = ψ :=
   LinearMap.coprod_inr φ ψ
 
--- The coproduct map is defined in the expected way
+-- 余积映射的定义符合预期
 example (φ : V →ₗ[K] U) (ψ : W →ₗ[K] U) (v : V) (w : W) :
     φ.coprod ψ (v, w) = φ v + ψ w :=
   rfl
@@ -288,12 +219,7 @@ end binary_product
 
 -- QUOTE.
 /- TEXT:
-Let us now turn to sums and products of arbitrary families of vector spaces.
-Here we will simply see how to define a family of vector spaces and access the universal
-properties of sums and products.
-Note that the direct sum notation is scoped to the ``DirectSum`` namespace, and
-that the universal property of direct sums requires decidable equality on the
-indexing type (this is somehow an implementation accident).
+现在我们转向任意族向量空间的直和与直积。这里我们将展示如何定义一个向量空间族，并访问直和与直积的万有性质。请注意，直和符号限定在 `DirectSum` 命名空间中，且直和的万有性质要求索引类型具备可判定等价性（这在某种程度上是实现上的偶然情况）。
 EXAMPLES: -/
 
 -- QUOTE:
@@ -303,26 +229,24 @@ open DirectSum
 variable {ι : Type*} [DecidableEq ι]
          (V : ι → Type*) [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
 
--- The universal property of the direct sum assembles maps from the summands to build
--- a map from the direct sum
+-- 直和的万有性质将从各个直和因子映射出的映射组装成从直和映射出的映射
 example (φ : Π i, (V i →ₗ[K] W)) : (⨁ i, V i) →ₗ[K] W :=
   DirectSum.toModule K ι W φ
 
--- The universal property of the direct product assembles maps into the factors
--- to build a map into the direct product
+-- 直积的万有性质将映射到各个因子的映射组装成映射到直积
 example (φ : Π i, (W →ₗ[K] V i)) : W →ₗ[K] (Π i, V i) :=
   LinearMap.pi φ
 
--- The projection maps from the product
+-- 来自直积的投影映射
 example (i : ι) : (Π j, V j) →ₗ[K] V i := LinearMap.proj i
 
--- The inclusion maps into the sum
+-- 含入映射到直和
 example (i : ι) : V i →ₗ[K] (⨁ i, V i) := DirectSum.lof K ι V i
 
--- The inclusion maps into the product
+-- 含入映射到直积
 example (i : ι) : V i →ₗ[K] (Π i, V i) := LinearMap.single K V i
 
--- In case `ι` is a finite type, there is an isomorphism between the sum and product.
+-- 若 `ι` 是有限类型，直和与直积之间存在线性同构
 example [Fintype ι] : (⨁ i, V i) ≃ₗ[K] (Π i, V i) :=
   linearEquivFunOnFintype K ι V
 

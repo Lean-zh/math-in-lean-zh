@@ -1,8 +1,7 @@
 .. _linear_algebra:
 
-Linear algebra
+线性代数
 ==============
-
 
 .. include:: C09_Linear_Algebra/S01_Vector_Spaces.inc
 .. include:: C09_Linear_Algebra/S02_Subspaces.inc

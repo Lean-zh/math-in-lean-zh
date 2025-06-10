@@ -85,7 +85,7 @@ example (a b c : ℝ) : a * b * c = b * c * a := by
 -- QUOTE.
 
 /- TEXT:
-你还可以只提供一部分参数，例如 ``mul_comm a`` 识别所有形如 ``a * ?`` 或者 ``? * a`` 的模式。下面的练习中你可以试试在第一个里面不给参数，第二个里面只给一个参数。
+你还可以只提供一部分参数，例如 ``mul_comm a`` 识别所有形如 ``a * ?`` 的模式然后重写为 ``? * a`` 。下面的练习中你可以试试在第一个里面不给参数，第二个里面只给一个参数。
 TEXT. -/
 /- Try doing the first of these without providing any arguments at all,
    and the second with only one argument. -/

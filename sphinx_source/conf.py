@@ -91,6 +91,14 @@ latex_engine = 'xelatex'
 latex_additional_files = ['unixode.sty']
 
 latex_elements = {
+    # 中文字体设置
+    'fontpkg': r'''
+    \usepackage{xeCJK}
+    \setCJKmainfont{SimSun}[BoldFont=SimHei, ItalicFont=KaiTi]
+    \setCJKsansfont{Microsoft YaHei}
+    \setCJKmonofont{FangSong}
+    \setmainfont{Times New Roman}
+    ''',
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',

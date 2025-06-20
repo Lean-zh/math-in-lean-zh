@@ -1,0 +1,63 @@
+
+5.4
+6.1-3
+
+错误：
+source/C01_Introduction/S02_Overview.inc:148: ERROR: Unknown target name: "lean-zh 中文社区<https://www.leanprover.cn/>". [docutils]
+source/C02_Basics/S01_Calculating.inc:200: WARNING: Explicit markup ends without a blank line; unexpected unindent. [docutils]
+source/C02_Basics/S02_Proving_Identities_in_Algebraic_Structures.inc:225: WARNING: Explicit markup ends without a blank line; unexpected unindent. [docutils]
+source/C02_Basics/S04_More_on_Order_and_Divisibility.inc:104: WARNING: Inline literal start-string without end-string. [docutils]
+source/C05_Elementary_Number_Theory/S01_Irrational_Roots.inc:4:
+source/C05_Elementary_Number_Theory/S01_Irrational_Roots.inc:12: ERROR: Unexpected indentation. [docutils]
+source/C05_Elementary_Number_Theory/S02_Induction_and_Recursion.inc:104: ERROR: Unexpected indentation. [docutils]
+source/C05_Elementary_Number_Theory/S02_Induction_and_Recursion.inc:105: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils]
+source/C05_Elementary_Number_Theory/S03_Infinitely_Many_Primes.inc:163: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils]
+D:\Git\math-in-lean-zh\source\C06_Discrete_Mathematics.rst:4: WARNING: 重复的标签 number_theory，另一标签出现在 D:\Git\math-in-lean-zh\source\C05_Elementary_Number_Theory.rst
+source/C08_Hierarchies/S01_Basics.inc:39: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils]
+source/C08_Hierarchies/S01_Basics.inc:381: ERROR: Unexpected indentation. [docutils]
+source/C08_Hierarchies/S01_Basics.inc:385: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils]
+source/C08_Hierarchies/S02_Morphisms.inc:99: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils]
+source/C09_Groups_and_Rings/S01_Groups.inc:107: ERROR: Unexpected indentation. [docutils]        
+source/C09_Groups_and_Rings/S01_Groups.inc:109: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils]
+source/C11_Topology/S01_Filters.inc:109: ERROR: Unexpected indentation. [docutils]
+source/C11_Topology/S01_Filters.inc:252: ERROR: Unexpected indentation. [docutils]
+source/C11_Topology/S02_Metric_Spaces.inc:32: WARNING: Title underline too short.
+
+收敛与连续性
+^^^^^^^^^^^ [docutils]
+source/C11_Topology/S02_Metric_Spaces.inc:73: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils]
+source/C11_Topology/S02_Metric_Spaces.inc:116: WARNING: Title underline too short.
+
+球、开集与闭集
+^^^^^^^^^^^^^ [docutils]
+source/C11_Topology/S02_Metric_Spaces.inc:116: WARNING: Title underline too short.
+
+球、开集与闭集
+^^^^^^^^^^^^^ [docutils]
+source/C11_Topology/S02_Metric_Spaces.inc:187: WARNING: Title underline too short.
+
+紧致性
+^^^^^ [docutils]
+source/C11_Topology/S02_Metric_Spaces.inc:187: WARNING: Title underline too short.
+
+紧致性
+^^^^^ [docutils]
+source/C11_Topology/S03_Topological_Spaces.inc:179: WARNING: Title underline too short.
+
+分离性与可数性
+^^^^^^^^^^^^^ [docutils]
+source/C11_Topology/S03_Topological_Spaces.inc:179: WARNING: Title underline too short.
+
+分离性与可数性
+^^^^^^^^^^^^^ [docutils]
+source/C11_Topology/S03_Topological_Spaces.inc:228: ERROR: Unexpected indentation. [docutils]    
+source/C11_Topology/S03_Topological_Spaces.inc:229: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils]
+source/C11_Topology/S03_Topological_Spaces.inc:235: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils]
+source/C11_Topology/S03_Topological_Spaces.inc:270: WARNING: Title underline too short.
+
+紧致性
+^^^^^ [docutils]
+source/C11_Topology/S03_Topological_Spaces.inc:270: WARNING: Title underline too short.
+
+紧致性
+^^^^^ [docutils]

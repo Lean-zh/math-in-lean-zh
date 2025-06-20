@@ -1,3 +1,12 @@
+-- QUOTE:[text]-- BOTH:[text]-- QUOTE.  
+/- TEXT:[text]EXAMPLES: -/
+/- TEXT:[text]BOTH: -/
+/- EXAMPLES:[text]SOLUTIONS: -/
+math:`[text]`          斜体
+:numref:`[text]`         链接
+``[text]``             关键字
+ **[text]**          加粗
+
 structure		结构体
 ring		环
 lattice		格
@@ -8,3 +17,15 @@ structural eta-reduction
 standard 2-simplex		标准 2-单纯形
 proof terms
 generic type product
+
+base cases （递归的）基础条件
+tactic 策略
+
+6
+《离散数学》双语专业词汇表：https://www.cnblogs.com/emanlee/archive/2011/01/31/1948337.html
+finite sets 有限集
+objects
+structures 离散结构
+generating functions 生成函数
+structural recursion 结构递归（？）
+structural induction 结构归纳法

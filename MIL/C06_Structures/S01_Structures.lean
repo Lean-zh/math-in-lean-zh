@@ -283,7 +283,7 @@ end StandardTwoSimplex
 /- TEXT:
 结构体还可以依赖于参数。
 例如，可以将标准2-单纯形推广到任意维数 :math:`n` 下的 :math:`n` -单纯形。
-目前阶段，你不需要对 ``Fin n`` 了解太多，只需知道它有 :math:`n` 个元素，并且 Lean 直到如何在其上进行就和操作即可。
+目前阶段，你不需要对 ``Fin n`` 了解太多，只需知道它有 :math:`n` 个元素，并且 Lean 知道如何在其上进行就和操作即可。
 BOTH: -/
 -- QUOTE:
 open BigOperators

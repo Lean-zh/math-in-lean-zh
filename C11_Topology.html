@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10. &#25299;&#25169;&#23398; &mdash; Mathematics in Lean 0.1 documentation</title>
+  <title>11. &#25299;&#25169;&#23398; &mdash; Mathematics in Lean 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0731ccc3" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. &#24494;&#20998;&#23398;" href="C11_Differential_Calculus.html" />
-    <link rel="prev" title="9. &#32447;&#24615;&#20195;&#25968;" href="C09_Linear_Algebra.html" /> 
+    <link rel="next" title="12. &#24494;&#20998;&#23398;" href="C12_Differential_Calculus.html" />
+    <link rel="prev" title="10. &#32447;&#24615;&#20195;&#25968;" href="C10_Linear_Algebra.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,29 +51,30 @@
 <li class="toctree-l1"><a class="reference internal" href="C03_Logic.html">3. &#36923;&#36753;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C04_Sets_and_Functions.html">4. &#38598;&#21512;&#21644;&#20989;&#25968;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C05_Elementary_Number_Theory.html">5. &#21021;&#31561;&#25968;&#35770;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C06_Structures.html">6. &#32467;&#26500;&#20307;&#65288;Structures&#65289;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. &#23618;&#27425;&#32467;&#26500;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C08_Groups_and_Rings.html">8. &#32676;&#19982;&#29615;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C09_Linear_Algebra.html">9. &#32447;&#24615;&#20195;&#25968;</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">10. &#25299;&#25169;&#23398;</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#filters">10.1. &#28388;&#23376;</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#metric-spaces">10.2. &#24230;&#37327;&#31354;&#38388;</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">10.2.1. &#25910;&#25947;&#19982;&#36830;&#32493;&#24615;</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">10.2.2. &#29699;&#12289;&#24320;&#38598;&#19982;&#38381;&#38598;</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">10.2.3. &#32039;&#33268;&#24615;</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">10.2.4. &#23436;&#22791;&#24615;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C06_Discrete_Mathematics.html">6. &#31163;&#25955;&#25968;&#23398;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C07_Structures.html">7. &#32467;&#26500;&#20307;&#65288;Structures&#65289;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C08_Hierarchies.html">8. &#23618;&#27425;&#32467;&#26500;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C09_Groups_and_Rings.html">9. &#32676;&#19982;&#29615;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C10_Linear_Algebra.html">10. &#32447;&#24615;&#20195;&#25968;</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. &#25299;&#25169;&#23398;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#filters">11.1. &#28388;&#23376;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metric-spaces">11.2. &#24230;&#37327;&#31354;&#38388;</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">11.2.1. &#25910;&#25947;&#19982;&#36830;&#32493;&#24615;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">11.2.2. &#29699;&#12289;&#24320;&#38598;&#19982;&#38381;&#38598;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">11.2.3. &#32039;&#33268;&#24615;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">11.2.4. &#23436;&#22791;&#24615;</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#topological-spaces">10.3. &#25299;&#25169;&#31354;&#38388;</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">10.3.1. &#22522;&#30784;</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">10.3.2. &#20998;&#31163;&#24615;&#19982;&#21487;&#25968;&#24615;</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">10.3.3. &#32039;&#33268;&#24615;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#topological-spaces">11.3. &#25299;&#25169;&#31354;&#38388;</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">11.3.1. &#22522;&#30784;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">11.3.2. &#20998;&#31163;&#24615;&#19982;&#21487;&#25968;&#24615;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">11.3.3. &#32039;&#33268;&#24615;</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="C11_Differential_Calculus.html">11. &#24494;&#20998;&#23398;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C12_Integration_and_Measure_Theory.html">12. &#31215;&#20998;&#21644;&#27979;&#24230;&#35770;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C12_Differential_Calculus.html">12. &#24494;&#20998;&#23398;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C13_Integration_and_Measure_Theory.html">13. &#31215;&#20998;&#21644;&#27979;&#24230;&#35770;</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -93,9 +94,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">10. </span>&#25299;&#25169;&#23398;</li>
+      <li class="breadcrumb-item active"><span class="section-number">11. </span>&#25299;&#25169;&#23398;</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/C10_Topology.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/C11_Topology.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -104,18 +105,18 @@
            <div itemprop="articleBody">
              
   <section id="index-0">
-<span id="topology"></span><span id="id1"></span><h1><span class="section-number">10. </span>&#25299;&#25169;&#23398;<a class="headerlink" href="#index-0" title="Link to this heading">&#61633;</a></h1>
+<span id="topology"></span><span id="id1"></span><h1><span class="section-number">11. </span>&#25299;&#25169;&#23398;<a class="headerlink" href="#index-0" title="Link to this heading">&#61633;</a></h1>
 <p>&#24494;&#31215;&#20998;&#24314;&#31435;&#22312;&#20989;&#25968;&#30340;&#27010;&#24565;&#20043;&#19978;&#65292;&#26088;&#22312;&#23545;&#30456;&#20114;&#20381;&#36182;&#30340;&#37327;&#36827;&#34892;&#24314;&#27169;&#12290;&#20363;&#22914;&#65292;&#30740;&#31350;&#38543;&#26102;&#38388;&#21464;&#21270;&#30340;&#37327;&#26159;&#19968;&#20010;&#24120;&#35265;&#30340;&#24212;&#29992;&#22330;&#26223;&#12290;
 <strong>&#26497;&#38480;&#65288;limit&#65289;</strong> &#36825;&#19968;&#27010;&#24565;&#21516;&#26679;&#22522;&#30784;&#12290;&#25105;&#20204;&#21487;&#20197;&#35828;&#65292;&#24403; <span class="math notranslate nohighlight">\(x\)</span> &#36235;&#36817;&#20110;&#26576;&#20010;&#20540; <span class="math notranslate nohighlight">\(a\)</span> &#26102;&#65292;&#20989;&#25968; <span class="math notranslate nohighlight">\(f(x)\)</span> &#30340;&#26497;&#38480;&#26159;&#19968;&#20010;&#20540; <span class="math notranslate nohighlight">\(b\)</span> &#65292;&#25110;&#32773;&#35828; <span class="math notranslate nohighlight">\(f(x)\)</span> &#24403; <span class="math notranslate nohighlight">\(x\)</span> &#36235;&#36817;&#20110; <span class="math notranslate nohighlight">\(a\)</span> &#26102; <strong>&#25910;&#25947;&#20110;&#65288;converges to&#65289;</strong> <span class="math notranslate nohighlight">\(b\)</span> &#12290;
 &#31561;&#20215;&#22320;&#65292;&#25105;&#20204;&#21487;&#20197;&#35828;&#24403; <span class="math notranslate nohighlight">\(x\)</span> &#36235;&#36817;&#20110;&#26576;&#20010;&#20540; <span class="math notranslate nohighlight">\(a\)</span> &#26102;&#65292;<span class="math notranslate nohighlight">\(f(x)\)</span> &#36235;&#36817;&#20110; <span class="math notranslate nohighlight">\(b\)</span> &#65292;&#25110;&#32773;&#35828;&#23427;&#24403; <span class="math notranslate nohighlight">\(x\)</span> &#36235;&#21521;&#20110; <span class="math notranslate nohighlight">\(a\)</span> &#26102; <strong>&#36235;&#21521;&#20110;&#65288;tends to&#65289;</strong> <span class="math notranslate nohighlight">\(b\)</span> &#12290;&#25105;&#20204;&#22312;
 <a class="reference internal" href="C03_Logic.html#sequences-and-convergence"><span class="std std-numref">Section 3.6</span></a>
 &#20013;&#24050;&#24320;&#22987;&#32771;&#34385;&#27492;&#31867;&#27010;&#24565;&#12290;</p>
 <p><strong>&#25299;&#25169;&#23398;</strong> &#26159;&#23545;&#26497;&#38480;&#21644;&#36830;&#32493;&#24615;&#30340;&#25277;&#35937;&#30740;&#31350;&#12290;
-&#22312;&#31532; <a class="reference internal" href="C02_Basics.html#basics"><span class="std std-numref">2</span></a> &#31456;&#21040;&#31532; <a class="reference internal" href="C06_Structures.html#structures"><span class="std std-numref">6</span></a> &#31456;&#20013;&#65292;&#25105;&#20204;&#24050;&#32463;&#20171;&#32461;&#20102;&#24418;&#24335;&#21270;&#30340;&#22522;&#30784;&#30693;&#35782;&#65292;&#22312;&#26412;&#31456;&#20013;&#65292;&#25105;&#20204;&#23558;&#35299;&#37322;&#22312; Mathlib &#20013;&#22914;&#20309;&#24418;&#24335;&#21270;&#25299;&#25169;&#27010;&#24565;&#12290;
+&#22312;&#31532; <a class="reference internal" href="C02_Basics.html#basics"><span class="std std-numref">2</span></a> &#31456;&#21040;&#31532; <a class="reference internal" href="C07_Structures.html#structures"><span class="std std-numref">7</span></a> &#31456;&#20013;&#65292;&#25105;&#20204;&#24050;&#32463;&#20171;&#32461;&#20102;&#24418;&#24335;&#21270;&#30340;&#22522;&#30784;&#30693;&#35782;&#65292;&#22312;&#26412;&#31456;&#20013;&#65292;&#25105;&#20204;&#23558;&#35299;&#37322;&#22312; Mathlib &#20013;&#22914;&#20309;&#24418;&#24335;&#21270;&#25299;&#25169;&#27010;&#24565;&#12290;
 &#25299;&#25169;&#25277;&#35937;&#19981;&#20165;&#36866;&#29992;&#33539;&#22260;&#26356;&#24191;&#65292;&#32780;&#19988;&#26377;&#20123;&#30683;&#30462;&#30340;&#26159;&#65292;&#36825;&#20063;&#20351;&#24471;&#22312;&#20855;&#20307;&#23454;&#20363;&#20013;&#25512;&#29702;&#26497;&#38480;&#21644;&#36830;&#32493;&#24615;&#21464;&#24471;&#26356;&#21152;&#23481;&#26131;&#12290;</p>
 <p>&#25299;&#25169;&#27010;&#24565;&#24314;&#31435;&#22312;&#22810;&#23618;&#25968;&#23398;&#32467;&#26500;&#20043;&#19978;&#12290;
 &#31532;&#19968;&#23618;&#26159;&#26420;&#32032;&#38598;&#21512;&#35770;&#65292;&#22914;&#31532; <a class="reference internal" href="C04_Sets_and_Functions.html#sets-and-functions"><span class="std std-numref">Chapter 4</span></a> &#25152;&#36848;&#12290;
-&#25509;&#19979;&#26469;&#30340;&#19968;&#23618;&#26159; <strong>&#28388;&#23376;</strong> &#29702;&#35770;&#65292;&#25105;&#20204;&#23558;&#22312; <a class="reference internal" href="#filters"><span class="std std-numref">Section 10.1</span></a> &#20013;&#36827;&#34892;&#25551;&#36848;&#12290;
+&#25509;&#19979;&#26469;&#30340;&#19968;&#23618;&#26159; <strong>&#28388;&#23376;</strong> &#29702;&#35770;&#65292;&#25105;&#20204;&#23558;&#22312; <a class="reference internal" href="#filters"><span class="std std-numref">Section 11.1</span></a> &#20013;&#36827;&#34892;&#25551;&#36848;&#12290;
 &#22312;&#27492;&#20043;&#19978;&#65292;&#25105;&#20204;&#20877;&#21472;&#21152; <strong>&#25299;&#25169;&#31354;&#38388;</strong> &#12289; <strong>&#24230;&#37327;&#31354;&#38388;</strong> &#20197;&#21450;&#19968;&#31181;&#31245;&#26174;&#22855;&#29305;&#30340;&#20013;&#38388;&#27010;&#24565;&#8212;&#8212; <strong>&#19968;&#33268;&#31354;&#38388;</strong> &#30340;&#29702;&#35770;&#12290;</p>
 <p>&#34429;&#28982;&#21069;&#38754;&#30340;&#31456;&#33410;&#25152;&#20381;&#36182;&#30340;&#25968;&#23398;&#27010;&#24565;&#24744;&#21487;&#33021;&#24050;&#32463;&#29087;&#24713;&#65292;&#20294;&#8220;&#28388;&#23376;&#8221;&#36825;&#19968;&#27010;&#24565;&#23545;&#24744;&#26469;&#35828;&#21487;&#33021;&#19981;&#22826;&#29087;&#24713;&#65292;&#29978;&#33267;&#23545;&#35768;&#22810;&#20174;&#20107;&#25968;&#23398;&#24037;&#20316;&#30340;&#20154;&#21592;&#26469;&#35828;&#20063;&#26159;&#22914;&#27492;&#12290;
 &#28982;&#32780;&#65292;&#36825;&#19968;&#27010;&#24565;&#23545;&#20110;&#26377;&#25928;&#22320;&#24418;&#24335;&#21270;&#25968;&#23398;&#26469;&#35828;&#26159;&#24517;&#19981;&#21487;&#23569;&#30340;&#12290;&#35753;&#25105;&#20204;&#35299;&#37322;&#19968;&#19979;&#21407;&#22240;&#12290;
@@ -132,7 +133,7 @@
 &#38750;&#27491;&#24335;&#22320;&#35828;&#65292;&#25968;&#23398;&#23478;&#36890;&#24120;&#21482;&#35777;&#26126;&#20854;&#20013;&#20004;&#19977;&#20010;&#65292;&#28982;&#21518;&#31616;&#21333;&#22320;&#25351;&#20986;&#20854;&#20313;&#30340;&#21487;&#20197;&#8220;&#20197;&#30456;&#21516;&#26041;&#24335;&#8221;&#36827;&#34892;&#35777;&#26126;&#12290;
 &#24418;&#24335;&#21270;&#25968;&#23398;&#38656;&#35201;&#26126;&#30830;&#30456;&#20851;&#8220;&#30456;&#21516;&#8221;&#30340;&#27010;&#24565;&#65292;&#32780;&#36825;&#27491;&#26159;&#24067;&#23572;&#24052;&#22522;&#65288;Bourbaki&#65289;&#30340;&#28388;&#23376;&#29702;&#35770;&#25152;&#20570;&#21040;&#30340;&#12290;</p>
 <section id="filters">
-<span id="index-1"></span><span id="id2"></span><h2><span class="section-number">10.1. </span>&#28388;&#23376;<a class="headerlink" href="#filters" title="Link to this heading">&#61633;</a></h2>
+<span id="index-1"></span><span id="id2"></span><h2><span class="section-number">11.1. </span>&#28388;&#23376;<a class="headerlink" href="#filters" title="Link to this heading">&#61633;</a></h2>
 <p>&#31867;&#22411; <code class="docutils literal notranslate"><span class="pre">X</span></code> &#19978;&#30340; <strong>&#28388;&#23376;</strong> &#26159; <code class="docutils literal notranslate"><span class="pre">X</span></code> &#30340;&#38598;&#21512;&#30340;&#38598;&#21512;&#65292;&#28385;&#36275;&#20197;&#19979;&#19977;&#20010;&#26465;&#20214;&#65288;&#25105;&#20204;&#23558;&#22312;&#19979;&#38754;&#35814;&#32454;&#35828;&#26126;&#65289;&#12290;&#35813;&#27010;&#24565;&#25903;&#25345;&#20004;&#20010;&#30456;&#20851;&#30340;&#24819;&#27861;&#65306;</p>
 <ul class="simple">
 <li><p><strong>&#26497;&#38480;</strong> &#65292;&#21253;&#25324;&#19978;&#36848;&#35752;&#35770;&#36807;&#30340;&#21508;&#31181;&#26497;&#38480;&#65306;&#25968;&#21015;&#30340;&#26377;&#38480;&#26497;&#38480;&#21644;&#26080;&#31351;&#26497;&#38480;&#12289;&#20989;&#25968;&#22312;&#26576;&#28857;&#25110;&#26080;&#31351;&#36828;&#22788;&#30340;&#26377;&#38480;&#26497;&#38480;&#21644;&#26080;&#31351;&#26497;&#38480;&#31561;&#31561;&#12290;</p></li>
@@ -347,7 +348,7 @@
 </div>
 </section>
 <section id="metric-spaces">
-<span id="index-2"></span><span id="id3"></span><h2><span class="section-number">10.2. </span>&#24230;&#37327;&#31354;&#38388;<a class="headerlink" href="#metric-spaces" title="Link to this heading">&#61633;</a></h2>
+<span id="index-2"></span><span id="id3"></span><h2><span class="section-number">11.2. </span>&#24230;&#37327;&#31354;&#38388;<a class="headerlink" href="#metric-spaces" title="Link to this heading">&#61633;</a></h2>
 <p>&#22312;&#19978;&#19968;&#33410;&#20013;&#30340;&#31034;&#20363;&#20027;&#35201;&#20851;&#27880;&#23454;&#25968;&#24207;&#21015;&#12290;&#22312;&#26412;&#33410;&#20013;&#65292;&#25105;&#20204;&#23558;&#25552;&#39640;&#19968;&#28857;&#19968;&#33324;&#24615;&#65292;&#20851;&#27880;&#24230;&#37327;&#31354;&#38388;&#12290;
 &#24230;&#37327;&#31354;&#38388;&#26159;&#19968;&#31181;&#31867;&#22411; <code class="docutils literal notranslate"><span class="pre">X</span></code> &#65292;&#23427;&#37197;&#22791;&#20102;&#19968;&#20010;&#36317;&#31163;&#20989;&#25968; <code class="docutils literal notranslate"><span class="pre">dist</span> <span class="pre">:</span> <span class="pre">X</span> <span class="pre">&#8594;</span> <span class="pre">X</span> <span class="pre">&#8594;</span> <span class="pre">&#8477;</span></code> &#65292;&#36825;&#26159;&#22312; <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">&#8477;</span></code> &#24773;&#24418;&#19979;&#20989;&#25968; <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">&#8614;</span> <span class="pre">|x</span> <span class="pre">-</span> <span class="pre">y|</span></code> &#30340;&#19968;&#31181;&#25512;&#24191;&#12290;</p>
 <p>&#24341;&#20837;&#36825;&#26679;&#19968;&#20010;&#31354;&#38388;&#24456;&#31616;&#21333;&#65292;&#25105;&#20204;&#23558;&#26816;&#39564;&#36317;&#31163;&#20989;&#25968;&#25152;&#38656;&#30340;&#25152;&#26377;&#24615;&#36136;&#12290;</p>
@@ -364,7 +365,7 @@
 &#23427;&#20204;&#20998;&#21035;&#34987;&#31216;&#20026; <code class="docutils literal notranslate"><span class="pre">EMetricSpace</span></code> &#12289; <code class="docutils literal notranslate"><span class="pre">PseudoMetricSpace</span></code> &#21644; <code class="docutils literal notranslate"><span class="pre">PseudoEMetricSpace</span></code> &#65288;&#36825;&#37324;&#8220;e&#8221;&#20195;&#34920;&#8220;&#25193;&#23637;&#8221;&#65289;&#12290;</p>
 <p>&#35831;&#27880;&#24847;&#65292;&#25105;&#20204;&#20174;&#23454;&#25968;&#38598; <code class="docutils literal notranslate"><span class="pre">&#8477;</span></code> &#21040;&#24230;&#37327;&#31354;&#38388;&#30340;&#26053;&#31243;&#36339;&#36807;&#20102;&#38656;&#35201;&#32447;&#24615;&#20195;&#25968;&#30693;&#35782;&#30340;&#36171;&#33539;&#31354;&#38388;&#36825;&#19968;&#29305;&#27530;&#24773;&#20917;&#65292;&#36825;&#37096;&#20998;&#20869;&#23481;&#23558;&#22312;&#24494;&#31215;&#20998;&#31456;&#33410;&#20013;&#36827;&#34892;&#35299;&#37322;&#12290;</p>
 <section id="id4">
-<h3><span class="section-number">10.2.1. </span>&#25910;&#25947;&#19982;&#36830;&#32493;&#24615;<a class="headerlink" href="#id4" title="Link to this heading">&#61633;</a></h3>
+<h3><span class="section-number">11.2.1. </span>&#25910;&#25947;&#19982;&#36830;&#32493;&#24615;<a class="headerlink" href="#id4" title="Link to this heading">&#61633;</a></h3>
 <p>&#21033;&#29992;&#36317;&#31163;&#20989;&#25968;&#65292;&#25105;&#20204;&#24050;&#32463;&#33021;&#22815;&#22312;&#24230;&#37327;&#31354;&#38388;&#20043;&#38388;&#23450;&#20041;&#25910;&#25947;&#24207;&#21015;&#21644;&#36830;&#32493;&#20989;&#25968;&#12290;
 &#23454;&#38469;&#19978;&#65292;&#23427;&#20204;&#26159;&#22312;&#19979;&#19968;&#33410;&#25152;&#28085;&#30422;&#30340;&#26356;&#19968;&#33324;&#30340;&#24773;&#24418;&#20013;&#23450;&#20041;&#30340;&#65292;
 &#20294;&#25105;&#20204;&#26377;&#19968;&#20123;&#24341;&#29702;&#23558;&#23450;&#20041;&#37325;&#26032;&#34920;&#36848;&#20026;&#36317;&#31163;&#30340;&#24418;&#24335;&#12290;</p>
@@ -427,7 +428,7 @@
 </div>
 </section>
 <section id="id5">
-<h3><span class="section-number">10.2.2. </span>&#29699;&#12289;&#24320;&#38598;&#19982;&#38381;&#38598;<a class="headerlink" href="#id5" title="Link to this heading">&#61633;</a></h3>
+<h3><span class="section-number">11.2.2. </span>&#29699;&#12289;&#24320;&#38598;&#19982;&#38381;&#38598;<a class="headerlink" href="#id5" title="Link to this heading">&#61633;</a></h3>
 <p>&#19968;&#26086;&#25105;&#20204;&#26377;&#20102;&#36317;&#31163;&#20989;&#25968;&#65292;&#26368;&#37325;&#35201;&#30340;&#20960;&#20309;&#23450;&#20041;&#23601;&#26159;&#65288;&#24320;&#65289;&#29699;&#21644;&#38381;&#29699;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span><span class="w"> </span><span class="o">(</span><span class="n">r</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8477;</span><span class="o">)</span>
 
@@ -479,7 +480,7 @@
 </div>
 </section>
 <section id="id6">
-<h3><span class="section-number">10.2.3. </span>&#32039;&#33268;&#24615;<a class="headerlink" href="#id6" title="Link to this heading">&#61633;</a></h3>
+<h3><span class="section-number">11.2.3. </span>&#32039;&#33268;&#24615;<a class="headerlink" href="#id6" title="Link to this heading">&#61633;</a></h3>
 <p>&#32039;&#24615;&#26159;&#19968;&#20010;&#37325;&#35201;&#30340;&#25299;&#25169;&#27010;&#24565;&#12290;&#23427;&#21306;&#20998;&#20102;&#24230;&#37327;&#31354;&#38388;&#20013;&#30340;&#23376;&#38598;&#65292;&#36825;&#20123;&#23376;&#38598;&#20855;&#26377;&#19982;&#23454;&#25968;&#20013;&#30340;&#32447;&#27573;&#30456;&#21516;&#30340;&#24615;&#36136;&#65292;&#32780;&#19982;&#20854;&#20182;&#21306;&#38388;&#19981;&#21516;&#65306;</p>
 <ul class="simple">
 <li><p>&#20219;&#20309;&#21462;&#20540;&#20110;&#32039;&#38598;&#20013;&#30340;&#24207;&#21015;&#37117;&#26377;&#19968;&#20010;&#23376;&#24207;&#21015;&#22312;&#35813;&#32039;&#38598;&#20013;&#25910;&#25947;&#12290;</p></li>
@@ -540,7 +541,7 @@
 </div>
 </section>
 <section id="id7">
-<h3><span class="section-number">10.2.4. </span>&#23436;&#22791;&#24615;<a class="headerlink" href="#id7" title="Link to this heading">&#61633;</a></h3>
+<h3><span class="section-number">11.2.4. </span>&#23436;&#22791;&#24615;<a class="headerlink" href="#id7" title="Link to this heading">&#61633;</a></h3>
 <p>&#24230;&#37327;&#31354;&#38388;&#20013;&#30340;&#26607;&#35199;&#24207;&#21015;&#26159;&#25351;&#20854;&#21508;&#39033;&#36234;&#26469;&#36234;&#25509;&#36817;&#30340;&#24207;&#21015;&#12290;
 &#34920;&#36848;&#36825;&#19968;&#27010;&#24565;&#26377;&#20960;&#31181;&#31561;&#20215;&#30340;&#26041;&#24335;&#12290;
 &#29305;&#21035;&#26159;&#25910;&#25947;&#24207;&#21015;&#26159;&#26607;&#35199;&#24207;&#21015;&#12290;&#20294;&#21453;&#36807;&#26469;&#21482;&#26377;&#22312;&#25152;&#35859;&#30340; <strong>&#23436;&#22791;</strong> &#31354;&#38388;&#20013;&#25165;&#25104;&#31435;&#12290;</p>
@@ -617,9 +618,9 @@
 </section>
 </section>
 <section id="topological-spaces">
-<span id="index-4"></span><span id="id8"></span><h2><span class="section-number">10.3. </span>&#25299;&#25169;&#31354;&#38388;<a class="headerlink" href="#topological-spaces" title="Link to this heading">&#61633;</a></h2>
+<span id="index-4"></span><span id="id8"></span><h2><span class="section-number">11.3. </span>&#25299;&#25169;&#31354;&#38388;<a class="headerlink" href="#topological-spaces" title="Link to this heading">&#61633;</a></h2>
 <section id="id9">
-<h3><span class="section-number">10.3.1. </span>&#22522;&#30784;<a class="headerlink" href="#id9" title="Link to this heading">&#61633;</a></h3>
+<h3><span class="section-number">11.3.1. </span>&#22522;&#30784;<a class="headerlink" href="#id9" title="Link to this heading">&#61633;</a></h3>
 <p>&#25105;&#20204;&#29616;&#22312;&#25552;&#39640;&#19968;&#33324;&#24615;&#65292;&#24341;&#20837;&#25299;&#25169;&#31354;&#38388;&#12290;&#25105;&#20204;&#23558;&#22238;&#39038;&#23450;&#20041;&#25299;&#25169;&#31354;&#38388;&#30340;&#20004;&#31181;&#20027;&#35201;&#26041;&#24335;&#65292;&#28982;&#21518;&#35299;&#37322;&#25299;&#25169;&#31354;&#38388;&#33539;&#30068;&#27604;&#24230;&#37327;&#31354;&#38388;&#33539;&#30068;&#34920;&#29616;&#24471;&#35201;&#22909;&#24471;&#22810;&#12290;&#35831;&#27880;&#24847;&#65292;&#36825;&#37324;&#25105;&#20204;&#19981;&#20250;&#20351;&#29992; Mathlib &#30340;&#33539;&#30068;&#35770;&#65292;&#21482;&#26159;&#37319;&#29992;&#19968;&#31181;&#31245;&#24494;&#33539;&#30068;&#21270;&#19968;&#28857;&#30340;&#35266;&#28857;&#12290;</p>
 <p>&#20174;&#24230;&#37327;&#31354;&#38388;&#21040;&#25299;&#25169;&#31354;&#38388;&#36716;&#21464;&#30340;&#31532;&#19968;&#31181;&#24605;&#32771;&#26041;&#24335;&#26159;&#65292;&#25105;&#20204;&#21482;&#35760;&#20303;&#24320;&#38598;&#65288;&#25110;&#31561;&#20215;&#22320;&#65292;&#38381;&#38598;&#65289;&#30340;&#27010;&#24565;&#12290;&#20174;&#36825;&#20010;&#35282;&#24230;&#26469;&#30475;&#65292;&#25299;&#25169;&#31354;&#38388;&#26159;&#19968;&#31181;&#37197;&#22791;&#20102;&#34987;&#31216;&#20026;&#24320;&#38598;&#30340;&#38598;&#21512;&#26063;&#30340;&#31867;&#22411;&#12290;&#36825;&#20010;&#38598;&#21512;&#26063;&#24517;&#39035;&#28385;&#36275;&#19979;&#38754;&#32473;&#20986;&#30340;&#33509;&#24178;&#20844;&#29702;&#65288;&#36825;&#20010;&#38598;&#21512;&#26063;&#31245;&#26377;&#20887;&#20313;&#65292;&#20294;&#25105;&#20204;&#24573;&#30053;&#36825;&#19968;&#28857;&#65289;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">section</span>
@@ -745,7 +746,7 @@
 <p>&#36825;&#23601;&#32467;&#26463;&#20102;&#25105;&#20204;&#20851;&#20110; Mathlib &#30340;&#25506;&#35752;&#65292;&#20854;&#22914;&#20309;&#35748;&#20026;&#25299;&#25169;&#31354;&#38388;&#36890;&#36807;&#25104;&#20026;&#26356;&#20855;&#20989;&#23376;&#24615;&#30340;&#29702;&#35770;&#19982;&#23545;&#20110;&#20219;&#20309;&#22266;&#23450;&#31867;&#22411;&#37117;&#20855;&#26377;&#23436;&#22791;&#26684;&#32467;&#26500;&#30340;&#29305;&#24615;&#65292;&#20174;&#32780;&#24357;&#34917;&#24230;&#37327;&#31354;&#38388;&#29702;&#35770;&#30340;&#32570;&#38519;&#12290;</p>
 </section>
 <section id="id10">
-<h3><span class="section-number">10.3.2. </span>&#20998;&#31163;&#24615;&#19982;&#21487;&#25968;&#24615;<a class="headerlink" href="#id10" title="Link to this heading">&#61633;</a></h3>
+<h3><span class="section-number">11.3.2. </span>&#20998;&#31163;&#24615;&#19982;&#21487;&#25968;&#24615;<a class="headerlink" href="#id10" title="Link to this heading">&#61633;</a></h3>
 <p>&#25105;&#20204;&#30475;&#21040;&#25299;&#25169;&#31354;&#38388;&#33539;&#30068;&#20855;&#26377;&#38750;&#24120;&#33391;&#22909;&#30340;&#24615;&#36136;&#12290;&#20026;&#27492;&#20184;&#20986;&#30340;&#20195;&#20215;&#26159;&#23384;&#22312;&#19968;&#20123;&#30456;&#24403;&#30149;&#24577;&#30340;&#25299;&#25169;&#31354;&#38388;&#12290;
 &#20320;&#21487;&#20197;&#23545;&#25299;&#25169;&#31354;&#38388;&#20570;&#20986;&#19968;&#20123;&#20551;&#35774;&#65292;&#20197;&#30830;&#20445;&#20854;&#34892;&#20026;&#26356;&#25509;&#36817;&#24230;&#37327;&#31354;&#38388;&#12290;&#20854;&#20013;&#26368;&#37325;&#35201;&#30340;&#26159; <code class="docutils literal notranslate"><span class="pre">T2</span> <span class="pre">&#31354;&#38388;</span></code> &#65292;&#20063;&#31216;&#20026;&#8220;&#35946;&#26031;&#22810;&#22827;&#31354;&#38388;&#8221;&#65292;&#23427;&#33021;&#30830;&#20445;&#26497;&#38480;&#26159;&#21807;&#19968;&#30340;&#12290;
 &#26356;&#24378;&#30340;&#20998;&#31163;&#24615;&#36136;&#26159; <code class="docutils literal notranslate"><span class="pre">T3</span> <span class="pre">&#31354;&#38388;</span></code> &#65292;&#23427;&#36824;&#30830;&#20445;&#20102; <code class="docutils literal notranslate"><span class="pre">&#27491;&#21017;&#31354;&#38388;</span></code> &#24615;&#36136;&#65306;&#27599;&#20010;&#28857;&#37117;&#26377;&#19968;&#20010;&#38381;&#37051;&#22495;&#22522;&#12290;</p>
@@ -816,7 +817,7 @@
 </div>
 </section>
 <section id="id11">
-<h3><span class="section-number">10.3.3. </span>&#32039;&#33268;&#24615;<a class="headerlink" href="#id11" title="Link to this heading">&#61633;</a></h3>
+<h3><span class="section-number">11.3.3. </span>&#32039;&#33268;&#24615;<a class="headerlink" href="#id11" title="Link to this heading">&#61633;</a></h3>
 <p>&#29616;&#22312;&#35753;&#25105;&#20204;&#26469;&#35752;&#35770;&#19968;&#19979;&#25299;&#25169;&#31354;&#38388;&#30340;&#32039;&#33268;&#24615;&#26159;&#22914;&#20309;&#23450;&#20041;&#30340;&#12290;&#21644;&#24448;&#24120;&#19968;&#26679;&#65292;&#23545;&#27492;&#26377;&#22810;&#31181;&#24605;&#32771;&#26041;&#24335;&#65292;&#32780; Mathlib &#37319;&#29992;&#30340;&#26159;&#28388;&#23376;&#29256;&#26412;&#12290;</p>
 <p>&#25105;&#20204;&#39318;&#20808;&#38656;&#35201;&#23450;&#20041;&#28388;&#23376;&#30340;&#32858;&#28857;&#12290;&#32473;&#23450;&#25299;&#25169;&#31354;&#38388; <code class="docutils literal notranslate"><span class="pre">X</span></code> &#19978;&#30340;&#19968;&#20010;&#28388;&#23376; <code class="docutils literal notranslate"><span class="pre">F</span></code> &#65292;&#33509;&#23558; <code class="docutils literal notranslate"><span class="pre">F</span></code> &#35270;&#20026;&#24191;&#20041;&#38598;&#21512;&#65292;&#21017;&#28857; <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">:</span> <span class="pre">X</span></code> &#26159; <code class="docutils literal notranslate"><span class="pre">F</span></code> &#30340;&#32858;&#28857;&#65292;&#24403;&#19988;&#20165;&#24403; <code class="docutils literal notranslate"><span class="pre">F</span></code> &#19982;&#24191;&#20041;&#38598;&#21512;&#20013;&#25152;&#26377;&#25509;&#36817; <code class="docutils literal notranslate"><span class="pre">x</span></code> &#30340;&#28857;&#30340;&#38598;&#21512;&#26377;&#38750;&#31354;&#20132;&#38598;&#12290;</p>
 <p>&#37027;&#20040;&#25105;&#20204;&#23601;&#21487;&#20197;&#35828;&#65292;&#38598;&#21512; <code class="docutils literal notranslate"><span class="pre">s</span></code> &#26159;&#32039;&#33268;&#30340;&#65292;&#24403;&#19988;&#20165;&#24403;&#21253;&#21547;&#20110; <code class="docutils literal notranslate"><span class="pre">s</span></code> &#20013;&#30340;&#27599;&#19968;&#20010;&#38750;&#31354;&#24191;&#20041;&#38598;&#21512; <code class="docutils literal notranslate"><span class="pre">F</span></code> &#65292;&#21363;&#28385;&#36275; <code class="docutils literal notranslate"><span class="pre">F</span> <span class="pre">&#8804;</span> <span class="pre">&#120031;</span> <span class="pre">s</span></code> &#30340;&#38598;&#21512;&#65292;&#37117;&#22312; <code class="docutils literal notranslate"><span class="pre">s</span></code> &#20013;&#26377;&#19968;&#20010;&#32858;&#28857;&#12290;</p>
@@ -868,8 +869,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="C09_Linear_Algebra.html" class="btn btn-neutral float-left" title="9. &#32447;&#24615;&#20195;&#25968;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="C11_Differential_Calculus.html" class="btn btn-neutral float-right" title="11. &#24494;&#20998;&#23398;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="C10_Linear_Algebra.html" class="btn btn-neutral float-left" title="10. &#32447;&#24615;&#20195;&#25968;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="C12_Differential_Calculus.html" class="btn btn-neutral float-right" title="12. &#24494;&#20998;&#23398;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

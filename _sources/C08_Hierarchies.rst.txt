@@ -7,6 +7,6 @@
 在更多地讨论如何使用现有的层级结构之前，就来探讨如何构建层级结构似乎为时尚早。但要使用层级结构，就需要对其底层技术有一定的了解。所以您或许还是应该读一下这一章，不过在第一次阅读时不必太努力记住所有内容，先读完后面的章节，然后再回过头来重读这一章。
 在这一章中，我们将重新定义（更简单的版本）出现在 Mathlib 中的许多内容，因此我们将使用索引来区分我们的版本。例如，我们将把我们的版本的 ``Ring`` 称为 ``Ring₁`` 。由于我们将逐步介绍更强大的形式化结构的方法，这些索引有时会超过 1。
 
-.. include:: C07_Hierarchies/S01_Basics.inc
-.. include:: C07_Hierarchies/S02_Morphisms.inc
-.. include:: C07_Hierarchies/S03_Subobjects.inc
+.. include:: C08_Hierarchies/S01_Basics.inc
+.. include:: C08_Hierarchies/S02_Morphisms.inc
+.. include:: C08_Hierarchies/S03_Subobjects.inc

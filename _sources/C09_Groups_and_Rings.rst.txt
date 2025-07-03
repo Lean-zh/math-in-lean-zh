@@ -11,5 +11,5 @@
 但会提供使用相关库的切入点，并展示如何运用其核心概念。虽然本章的部分内容与 :numref:`Chapter %s <hierarchies>` 有所重叠，
 但我们的重点在于指导如何使用 Mathlib，而非分析其设计背后的理念。因此，为了更好地理解本章的部分示例，可能需要回顾 :numref:`Chapter %s <hierarchies>`。
 
-.. include:: C08_Groups_and_Rings/S01_Groups.inc
-.. include:: C08_Groups_and_Rings/S02_Rings.inc
+.. include:: C09_Groups_and_Rings/S01_Groups.inc
+.. include:: C09_Groups_and_Rings/S02_Rings.inc

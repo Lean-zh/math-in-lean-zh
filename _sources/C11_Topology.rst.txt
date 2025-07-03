@@ -37,6 +37,6 @@
 非正式地说，数学家通常只证明其中两三个，然后简单地指出其余的可以“以相同方式”进行证明。
 形式化数学需要明确相关“相同”的概念，而这正是布尔巴基（Bourbaki）的滤子理论所做到的。
 
-.. include:: C10_Topology/S01_Filters.inc
-.. include:: C10_Topology/S02_Metric_Spaces.inc
-.. include:: C10_Topology/S03_Topological_Spaces.inc
+.. include:: C11_Topology/S01_Filters.inc
+.. include:: C11_Topology/S02_Metric_Spaces.inc
+.. include:: C11_Topology/S03_Topological_Spaces.inc

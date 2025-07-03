@@ -1,0 +1,13 @@
+.. _discrete_mathematics:
+
+离散数学
+========
+
+离散数学是研究有限集、离散对象和离散结构的学科。
+我们可以数出有限集中的元素个数，计算元素的有限和或有限积，可以求出这些元素的最大值和最小值，等等。
+我们还可以研究某些生成函数所产生的对象，这些对象是经过多次应用这些函数而构造出来的。可以通过结构递归定义函数，使用结构归纳法证明定理。
+本章将讲述这些内容中Mathlib支持的部分。
+
+.. include:: C06_Discrete_Mathematics/S01_Finsets_and_Fintypes.inc
+.. include:: C06_Discrete_Mathematics/S02_Counting_Arguments.inc
+.. include:: C06_Discrete_Mathematics/S03_Inductive_Structures.inc

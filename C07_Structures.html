@@ -288,7 +288,7 @@ Lean &#33021;&#26681;&#25454; <code class="docutils literal notranslate"><span c
 </div>
 <p>&#32467;&#26500;&#20307;&#36824;&#21487;&#20197;&#20381;&#36182;&#20110;&#21442;&#25968;&#12290;
 &#20363;&#22914;&#65292;&#21487;&#20197;&#23558;&#26631;&#20934;2-&#21333;&#32431;&#24418;&#25512;&#24191;&#21040;&#20219;&#24847;&#32500;&#25968; <span class="math notranslate nohighlight">\(n\)</span> &#19979;&#30340; <span class="math notranslate nohighlight">\(n\)</span> -&#21333;&#32431;&#24418;&#12290;
-&#30446;&#21069;&#38454;&#27573;&#65292;&#20320;&#19981;&#38656;&#35201;&#23545; <code class="docutils literal notranslate"><span class="pre">Fin</span> <span class="pre">n</span></code> &#20102;&#35299;&#22826;&#22810;&#65292;&#21482;&#38656;&#30693;&#36947;&#23427;&#26377; <span class="math notranslate nohighlight">\(n\)</span> &#20010;&#20803;&#32032;&#65292;&#24182;&#19988; Lean &#30452;&#21040;&#22914;&#20309;&#22312;&#20854;&#19978;&#36827;&#34892;&#23601;&#21644;&#25805;&#20316;&#21363;&#21487;&#12290;</p>
+&#30446;&#21069;&#38454;&#27573;&#65292;&#20320;&#19981;&#38656;&#35201;&#23545; <code class="docutils literal notranslate"><span class="pre">Fin</span> <span class="pre">n</span></code> &#20102;&#35299;&#22826;&#22810;&#65292;&#21482;&#38656;&#30693;&#36947;&#23427;&#26377; <span class="math notranslate nohighlight">\(n\)</span> &#20010;&#20803;&#32032;&#65292;&#24182;&#19988; Lean &#30693;&#36947;&#22914;&#20309;&#22312;&#20854;&#19978;&#36827;&#34892;&#23601;&#21644;&#25805;&#20316;&#21363;&#21487;&#12290;</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">open</span><span class="w"> </span><span class="n">BigOperators</span>
 
 <span class="kd">structure</span><span class="w"> </span><span class="n">StandardSimplex</span><span class="w"> </span><span class="o">(</span><span class="n">n</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">&#8469;</span><span class="o">)</span><span class="w"> </span><span class="n">where</span>
@@ -861,10 +861,7 @@ Lean &#33021;&#22815;&#25214;&#21040;&#36825;&#20004;&#20010;&#20107;&#23454;&#2
 <p>&#20056;&#20197; <span class="math notranslate nohighlight">\(c + di\)</span>&#65292;&#25105;&#20204;&#26377;</p>
 <div class="math notranslate nohighlight">
 \[a + bi = (c + di) (u + vi) + (c + di) (u' + v'i).\]</div>
-<p>Setting <span class="math notranslate nohighlight">\(q = u + vi\)</span> and <span class="math notranslate nohighlight">\(r = (c + di) (u' + v'i)\)</span>, we have
-<span class="math notranslate nohighlight">\(a + bi = (c + di) q + r\)</span>, and we only need to
-bound <span class="math notranslate nohighlight">\(N(r)\)</span>:
-&#35774; <span class="math notranslate nohighlight">\(q = u + vi\)</span> &#20197;&#21450; <span class="math notranslate nohighlight">\(r = (c + di) (u' + v'i)\)</span> &#65292;&#21017;&#26377;
+<p>&#35774; <span class="math notranslate nohighlight">\(q = u + vi\)</span> &#20197;&#21450; <span class="math notranslate nohighlight">\(r = (c + di) (u' + v'i)\)</span> &#65292;&#21017;&#26377;
 <span class="math notranslate nohighlight">\(a + bi = (c + di) q + r\)</span> &#65292;&#25105;&#20204;&#21482;&#38656;&#23545; <span class="math notranslate nohighlight">\(N(r)\)</span> &#36827;&#34892;&#38480;&#21046;&#65306;</p>
 <div class="math notranslate nohighlight">
 \[N(r) = N(c + di)N(u' + v'i) \le N(c + di) \cdot 1/2 &lt; N(c + di).\]</div>

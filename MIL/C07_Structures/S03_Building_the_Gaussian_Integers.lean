@@ -244,9 +244,6 @@ example (a b : ℤ) : b ≠ 0 → a % b < |b| :=
 
   a + bi = (c + di) (u + vi) + (c + di) (u' + v'i).
 
-Setting :math:`q = u + vi` and :math:`r = (c + di) (u' + v'i)`, we have
-:math:`a + bi = (c + di) q + r`, and we only need to
-bound :math:`N(r)`:
 设 :math:`q = u + vi` 以及 :math:`r = (c + di) (u' + v'i)` ，则有
 :math:`a + bi = (c + di) q + r` ，我们只需对 :math:`N(r)` 进行限制：
 

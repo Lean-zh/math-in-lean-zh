@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 if [ "$#" -ne 2 ]; then
-    echo "Usage example: $0 leanprover-community mathematics_in_lean"
+    echo "Usage example: $0 lean-zh mathematics-in-lean-zh"
     exit 1
 fi
 

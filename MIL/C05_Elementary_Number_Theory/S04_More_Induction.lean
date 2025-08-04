@@ -10,7 +10,7 @@ namespace more_induction
 ------------
 
 
-在 :numref:`section_induction_and_recursion` 中，我们看到了如何在自然数上通过递归定义阶乘函数。
+在 :numref:`section_induction_and_recursion` 中，我们看到了如何通过递归在自然数上定义阶乘函数。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -35,7 +35,7 @@ theorem fac_pos (n : ℕ) : 0 < fac n := by
 /- TEXT:
 
 
-没有单引号的 ``induction`` 策略允许更清晰的语法结构
+``induction`` 策略（没有单引号）允许更清晰的语法结构
 EXAMPLES: -/
 -- QUOTE:
 example (n : ℕ) : 0 < fac n := by
@@ -57,16 +57,11 @@ example (n : ℕ) : 0 < fac n := by
     exact mul_pos n.succ_pos ih
 -- QUOTE.
 /- TEXT:
-As usual, you can hover over the keyword ``induction`` to read the documentation.
-The names of the cases ``zero`` , and  ``succ`` , are taken from the definition of the type ℕ.
- Notice that the case ``succ`` allows you to choose whatever names you want for the induction variable and
- the inductive hypothesis, here ``n`` and ``ih`` . You can even prove a theorem with the same notation used to
-  define a recursive function. ...
 
-与往常一样，您可以将鼠标悬停在关键词 ``induction`` 上以查看相关文档（？）。
+你可以将鼠标悬停在 ``induction`` 或其它关键词上以查看相关文档说明。
 case ``zero`` 和 ``succ`` 的名称源自类型ℕ的定义。
-请注意，case ``succ`` 允许您为归纳变量和归纳假设选择任意名称，此处为 ``n`` 和 ``ih`` 。
-您甚至可以使用证明递归函数时使用过的符号来证明定理。（？）
+请注意，case ``succ`` 允许将归纳变量和归纳假设随意命名，此处命名为 ``n`` 和 ``ih`` 。
+你甚至可以使用证明递归函数时使用过的符号来证明其它定理。
 
 
 BOTH: -/
@@ -81,16 +76,12 @@ theorem fac_pos' : ∀ n, 0 < fac n
 -- QUOTE.
 /- TEXT:
 
-注意，这里省略了 ``:=`` 。且额外添加了冒号后的 ``∀ n`` 、每一个case 结尾的 ``by`` 以及对 ``fac_pos' n`` 的归纳调用，就好像这个定理是一个 ``n`` 的递归函数，并在归纳步骤中进行了递归调用。
+注意，这里省略了 ``:=`` ，且额外添加了冒号后的 ``∀ n`` 、每一个case 结尾的 ``by`` 以及对 ``fac_pos' n`` 的归纳调用，就好像这个定理是一个 ``n`` 的递归函数，并在归纳步骤中进行了递归调用。
 （译注：这个证明与上面相同，但它没有使用 by 引导的策略模式，而是使用了函数式编程风格的模式匹配写法）
 
-This style of definition is remarkably flexible.
-Lean’s designers have built in elaborate means of defining recursive functions,
-and these extend to doing proofs by induction.
-For example, we can define the Fibonacci function with multiple base cases.
 
-这个定义方式极其灵活。Lean的设计者们内置了复杂递归函数的定义方法（？），并且将这些手段扩展到了归纳法。
-举个例子，我们可以以多种基础条件定义斐波纳契数列。
+这个定义方式极其灵活。Lean的设计者们内置了复杂的递归函数定义方法，并且将这些手段扩展到了归纳证明。
+举个例子，我们可以以多种基础情形来定义斐波纳契数列。
 
 BOTH: -/
 
@@ -102,9 +93,11 @@ BOTH: -/
 -- QUOTE.
 
 /- TEXT:
-The ``@[simp]`` annotation means that the simplifier will use the defining equations.
-You can also apply them by writing ``rw [fib]`` .
-Below it will be helpful to give a name to the ``n + 2`` case.
+
+
+ ``@[simp]``  注解表示化简器会自动使用这些定义方程。
+也可以通过 ``rw [fib]`` 手动应用这些方程。
+推荐为 ``n + 2`` 的情况命名。
 
 BOTH: -/
 
@@ -114,7 +107,11 @@ theorem fib_add_two (n : ℕ) : fib (n + 2) = fib n + fib (n + 1) := rfl
 example (n : ℕ) : fib (n + 2) = fib n + fib (n + 1) := by rw [fib]
 -- QUOTE.
 /- TEXT:
-Using Lean’s notation for recursive functions, you can carry out proofs by induction on the natural numbers that mirror the recursive definition of . The following example provides an explicit formula for the nth Fibonacci number in terms of the golden mean, , and its conjugate, . We have to tell Lean that we don’t expect our definitions to generate code because the arithmetic operations on the real numbers are not computable.``fib`` ``φ`` ``φ'``
+
+我们可以使用 Lean 的递归函数定义方式，对自然数进行归纳证明，且这些证明与 ``fib`` 的递归定义相对应。
+以下示例通过黄金分割比例 ``φ`` 及其共轭 ``φ'`` 给出斐波那契数的通项公式。
+但由于实数运算不可计算，我们需要声明这些定义属于不可计算范畴（即用 ``noncomputable section`` 声明）。
+
 BOTH: -/
 -- QUOTE:
 noncomputable section
@@ -136,7 +133,10 @@ theorem fib_eq : ∀ n, fib n = (phi^n - phi'^n) / √5
 end
 -- QUOTE.
 /- TEXT:
-Induction proofs involving the Fibonacci function do not have to be of that form. Below we reproduce the proof that consecutive Fibonacci numbers are coprime.``Mathlib``
+
+涉及斐波那契函数的归纳证明不必采用上面形式，如 ``Mathlib`` 中的写法。
+下面我们重现了证明：相邻斐波那契数列互质。
+
 BOTH: -/
 -- QUOTE:
 theorem fib_coprime_fib_succ (n : ℕ) : Nat.Coprime (fib n) (fib (n + 1)) := by
@@ -147,15 +147,19 @@ theorem fib_coprime_fib_succ (n : ℕ) : Nat.Coprime (fib n) (fib (n + 1)) := by
     exact ih.symm
 -- QUOTE.
 /- TEXT:
-Using Lean’s computational interpretation, we can evaluate the Fibonacci numbers.
+
+通过Lean的计算语义，我们可以直接求得斐波那契数列。
+
 BOTH: -/
 -- QUOTE:
 #eval fib 6
 #eval List.range 20 |>.map fib
 -- QUOTE.
 /- TEXT:
-``fib`` ``n``
-The straightforward implementation of is computationally inefficient. In fact, it runs in time exponential in its argument. (You should think about why.) In Lean, we can implement the following tail-recursive version, whose running time is linear in , and prove that it computes the same function.
+
+用 ``fib`` 实现的斐波那契函数的效率低下，其时间复杂度呈指数级（你可以思考一下为什么是指数级）。
+在Lean中，我们可以实现如下尾递归版本：
+其运行时间与 ``n`` 成线性关系（即 ``O(n)`` 复杂度），并证明其与原始定义等价。
 
 BOTH: -/
 -- QUOTE:
@@ -177,14 +181,20 @@ theorem fib'_eq_fib : fib' = fib := by
 #eval fib' 10000
 -- QUOTE.
 /- TEXT:
-``generalizing`` ``fib'.aux_eq`` ``∀`` ``m`` ``m`` ``m + 1``
-Notice the keyword in the proof of . It serves to insert a in front of the inductive hypothesis, so that in the induction step, can take a different value. You can step through the proof and check that in this case, the quantifier needs to be instantiated to in the inductive step.
 
-erw rw fib'.aux_eq `fib 0` `fib 1` 0 1 erw rw erw
-Notice also the use of (for “extended rewrite”) instead of . This is used because to rewrite the goal , and have to be reduced to and , respectively. The tactic is more aggressive than in unfolding definitions to match parameters. This isn’t always a good idea; it can waste a lot of time in some cases, so use sparingly.
+请注意在 ``fib'.aux_eq`` 的证明中使用了 ``generalizing`` 关键字。
+它的作用是在归纳假设前插入一个 ``∀ m`` ，这样在归纳步骤中，``m`` 可以取不同的值。
+逐步检查这个证明，可以发现此时量词确实需要在归纳步骤中实例化为 ``m + 1`` 。
 
-generalizing Mathlib
-Here is another example of the keyword in use, in the proof of another identity that is found in . An informal proof of the identity can be found here. We provide two variants of the formal proof.
+还要注意这里使用了 ``erw``（表示“扩展重写”，extended rewrite）而不是 ``rw`` 。
+这是因为为了重写目标 ``fib'_eq_fib`` ，
+需要将 ``fib'`` 和 ``fib`` 分别化简为 ``fib'.aux 0 1`` 和 ``fib n`` 。
+该策略在展开定义以匹配参数时比 ``rw`` 更激进。但这有时效果很差；甚至会浪费大量时间，因此应谨慎使用。
+
+下面是另一个 ``generalizing`` 关键字的例子，出现在 ``Mathlib`` 中另一个恒等式的证明里。
+该恒等式的非形式化证明可以在 `这里 <https://proofwiki.org/wiki/Fibonacci_Number_in_terms_of_Smaller_Fibonacci_NumbersLean>`_ 找到。
+下面我们给出两种形式化证明。
+
 BOTH: -/
 -- QUOTE:
 theorem fib_add (m n : ℕ) : fib (m + n + 1) = fib m * fib n + fib (m + 1) * fib (n + 1) := by
@@ -205,8 +215,7 @@ theorem fib_add' : ∀ m n, fib (m + n + 1) = fib m * fib n + fib (m + 1) * fib 
     ring
 -- QUOTE.
 /- TEXT:
-fib_add 代码第二三句似乎多余了（？）
-As an exercise, use to prove the following.
+使用 ``fib_add`` 证明下列等式作为练习。
 BOTH: -/
 -- QUOTE:
 example (n : ℕ): (fib n) ^ 2 + (fib (n + 1)) ^ 2 = fib (2 * n + 1) := by sorry
@@ -214,8 +223,10 @@ example (n : ℕ): (fib n) ^ 2 + (fib (n + 1)) ^ 2 = fib (2 * n + 1) := by
   rw [two_mul, fib_add, pow_two, pow_two]
 -- QUOTE.
 /- TEXT:
-`n ≠ 1` n Nat
-Lean’s mechanisms for defining recursive functions are flexible enough to allow arbitrary recursive calls, as long the complexity of the arguments decrease according to some well-founded measure. In the next example, we show that every natural number has a prime divisor, using the fact that if is nonzero and not prime, it has a smaller divisor. (You can check that Mathlib has a theorem of the same name in the namespace, though it has a different proof than the one we give here.)
+Lean 定义递归函数的机制非常灵活，只要参数的复杂度按照某种良基度量递减，就允许任意递归调用。
+在下一个例子中，我们将利用“只要 ``n`` 不为零且不是素数，那么它一定有一个更小的因子”这一事实，
+来证明每个自然数 ``n ≠ 1`` 都有一个素因子（你可以在 Mathlib 的 ``Nat`` 命名空间中找到同名定理，
+不过证明方法和这里不同）。
 BOTH: -/
 -- QUOTE:
 #check (@Nat.not_prime_iff_exists_dvd_lt :
@@ -239,11 +250,11 @@ theorem ne_one_iff_exists_prime_dvd : ∀ {n}, n ≠ 1 ↔ ∃ p : ℕ, p.Prime 
       exact pdvdm.trans mdvdn
 -- QUOTE.
 /- TEXT:
-rw ``[ne_one_iff_exists_prime_dvd] at this`` m ``n + 2`` m < n + 2`` n
-The line is like a magic trick: we are using the very theorem we are proving in its own proof. What makes it work is that the inductive call is instantiated at , the current case is , and the context has . Lean can find the hypothesis and use it to show that the induction is well-founded. Lean is pretty good at figuring out what is decreasing; in this case, the choice of in the statement of the theorem and the less-than relation is obvious. In more complicated cases, Lean provides mechanisms to provide this information explicitly. See the section on well-founded recursion in the Lean Reference Manual.
-n cases rcases
-Sometimes, in a proof, you need to split on cases depending on whether a natural number is zero or a successor, without requiring an inductive hypothesis in the successor case. For that, you can use the and tactics.
 
+ ``rw [ne_one_iff_exists_prime_dvd] at this`` 这一行就像黑魔法一样：在证明自身时用到了正在证明的定理本身。
+ 这种用法之所以可行，是因为归纳调用实例化在 ``m`` 上，当前 case 是 ``n + 2`` ，且上下文中有 ``m < n + 2`` 。Lean 能自动找到假设并据此判定归纳是良基的。
+ Lean 很擅长判断递减量；在本例中，定理语句中的 `n` 和小于关系很明显。在更复杂的情况下，Lean 还提供了一些机制让你显式指定递减量。详见 Lean Reference Manual关于 ``良基递归 <https://lean-lang.org/doc/reference/latest//Definitions/Recursive-Definitions/#well-founded-recursion>``_ 的章节。
+有时在证明中，你需要根据一个自然数 ``n`` 是 0 还是后继数来分类，但在后继情形下并不需要归纳假设。此时可以用 ``cases`` 和 ``rcases`` 策略。
 BOTH: -/
 -- QUOTE:
 theorem zero_lt_of_mul_eq_one (m n : ℕ) : n * m = 1 → 0 < n ∧ 0 < m := by
@@ -254,6 +265,6 @@ example (m n : ℕ) : n*m = 1 → 0 < n ∧ 0 < m := by
   rcases n with (_ | n) <;> simp
 -- QUOTE.
 /- TEXT:
-n n n ``n + 1``
-This is a useful trick. Often you have a theorem about a natural number for which the zero case is easy. If you case on and take care of the zero case quickly, you are left with the original goal with replaced by .
+这是一个很实用的小技巧。很多时候你要证明关于自然数 ``n`` 的命题，其中 ``n=0`` 的情况很简单。如果你先对 ``n`` 分类并快速解决 ``n=0`` 的情况，剩下的目标就会自动变成 ``n + 1`` 的情况。
+
 BOTH: -/

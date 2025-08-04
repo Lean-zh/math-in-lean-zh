@@ -1,4 +1,6 @@
 /.lake/
+/MIL/Test/
+/编译日志.txt
 /.venv
 /.vscode
 /build

@@ -1,0 +1,707 @@
+Windows PowerShell
+版权所有（C） Microsoft Corporation。保留所有权利。
+
+安装最新的 PowerShell，了解新功能和改进！https://aka.ms/PSWindows
+
+PS D:\Git\math-in-lean-zh> lake build
+ℹ [1/174] Replayed MIL.C01_Introduction.S01_Getting_Started
+info: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S01_Getting_Started.lean:52:0: "Hello, World!"
+✖ [2814/2873] Running Mathlib.Algebra.BigOperators.Ring
+error: no such file or directory (error code: 2)
+  file: D:\Git\math-in-lean-zh\.lake\packages\mathlib\Mathlib\Algebra\BigOperators\Ring.lean
+✖ [2815/2873] Running MIL.C07_Structures.S01_Structures
+error: D:\Git\math-in-lean-zh\MIL\C07_Structures\S01_Structures.lean: bad import 'Mathlib.Algebra.BigOperators.Ring'
+✖ [2816/2873] Running MIL.C08_Hierarchies.S01_Basics
+error: D:\Git\math-in-lean-zh\MIL\C08_Hierarchies\S01_Basics.lean: bad import 'Mathlib.Algebra.BigOperators.Ring'
+✖ [2817/2873] Running Mathlib.Topology.Instances.Real
+error: no such file or directory (error code: 2)
+  file: D:\Git\math-in-lean-zh\.lake\packages\mathlib\Mathlib\Topology\Instances\Real.lean
+✖ [2818/2873] Running MIL.C08_Hierarchies.S02_Morphisms
+error: D:\Git\math-in-lean-zh\MIL\C08_Hierarchies\S02_Morphisms.lean: bad import 'Mathlib.Topology.Instances.Real'
+✖ [2819/2873] Running Mathlib.Data.ZMod.Quotient
+error: no such file or directory (error code: 2)
+  file: D:\Git\math-in-lean-zh\.lake\packages\mathlib\Mathlib\Data\ZMod\Quotient.lean
+✖ [2820/2873] Running MIL.C09_Groups_and_Rings.S02_Rings
+error: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S02_Rings.lean: bad import 'Mathlib.Data.ZMod.Quotient'
+✖ [2821/2873] Running MIL.C11_Topology.S01_Filters
+error: D:\Git\math-in-lean-zh\MIL\C11_Topology\S01_Filters.lean: bad import 'Mathlib.Topology.Instances.Real'
+⚠ [2825/2873] Built MIL.C06_Discrete_Mathematics.S01_Finsets_and_Fintypes
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:26:0: a ∈ s : Prop
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:27:0: s ∩ t : Finset α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:40:0: a ∩ b : Finset ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:41:0: a ∪ b : Finset ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:42:0: a \ b : Finset ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:43:0: ∅ : Finset ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:56:0: {0, 2, 5} : Finset ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:98:0: insert 0 (insert 1 (singleton 2)) : Finset Nat
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:105:0: image (fun x ↦ x * 2) (range 5) : Finset ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:111:0: s ×ˢ t : Finset (ℕ × ℕ)
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:112:0: s.powerset : Finset (Finset ℕ)
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:117:0: Finset.fold.{u_1, u_2} {α : Type u_1} {β : Type u_2} (op : β → β → β) [hc : Std.Commutative op]
+  [ha : Std.Associative op] (b : β) (f : α → β) (s : Finset α) : β
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:121:0: fold (fun x y ↦ x + y) 0 f (range 5) : ℤ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:122:0: 30
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:124:0: ∑ i ∈ range 5, i ^ 2 : ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:125:0: ∏ i ∈ range 5, i + 1 : ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:129:0: (range 5).biUnion g : Finset ℤ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:133:0: Finset.induction.{u_3} {α : Type u_3} {motive : Finset α → Prop} [DecidableEq α] (empty : motive ∅)
+  (insert : ∀ (a : α) (s : Finset α), a ∉ s → motive s → motive (insert a s)) (s : Finset α) : motive s
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:155:0: Finset.min.{u_2} {α : Type u_2} [LinearOrder α] (s : Finset α) : WithTop α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:156:0: Finset.min'.{u_2} {α : Type u_2} [LinearOrder α] (s : Finset α) (H : s.Nonempty) : α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:157:0: Finset.max.{u_2} {α : Type u_2} [LinearOrder α] (s : Finset α) : WithBot α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:158:0: Finset.max'.{u_2} {α : Type u_2} [LinearOrder α] (s : Finset α) (H : s.Nonempty) : α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:159:0: Finset.inf.{u_2, u_3} {α : Type u_2} {β : Type u_3} [SemilatticeInf α] [OrderTop α] (s : Finset β) (f : β → α) : α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:160:0: Finset.inf'.{u_2, u_3} {α : Type u_2} {β : Type u_3} [SemilatticeInf α] (s : Finset β) (H : s.Nonempty) (f : β → α) : α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:161:0: Finset.sup.{u_2, u_3} {α : Type u_2} {β : Type u_3} [SemilatticeSup α] [OrderBot α] (s : Finset β) (f : β → α) : α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:162:0: Finset.sup'.{u_2, u_3} {α : Type u_2} {β : Type u_3} [SemilatticeSup α] (s : Finset β) (H : s.Nonempty) (f : β → α) : α
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:167:0: Finset.card.{u_1} {α : Type u_1} (s : Finset α) : ℕ
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:169:0: 5
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:173:36: unused variable `i`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S01_Finsets_and_Fintypes.lean:175:36: unused variable `i`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [2826/2881] Replayed MIL.C02_Basics.S04_More_on_Order_and_Divisibility
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:22:0: min_le_left a b : min a b ≤ a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:23:0: min_le_right a b : min a b ≤ b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:24:0: le_min : c ≤ a → c ≤ b → c ≤ min a b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:170:0: abs_add : ∀ (a b : ℝ), |a + b| ≤ |a| + |b|
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:256:0: Nat.gcd_zero_right n : n.gcd 0 = n
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:257:0: Nat.gcd_zero_left n : Nat.gcd 0 n = n
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:258:0: Nat.lcm_zero_right n : n.lcm 0 = 0
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S04_More_on_Order_and_Divisibility.lean:259:0: Nat.lcm_zero_left n : Nat.lcm 0 n = 0
+⚠ [2837/2881] Built MIL.C06_Discrete_Mathematics.S03_Inductive_Structures
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:21:0: [1, 2, 3, 4, 5, 6]
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:22:0: [1, 4, 9, 16, 25]
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:64:4: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:66:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:69:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:100:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:102:4: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:104:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:107:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:154:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S03_Inductive_Structures.lean:157:8: declaration uses 'sorry'
+⚠ [2838/2881] Built MIL.C07_Structures.S02_Algebraic_Structures
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:92:0: α ≃ β : Type (max u_1 u_2)
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:93:0: f.toFun : α → β
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:94:0: f.invFun : β → α
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:95:0: f.right_inv : Function.RightInverse f.invFun f.toFun
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:96:0: f.left_inv : Function.LeftInverse f.invFun f.toFun
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:97:0: Equiv.refl α : α ≃ α
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:98:0: f.symm : β ≃ α
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:99:0: f.trans g : α ≃ γ
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:137:12: unused variable `f`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:137:14: unused variable `g`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:137:16: unused variable `h`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:222:0: f * g : Equiv.Perm α
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:223:0: mul_assoc f g g⁻¹ : f * g * g⁻¹ = f * (g * g⁻¹)
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:226:0: g ^ n : Equiv.Perm α
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:275:12: unused variable `f`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:275:14: unused variable `g`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:275:16: unused variable `h`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:285:0: C06S02.Group₂.mul.{u_1} {α : Type u_1} [self : Group₂ α] : α → α → α
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:290:0: C06S02.mySquare.{u_1} {α : Type u_1} [Group₂ α] (x : α) : α
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:320:0: default : Point
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:338:0: x + y : Point
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:365:0: f * 1 * g⁻¹ : Equiv.Perm α
+info: D:\Git\math-in-lean-zh\MIL\C07_Structures\S02_Algebraic_Structures.lean:424:0: x + -y + 0 : Point
+✖ [2839/2881] Building MIL.C08_Hierarchies.S03_Subobjects
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C08_Hierarchies\S03_Subobjects.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C08_Hierarchies\S03_Subobjects.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C08_Hierarchies\S03_Subobjects.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C08_Hierarchies\S03_Subobjects.c --json
+warning: D:\Git\math-in-lean-zh\MIL\C08_Hierarchies\S03_Subobjects.lean:116:33: The syntax is now 'structure S : Type extends P' rather than 'structure S extends P : Type'.
+
+The purpose of this change is to accommodate 'structure S extends toP : P' syntax for naming parent projections.
+warning: D:\Git\math-in-lean-zh\MIL\C08_Hierarchies\S03_Subobjects.lean:132:22: `Inf` has been deprecated: use `Min` instead
+error: D:\Git\math-in-lean-zh\MIL\C08_Hierarchies\S03_Subobjects.lean:144:58: failed to synthesize
+  Min (Submonoid₁ M)
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+warning: D:\Git\math-in-lean-zh\MIL\C08_Hierarchies\S03_Subobjects.lean:177:9: `Quotient.map₂'` has been deprecated: use `Quotient.map₂` instead
+error: Lean exited with code 1
+✖ [2847/2881] Running MIL.C11_Topology.S02_Metric_Spaces
+error: D:\Git\math-in-lean-zh\MIL\C11_Topology\S02_Metric_Spaces.lean: bad import 'Mathlib.Topology.Instances.Real'
+✖ [2848/2881] Running MIL.C11_Topology.S03_Topological_Spaces
+error: D:\Git\math-in-lean-zh\MIL\C11_Topology\S03_Topological_Spaces.lean: bad import 'Mathlib.Topology.Instances.Real'
+✖ [2849/2881] Building MIL.C07_Structures.S03_Building_the_Gaussian_Integers
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.c --json
+error: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:210:2: type mismatch
+  Int.emod_lt a
+has type
+  ?m.15747 ≠ 0 → a % ?m.15747 < ↑(Int.natAbs ?m.15747) : Prop
+but is expected to have type
+  b ≠ 0 → a % b < |b| : Prop
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:306:33: `LinearOrderedRing` has been deprecated: Use `[Ring R] [LinearOrder R] [IsStrictOrderedRing R]` instead.
+error: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:306:33: invalid binder annotation, type is not a class instance
+  LinearOrderedRing α
+use the command `set_option checkBinderAnnotations false` to disable the check
+warning: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:315:39: `LinearOrderedRing` has been deprecated: Use `[Ring R] [LinearOrder R] [IsStrictOrderedRing R]` instead.
+error: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:315:39: invalid binder annotation, type is not a class instance
+  LinearOrderedRing α
+use the command `set_option checkBinderAnnotations false` to disable the check
+error: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:355:12: unknown identifier 'sq_add_sq_eq_zero'
+error: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:351:60: unsolved goals
+x : GaussInt
+⊢ x.re ^ 2 + x.im ^ 2 = 0 ↔ x = 0
+error: D:\Git\math-in-lean-zh\MIL\C07_Structures\S03_Building_the_Gaussian_Integers.lean:508:19: simp made no progress
+error: Lean exited with code 1
+⚠ [2854/2886] Built MIL.C05_Elementary_Number_Theory.S03_Infinitely_Many_Primes
+warning: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:120:12: `Nat.dvd_sub'` has been deprecated: use `Nat.dvd_sub` instead
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:213:49: The '∏ x in s, f x' notation is deprecated: please use '∏ x ∈ s, f x' instead:
+∏ i ∈ s, i
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:245:34: The '∏ x in s, f x' notation is deprecated: please use '∏ x ∈ s, f x' instead:
+∏ n ∈ s, n
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:290:14: The '∏ x in s, f x' notation is deprecated: please use '∏ x ∈ s, f x' instead:
+∏ i ∈ s', i
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:301:13: The '∏ x in s, f x' notation is deprecated: please use '∏ x ∈ s, f x' instead:
+∏ i ∈ s', i
+warning: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:310:12: `Nat.dvd_sub'` has been deprecated: use `Nat.dvd_sub` instead
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:461:18: The '∏ x in s, f x' notation is deprecated: please use '∏ x ∈ s, f x' instead:
+∏ i ∈ erase s 3, i
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:490:17: The '∏ x in s, f x' notation is deprecated: please use '∏ x ∈ s, f x' instead:
+∏ i ∈ erase s 3, i
+warning: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S03_Infinitely_Many_Primes.lean:503:12: `Nat.dvd_sub'` has been deprecated: use `Nat.dvd_sub` instead
+✖ [2855/2886] Building MIL.C04_Sets_and_Functions.S03_The_Schroeder_Bernstein_Theorem
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.c --json
+error: D:\Git\math-in-lean-zh\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.lean:198:13: application type mismatch
+  hg hx
+argument
+  hx
+has type
+  g (f x) = g y : Prop
+but is expected to have type
+  g (if x ∈ sbSet f g then f x else invFun g x) = g y : Prop
+error: D:\Git\math-in-lean-zh\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.lean:204:2: tactic 'apply' failed, failed to unify
+  invFun g (g ?x) = ?x
+with
+  (if g y ∈ sbSet f g then f (g y) else invFun g (g y)) = y
+case h
+α : Type u_1
+β : Type u_2
+inst✝ : Nonempty β
+f : α → β
+g : β → α
+hg : Injective g
+A : Set α := sbSet f g
+A_def : A = sbSet f g
+h : α → β := sbFun f g
+h_def : h = sbFun f g
+y : β
+gyA : g y ∉ A
+⊢ (if g y ∈ sbSet f g then f (g y) else invFun g (g y)) = y
+info: D:\Git\math-in-lean-zh\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.lean:224:0: invFun g : α → β
+info: D:\Git\math-in-lean-zh\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.lean:225:0: leftInverse_invFun : Injective g → LeftInverse (invFun g) g
+info: D:\Git\math-in-lean-zh\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.lean:226:0: leftInverse_invFun : Injective g → LeftInverse (invFun g) g
+info: D:\Git\math-in-lean-zh\MIL\C04_Sets_and_Functions\S03_The_Schroeder_Bernstein_Theorem.lean:227:0: invFun_eq : (∃ a, g a = x) → g (invFun g x) = x
+error: Lean exited with code 1
+✖ [2856/2886] Building MIL.C03_Logic.S01_Implication_and_the_Universal_Quantifier
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.c --json
+info: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:16:0: ∀ (x : ℝ), 0 ≤ x → |x| = x : Prop
+info: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:23:0: ∀ (x y ε : ℝ), 0 < ε → ε ≤ 1 → |x| < ε → |y| < ε → |x * y| < ε : Prop
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:32:8: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:40:0: my_lemma a b δ : 0 < δ → δ ≤ 1 → |a| < δ → |b| < δ → |a * b| < δ
+info: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:41:0: my_lemma a b δ h₀ h₁ : |a| < δ → |b| < δ → |a * b| < δ
+info: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:42:0: my_lemma a b δ h₀ h₁ ha hb : |a * b| < δ
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:51:8: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:59:0: my_lemma2 h₀ h₁ ha hb : |a * b| < δ
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:72:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:141:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:144:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:147:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:182:34: `OrderedCancelAddCommMonoid` has been deprecated: Use `[AddCommMonoid α] [PartialOrder α] [IsOrderedCancelAddMonoid α]` instead.
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:182:34: invalid binder annotation, type is not a class instance
+  OrderedCancelAddCommMonoid R
+use the command `set_option checkBinderAnnotations false` to disable the check
+info: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:184:0: add_le_add.{u_1} {α : Type u_1} [Add α] [Preorder α] [AddLeftMono α] [AddRightMono α] {a b c d : α} (h₁ : a ≤ b)
+  (h₂ : c ≤ d) : a + c ≤ b + d
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:186:15: unknown identifier 'α'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:186:19: unknown identifier 'R'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:186:27: unknown identifier 'R'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:189:24: unknown identifier 'α'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:189:28: unknown identifier 'R'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:189:24: unknown identifier 'α'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:189:28: unknown identifier 'R'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:189:38: unknown identifier 'R'
+error: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:189:38: unknown identifier 'R'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:229:6: unused variable `a`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:229:8: unused variable `b`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:238:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:241:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:252:6: unused variable `a`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:252:8: unused variable `b`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:261:6: unused variable `a`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:261:8: unused variable `b`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:282:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:285:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:288:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:335:35: unused variable `x`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:337:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:349:18: unused variable `x`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:367:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:398:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C03_Logic\S01_Implication_and_the_Universal_Quantifier.lean:415:0: declaration uses 'sorry'
+error: Lean exited with code 1
+⚠ [2857/2888] Built MIL.C02_Basics.S02_Proving_Identities_in_Algebraic_Structures
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:25:0: add_assoc : ∀ (a b c : R), a + b + c = a + (b + c)
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:26:0: add_comm : ∀ (a b : R), a + b = b + a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:27:0: zero_add : ∀ (a : R), 0 + a = a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:28:0: neg_add_cancel : ∀ (a : R), -a + a = 0
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:29:0: mul_assoc : ∀ (a b c : R), a * b * c = a * (b * c)
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:30:0: mul_one : ∀ (a : R), a * 1 = a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:31:0: one_mul : ∀ (a : R), 1 * a = a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:32:0: mul_add : ∀ (a b c : R), a * (b + c) = a * b + a * c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:33:0: add_mul : ∀ (a b c : R), (a + b) * c = a * c + b * c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:84:0: MyRing.add_zero.{u_1} {R : Type u_1} [Ring R] (a : R) : a + 0 = a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:85:0: MyRing.add_zero.{u_1} {R : Type u_1} [Ring R] (a : R) : a + 0 = a
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:112:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:124:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:127:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:164:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:177:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:180:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:187:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:249:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:268:8: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:288:0: add_assoc : ∀ (a b c : A), a + b + c = a + (b + c)
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:289:0: zero_add : ∀ (a : A), 0 + a = a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:290:0: neg_add_cancel : ∀ (a : A), -a + a = 0
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:304:0: mul_assoc : ∀ (a b c : G), a * b * c = a * (b * c)
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:305:0: one_mul : ∀ (a : G), 1 * a = a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:306:0: inv_mul_cancel : ∀ (a : G), a⁻¹ * a = 1
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:317:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:320:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S02_Proving_Identities_in_Algebraic_Structures.lean:323:8: declaration uses 'sorry'
+⚠ [2858/2891] Built MIL.C01_Introduction.S02_Overview
+info: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S02_Overview.lean:19:0: 2 + 2 : ℕ
+info: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S02_Overview.lean:24:0: f (x : ℕ) : ℕ
+info: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S02_Overview.lean:32:0: 2 + 2 = 4 : Prop
+info: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S02_Overview.lean:37:0: FermatLastTheorem : Prop
+info: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S02_Overview.lean:48:0: easy : 2 + 2 = 4
+warning: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S02_Overview.lean:50:8: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C01_Introduction\S02_Overview.lean:53:0: hard : FermatLastTheorem
+⚠ [2859/2891] Built MIL.C02_Basics.S01_Calculating
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:59:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:62:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:93:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:96:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:127:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:130:0: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:177:0: a : ℝ
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:178:0: a + b : ℝ
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:179:0: a : ℝ
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:180:0: mul_comm a b : a * b = b * a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:181:0: mul_comm a b : a * b = b * a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:182:0: mul_assoc c a b : c * a * b = c * (a * b)
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:183:0: mul_comm a : ∀ (b : ℝ), a * b = b * a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:184:0: mul_comm.{u_1} {G : Type u_1} [CommMagma G] (a b : G) : a * b = b * a
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:228:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:248:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:256:0: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:259:0: pow_two a : a ^ 2 = a * a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:260:0: mul_sub a b c : a * (b - c) = a * b - a * c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:261:0: add_mul a b c : (a + b) * c = a * c + b * c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:262:0: add_sub a b c : a + (b - c) = a + b - c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:263:0: sub_sub a b c : a - b - c = a - (b + c)
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S01_Calculating.lean:264:0: add_zero a : a + 0 = a
+✖ [2860/2895] Building MIL.C02_Basics.S05_Proving_Facts_about_Algebraic_Structures
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.c --json
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:21:0: x ≤ y : Prop
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:22:0: le_refl x : x ≤ x
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:23:0: le_trans : x ≤ y → y ≤ z → x ≤ z
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:24:0: le_antisymm : x ≤ y → y ≤ x → x = y
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:34:0: x < y : Prop
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:35:0: lt_irrefl x : ¬x < x
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:36:0: lt_trans : x < y → y < z → x < z
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:37:0: lt_of_le_of_lt : x ≤ y → y < z → x < z
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:38:0: lt_of_lt_of_le : x < y → y ≤ z → x < z
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:60:0: x ⊓ y : α
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:61:0: inf_le_left : x ⊓ y ≤ x
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:62:0: inf_le_right : x ⊓ y ≤ y
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:63:0: le_inf : z ≤ x → z ≤ y → z ≤ x ⊓ y
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:64:0: x ⊔ y : α
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:65:0: le_sup_left : x ≤ x ⊔ y
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:66:0: le_sup_right : y ≤ x ⊔ y
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:67:0: sup_le : x ≤ z → y ≤ z → x ⊔ y ≤ z
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:100:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:103:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:106:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:109:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:176:8: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:179:8: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:212:0: inf_sup_left x y z : x ⊓ (y ⊔ z) = x ⊓ y ⊔ x ⊓ z
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:213:0: inf_sup_right x y z : (x ⊔ y) ⊓ z = x ⊓ z ⊔ y ⊓ z
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:214:0: sup_inf_left x y z : x ⊔ y ⊓ z = (x ⊔ y) ⊓ (x ⊔ z)
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:215:0: sup_inf_right x y z : x ⊓ y ⊔ z = (x ⊔ z) ⊓ (y ⊔ z)
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:229:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:232:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:254:22: `StrictOrderedRing` has been deprecated: Use `[Ring R] [PartialOrder R] [IsStrictOrderedRing R]` instead.
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:254:22: invalid binder annotation, type is not a class instance
+  StrictOrderedRing R
+use the command `set_option checkBinderAnnotations false` to disable the check
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:255:18: unknown identifier 'R'
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:255:18: unknown identifier 'R'
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:255:18: unknown identifier 'R'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:273:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:276:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:279:0: declaration uses 'sorry'
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:285:17: unknown identifier 'a'
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:284:40: unsolved goals
+h : sorry
+⊢ sorry
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:289:17: unknown identifier 'a'
+error: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:288:40: unsolved goals
+h : sorry
+⊢ sorry
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:292:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:292:9: unused variable `h`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:292:21: unused variable `h'`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:293:2: 'have h1 : 0 ≤ (b - a) * c := mul_nonneg (aux1 _ _ h) h'' tactic does nothing
+note: this linter can be disabled with `set_option linter.unusedTactic false`
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:294:2: 'rw [sub_mul] at h1' tactic does nothing
+note: this linter can be disabled with `set_option linter.unusedTactic false`
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:295:2: 'exact aux2 _ _ h1' tactic does nothing
+note: this linter can be disabled with `set_option linter.unusedTactic false`
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:294:2: this tactic is never executed
+note: this linter can be disabled with `set_option linter.unreachableTactic false`
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:295:2: this tactic is never executed
+note: this linter can be disabled with `set_option linter.unreachableTactic false`
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:312:0: dist_self x : dist x x = 0
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:313:0: dist_comm x y : dist x y = dist y x
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:314:0: dist_triangle x y z : dist x z ≤ dist x y + dist y z
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S05_Proving_Facts_about_Algebraic_Structures.lean:321:0: declaration uses 'sorry'
+error: Lean exited with code 1
+⚠ [2863/2906] Built MIL.C06_Discrete_Mathematics.S02_Counting_Arguments
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S02_Counting_Arguments.lean:40:0: Disjoint.{u_1} {α : Type u_1} [PartialOrder α] [OrderBot α] (a b : α) : Prop
+info: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S02_Counting_Arguments.lean:64:16: The '∑ x in s, f x' notation is deprecated: please use '∑ x ∈ s, f x' instead:
+∑ i ∈ range (n + 1), i
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S02_Counting_Arguments.lean:89:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S02_Counting_Arguments.lean:104:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C06_Discrete_Mathematics\S02_Counting_Arguments.lean:126:0: declaration uses 'sorry'
+⚠ [2865/2906] Built MIL.C02_Basics.S03_Using_Theorems_and_Lemmas
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:21:0: le_refl : ∀ (a : ℝ), a ≤ a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:22:0: le_trans : a ≤ b → b ≤ c → a ≤ c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:32:0: le_refl : ∀ (a : ℝ), a ≤ a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:33:0: le_refl a : a ≤ a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:34:0: le_trans : a ≤ b → b ≤ c → a ≤ c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:35:0: le_trans h : b ≤ c → a ≤ c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:36:0: le_trans h h' : a ≤ c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:77:0: le_refl : ∀ (a : ?m.1268), a ≤ a
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:78:0: le_trans : a ≤ b → b ≤ c → a ≤ c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:79:0: lt_of_le_of_lt : a ≤ b → b < c → a < c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:80:0: lt_of_lt_of_le : a < b → b ≤ c → a < c
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:81:0: lt_trans : a < b → b < c → a < c
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:89:0: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:136:0: exp_le_exp : rexp a ≤ rexp b ↔ a ≤ b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:137:0: exp_lt_exp : rexp a < rexp b ↔ a < b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:138:0: log_le_log : 0 < a → a ≤ b → log a ≤ log b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:139:0: log_lt_log : 0 < a → a < b → log a < log b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:140:0: add_le_add : a ≤ b → c ≤ d → a + c ≤ b + d
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:141:0: add_le_add_left : a ≤ b → ∀ (a_1 : ℝ), a_1 + a ≤ a_1 + b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:142:0: add_le_add_right : a ≤ b → ∀ (a_1 : ℝ), a + a_1 ≤ b + a_1
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:143:0: add_lt_add_of_le_of_lt : a ≤ b → c < d → a + c < b + d
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:144:0: add_lt_add_of_lt_of_le : a < b → c ≤ d → a + c < b + d
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:145:0: add_lt_add_left : a < b → ∀ (a_1 : ℝ), a_1 + a < a_1 + b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:146:0: add_lt_add_right : a < b → ∀ (a_1 : ℝ), a + a_1 < b + a_1
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:147:0: add_nonneg : 0 ≤ a → 0 ≤ b → 0 ≤ a + b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:148:0: add_pos : 0 < a → 0 < b → 0 < a + b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:149:0: add_pos_of_pos_of_nonneg : 0 < a → 0 ≤ b → 0 < a + b
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:150:0: exp_pos : ∀ (x : ℝ), 0 < rexp x
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:151:0: add_le_add_left.{u_1} {α : Type u_1} [Add α] [LE α] [AddLeftMono α] {b c : α} (bc : b ≤ c) (a : α) : a + b ≤ a + c
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:180:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:184:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:232:0: declaration uses 'sorry'
+warning: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:282:0: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C02_Basics\S03_Using_Theorems_and_Lemmas.lean:285:0: abs_le'.mpr : ?m.28388 ≤ ?m.28389 ∧ -?m.28388 ≤ ?m.28389 → |?m.28388| ≤ ?m.28389
+✖ [2873/2910] Building MIL.C10_Linear_Algebra.S03_Endomorphisms
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C10_Linear_Algebra\S03_Endomorphisms.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C10_Linear_Algebra\S03_Endomorphisms.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C10_Linear_Algebra\S03_Endomorphisms.c --json
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:30:2: invalid field notation, type is not of the form (C ...) where C is a constant
+  LinearMap
+has type
+  (?m.3441 →+* ?m.3442) →
+    (M : Type ?u.3438) →
+      (M₂ : Type ?u.3437) →
+        [inst : AddCommMonoid M] →
+          [inst_1 : AddCommMonoid M₂] → [Module ?m.3441 M] → [Module ?m.3442 M₂] → Type (max ?u.3438 ?u.3437)
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:49:0: Submodule.eq_bot_iff.{u_1, u_3} {R : Type u_1} {M : Type u_3} [Semiring R] [AddCommMonoid M] [Module R M]
+  (p : Submodule R M) : p = ⊥ ↔ ∀ x ∈ p, x = 0
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:50:0: Submodule.mem_inf.{u_1, u_3} {R : Type u_1} {M : Type u_3} [Semiring R] [AddCommMonoid M] [Module R M]
+  {p q : Submodule R M} {x : M} : x ∈ p ⊓ q ↔ x ∈ p ∧ x ∈ q
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:51:0: LinearMap.mem_ker.{u_1, u_2, u_5, u_7, u_11} {R : Type u_1} {R₂ : Type u_2} {M : Type u_5} {M₂ : Type u_7} [Semiring R]
+  [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂] [Module R M] [Module R₂ M₂] {τ₁₂ : R →+* R₂} {F : Type u_11}
+  [FunLike F M M₂] [SemilinearMapClass F τ₁₂ M M₂] {f : F} {y : M} : y ∈ ker f ↔ f y = 0
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:65:0: Submodule.add_mem_sup.{u_1, u_3} {R : Type u_1} {M : Type u_3} [Semiring R] [AddCommMonoid M] [Module R M]
+  {S T : Submodule R M} {s t : M} (hs : s ∈ S) (ht : t ∈ T) : s + t ∈ S ⊔ T
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:66:0: map_mul.{u_4, u_5, u_9} {M : Type u_4} {N : Type u_5} {F : Type u_9} [Mul M] [Mul N] [FunLike F M N] [MulHomClass F M N]
+  (f : F) (x y : M) : f (x * y) = f x * f y
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:67:7: invalid field notation, type is not of the form (C ...) where C is a constant
+  LinearMap
+has type
+  (?m.48654 →+* ?m.48655) →
+    (M : Type ?u.48651) →
+      (M₂ : Type ?u.48650) →
+        [inst : AddCommMonoid M] →
+          [inst_1 : AddCommMonoid M₂] → [Module ?m.48654 M] → [Module ?m.48655 M₂] → Type (max ?u.48651 ?u.48650)
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:68:0: LinearMap.ker_le_ker_comp.{u_1, u_2, u_3, u_5, u_7, u_8} {R : Type u_1} {R₂ : Type u_2} {R₃ : Type u_3} {M : Type u_5}
+  {M₂ : Type u_7} {M₃ : Type u_8} [Semiring R] [Semiring R₂] [Semiring R₃] [AddCommMonoid M] [AddCommMonoid M₂]
+  [AddCommMonoid M₃] [Module R M] [Module R₂ M₂] [Module R₃ M₃] {τ₁₂ : R →+* R₂} {τ₂₃ : R₂ →+* R₃} {τ₁₃ : R →+* R₃}
+  [RingHomCompTriple τ₁₂ τ₂₃ τ₁₃] (f : M →ₛₗ[τ₁₂] M₂) (g : M₂ →ₛₗ[τ₂₃] M₃) : ker f ≤ ker (g ∘ₛₗ f)
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:89:12: unknown identifier 'mul_apply'
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S03_Endomorphisms.lean:91:12: unknown identifier 'mul_apply'
+error: Lean exited with code 1
+✖ [2874/2910] Building MIL.C10_Linear_Algebra.S04_Bases
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C10_Linear_Algebra\S04_Bases.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C10_Linear_Algebra\S04_Bases.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C10_Linear_Algebra\S04_Bases.c --json
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:30:0: !![4, 6]
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:33:0: !![4, 6; 8, 10]
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:36:0: !![13, 16; 29, 36]
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:55:0: ![3, 7]
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:58:0: ![3]
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:61:0: ![9, 12]
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:68:10: application type mismatch
+  row (Fin 1)
+argument
+  Fin 1
+has type
+  Type : Type 1
+but is expected to have type
+  Matrix (Fin (Nat.succ 0).succ → ℕ) ?m.13298 ?m.13299 : Type (max ?u.13294 ?u.13296)
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:70:10: application type mismatch
+  col (Fin 1)
+argument
+  Fin 1
+has type
+  Type : Type 1
+but is expected to have type
+  Matrix ?m.19270 (Fin (Nat.succ 0).succ → ℕ) ?m.19272 : Type (max ?u.19268 ?u.19269)
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:78:0: 11
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:81:0: !![1, 3; 2, 4]
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:84:0: -2
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:87:0: 5
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:98:0: 4 - 2 * 3
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:100:0: -2
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:102:0: 5
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:105:0: a * d - b * c
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:115:0: !![-2, 1; 3 / 2, -(1 / 2)]
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:205:0: B i : V
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:208:0: B.repr : V ≃ₗ[K] ι →₀ K
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:211:0: B.repr v : ι →₀ K
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:214:0: (B.repr v) i : K
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:302:0: Finsupp.linearCombination K f : (ι →₀ K) →ₗ[K] V
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:317:0: B.constr K : (ι → W) ≃ₗ[K] V →ₗ[K] W
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:319:0: (B.constr K) u : V →ₗ[K] W
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:345:0: toMatrix B B' : (V →ₗ[K] W) ≃ₗ[K] Matrix ι' ι K
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:372:0: LinearMap.toMatrix_comp.{u_1, u_2, u_3, u_4, u_5, u_6, u_7} {R : Type u_1} [CommSemiring R] {l : Type u_2}
+  {m : Type u_3} {n : Type u_4} [Fintype n] [Fintype m] [DecidableEq n] {M₁ : Type u_5} {M₂ : Type u_6}
+  [AddCommMonoid M₁] [AddCommMonoid M₂] [Module R M₁] [Module R M₂] (v₁ : Basis n R M₁) (v₂ : Basis m R M₂)
+  {M₃ : Type u_7} [AddCommMonoid M₃] [Module R M₃] (v₃ : Basis l R M₃) [Finite l] [DecidableEq m] (f : M₂ →ₗ[R] M₃)
+  (g : M₁ →ₗ[R] M₂) : (toMatrix v₁ v₃) (f ∘ₗ g) = (toMatrix v₂ v₃) f * (toMatrix v₁ v₂) g
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:373:0: LinearMap.id_comp.{u_3, u_4, u_10, u_11} {R₂ : Type u_3} {R₃ : Type u_4} {M₂ : Type u_10} {M₃ : Type u_11} [Semiring R₂]
+  [Semiring R₃] [AddCommMonoid M₂] [AddCommMonoid M₃] {module_M₂ : Module R₂ M₂} {module_M₃ : Module R₃ M₃}
+  {σ₂₃ : R₂ →+* R₃} (f : M₂ →ₛₗ[σ₂₃] M₃) : LinearMap.id ∘ₛₗ f = f
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:374:0: LinearMap.comp_id.{u_3, u_4, u_10, u_11} {R₂ : Type u_3} {R₃ : Type u_4} {M₂ : Type u_10} {M₃ : Type u_11} [Semiring R₂]
+  [Semiring R₃] [AddCommMonoid M₂] [AddCommMonoid M₃] {module_M₂ : Module R₂ M₂} {module_M₃ : Module R₃ M₃}
+  {σ₂₃ : R₂ →+* R₃} (f : M₂ →ₛₗ[σ₂₃] M₃) : f ∘ₛₗ LinearMap.id = f
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:375:0: LinearMap.toMatrix_id.{u_1, u_4, u_5} {R : Type u_1} [CommSemiring R] {n : Type u_4} [Fintype n] [DecidableEq n]
+  {M₁ : Type u_5} [AddCommMonoid M₁] [Module R M₁] (v₁ : Basis n R M₁) : (toMatrix v₁ v₁) LinearMap.id = 1
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:378:0: Matrix.det_mul.{v, u_2} {n : Type u_2} [DecidableEq n] [Fintype n] {R : Type v} [CommRing R] (M N : Matrix n n R) :
+  (M * N).det = M.det * N.det
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:379:0: Matrix.det_one.{v, u_2} {n : Type u_2} [DecidableEq n] [Fintype n] {R : Type v} [CommRing R] : det 1 = 1
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:412:0: Module.finrank K V : ℕ
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:424:2: unknown constant 'Complex.finrank_real_complex'
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:520:0: V : Type u_2
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S04_Bases.lean:521:0: Module.rank K V : Cardinal.{u_2}
+error: Lean exited with code 1
+✖ [2877/2917] Building MIL.C10_Linear_Algebra.S02_Subspaces
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C10_Linear_Algebra\S02_Subspaces.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C10_Linear_Algebra\S02_Subspaces.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C10_Linear_Algebra\S02_Subspaces.c --json
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:73:4: dsimp made no progress
+error: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:90:4: dsimp made no progress
+warning: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:179:3: `DirectSum.IsInternal.submodule_independent` has been deprecated: use `DirectSum.IsInternal.submodule_iSupIndep` instead
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:182:0: DirectSum.isInternal_submodule_iff_independent_and_iSup_eq_top.{u, v, u_1} {R : Type u} [Ring R] {ι : Type v}
+  [dec_ι : DecidableEq ι] {M : Type u_1} [AddCommGroup M] [Module R M] (A : ι → Submodule R M) :
+  IsInternal A ↔ iSupIndep A ∧ iSup A = ⊤
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:264:0: Submodule.map φ E : Submodule K W
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:267:0: Submodule.comap φ F : Submodule K V
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:299:0: Submodule.mem_map_of_mem.{u_1, u_3, u_5, u_7, u_9} {R : Type u_1} {R₂ : Type u_3} {M : Type u_5} {M₂ : Type u_7}
+  [Semiring R] [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂] [Module R M] [Module R₂ M₂] {σ₁₂ : R →+* R₂}
+  [RingHomSurjective σ₁₂] {F : Type u_9} [FunLike F M M₂] [SemilinearMapClass F σ₁₂ M M₂] {f : F} {p : Submodule R M}
+  {r : M} (h : r ∈ p) : f r ∈ Submodule.map f p
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:300:0: Submodule.mem_map.{u_1, u_3, u_5, u_7, u_9} {R : Type u_1} {R₂ : Type u_3} {M : Type u_5} {M₂ : Type u_7} [Semiring R]
+  [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂] [Module R M] [Module R₂ M₂] {σ₁₂ : R →+* R₂}
+  [RingHomSurjective σ₁₂] {F : Type u_9} [FunLike F M M₂] [SemilinearMapClass F σ₁₂ M M₂] {f : F} {p : Submodule R M}
+  {x : M₂} : x ∈ Submodule.map f p ↔ ∃ y ∈ p, f y = x
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:301:0: Submodule.mem_comap.{u_1, u_3, u_5, u_7, u_9} {R : Type u_1} {R₂ : Type u_3} {M : Type u_5} {M₂ : Type u_7} [Semiring R]
+  [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂] [Module R M] [Module R₂ M₂] {σ₁₂ : R →+* R₂} {x : M} {F : Type u_9}
+  [FunLike F M M₂] [SemilinearMapClass F σ₁₂ M M₂] {f : F} {p : Submodule R₂ M₂} : x ∈ Submodule.comap f p ↔ f x ∈ p
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:346:0: Submodule.map_comap_eq.{u_1, u_2, u_5, u_6, u_10} {R : Type u_1} {R₂ : Type u_2} {M : Type u_5} {M₂ : Type u_6}
+  [Semiring R] [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂] [Module R M] [Module R₂ M₂] {τ₁₂ : R →+* R₂}
+  {F : Type u_10} [FunLike F M M₂] [SemilinearMapClass F τ₁₂ M M₂] [RingHomSurjective τ₁₂] (f : F)
+  (q : Submodule R₂ M₂) : map f (comap f q) = range f ⊓ q
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S02_Subspaces.lean:347:0: Submodule.comap_map_eq.{u_1, u_2, u_4, u_5, u_8} {R : Type u_1} {R₂ : Type u_2} {M : Type u_4} {M₂ : Type u_5}
+  [Semiring R] [Semiring R₂] [AddCommGroup M] [Module R M] [AddCommGroup M₂] [Module R₂ M₂] {τ₁₂ : R →+* R₂}
+  [RingHomSurjective τ₁₂] {F : Type u_8} [FunLike F M M₂] [SemilinearMapClass F τ₁₂ M M₂] (f : F) (p : Submodule R M) :
+  comap f (map f p) = p ⊔ ker f
+error: Lean exited with code 1
+ℹ [2879/2923] Built MIL.C10_Linear_Algebra.S01_Vector_Spaces
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:92:0: 2 • φ + ψ : V →ₗ[K] W
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:103:0: φ ∘ₗ θ : W →ₗ[K] W
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:104:0: φ ∘ₗ θ : W →ₗ[K] W
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:125:0: φ.map_add' : ∀ (x y : V), φ.toFun (x + y) = φ.toFun x + φ.toFun y
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:126:0: LinearMap.map_add φ : ∀ (x y : V), φ (x + y) = φ x + φ y
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:127:0: map_add φ : ∀ (x y : V), φ (x + y) = φ x + φ y
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:137:0: (LinearMap.lsmul K V) 3 : V →ₗ[K] V
+info: D:\Git\math-in-lean-zh\MIL\C10_Linear_Algebra\S01_Vector_Spaces.lean:138:0: LinearMap.lsmul K V : K →ₗ[K] V →ₗ[K] V
+✖ [2882/2931] Building MIL.C09_Groups_and_Rings.S01_Groups
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C09_Groups_and_Rings\S01_Groups.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C09_Groups_and_Rings\S01_Groups.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C09_Groups_and_Rings\S01_Groups.c --json
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:295:0: Subgroup.mem_map.{u_1, u_5} {G : Type u_1} [Group G] {N : Type u_5} [Group N] {f : G →* N} {K : Subgroup G} {y : N} :
+  y ∈ Subgroup.map f K ↔ ∃ x ∈ K, f x = y
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:296:0: Subgroup.mem_comap.{u_1, u_5} {G : Type u_1} [Group G] {N : Type u_5} [Group N] {K : Subgroup N} {f : G →* N} {x : G} :
+  x ∈ Subgroup.comap f K ↔ f x ∈ K
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:419:0: Subgroup.card_dvd_of_le.{u_1} {α : Type u_1} [Group α] {H K : Subgroup α} (hHK : H ≤ K) : Nat.card ↥H ∣ Nat.card ↥K
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:456:0: swap 1 2 * swap 3 4
+error: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:599:48: invalid field notation, type is not of the form (C ...) where C is a constant
+  Quotient
+has type
+  Setoid ?m.79632 → Sort ?u.79631
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:742:0: Nat.card_pos.{u_1} {α : Type u_1} [Nonempty α] [Finite α] : 0 < Nat.card α
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:743:0: Subgroup.index_eq_card.{u_1} {G : Type u_1} [Group G] (H : Subgroup G) : H.index = Nat.card (G ⧸ H)
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:744:0: Subgroup.index_mul_card.{u_1} {G : Type u_1} [Group G] (H : Subgroup G) : H.index * Nat.card ↥H = Nat.card G
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:745:0: Nat.eq_of_mul_eq_mul_right {n m k : ℕ} (hm : 0 < m) (h : n * m = k * m) : n = k
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:766:0: Nat.bijective_iff_injective_and_card.{u_1, u_2} {α : Type u_1} {β : Type u_2} [Finite β] (f : α → β) :
+  Function.Bijective f ↔ Function.Injective f ∧ Nat.card α = Nat.card β
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:767:0: MonoidHom.ker_eq_bot_iff.{u_1, u_7} {G : Type u_1} [Group G] {M : Type u_7} [MulOneClass M] (f : G →* M) :
+  f.ker = ⊥ ↔ Function.Injective ⇑f
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:768:0: MonoidHom.restrict.{u_1, u_5, u_6} {M : Type u_1} [MulOneClass M] {N : Type u_5} {S : Type u_6} [MulOneClass N]
+  [SetLike S M] [SubmonoidClass S M] (f : M →* N) (s : S) : ↥s →* N
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:769:0: MonoidHom.ker_restrict.{u_1, u_5} {G : Type u_1} [Group G] {N : Type u_5} [Group N] (K : Subgroup G) (f : G →* N) :
+  (f.restrict K).ker = f.ker.subgroupOf K
+info: D:\Git\math-in-lean-zh\MIL\C09_Groups_and_Rings\S01_Groups.lean:806:0: MulEquiv.prodCongr.{u_3, u_4, u_6, u_7} {M : Type u_3} {N : Type u_4} [MulOneClass M] [MulOneClass N] {M' : Type u_6}
+  {N' : Type u_7} [MulOneClass N'] [MulOneClass M'] (f : M ≃* M') (g : N ≃* N') : M × N ≃* M' × N'
+error: Lean exited with code 1
+✖ [2884/2931] Running MIL
+error: D:\Git\math-in-lean-zh\MIL.lean: bad import 'MIL.C07_Structures.S01_Structures'
+error: D:\Git\math-in-lean-zh\MIL.lean: bad import 'MIL.C08_Hierarchies.S01_Basics'
+error: D:\Git\math-in-lean-zh\MIL.lean: bad import 'MIL.C08_Hierarchies.S02_Morphisms'
+error: D:\Git\math-in-lean-zh\MIL.lean: bad import 'MIL.C09_Groups_and_Rings.S02_Rings'
+error: D:\Git\math-in-lean-zh\MIL.lean: bad import 'MIL.C11_Topology.S01_Filters'
+error: D:\Git\math-in-lean-zh\MIL.lean: bad import 'MIL.C11_Topology.S02_Metric_Spaces'
+error: D:\Git\math-in-lean-zh\MIL.lean: bad import 'MIL.C11_Topology.S03_Topological_Spaces'
+✖ [2900/2931] Building MIL.C12_Differential_Calculus.S02_Differential_Calculus_in_Normed_Spaces
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.c --json
+warning: D:\Git\math-in-lean-zh\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.lean:160:0: declaration uses 'sorry'
+error: D:\Git\math-in-lean-zh\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.lean:287:15: application type mismatch
+  ContDiff 𝕜 n
+argument
+  n
+has type
+  WithTop ℕ : Type
+but is expected to have type
+  WithTop ℕ∞ : Type
+error: D:\Git\math-in-lean-zh\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.lean:299:23: application type mismatch
+  ContDiffAt 𝕂 n
+argument
+  n
+has type
+  WithTop ℕ : Type
+but is expected to have type
+  WithTop ℕ∞ : Type
+info: D:\Git\math-in-lean-zh\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.lean:335:0: HasFDerivWithinAt.{u_1, u_2, u_3} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2} [AddCommGroup E]
+  [Module 𝕜 E] [TopologicalSpace E] {F : Type u_3} [AddCommGroup F] [Module 𝕜 F] [TopologicalSpace F] (f : E → F)
+  (f' : E →L[𝕜] F) (s : Set E) (x : E) : Prop
+info: D:\Git\math-in-lean-zh\MIL\C12_Differential_Calculus\S02_Differential_Calculus_in_Normed_Spaces.lean:337:0: HasFDerivAtFilter.{u_1, u_2, u_3} {𝕜 : Type u_1} [NontriviallyNormedField 𝕜] {E : Type u_2} [AddCommGroup E]
+  [Module 𝕜 E] [TopologicalSpace E] {F : Type u_3} [AddCommGroup F] [Module 𝕜 F] [TopologicalSpace F] (f : E → F)
+  (f' : E →L[𝕜] F) (x : E) (L : Filter E) : Prop
+error: Lean exited with code 1
+⚠ [2916/2931] Built MIL.C05_Elementary_Number_Theory.S04_More_Induction
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S04_More_Induction.lean:153:0: 8
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S04_More_Induction.lean:154:0: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S04_More_Induction.lean:177:0: 33644764876431783266621612005107543310302148460680063906564769974680081442166662368155595513633734025582065332680836159373734790483865268263040892463056431887354544369559827491606602099884183933864652731300088830269235673613135117579297437854413752130520504347701602264758318906527890855154366159582987279682987510631200575428783453215515103870818298969791613127856265033195487140214287532698187962046936097879900350962302291026368131493195275630227837628441540360584402572114334961180023091208287046088923962328835461505776583271252546093591128203925285393434620904245248929403901706233888991085841065183173360437470737908552631764325733993712871937587746897479926305837065742830161637408969178426378624212835258112820516370298089332099905707920064367426202389783111470054074998459250360633560933883831923386783056136435351892133279732908133732642652633989763922723407882928177953580570993691049175470808931841056146322338217465637321248226383092103297701648054726243842374862411453093812206564914032751086643394517512161526545361333111314042436854805106765843493523836959653428071768775328348234345557366719731392746273629108210679280784718035329131176778924659089938635459327894523777674406192240337638674004021330343297496902028328145933418826817683893072003634795623117103101291953169794607632737589253530772552375943788434504067715555779056450443016640119462580972216729758615026968443146952034614932291105970676243268515992834709891284706740862008587135016260312071903172086094081298321581077282076353186624611278245537208532365305775956430072517744315051539600905168603220349163222640885248852433158051534849622434848299380905070483482449327453732624567755879089187190803662058009594743150052402532709746995318770724376825907419939632265984147498193609285223945039707165443156421328157688908058783183404917434556270520223564846495196112460268313970975069382648706613264507665074611512677522748621598642530711298441182622661057163515069260029861704945425047491378115154139941550671256271197133252763631939606902895650288268608362241082050562430701794976171121233066073310059947366875
+warning: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S04_More_Induction.lean:212:0: declaration uses 'sorry'
+info: D:\Git\math-in-lean-zh\MIL\C05_Elementary_Number_Theory\S04_More_Induction.lean:221:0: @Nat.not_prime_iff_exists_dvd_lt : ∀ {n : ℕ}, 2 ≤ n → (¬Nat.Prime n ↔ ∃ m, m ∣ n ∧ 2 ≤ m ∧ m < n)
+✖ [2927/2931] Building MIL.C13_Integration_and_Measure_Theory.S02_Measure_Theory
+trace: .> LEAN_PATH=D:\Git\math-in-lean-zh\.lake\packages\Cli\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\batteries\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\Qq\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\aesop\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\proofwidgets\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\importGraph\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\LeanSearchClient\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\plausible\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\packages\mathlib\.lake\build\lib\lean;D:\Git\math-in-lean-zh\.lake\build\lib\lean c:\Users\31515\.elan\toolchains\local-4.20.0\bin\lean.exe -Dpp.unicode.fun=true -DautoImplicit=false -DrelaxedAutoImplicit=false D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S02_Measure_Theory.lean -R D:\Git\math-in-lean-zh -o D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C13_Integration_and_Measure_Theory\S02_Measure_Theory.olean -i D:\Git\math-in-lean-zh\.lake\build\lib\lean\MIL\C13_Integration_and_Measure_Theory\S02_Measure_Theory.ilean -c D:\Git\math-in-lean-zh\.lake\build\ir\MIL\C13_Integration_and_Measure_Theory\S02_Measure_Theory.c --json
+warning: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S02_Measure_Theory.lean:5:7: 'Mathlib.MeasureTheory.Integral.Bochner' has been deprecated: please replace this import by
+
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.MeasureTheory.Integral.Bochner.L1
+import Mathlib.MeasureTheory.Integral.Bochner.VitaliCaratheodory
+
+note: this linter can be disabled with `set_option linter.deprecated.module false`
+warning: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S02_Measure_Theory.lean:5:7: 'Mathlib.MeasureTheory.Integral.Bochner' has been deprecated: please replace this import by
+
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.MeasureTheory.Integral.Bochner.L1
+import Mathlib.MeasureTheory.Integral.Bochner.VitaliCaratheodory
+
+note: this linter can be disabled with `set_option linter.deprecated.module false`
+error: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S02_Measure_Theory.lean:66:86: unknown identifier 'on'
+error: Lean exited with code 1
+⚠ [2928/2931] Built MIL.C13_Integration_and_Measure_Theory.S03_Integration
+warning: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S03_Integration.lean:5:7: 'Mathlib.MeasureTheory.Integral.Bochner' has been deprecated: please replace this import by
+
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.MeasureTheory.Integral.Bochner.L1
+import Mathlib.MeasureTheory.Integral.Bochner.VitaliCaratheodory
+
+note: this linter can be disabled with `set_option linter.deprecated.module false`
+warning: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S03_Integration.lean:5:7: 'Mathlib.MeasureTheory.Integral.Bochner' has been deprecated: please replace this import by
+
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.MeasureTheory.Integral.Bochner.L1
+import Mathlib.MeasureTheory.Integral.Bochner.VitaliCaratheodory
+
+note: this linter can be disabled with `set_option linter.deprecated.module false`
+warning: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S03_Integration.lean:39:32: unused variable `x`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2930/2931] Built MIL.C13_Integration_and_Measure_Theory.S01_Elementary_Integration
+warning: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S01_Elementary_Integration.lean:2:7: 'Mathlib.MeasureTheory.Integral.IntervalIntegral' has been deprecated: please replace this import by
+
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts
+
+note: this linter can be disabled with `set_option linter.deprecated.module false`
+warning: D:\Git\math-in-lean-zh\MIL\C13_Integration_and_Measure_Theory\S01_Elementary_Integration.lean:2:7: 'Mathlib.MeasureTheory.Integral.IntervalIntegral' has been deprecated: please replace this import by
+
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts
+
+note: this linter can be disabled with `set_option linter.deprecated.module false`
+Some required builds logged failures:
+- Mathlib.Algebra.BigOperators.Ring
+- MIL.C07_Structures.S01_Structures
+- MIL.C08_Hierarchies.S01_Basics
+- Mathlib.Topology.Instances.Real
+- MIL.C08_Hierarchies.S02_Morphisms
+- Mathlib.Data.ZMod.Quotient
+- MIL.C09_Groups_and_Rings.S02_Rings
+- MIL.C11_Topology.S01_Filters
+- MIL.C08_Hierarchies.S03_Subobjects
+- MIL.C11_Topology.S02_Metric_Spaces
+- MIL.C11_Topology.S03_Topological_Spaces
+- MIL.C07_Structures.S03_Building_the_Gaussian_Integers
+- MIL.C04_Sets_and_Functions.S03_The_Schroeder_Bernstein_Theorem
+- MIL.C03_Logic.S01_Implication_and_the_Universal_Quantifier
+- MIL.C02_Basics.S05_Proving_Facts_about_Algebraic_Structures
+- MIL.C10_Linear_Algebra.S03_Endomorphisms
+- MIL.C10_Linear_Algebra.S04_Bases
+- MIL.C10_Linear_Algebra.S02_Subspaces
+- MIL.C09_Groups_and_Rings.S01_Groups
+- MIL
+- MIL.C12_Differential_Calculus.S02_Differential_Calculus_in_Normed_Spaces
+- MIL.C13_Integration_and_Measure_Theory.S02_Measure_Theory
+error: build failed
+PS D:\Git\math-in-lean-zh> contents

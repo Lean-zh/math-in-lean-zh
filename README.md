@@ -30,7 +30,7 @@ Lean 3 版 [https://github.com/leanprover-community/mathematics_in_lean3](https:
  生成教材的 HTML 和 PDF版本。
 
 最后，我们用另一个脚本将内容部署到
-[用户仓库](https://github.com/leanprover-community/mathematics_in_lean).
+[用户仓库](https://github.com/Lean-zh/math-in-lean-zh?tab=readme-ov-file).
 
 
 环境配置

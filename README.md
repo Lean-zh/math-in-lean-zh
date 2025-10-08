@@ -13,7 +13,7 @@ Lean 3 版 [https://github.com/leanprover-community/mathematics_in_lean3](https:
 
 # 源文件说明
 
-本仓库用于生成 [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/) 教材和用户仓库。
+本仓库用于生成 [Mathematics in Lean (Chinese Translation)](https://www.leanprover.cn/math-in-lean-zh/) 教材和用户仓库。
 
 
 

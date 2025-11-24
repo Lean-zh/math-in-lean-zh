@@ -179,7 +179,7 @@ end matrices
 ^^^^^
 我们现在讨论向量空间的基。非正式地说，这一概念有多种定义方式：
 
-* 可以通过万有性质来定义；
+* 可以通过泛性质来定义；
 * 可以说基是一族线性无关且张成全空间的向量；
 * 或结合这两个性质，直接说基是一族向量，使得每个向量都能唯一地表示为基向量的线性组合；
 * 另一种说法是，基提供了与基域 ``K`` 的某个幂（作为 ``K`` 上的向量空间）的线性同构。
@@ -187,7 +187,7 @@ end matrices
 实际上，Mathlib 在底层采用的是最后一种同构的定义，并从中推导出其他性质。
 对于无限基的情况，需稍加注意“基域的幂”这一说法。因为在代数环境中，只考虑有限线性组合有意义，
 所以我们参考的向量空间不是基域的直积，而是直和。
-我们可以用 `⨁ i : ι, K` 表示某个类型 `ι` 索引的基向量集合对应的直和，
+我们可以用 ⨁ `i : ι, K` 表示某个类型 `ι` 索引的基向量集合对应的直和，
 但更常用的是更专门的表示法 `ι →₀ K`，表示“具有有限支集的函数”，即在 `ι` 上除有限点外值为零的函数（这个有限集合不是固定的，依赖于函数本身）。
 
 对于基 `B` 中的函数，给定向量 `v` 和索引 `i : ι`，函数的值即为 `v` 在第 `i` 个基向量上的坐标分量。
@@ -263,20 +263,9 @@ example [Fintype ι] : ∑ i : ι, B.repr v i • (B i) = v :=
 -- QUOTE.
 
 /- TEXT:
-当索引类型 `ι` 不是有限集时，上述直接对 `ι` 求和的说法在理论上没有意义，因为无法对无限集合进行直接求和。不过，被求和的函数的支集是有限的（即 `B.repr v` 的支集），这就允许对有限支集进行求和。为了处理这种情况，Mathlib 使用了一个特殊的函数，虽然需要一些时间适应，它是 `Finsupp.linearCombination`（建立在更通用的 `Finsupp.sum` 之上）。
+当索引类型 `ι` 不是有限集时，上述直接对 `ι` 求和的说法在理论上没有意义，因为无法对无限集合进行直接求和。不过，被求和的函数的支集是有限的（即 `B.repr v` 的支集），这就允许对有限支集进行求和。为了处理这种情况，Mathlib 使用了一个特殊的函数，虽然需要一些时间适应，它是 `Finsupp.linearCombination` (建立在更通用的 `Finsupp.sum` 之上)。
 
 给定一个从类型 `ι` 到基域 `K` 的有限支集函数 `c`，以及任意从 `ι` 到向量空间 `V` 的函数 `f`，`Finsupp.linearCombination K f c` 定义为对 `c` 的支集上所有元素的 `c • f` 进行标量乘法后求和。特别地，我们也可以将求和范围替换为任何包含 `c` 支集的有限集合。
-
-When ``ι`` is not finite, the above statement makes no sense a priori: we cannot take a sum over ``ι``.
-However the support of the function being summed is finite (it is the support of ``B.repr v``).
-But we need to apply a construction that takes this into account.
-Here Mathlib uses a special purpose function that requires some time to get used to:
-``Finsupp.linearCombination`` (which is built on top of the more general ``Finsupp.sum``).
-Given a finitely supported function ``c`` from a type ``ι`` to the base field ``K`` and any
-function ``f`` from ``ι`` to ``V``, ``Finsupp.linearCombination K f c`` is the
-sum over the support of ``c`` of the scalar multiplication ``c • f``. In
-particular, we can replace it by a sum over any finite set containing the
-support of ``c``.
 
 EXAMPLES: -/
 -- QUOTE:
@@ -332,8 +321,7 @@ example (φ ψ : V →ₗ[K] W) (h : ∀ i, φ (B i) = ψ (B i)) : φ = ψ :=
 
 -- QUOTE.
 /- TEXT:
-如果我们在目标空间上也有一个基 ``B'``，那么我们可以将线性映射与矩阵进行识别。
-这种识别是一个 ``K``-线性同构。
+若目标空间上存在另一组基 ``B'`` ，则可将线性映射与矩阵建立对应关系。该对应关系构成一个 ``K`` 线性同构。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -462,7 +450,7 @@ example [FiniteDimensional K V] : Finite ι :=
 end
 -- QUOTE.
 /- TEXT:
-使用与线性子空间对应的子类型具有向量空间结构，我们可以讨论子空间的维度。
+使用具有向量空间结构的线性子空间对应的子类型，我们可以讨论子空间的维度。
 EXAMPLES: -/
 -- QUOTE:
 
@@ -499,7 +487,7 @@ end
 -- QUOTE.
 
 /- TEXT:
-我们现在转向一般的维数理论情形。此时，`finrank` 就不再适用，但我们依然知道，对于同一向量空间的任意两组基，其索引类型之间存在一个双射。因此，我们仍然可以期望将秩定义为基数（cardinal），即“类型集合在存在双射的等价关系下的商集”中的元素。
+我们现在转向维数理论的一般情形。此时，`finrank` 就不再适用，但我们依然知道，对于同一向量空间的任意两组基，其索引类型之间存在一个双射。因此，我们仍然可以期望将秩定义为基数（cardinal），即“类型集合在存在双射的等价关系下的商集”中的元素。
 
 在讨论基数时，难以像本书其他部分那样忽略类似罗素悖论的基础性问题。因为不存在“所有类型的类型”，否则会导致逻辑矛盾。
 这一问题通过宇宙层级（universe hierarchy）来解决，而我们通常会尝试忽略这些细节。
@@ -536,7 +524,7 @@ example : Cardinal.lift.{v, u} (.mk ι) = Cardinal.lift.{u, v} (.mk ι') :=
   mk_eq_mk_of_basis B B'
 -- QUOTE.
 /- TEXT:
-我们可以将有限维情况与此讨论联系起来，使用从自然数到有限基数的强制转换（更准确地说，是生活在 ``Cardinal.{v}`` 中的有限基数，其中 ``v`` 是 ``V`` 的宇宙层级）。
+我们可以将有限维情况与此讨论联系起来，使用从自然数到有限基数的强制转换（更准确地说，是存在于 ``Cardinal.{v}`` 中的有限基数，其中 ``v`` 是 ``V`` 的宇宙层级）。
 EXAMPLES: -/
 -- QUOTE:
 

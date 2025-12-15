@@ -171,7 +171,7 @@ TEXT. -/
 -- QUOTE.
 
 /- TEXT:
-使用它和 ``add_sub_cancel_right`` 和 ``sub_add_cancel``来证明以下变形。最好用三行或更少的代码完成。
+使用它和 ``add_sub_cancel_right`` 和 ``sub_add_cancel`` 来证明以下变形。最好用三行或更少的代码完成。
 TEXT. -/
 -- QUOTE:
 -- BOTH:

@@ -570,7 +570,6 @@ def CayleyIsoMorphism (G : Type*) [Group G] : G ≃* (toPermHom G G).range :=
 -- QUOTE.
 
 /- TEXT:
-以下是这段话的翻译：
 
 请注意，在上述定义之前，并不需要一定是群，而是可以是幺半群或者任何具有乘法操作的类型。
 
@@ -596,7 +595,7 @@ example {G X : Type*} [Group G] [MulAction G X] : Setoid X := orbitRel G X
 EXAMPLES: -/
 -- QUOTE:
 example {G X : Type*} [Group G] [MulAction G X] :
-    X ≃ (ω : orbitRel.Quotient G X) × (orbit G (Quotient.out' ω)) :=
+    X ≃ (ω : orbitRel.Quotient G X) × (orbit G (Quotient.out ω)) :=
   MulAction.selfEquivSigmaOrbits G X
 -- QUOTE.
 
@@ -721,7 +720,7 @@ example {G G': Type*} [Group G] [Group G']
 -- QUOTE.
 
 /- TEXT:
-需要注意的一个细微点是，类型 ``G ⧸ N`` 实际上依赖于 ``N``（在定义等同的范围内），因此证明两个正规子群 ``N`` 和 ``M`` 是相等的并不足以使相应的商群相等。然而，在这种情况下，整体性质确实给出了一个同构。
+需要注意的一个细微点是，类型 ``G ⧸ N`` 实际上依赖于 ``N`` （在定义等同的范围内），因此证明两个正规子群 ``N`` 和 ``M`` 是相等的并不足以使相应的商群相等。然而，在这种情况下，整体性质确实给出了一个同构。
 EXAMPLES: -/
 -- QUOTE:
 example {G : Type*} [Group G] {M N : Subgroup G} [M.Normal]

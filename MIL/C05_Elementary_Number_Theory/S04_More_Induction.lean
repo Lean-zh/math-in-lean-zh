@@ -251,9 +251,10 @@ theorem ne_one_iff_exists_prime_dvd : ∀ {n}, n ≠ 1 ↔ ∃ p : ℕ, p.Prime 
 -- QUOTE.
 /- TEXT:
 
- ``rw [ne_one_iff_exists_prime_dvd] at this`` 这一行就像黑魔法一样：在证明自身时用到了正在证明的定理本身。
- 这种用法之所以可行，是因为归纳调用实例化在 ``m`` 上，当前 case 是 ``n + 2`` ，且上下文中有 ``m < n + 2`` 。Lean 能自动找到假设并据此判定归纳是良基的。
- Lean 很擅长判断递减量；在本例中，定理语句中的 `n` 和小于关系很明显。在更复杂的情况下，Lean 还提供了一些机制让你显式指定递减量。详见 Lean Reference Manual关于 ``良基递归 <https://lean-lang.org/doc/reference/latest//Definitions/Recursive-Definitions/#well-founded-recursion>``_ 的章节。
+``rw [ne_one_iff_exists_prime_dvd] at this`` 这一行就像黑魔法一样：在证明自身时用到了正在证明的定理本身。
+这种用法之所以可行，是因为归纳调用实例化在 ``m`` 上，当前 case 是 ``n + 2`` ，且上下文中有 ``m < n + 2`` 。Lean 能自动找到假设并据此判定归纳是良基的。
+Lean 很擅长判断递减量；在本例中，定理语句中的 ``n`` 和小于关系很明显。在更复杂的情况下，Lean 还提供了一些机制让你显式指定递减量。详见 Lean Reference Manual关于 `良基递归 <https://lean-lang.org/doc/reference/latest//Definitions/Recursive-Definitions/#well-founded-recursion>`_ 的章节。
+
 有时在证明中，你需要根据一个自然数 ``n`` 是 0 还是后继数来分类，但在后继情形下并不需要归纳假设。此时可以用 ``cases`` 和 ``rcases`` 策略。
 BOTH: -/
 -- QUOTE:

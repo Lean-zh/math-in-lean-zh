@@ -130,7 +130,7 @@ EXAMPLES: -/
 
 /- TEXT:
 我们也可以利用 Mathlib 中已有的线性映射，通过各种组合子（combinators）来构造新的线性映射。
-例如，上述例子已经在 Mathlib 中以 `LinearMap.lsmul K V 3` 的形式存在。这里 `K` 和 `V` 是显式参数，原因有几个：最主要的是，如果只写 `LinearMap.lsmul 3`，Lean 无法推断出 `V`，甚至无法推断出 `K`。此外，`LinearMap.lsmul K V` 本身也是一个有趣的对象：它的类型是 ``K →ₗ[K] V →ₗ[K] V`` ，意味着它是一个从域 `K`（视为其自身上的向量空间）到从 `V` 到 `V` 的 `K`-线性映射空间的线性映射。
+例如，上述例子已经在 Mathlib 中以 `LinearMap.lsmul K V 3` 的形式存在。这里 `K` 和 `V` 是显式参数，原因有几个：最主要的是，如果只写 `LinearMap.lsmul 3`，Lean 无法推断出 `V`，甚至无法推断出 `K`。此外，`LinearMap.lsmul K V` 本身也是一个有趣的对象：它的类型是 ``K →ₗ[K] V →ₗ[K] V`` ，意味着它是一个从域 `K` (视为其自身上的向量空间)到从 `V` 到 `V` 的 `K`-线性映射空间的线性映射。
 EXAMPLES: -/
 -- QUOTE:
 

@@ -112,7 +112,7 @@ example (U : Submodule K V) : Module K {x : V // x ∈ U} := inferInstance
 
 /- TEXT:
 
-完全格结构和内直和
+完备格结构和内直和
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 拥有类型 `Submodule K V` 而非谓词 `IsSubmodule : Set V → Prop` 的一个重要好处是，可以方便地赋予 `Submodule K V` 额外的结构。
@@ -194,7 +194,7 @@ end
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 除了从现有子空间构建子空间，我们还可以使用 ``Submodule.span K s`` 从任何集合 ``s`` 构建子空间，该函数构建包含 ``s`` 的最小子空间。
-在纸面上，通常使用该空间由 ``s`` 的所有线性组合构成的事实。但通常更有效的方法是使用其万有性质，即 ``Submodule.span_le``，以及整个 Galois 连接理论。
+在纸面上，通常使用该空间由 ``s`` 的所有线性组合构成的事实。但通常更有效的方法是使用其泛性质，即 ``Submodule.span_le``，以及整个 Galois 连接理论（亦称Galois插入，即Galois Insertion）。
 
 EXAMPLES: -/
 -- QUOTE:
@@ -315,7 +315,7 @@ SOLUTIONS: -/
 /- TEXT:
 商空间
 ^^^^^^^^^^^^^^^
-商向量空间使用通用的商记号（输入为 `\quot`，而非普通的 `/`）。投影到商空间的映射是 `Submodule.mkQ`，其万有性质由 `Submodule.liftQ` 给出。
+商向量空间使用通用的商记号（输入为 `\quot`，而非普通的 `/`）。投影到商空间的映射是 `Submodule.mkQ`，其泛性质由 `Submodule.liftQ` 给出。
 EXAMPLES: -/
 -- QUOTE:
 

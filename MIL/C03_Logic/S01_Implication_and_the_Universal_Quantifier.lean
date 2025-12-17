@@ -114,7 +114,7 @@ def FnLb (f : ℝ → ℝ) (a : ℝ) : Prop :=
 /- TEXT:
 .. index:: lambda abstraction
 
-在下一个例子中， ``fun x ↦ f x + g x`` 是把 ``x`` 映射到 `` f x + g x`` 的函数。从表达式 ``f x + g x`` 构造这个函数的过程在类型论中称为 lambda 抽象 （lambda abstraction）。
+在下一个例子中， ``fun x ↦ f x + g x`` 是把 ``x`` 映射到 ``f x + g x`` 的函数。从表达式 ``f x + g x`` 构造这个函数的过程在类型论中称为 lambda 抽象 （lambda abstraction）。
 BOTH: -/
 section
 variable (f g : ℝ → ℝ) (a b : ℝ)

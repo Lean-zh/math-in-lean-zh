@@ -36,7 +36,6 @@ jobs:
 
       - name: Run build script
         run: |
-          chmod +x scripts/mkall.py
           python scripts/mkall.py
           make html
           touch ./build/html/.nojekyll

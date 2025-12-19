@@ -164,5 +164,5 @@ and others.
 Our work has been partially supported by the Hoskinson Center for
 Formal Mathematics.
 
-感谢 `Lean-zh 中文社区<https://www.leanprover.cn/>`_ 的伙伴们参与译本的创作和校对。
+感谢 `Lean-zh 中文社区 <https://www.leanprover.cn/>`_ 的伙伴们参与译本的创作和校对。
 TEXT. -/

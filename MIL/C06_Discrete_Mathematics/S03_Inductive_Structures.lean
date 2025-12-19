@@ -29,7 +29,7 @@ end MyListSpace
 -- QUOTE.
 
 /- TEXT:
-归纳定义说 ``List α`` 的每个元素要么是 ``nil``（空列表），
+归纳定义说 ``List α`` 的每个元素要么是 ``nil`` （空列表），
 要么是 ``cons a as``，其中 ``a`` 是 ``α`` 的元素，``as`` 是 ``α`` 的元素的列表。
 构造子正确地命名为 ``List.nil`` 和 ``List.cons``，
 但当 ``List`` 命名空间打开时，你可以使用更短的记法。
@@ -117,7 +117,7 @@ theorem map_map' (f : α → β) (g : β → γ) (as : List α) :
 
 /- TEXT:
 当然，这些定理已经在标准库中了。作为练习，
-尝试在 ``MyListSpace3`` 命名空间中定义一个函数 ``reverse``（以避免与标准的 ``List.reverse`` 冲突），
+尝试在 ``MyListSpace3`` 命名空间中定义一个函数 ``reverse`` （以避免与标准的 ``List.reverse`` 冲突），
 该函数反转列表。
 你可以使用 ``#eval reverse [1, 2, 3, 4, 5]`` 来测试它。
 ``reverse`` 的最直接定义需要二次时间，但不要担心这个。

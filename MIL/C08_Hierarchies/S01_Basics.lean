@@ -499,10 +499,10 @@ class Module₁ (R : Type) [Ring₃ R] (M : Type) [AddCommGroup₃ M] extends SM
 ``cannot find synthesization order for instance Module₁.toAddCommGroup₃ with type (R : Type) → [inst : Ring₃ R] → {M : Type} → [self : Module₁ R M] → AddCommGroup₃ M
 all remaining arguments have metavariables: Ring₃ ?R @Module₁ ?R ?inst✝ M``。
 要理解此消息，您需要记住，这样的 ``extends`` 子句会导致一个标记为实例的字段 ``Module₃.toAddCommGroup₃`` 。此实例具有错误消息中出现的签名：
- ``(R : Type) → [inst : Ring₃ R] → {M : Type} → [self : Module₁ R M] → AddCommGroup₃ M`` 。在类型类数据库中有这样一个实例，每次 Lean 要为某个 ``M`` 查找一个 ``AddCommGroup₃ M`` 实例时，它都需要先去寻找一个完全未指定的类型 ``R`` 以及一个 ``Ring₃ R`` 实例，然后才能开始寻找主要目标，即一个 ``Module₁ R M`` 实例。这两个支线任务在错误消息中由元变量表示，并在那里用 ``？R`` 和 ``？inst✝`` 标注。这样的一个 ``Module₃.toAddCommGroup₃`` 实例对于实例解析过程来说会是一个巨大的陷阱，因此 ``class`` 命令拒绝设置它。
+``(R : Type) → [inst : Ring₃ R] → {M : Type} → [self : Module₁ R M] → AddCommGroup₃ M`` 。在类型类数据库中有这样一个实例，每次 Lean 要为某个 ``M`` 查找一个 ``AddCommGroup₃ M`` 实例时，它都需要先去寻找一个完全未指定的类型 ``R`` 以及一个 ``Ring₃ R`` 实例，然后才能开始寻找主要目标，即一个 ``Module₁ R M`` 实例。这两个支线任务在错误消息中由元变量表示，并在那里用 ``？R`` 和 ``？inst✝`` 标注。这样的一个 ``Module₃.toAddCommGroup₃`` 实例对于实例解析过程来说会是一个巨大的陷阱，因此 ``class`` 命令拒绝设置它。
 
 那么 ``extends SMul₃ R M`` 又如何呢？它创建了一个字段
- ``Module₁.toSMul₃ : {R : Type} →  [inst : Ring₃ R] → {M : Type} → [inst_1 : AddCommGroup₃ M] → [self : Module₁ R M] → SMul₃ R M``
+``Module₁.toSMul₃ : {R : Type} →  [inst : Ring₃ R] → {M : Type} → [inst_1 : AddCommGroup₃ M] → [self : Module₁ R M] → SMul₃ R M``
 其最终结果 ``SMul₃ R M`` 同时提到了 ``R`` 和 ``M`` ，所以这个字段可以安全地用作实例。规则很容易记住：在 ``extends`` 子句中出现的每个类都应提及参数中出现的每个类型。
 
 让我们创建我们的第一个模实例：一个环自身就是一个模，其乘法作为标量乘法。
@@ -530,7 +530,7 @@ def zsmul₁ {M : Type*} [Zero M] [Add M] [Neg M] : ℤ → M → M
   | Int.negSucc n, a => -nsmul₁ n.succ a
 -- QUOTE.
 /- TEXT:
-证明这会产生一个模结构有点繁琐，且对当前讨论来说不那么有趣，所以我们很抱歉地略过所有公理。您**无需**用证明来替换这些抱歉。如果您坚持这样做，那么您可能需要陈述并证明关于 ``nsmul₁`` 和 ``zsmul₁`` 的几个中间引理。
+证明这会产生一个模结构有点繁琐，且对当前讨论来说不那么有趣，所以我们很抱歉地略过所有公理。您 **无需** 用证明来替换这些抱歉。如果您坚持这样做，那么您可能需要陈述并证明关于 ``nsmul₁`` 和 ``zsmul₁`` 的几个中间引理。
 BOTH: -/
 -- QUOTE:
 

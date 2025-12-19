@@ -161,7 +161,7 @@ example (h : a ≤ b) : exp a ≤ exp b := by
 -- QUOTE.
 
 /- TEXT:
-实际上，表达式 ``h : A ↔ B`` 是 ``A → B`` 和  ``B → A`` 的合取，我们可以用 ``h.mp`` “肯定前件式”（modus ponens）指代 ``A → B`` ，而 ``h.mpr`` “肯定前件式的反向”（modus ponens reverse）指代 ``B → A`` 。另外还可以用 ``h.1`` 表示 ``h.mp`` 和用``h.2`` 表示 ``h.mpr`` ，虽然这样或许会影响可读性。你可以考察下例；
+实际上，表达式 ``h : A ↔ B`` 是 ``A → B`` 和  ``B → A`` 的合取，我们可以用 ``h.mp`` “肯定前件式”（modus ponens）指代 ``A → B`` ，而 ``h.mpr`` “肯定前件式的反向”（modus ponens reverse）指代 ``B → A`` 。另外还可以用 ``h.1`` 表示 ``h.mp`` 和用 ``h.2`` 表示 ``h.mpr`` ，虽然这样或许会影响可读性。你可以考察下例；
 TEXT. -/
 -- QUOTE:
 example (h₀ : a ≤ b) (h₁ : c < d) : a + exp c + e < b + exp d + e := by

@@ -10,7 +10,9 @@ import Mathlib.Topology.MetricSpace.Basic
 
 .. index:: order relation, partial order
 
-在 :numref:`proving_identities_in_algebraic_structures` 中，我们看到许多关于实数的常见恒等式适用于更一般的代数结构类，比如交换环。我们还有其他代数结构，例如，**偏序** 是一个具有二元关系的集合，该关系是自反的、传递的和反对称的，就像实数上的 ``≤`` 。
+在 :numref:`proving_identities_in_algebraic_structures` 中，
+我们看到许多关于实数的常见恒等式适用于更一般的代数结构类，比如交换环。
+我们还有其他代数结构，例如，**偏序** 是一个具有二元关系的集合，该关系是自反的、传递的和反对称的，就像实数上的 ``≤`` 。
 TEXT. -/
 section
 -- QUOTE:
@@ -44,11 +46,15 @@ example : x < y ↔ x ≤ y ∧ x ≠ y :=
 end
 
 /- TEXT:
-在这个例子中，符号 ``∧`` 表示 “且”，符号 ``¬`` 表示 “非”，而 ``x ≠ y`` 是 ``¬ (x = y)`` 的缩写。 :numref:`第 %s 章 <logic>` 会讲到如何使用这些逻辑连接词来 **证明** ``<`` 具有所示的性质。
+在这个例子中，符号 ``∧`` 表示 “且”，符号 ``¬`` 表示 “非”，而 ``x ≠ y`` 是 ``¬ (x = y)`` 的缩写。
+:numref:`第 %s 章 <logic>` 会讲到如何使用这些逻辑连接词来 **证明** ``<`` 具有所示的性质。
 
 .. index:: lattice
 
-一个 **格** 是给偏序添加运算符 ``⊓`` 和 ``⊔`` 的结构，这些运算符类似于实数上的 ``min`` 和 ``max``，称为 **最大下界** 和 **最小上界** （greatest lower bound, least upper bound） ，用 ``\glb`` 和 ``\lub`` 输入：
+一个 **格** 是给偏序添加运算符 ``⊓`` 和 ``⊔`` 的结构，
+这些运算符类似于实数上的 ``min`` 和 ``max``，
+称为 **最大下界** 和 **最小上界** （greatest lower bound, least upper bound） ，
+用 ``\glb`` 和 ``\lub`` 输入：
 TEXT. -/
 -- BOTH:
 section
@@ -68,11 +74,13 @@ variable (x y z : α)
 -- QUOTE.
 
 /- TEXT:
-这些符号通常也称为 **下确界** 和 **上确界** ，在 Mathlib 的定理名称中被记为 ``inf`` 和 ``sup``。与此同时它们也经常被称为 *meet* 和 *join*。因此，如果你使用格，需要记住以下术语：
+这些符号通常也称为 **下确界** 和 **上确界** ，
+在 Mathlib 的定理名称中被记为 ``inf`` 和 ``sup``。
+与此同时它们也经常被称为 **meet** 和 **join** 。因此，如果你使用格，需要记住以下术语：
 
-* ``⊓`` 是 最大下界、下确界 或 meet 。
+* ``⊓`` 是 **最大下界** 、 **下确界** 或 **meet** 。
 
-* ``⊔`` 是 最小上界、上确界 或 join 。
+* ``⊔`` 是 **最小上界** 、 **上确界** 或 **join** 。
 
 一些格的实例包括：
 
@@ -170,7 +178,7 @@ example : x ⊔ y ⊔ z = x ⊔ (y ⊔ z) := by
 /- TEXT:
 在 Mathlib 中它们分别叫 ``inf_comm`` 、 ``inf_assoc`` 、 ``sup_comm`` 和 ``sup_assoc`` 。
 
-另一个很好的练习是仅使用这些公理证明 **吸收律**：
+另一个很好的练习是仅使用这些公理证明 **吸收律** ：
 TEXT. -/
 -- QUOTE:
 theorem absorb1 : x ⊓ (x ⊔ y) = x := by
@@ -201,7 +209,7 @@ end
 /- TEXT:
 在 Mathlib 中它们分别叫 ``inf_sup_self`` 和 ``sup_inf_self``.
 
-格上附加条件 ``x ⊓ (y ⊔ z) = (x ⊓ y) ⊔ (x ⊓ z)`` 和 ``x ⊔ (y ⊓ z) = (x ⊔ y) ⊓ (x ⊔ z)`` 称为 **分配格** （distributive lattice）。
+格上附加条件 ``x ⊓ (y ⊔ z) = (x ⊓ y) ⊔ (x ⊓ z)`` 和 ``x ⊔ (y ⊓ z) = (x ⊔ y) ⊓ (x ⊔ z)`` 称为 **分配格（distributive lattice）** 。
 TEXT. -/
 -- BOTH:
 section

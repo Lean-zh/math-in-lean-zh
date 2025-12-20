@@ -229,7 +229,7 @@ BOTH: -/
 -- QUOTE.
 
 /- TEXT:
-让我们用一个来自 Bhavik Mehta 在 2023 年 *Lean for the Curious Mathematician* 上
+让我们用一个来自 Bhavik Mehta 在 2023 年 **Lean for the Curious Mathematician** 上
 `关于组合学的教程 <https://www.youtube.com/watch?v=_cJctOIXWE4&list=PLlF-CfQhukNn7xEbfL38eLgkveyk9_myQ&index=8&t=2737s&ab_channel=leanprovercommunity>`_ 中的一个例子和一个练习来结束这一节。
 假设我们有一个二部图，顶点集为 ``s`` 和 ``t``，使得对于 ``s`` 中的每个 ``a``，
 至少有三条边离开 ``a``，对于 ``t`` 中的每个 ``b``，最多有一条边进入 ``b``。

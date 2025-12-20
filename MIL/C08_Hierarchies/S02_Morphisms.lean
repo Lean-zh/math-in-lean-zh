@@ -111,7 +111,7 @@ def badInst [Monoid M] [Monoid N] [MonoidHomClass₁ F M N] : CoeFun F (fun _ �
 /- TEXT:
 将此设为实例是不好的。当面对类似   ``f x``   的情况，而   ``f``   的类型不是函数类型时，Lean 会尝试查找一个   ``CoeFun``   实例来将   ``f``   转换为函数。上述函数的类型为：
  ``{M N F : Type} → [Monoid M] → [Monoid N] → [MonoidHomClass₁ F M N] → CoeFun F (fun x ↦ M → N)``
-因此，在尝试应用它时，Lean 无法预先确定未知类型   ``M``  、  ``N``  和   ``F``   应该以何种顺序进行推断。这与我们之前看到的情况略有不同，但归根结底是同一个问题：在不知道   ``M``   的情况下，Lean 将不得不在未知类型上搜索单子实例，从而无望地尝试数据库中的每一个单子实例。如果您想看看这种实例的效果，可以在上述声明的顶部输入   ``set_option synthInstance.checkSynthOrder false in``  ，将   ``def badInst``   替换为   ``instance``  ，然后在这个文件中查找随机出现的错误。
+因此，在尝试应用它时，Lean 无法预先确定未知类型   ``M``  、  ``N``  和   ``F``   应该以何种顺序进行推断。这与我们之前看到的情况略有不同，但归根结底是同一个问题：在不知道   ``M``   的情况下，Lean 将不得不在未知类型上搜索单子实例，从而无望地尝试数据库中的 **每一个** 单子实例。如果您想看看这种实例的效果，可以在上述声明的顶部输入   ``set_option synthInstance.checkSynthOrder false in``  ，将   ``def badInst``   替换为   ``instance``  ，然后在这个文件中查找随机出现的错误。
 
 在这里，解决方案很简单，我们需要告诉 Lean 先查找什么是 ``F`` ，然后再推导出 ``M`` 和 ``N`` 。这可以通过使用 ``outParam`` 函数来实现。该函数被定义为恒等函数，但仍会被类型类机制识别，并触发所需的行为。因此，我们可以重新定义我们的类，注意使用 ``outParam`` 函数：
 BOTH: -/

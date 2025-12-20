@@ -18,7 +18,7 @@ noncomputable section
 --------------
 Mathlib 中积分的数学基础是测度论。甚至前一节的初等积分实际上也是 Bochner 积分。Bochner 积分是 Lebesgue 积分的推广，目标空间可以是任意的Banach空间，不一定是有限维的。
 
-测度论的第一部分是集合的 :math:`\sigma` -代数的语言，被称作*可测集*。`MeasurableSpace` 类型族提供了带有这种结构的类型。空集 `empty` 和单元素集 `univ` 是可测的，可测集的补集是可测的，可数交和可数并是可测的。注意，这些公理是冗余的；如果你 `#print MeasurableSpace`，你会看到Mathlib用来构造可测集的公理。可数性条件可以使用 `Encodable` 类型族来表示。
+测度论的第一部分是集合的 :math:`\sigma` -代数的语言，被称作 **可测集** 。`MeasurableSpace` 类型族提供了带有这种结构的类型。空集 `empty` 和单元素集 `univ` 是可测的，可测集的补集是可测的，可数交和可数并是可测的。注意，这些公理是冗余的；如果你 `#print MeasurableSpace`，你会看到Mathlib用来构造可测集的公理。可数性条件可以使用 `Encodable` 类型族来表示。
 
 BOTH: -/
 -- QUOTE:
@@ -69,7 +69,7 @@ example {f : ℕ → Set α} (hmeas : ∀ i, MeasurableSet (f i)) (hdis : Pairwi
 -- QUOTE.
 
 /- TEXT:
-一旦一个类型有了与它相关联的测度，我们就说，如果性质 `P` 只在一个测度为0的集合上失效，则 `P` “几乎处处”成立 (almost everywhere, ae)。几乎处处的性质集合形成了一个过滤器 (filter)，但是 Mathlib 引入了特殊的符号来表示一个性质几乎处处成立。
+一旦一个类型有了与它相关联的测度，我们就说，如果性质 `P` 只在一个测度为0的集合上失效，则 `P` **几乎处处** 成立 (almost everywhere, ae)。几乎处处的性质集合形成了一个过滤器 (filter)，但是 Mathlib 引入了特殊的符号来表示一个性质几乎处处成立。
 
 EXAMPLES: -/
 -- QUOTE:

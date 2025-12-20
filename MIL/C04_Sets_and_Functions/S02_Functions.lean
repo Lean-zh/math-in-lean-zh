@@ -80,7 +80,7 @@ example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
   apply h xs
 
 /- TEXT:
-它表明 ``image f`` 和 ``preimage f`` 是 ``Set α`` 和 ``Set β`` 之间所谓 *伽罗瓦连接(Galois connection)* 的一个实例，每个实例都由子集关系作为偏序。在库中，这个等价关系被命名为 ``image_subset_iff`` 。在实践中，右边是更常用的表达方式，因为 ``y ∈ f ⁻¹' t`` 展开为 ``f y ∈ t`` ，而处理 ``x ∈ f '' s`` 则需要分解一个存在量词。
+它表明 ``image f`` 和 ``preimage f`` 是 ``Set α`` 和 ``Set β`` 之间所谓 **伽罗瓦连接(Galois connection)** 的一个实例，每个实例都由子集关系作为偏序。在库中，这个等价关系被命名为 ``image_subset_iff`` 。在实践中，右边是更常用的表达方式，因为 ``y ∈ f ⁻¹' t`` 展开为 ``f y ∈ t`` ，而处理 ``x ∈ f '' s`` 则需要分解一个存在量词。
 
 这里有一长串集合论定理供您消遣。你不必一次全部做完，只需做其中几个，其余的留待一个空闲的雨天再做。
 TEXT. -/
@@ -447,7 +447,7 @@ example : (range fun x ↦ x ^ 2) = { y : ℝ | y ≥ 0 } := by
 end
 
 /- TEXT:
-我们要使用两种新方法定义函数 ``f : α → β`` 的反函数。第一，我们需要小心 Lean 中任意类型可能为空。为了在没有 ``x`` 满足 ``f x = y`` 时定义 ``f`` 的逆在 ``y`` 处的取值，我们想要指定 ``α`` 中的缺省值。将注释 ``[Inhabited α]`` 添加为变量等于假设 ``α`` 有一个默认元素，即 ``default`` 。第二，当存在多于一个 ``x`` 满足 ``f x = y`` 时，反函数需要 *选择* 其中一个。这需要诉诸 *选择公理*。Lean 允许使用多种途径访问它：一种方便的途径是使用经典的 ``choose`` 操作符，如下所示。
+我们要使用两种新方法定义函数 ``f : α → β`` 的反函数。第一，我们需要小心 Lean 中任意类型可能为空。为了在没有 ``x`` 满足 ``f x = y`` 时定义 ``f`` 的逆在 ``y`` 处的取值，我们想要指定 ``α`` 中的缺省值。将注释 ``[Inhabited α]`` 添加为变量等于假设 ``α`` 有一个默认元素，即 ``default`` 。第二，当存在多于一个 ``x`` 满足 ``f x = y`` 时，反函数需要 **选择** 其中一个。这需要诉诸 **选择公理** 。Lean 允许使用多种途径访问它：一种方便的途径是使用经典的 ``choose`` 操作符，如下所示。
 TEXT. -/
 -- BOTH:
 section
@@ -484,7 +484,7 @@ theorem inverse_spec {f : α → β} (y : β) (h : ∃ x, f x = y) : f (inverse 
 -- QUOTE.
 
 /- TEXT:
-之所以需要 ``noncomputable section`` 和 ``open Classical`` 这两行，是因为我们正在以一种重要的方式使用经典逻辑。在输入 ``y`` 时，函数 ``inverse f`` 返回某个满足 ``f x = y`` 的 ``x`` 值（如果有的话），否则返回一个缺省的 ``α`` 元素。这是一个 *dependent if* 结构的实例，因为在正例中，返回值 ``Classical.choose h`` 取决于假设 ``h`` 。给定 ``h : e`` 时，等式 ``dif_pos h`` 将 ``if h : e then a else b`` 改写为 ``a`` ，同样，给定 ``h : ¬ e`` ，``dif_neg h`` 将它改写为 ``b`` 。定理 ``inverse_spec`` 表明 ``inverse f`` 满足这一设定的第一部分。
+之所以需要 ``noncomputable section`` 和 ``open Classical`` 这两行，是因为我们正在以一种重要的方式使用经典逻辑。在输入 ``y`` 时，函数 ``inverse f`` 返回某个满足 ``f x = y`` 的 ``x`` 值（如果有的话），否则返回一个缺省的 ``α`` 元素。这是一个 **dependent if** 结构的实例，因为在正例中，返回值 ``Classical.choose h`` 取决于假设 ``h`` 。给定 ``h : e`` 时，等式 ``dif_pos h`` 将 ``if h : e then a else b`` 改写为 ``a`` ，同样，给定 ``h : ¬ e`` ，``dif_neg h`` 将它改写为 ``b`` 。定理 ``inverse_spec`` 表明 ``inverse f`` 满足这一设定的第一部分。
 
 如果你还不完全理解它们的工作原理，也不用担心。仅 ``inverse_spec`` 定理就足以说明，当且仅当 ``f`` 是单射时，``inverse f`` 是左逆，当且仅当 ``f`` 是满射时，``inverse f`` 是右逆。通过在 VS Code 双击或右键单击 ``LeftInverse`` 和 ``RightInverse`` ，或使用命令 ``#print LeftInverse`` 和 ``#print RightInverse`` ，可以查看它们的定义。然后尝试证明这两个定理。它们很棘手，你最好先打个自然语言草稿。每个定理都能用大约六行短代码证明。附加题：尝试将每个证明压缩成单行证明。
 BOTH: -/

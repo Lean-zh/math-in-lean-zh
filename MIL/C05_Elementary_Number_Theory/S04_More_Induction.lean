@@ -186,7 +186,7 @@ theorem fib'_eq_fib : fib' = fib := by
 它的作用是在归纳假设前插入一个 ``∀ m`` ，这样在归纳步骤中，``m`` 可以取不同的值。
 逐步检查这个证明，可以发现此时量词确实需要在归纳步骤中实例化为 ``m + 1`` 。
 
-还要注意这里使用了 ``erw``（表示“扩展重写”，extended rewrite）而不是 ``rw`` 。
+还要注意这里使用了 ``erw`` （表示“扩展重写”，extended rewrite）而不是 ``rw`` 。
 这是因为为了重写目标 ``fib'_eq_fib`` ，
 需要将 ``fib'`` 和 ``fib`` 分别化简为 ``fib'.aux 0 1`` 和 ``fib n`` 。
 该策略在展开定义以匹配参数时比 ``rw`` 更激进。但这有时效果很差；甚至会浪费大量时间，因此应谨慎使用。
@@ -219,6 +219,8 @@ theorem fib_add' : ∀ m n, fib (m + n + 1) = fib m * fib n + fib (m + 1) * fib 
 BOTH: -/
 -- QUOTE:
 example (n : ℕ): (fib n) ^ 2 + (fib (n + 1)) ^ 2 = fib (2 * n + 1) := by sorry
+
+-- SOLUTIONS:
 example (n : ℕ): (fib n) ^ 2 + (fib (n + 1)) ^ 2 = fib (2 * n + 1) := by
   rw [two_mul, fib_add, pow_two, pow_two]
 -- QUOTE.

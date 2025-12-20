@@ -35,7 +35,7 @@ example (a b c : ℝ) : a * b * c = b * (a * c) := by
 
 .. index:: proof state, local context, goal
 
-当光标位于策略证明的中间时，Lean 会在 *Lean Infoview* 窗口中报告当前的 **证明状态** 。
+当光标位于策略证明的中间时，Lean 会在 **Lean Infoview** 窗口中报告当前的 **证明状态** 。
 当你将光标移到证明的每一步时，你可以看到状态的变化。Lean 中的典型证明状态可能如下所示：
 .. code-block::
 
@@ -85,7 +85,7 @@ example (a b c : ℝ) : a * b * c = b * c * a := by
 -- QUOTE.
 
 /- TEXT:
-你还可以只提供一部分参数，例如 ``mul_comm a`` 识别所有形如 ``a * ?`` 的模式然后重写为 ``? * a`` 。下面的练习中你可以试试在第一个里面不给参数，第二个里面只给一个参数。
+你还可以只提供 **一部分** 参数，例如 ``mul_comm a`` 识别所有形如 ``a * ?`` 的模式然后重写为 ``? * a`` 。下面的练习中你可以试试在第一个里面不给参数，第二个里面只给一个参数。
 TEXT. -/
 /- Try doing the first of these without providing any arguments at all,
    and the second with only one argument. -/
@@ -219,7 +219,7 @@ example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
 -- QUOTE.
 
 /- TEXT:
-请注意，证明 **不** 以 ``by`` 开头：以 ``calc`` 开头的表达式是一个证明项。
+请注意，证明 **不** 以 ``by`` 开头：以 ``calc`` 开头的表达式是一个 **证明项** 。
 ``calc`` 表达式也可以在策略证明块中使用，Lean将其解释为使用证明项的结果来解决当前目标的指令。``calc`` 语法必须严格仿照上例格式使用下划线和对齐。Lean 使用缩进来确定策略块或 ``calc`` 块开始和结束的地方。试着改变上面证明中的缩进，看看会发生什么。
 
 编写 ``calc`` 证明的一种方法是首先使用 ``sorry`` 策略填空，确保 Lean 认可中间步骤表达式，然后使用策略对各个步骤进行论证。

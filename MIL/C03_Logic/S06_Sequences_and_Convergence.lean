@@ -10,7 +10,12 @@ namespace C03S06
 序列和收敛
 -------------------------
 
-来做一些真正的数学！在 Lean 中，我们可以把实数序列 :math:`s_0, s_1, s_2, \ldots` 写成函数 ``s : ℕ → ℝ`` 。我们称这个序列 *收敛* 到数 :math:`a` ，如果对任意 :math:`\varepsilon > 0` ，存在一个位置，在该位置之后，序列留在距离 :math:`a` 不超过 :math:`\varepsilon` 的范围内，也就是说，存在数 :math:`N`, 使得对于任意 :math:`n \ge N` ， :math:`| s_n - a | < \varepsilon` 。
+来做一些真正的数学！
+在 Lean 中，我们可以把实数序列 :math:`s_0, s_1, s_2, \ldots` 写成函数 ``s : ℕ → ℝ`` 。
+我们称这个序列 **收敛** 到数 :math:`a` ，
+如果对任意 :math:`\varepsilon > 0` ，
+存在一个位置，在该位置之后，序列留在距离 :math:`a` 不超过 :math:`\varepsilon` 的范围内，
+也就是说，存在数 :math:`N`, 使得对于任意 :math:`n \ge N` ， :math:`| s_n - a | < \varepsilon` 。
 
 在 Lean 中，我们可以将其表述如下：
 BOTH: -/

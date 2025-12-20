@@ -183,7 +183,7 @@ BOTH: -/
 -- QUOTE.
 
 /- TEXT:
-所以我们看到 ``Monoid₁`` 按预期接受 ``Semigroup₁ α`` 参数，但不会接受可能重叠的 ``DiaOneClass₁ α`` 参数，而是将其拆分并仅包含不重叠的部分。它还自动生成了一个实例 ``Monoid₁.toDiaOneClass₁`` ，这并非字段，但具有预期的签名，从最终用户的角度来看，这恢复了两个扩展类 ``Semigroup₁`` 和 ``DiaOneClass₁`` 之间的对称性。
+所以我们看到 ``Monoid₁`` 按预期接受 ``Semigroup₁ α`` 参数，但不会接受可能重叠的 ``DiaOneClass₁ α`` 参数，而是将其拆分并仅包含不重叠的部分。它还自动生成了一个实例 ``Monoid₁.toDiaOneClass₁`` ，这 **并非** 字段，但具有预期的签名，从最终用户的角度来看，这恢复了两个扩展类 ``Semigroup₁`` 和 ``DiaOneClass₁`` 之间的对称性。
 BOTH: -/
 
 -- QUOTE:

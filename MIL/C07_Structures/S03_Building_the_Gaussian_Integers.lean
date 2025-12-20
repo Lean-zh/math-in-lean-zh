@@ -193,7 +193,7 @@ instance : Nontrivial GaussInt := by
 end GaussInt
 
 /- TEXT:
-我们现在将证明高斯整数具有一个重要的额外性质。一个 **欧几里得整环（Euclidean domain）** 是一个环 :math:`R`，配备了一个范数函数 :math:`N : R \to \mathbb{N}`，满足以下两个性质：
+我们现在将证明高斯整数具有一个重要的额外性质。一个 **欧几里得整环（Euclidean domain）** 是一个环 :math:`R`，配备了一个 **范数** 函数 :math:`N : R \to \mathbb{N}`，满足以下两个性质：
 
 -对于 :math:`R` 中的任意 :math:`a` 和非零 :math:`b`，存在 :math:`R` 中的 :math:`q` 和 :math:`r`，使得 :math:`a = bq + r`，并且要么 :math:`r = 0`，要么 :math:`N(r) < N(b)`。
 -对于任意 :math:`a` 和非零 :math:`b`，:math:`N(a) \le N(ab)`。
@@ -223,7 +223,7 @@ example (a b : ℤ) : b ≠ 0 → a % b < |b| :=
 相比之下，每个欧几里得域都是唯一分解域，这意味着每个不可约元素都是素元。
 欧几里得域的公理意味着可以将任何非零元素表示为不可约元素的有限乘积。它们还意味着可以使用欧几里得算法找到任意两个非零元素 ``a`` 和 ``b`` 的最大公约数，即能被任何其他公因数整除的元素。这反过来又意味着，除了乘以单位元素外，分解为不可约元素是唯一的。
 
-我们现在证明高斯整数是一个欧几里得域，其范数定义为 :math:`N(a + bi) = (a + bi)(a - bi) = a^2 + b^2` 。高斯整数 :math:`a - bi` 被称为 :math:`a + bi` 的共轭。不难验证，对于任何复数 :math:`x` 和 :math:`y` ，我们都有 :math:`N(xy) = N(x)N(y)` 。
+我们现在证明高斯整数是一个欧几里得域，其范数定义为 :math:`N(a + bi) = (a + bi)(a - bi) = a^2 + b^2` 。高斯整数 :math:`a - bi` 被称为 :math:`a + bi` 的 **共轭** 。不难验证，对于任何复数 :math:`x` 和 :math:`y` ，我们都有 :math:`N(xy) = N(x)N(y)` 。
 
 要证明这个范数的定义能使高斯整数构成欧几里得域，只有第一个性质具有挑战性。假设我们想写成 :math:`a + bi = (c + di) q + r` 的形式，其中 :math:`q` 和 :math:`r` 是合适的数。将 :math:`a + bi` 和 :math:`c + di` 视为复数，进行除法运算。
 

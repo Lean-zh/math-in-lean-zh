@@ -412,7 +412,7 @@ end
 Lean 能够找到这两个事实并将它们串联起来。
 
 我们刚刚给出的例子是危险的，因为 Lean 的库中也有一个 ``Group (Equiv.Perm α)`` 的实例，并且乘法在任何群上都有定义。所以，找到的是哪个实例是不明确的。实际上，除非您明确指定不同的优先级，否则 Lean 会倾向于更近的声明。此外，还有另一种方法可以告诉 Lean 一个结构是另一个结构的实例，即使用 ``extends`` 关键字。这就是 Mathlib 指定例如每个交换环都是环的方式。
-您可以在 :numref:`hierarchies` 以及 **Theorem Proving in Lean** 中的 `关于类推断的章节 <https://leanprover.github.io/theorem_proving_in_lean4/type_classes.html#managing-type-class-inference>`_ 中找到更多信息。
+您可以在 :numref:`hierarchies` 以及 《Theorem Proving in Lean》 中的 `关于类推断的章节 <https://leanprover.github.io/theorem_proving_in_lean4/type_classes.html#managing-type-class-inference>`_ 中找到更多信息。
 
 一般来说，对于已经定义了记号的代数结构的实例，指定值为 ``*`` 是一个不好的主意。
 在 Lean 中重新定义 ``Group`` 的概念是一个人为的例子。

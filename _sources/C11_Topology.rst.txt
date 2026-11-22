@@ -6,10 +6,12 @@
 ========
 
 微积分建立在函数的概念之上，旨在对相互依赖的量进行建模。例如，研究随时间变化的量是一个常见的应用场景。
-**极限（limit）** 这一概念同样基础。我们可以说，当 :math:`x` 趋近于某个值 :math:`a` 时，函数 :math:`f(x)` 的极限是一个值 :math:`b` ，或者说 :math:`f(x)` 当 :math:`x` 趋近于 :math:`a` 时 **收敛于（converges to）** :math:`b` 。
-等价地，我们可以说当 :math:`x` 趋近于某个值 :math:`a` 时，:math:`f(x)` 趋近于 :math:`b` ，或者说它当 :math:`x` 趋向于 :math:`a` 时 **趋向于（tends to）** :math:`b` 。我们在
-:numref:`sequences_and_convergence`
-中已开始考虑此类概念。
+**极限（limit）** 这一概念同样基础。
+我们可以说，当 :math:`x` 趋近于某个值 :math:`a` 时，函数 :math:`f(x)` 的极限是一个值 :math:`b` ，
+或者说 :math:`f(x)` 当 :math:`x` 趋近于 :math:`a` 时 **收敛于（converges to）** :math:`b` 。
+等价地，我们可以说当 :math:`x` 趋近于某个值 :math:`a` 时，:math:`f(x)` 趋近于 :math:`b` ，
+或者说它当 :math:`x` 趋向于 :math:`a` 时 **趋向于（tends to）** :math:`b` 。
+我们在 :numref:`sequences_and_convergence` 中已开始考虑此类概念。
 
 **拓扑学** 是对极限和连续性的抽象研究。
 在第 :numref:`%s <basics>` 章到第 :numref:`%s <structures>` 章中，我们已经介绍了形式化的基础知识，在本章中，我们将解释在 Mathlib 中如何形式化拓扑概念。

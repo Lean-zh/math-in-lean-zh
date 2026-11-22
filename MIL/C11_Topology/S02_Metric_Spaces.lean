@@ -89,11 +89,11 @@ example {X Y : Type*} [MetricSpace X] [MetricSpace Y] {f : X → Y} (hf : Contin
 
 /- TEXT:
 
-通过 ``Continuous.comp`` 将 ``Continuous.prod_mk`` 和 ``continuous_dist`` 结合起来的方式感觉很笨拙，即便像上面那样大量使用点标记也是如此。更严重的问题在于，这个漂亮的证明需要大量的规划。Lean 接受上述证明项是因为它是一个完整的项，证明了一个与我们的目标定义上等价的陈述，关键在于要展开的定义是函数的复合。实际上，我们的目标函数 ``fun p ： X × X ↦ dist (f p.1) (f p.2)`` 并未以复合的形式给出。我们提供的证明项证明了 ``dist ∘ (fun p ： X × X ↦ (f p.1， f p.2))`` 的连续性，而这恰好与我们的目标函数定义上相等。但如果尝试从 ``apply continuous_dist.comp`` 开始逐步使用战术构建这个证明，Lean 的繁饰器将无法识别复合函数并拒绝应用此引理。当涉及类型乘积时，这种情况尤其糟糕。
+通过 ``Continuous.comp`` 将 ``Continuous.prod_mk`` 和 ``continuous_dist`` 结合起来的方式感觉很笨拙，即便像上面那样大量使用点标记也是如此。更严重的问题在于，这个漂亮的证明需要大量的规划。Lean 接受上述证明项是因为它是一个完整的项，证明了一个与我们的目标定义上等价的陈述，关键在于要展开的定义是函数的复合。实际上，我们的目标函数 ``fun p ： X × X ↦ dist (f p.1) (f p.2)`` 并未以复合的形式给出。我们提供的证明项证明了 ``dist ∘ (fun p ： X × X ↦ (f p.1， f p.2))`` 的连续性，而这恰好与我们的目标函数定义上相等。但如果尝试从 ``apply continuous_dist.comp`` 开始逐步使用战术构建这个证明，Lean 的详译器将无法识别复合函数并拒绝应用此引理。当涉及类型乘积时，这种情况尤其糟糕。
 
 这里更适用的引理是
  ``Continuous.dist {f g : X → Y} : Continuous f → Continuous g → Continuous (fun x ↦ dist (f x) (g x))``
-它对 Lean 的繁饰器更友好，并且在直接提供完整证明项时也能提供更简短的证明，这一点从以下两个对上述陈述的新证明中可以看出：
+它对 Lean 的详译器更友好，并且在直接提供完整证明项时也能提供更简短的证明，这一点从以下两个对上述陈述的新证明中可以看出：
 BOTH: -/
 -- QUOTE:
 example {X Y : Type*} [MetricSpace X] [MetricSpace Y] {f : X → Y} (hf : Continuous f) :
